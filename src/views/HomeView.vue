@@ -2,5 +2,8 @@
 </script>
 
 <template>
-  <el-button>测试</el-button>
+    <el-space>
+      <el-button>测试</el-button>
+      <el-button type="success">Success</el-button>
+    </el-space>
 </template>
