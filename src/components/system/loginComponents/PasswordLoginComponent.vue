@@ -1,7 +1,7 @@
 <script setup lang="ts" >
 import "@/assets/system/LoginBoxCss.css"
 // 引入表单
-import {ruleForm, ruleFormRef, rules} from "@/forms/systems/PasswordLoginForms.ts";
+import {ruleForm, ruleFormRef, rules} from "@/forms/auth/PasswordLoginForms.ts";
 import {Lock, UserFilled} from "@element-plus/icons-vue";
 import {ref} from "vue";
 import {ElMessage} from "element-plus";
