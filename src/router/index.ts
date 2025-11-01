@@ -13,25 +13,25 @@ const router = createRouter({
       // 登录页面路由
       path:'/login',
       name:"login",
-      component:()=>import('@/views/system/LoginView.vue'),
+      component:()=>import('@/views/auth/LoginView.vue'),
       children:[
         {
           // 密码登录默认登录方式
           path:'',
           name:'passwordLogin',
-          component:()=>import('@/components/system/loginComponents/PasswordLoginComponent.vue'),
+          component:()=>import('@/components/auth/loginComponents/PasswordLoginComponent.vue'),
         },
         {
           // 邮箱验证码登录
           path:'emailLogin',
           name:'emailLogin',
-          component:()=>import('@/components/system/loginComponents/EmailLoginComponent.vue'),
+          component:()=>import('@/components/auth/loginComponents/EmailLoginComponent.vue'),
         },
         {
           // 微信登录
           path:'wechatLogin',
           name:'wechatLogin',
-          component:()=>import('@/components/system/loginComponents/WechatLoginComponent.vue'),
+          component:()=>import('@/components/auth/loginComponents/WechatLoginComponent.vue'),
         }
       ]
     },

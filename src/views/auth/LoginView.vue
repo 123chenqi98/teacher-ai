@@ -3,9 +3,8 @@ import "@/assets/system/LoginBoxCss.css"
 import "@/assets/system/PageFooterCss.css"
 // 引入登录组件
 //页脚组件
-import PageFooter from "@/components/system/PageFooterComponenet.vue"
 // 登录方式组件
-import LoginWaysComponent from "@/components/system/loginComponents/LoginWaysComponent.vue"
+import LoginWaysComponent from "@/components/auth/loginComponents/LoginWaysComponent.vue"
 </script>
 
 <template>
