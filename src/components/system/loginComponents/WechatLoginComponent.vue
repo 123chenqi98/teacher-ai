@@ -3,6 +3,7 @@
 </script>
 
 <template>
+  <el-button>微信测试</el-button>
 
 </template>
 

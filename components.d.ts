@@ -11,8 +11,25 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    Admin: typeof import('./src/components/admin/admin.vue')['default']
+    ElAlert: typeof import('element-plus/es')['ElAlert']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
+    ElForm: typeof import('element-plus/es')['ElForm']
+    ElFormItem: typeof import('element-plus/es')['ElFormItem']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
+    ElInput: typeof import('element-plus/es')['ElInput']
+    ElLink: typeof import('element-plus/es')['ElLink']
+    EmailLoginComponent: typeof import('./src/components/system/loginComponents/EmailLoginComponent.vue')['default']
+    Login: typeof import('./src/components/auth/login.vue')['default']
+    LoginComponent: typeof import('./src/components/system/loginComponents/LoginComponent.vue')['default']
+    LoginComponents: typeof import('./src/components/system/LoginComponent.vue')['default']
+    LoginWaysComponent: typeof import('./src/components/system/loginComponents/LoginWaysComponent.vue')['default']
+    PageFooterComponenet: typeof import('./src/components/system/PageFooterComponenet.vue')['default']
+    PasswordLoginComponent: typeof import('./src/components/system/loginComponents/PasswordLoginComponent.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    WechatLoginComponent: typeof import('./src/components/system/loginComponents/WechatLoginComponent.vue')['default']
+    WxLoginComponent: typeof import('./src/components/system/loginComponents/wxLoginComponent.vue')['default']
   }
 }
