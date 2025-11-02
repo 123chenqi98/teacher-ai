@@ -39,6 +39,7 @@ declare module 'vue' {
     PhoneRegisterComponent: typeof import('./src/components/auth/registerComponents/PhoneRegisterComponent.vue')['default']
     PhoneRegiterComponent: typeof import('./src/components/auth/registerComponents/PhoneRegiterComponent.vue')['default']
     PhoneRegitserComponent: typeof import('./src/components/auth/registerComponents/PhoneRegitserComponent.vue')['default']
+    RegisterButtonComponent: typeof import('./src/components/auth/registerComponents/RegisterButtonComponent.vue')['default']
     RegisterIdentitySelectComponent: typeof import('./src/components/auth/registerComponents/RegisterIdentitySelectComponent.vue')['default']
     RegisterIdentitySelectCompont: typeof import('./src/components/auth/registerComponents/RegisterIdentitySelectCompont.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

@@ -13,8 +13,7 @@ const activeTab = ref('email')
 
 <template>
   <div class="register-container">
-    <div class="system-title">小知智能教师系统</div>
-    
+    <div class="system-title-register">小知智能教师系统</div>
     <div class="content-box">
       <div class="register-title">用户注册</div>
       <div class="register-way-box">

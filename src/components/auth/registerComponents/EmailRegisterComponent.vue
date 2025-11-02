@@ -5,6 +5,7 @@ import {ElMessage} from "element-plus";
 import router from "@/router";
 import RegisterIdentitySelectComponent from "@/components/auth/registerComponents/RegisterIdentitySelectComponent.vue";
 import {sendVerifyCodeCutTime,sendVerifyCodeTime} from "@/utils/auth/SendTimeUtils.ts"
+import RegisterButtonComponent from "@/components/auth/registerComponents/RegisterButtonComponent.vue";
 
 // 获取验证码
 const getVerifyCode = (type: 'email' | 'phone') => {
@@ -29,15 +30,12 @@ const submitEmailForm = () => {
     }
   })
 }
-// 返回登录
-const goToLogin = () => {
-  router.push('/login')
-}
+
 </script>
 
 <template>
   <el-tab-pane label="邮箱注册" name="email">
-    <div class="form-item-style">
+    <div class="form-item-style-register">
       <el-form
           ref="emailFormRef"
           :model="emailForm"
@@ -117,15 +115,7 @@ const goToLogin = () => {
           </el-input>
         </el-form-item>
       </el-form>
-
-      <div class="form-actions">
-        <el-button type="warning" @click="submitEmailForm" class="register-button">
-          注册
-        </el-button>
-        <el-link @click="goToLogin" class="login-link">
-          已有账号？立即登录
-        </el-link>
-      </div>
+     <register-button-component :submit-phone-form="submitEmailForm"/>
     </div>
   </el-tab-pane>
 </template>

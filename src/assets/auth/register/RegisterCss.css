@@ -11,7 +11,7 @@
     min-height: calc(100vh - 60px);
 }
 
-.system-title {
+.system-title-register {
     font-size: 3.5rem;
     font-weight: bold;
     color: rgba(0, 0, 0, 0.84);
@@ -28,7 +28,6 @@
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     margin-bottom: 20px;
 }
-
 
 
 .register-way-box {
@@ -150,7 +149,7 @@
     height: 100%;
 }
 
-.form-item-style {
+.form-item-style-register {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -160,7 +159,7 @@
     box-sizing: border-box;
 }
 
-.form-item-style label {
+.form-item-style-register label {
     font-size: 1.1rem;
     width: 120px;
     color: #0d172a;
@@ -169,12 +168,15 @@
 .verify-code-group {
     display: flex;
     align-items: center;
+    gap: 10px;
     width: 100%;
 }
 
+.verify-code-group label {
+    min-width: 60px;
+}
 
 .verify-code-button {
-    margin-left: 10px;
     white-space: nowrap;
 }
 
@@ -182,14 +184,9 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    width: 60%;
-    margin-top: 20px;
-}
-
-.register-button {
-    width: 100%;
-    height: 45px;
-    font-size: 16px;
+    width: 80%;
+    margin-top: 10px;
+    margin-left: 30px;
 }
 
 .login-link {

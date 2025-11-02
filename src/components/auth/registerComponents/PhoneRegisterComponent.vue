@@ -5,6 +5,7 @@ import router from "@/router";
 import {Iphone, Lock} from "@element-plus/icons-vue";
 import RegisterIdentitySelectComponent from "@/components/auth/registerComponents/RegisterIdentitySelectComponent.vue";
 import {sendVerifyCodeCutTime,sendVerifyCodeTime} from "@/utils/auth/SendTimeUtils.ts"
+import RegisterButtonComponent from "@/components/auth/registerComponents/RegisterButtonComponent.vue";
 
 
 // 获取验证码
@@ -31,15 +32,12 @@ const submitPhoneForm = () => {
   })
 }
 
-// 返回登录
-const goToLogin = () => {
-  router.push('/login')
-}
+
 </script>
 
 <template>
   <el-tab-pane label="手机号注册" name="phone">
-    <div class="form-item-style">
+    <div class="form-item-style-register">
       <el-form
           ref="phoneFormRef"
           :model="phoneForm"
@@ -119,15 +117,7 @@ const goToLogin = () => {
           </el-input>
         </el-form-item>
       </el-form>
-
-      <div class="form-actions">
-        <el-button type="warning" @click="submitPhoneForm" class="register-button">
-          注册
-        </el-button>
-        <el-link @click="goToLogin" class="login-link">
-          已有账号？立即登录
-        </el-link>
-      </div>
+      <register-button-component :submit-phone-form="submitPhoneForm"/>
     </div>
   </el-tab-pane>
 </template>
