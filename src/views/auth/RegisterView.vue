@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import '@/assets/auth/register/RegisterCss.css'
+import '@/assets/auth/login/LoginBoxCss.css'
 import WechatLoginComponent from "@/components/auth/loginComponents/WechatLoginComponent.vue";
 import EmailRegisterComponent from "@/components/auth/registerComponents/EmailRegisterComponent.vue";
 import PhoneRegisterComponent from "@/components/auth/registerComponents/PhoneRegisterComponent.vue";
