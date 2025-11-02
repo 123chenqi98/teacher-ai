@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import "@/assets/system/LoginBoxCss.css"
+import "@/assets/auth/login/LoginBoxCss.css"
 import "@/assets/system/PageFooterCss.css"
 // 引入登录组件
 //页脚组件

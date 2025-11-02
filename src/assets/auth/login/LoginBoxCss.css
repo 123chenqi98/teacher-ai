@@ -74,6 +74,23 @@
 }
 
 /*表单内的*/
+.form-item-style{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 180px;
+  width: 100%;
+  height: 35px;
+}
+
+/*组件排布*/
+.form-item-style label{
+  font-size: 1.2rem;
+  width: 120px;
+  color: #0d172a;
+}
+
 
 
 

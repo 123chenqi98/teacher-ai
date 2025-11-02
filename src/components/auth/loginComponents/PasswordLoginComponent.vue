@@ -1,10 +1,11 @@
 <script setup lang="ts" >
-import "@/assets/system/LoginBoxCss.css"
+import "@/assets/auth/login/LoginBoxCss.css"
 // 引入表单
-import {ruleForm, ruleFormRef, rules} from "@/forms/systems/PasswordLoginForms.ts";
+import {ruleForm, ruleFormRef, rules} from "@/forms/auth/login/PasswordLoginForm.ts";
 import {Lock, UserFilled} from "@element-plus/icons-vue";
 import {ref} from "vue";
 import {ElMessage} from "element-plus";
+import LoginButtonComponent from "@/components/auth/loginComponents/LoginButtonComponent.vue";
 
 // 是否勾选服务条款
 const termsOfService = ref(true);
@@ -84,56 +85,15 @@ const loginButtonClick = ()=>{
       </el-form-item>
     </el-form>
     <div>
-      <el-link type="warning"  @click="" style="margin-left: 75%">
-        忘记密码？
-      </el-link>
-      <el-button @click="loginButtonClick" class="button-login" >
-        登录
-      </el-button>
-      <el-checkbox v-model="termsOfService" size="large">
-        <el-link type="primary" style="font-size: 1.0rem;color:#d3debf ">
-          我已阅读并同意
-          <el-link type="primary"  @click="" style="font-size: 1.0rem;color:#d3debf ">
-            《用户协议》
-          </el-link>
-          和
-          <el-link type="primary"  @click="" style="font-size: 1.0rem;color:#d3debf ">
-            《隐私政策》
-          </el-link>
-        </el-link>
-      </el-checkbox>
-      <el-link  @click="" style="font-size: 1.0rem;color:#d3debf;margin-top: 50px ">
-        没有账号去注册
-      </el-link>
+      <LoginButtonComponent
+          :login-button-click="loginButtonClick"
+          :terms-of-service="termsOfService"
+          @update:termsOfService="(val: boolean) => termsOfService = val"
+      />
     </div>
   </div>
 </template>
 
 <style scoped>
-/*组件排布*/
-.form-item-style{
-  display: grid;
-  justify-content: center;
-  width: 100%;
-  height: 35px;
-}
-
-.form-item-style label{
-  font-size: 1.2rem;
-  width: 120px;
-  color: #0d172a;
-}
-/*登录按钮*/
-.button-login{
-  width: 100%;
-  height: 35px;
-  background: rgb(153, 171, 129);
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  transition: all 0.3s ease-in-out;
-  color: #131319;
-  margin-top: 10px;
-  font-size: 1.2rem;
-}
 
 </style>

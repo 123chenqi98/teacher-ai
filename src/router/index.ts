@@ -35,6 +35,12 @@ const router = createRouter({
         }
       ]
     },
+    {
+      // 注册页面路由
+      path:'/register',
+      name:"register",
+      component:()=>import('@/views/auth/RegisterView.vue'),
+    }
   ],
 })
 
