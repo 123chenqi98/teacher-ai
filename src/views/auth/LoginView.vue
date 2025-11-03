@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import "@/assets/system/LoginBoxCss.css"
+import "@/assets/auth/login/LoginBoxCss.css"
 import "@/assets/system/PageFooterCss.css"
 // 引入登录组件
 //页脚组件
@@ -9,7 +9,7 @@ import LoginWaysComponent from "@/components/auth/loginComponents/LoginWaysCompo
 
 <template>
     <!--  登录界面-->
-    <div class="login-container">
+    <div class="auth-container">
       <span class="system-title">小知智能教师系统</span>
       <!--    内容容器-->
       <div class="content-box" >
