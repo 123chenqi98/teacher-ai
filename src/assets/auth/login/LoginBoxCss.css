@@ -1,6 +1,6 @@
 
 /* 页面整体布局和背景 */
-.login-container {
+.auth-container {
   /* 设置容器为固定宽度，居中显示 */
   width: 100%;
   height: 100%;

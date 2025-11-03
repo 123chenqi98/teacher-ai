@@ -9,7 +9,7 @@ import LoginWaysComponent from "@/components/auth/loginComponents/LoginWaysCompo
 
 <template>
     <!--  登录界面-->
-    <div class="login-container">
+    <div class="auth-container">
       <span class="system-title">小知智能教师系统</span>
       <!--    内容容器-->
       <div class="content-box" >

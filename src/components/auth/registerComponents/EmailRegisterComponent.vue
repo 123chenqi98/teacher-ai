@@ -93,6 +93,7 @@ const submitEmailForm = () => {
               autocomplete="off"
               placeholder="请输入密码"
               maxlength="18"
+              show-password
           >
             <template #prefix>
               <el-icon><Lock /></el-icon>
@@ -108,6 +109,7 @@ const submitEmailForm = () => {
               autocomplete="off"
               placeholder="请再次输入密码"
               maxlength="18"
+              show-password
           >
             <template #prefix>
               <el-icon><Lock /></el-icon>

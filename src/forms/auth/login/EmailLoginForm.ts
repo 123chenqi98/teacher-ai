@@ -26,7 +26,7 @@ const validateEmail = (rule: any, value: any, callback: any) => {
         callback()
     }
 }
-//校验密码
+//校验码
 const validateCode = (rule: any, value: any, callback: any) => {
     const integerRegex = /^[0-9]+$/;
     if (value === '') {

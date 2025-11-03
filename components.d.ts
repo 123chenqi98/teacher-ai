@@ -11,6 +11,8 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AccountIdentityComponent: typeof import('./src/components/auth/forgetPasswordComponents/AccountIdentityComponent.vue')['default']
+    AccountIdentityComPonent: typeof import('./src/components/auth/forgetPasswordComponents/AccountIdentityComPonent.vue')['default']
     Admin: typeof import('./src/components/admin/admin.vue')['default']
     ElAlert: typeof import('element-plus/es')['ElAlert']
     ElButton: typeof import('element-plus/es')['ElButton']
@@ -42,8 +44,11 @@ declare module 'vue' {
     RegisterButtonComponent: typeof import('./src/components/auth/registerComponents/RegisterButtonComponent.vue')['default']
     RegisterIdentitySelectComponent: typeof import('./src/components/auth/registerComponents/RegisterIdentitySelectComponent.vue')['default']
     RegisterIdentitySelectCompont: typeof import('./src/components/auth/registerComponents/RegisterIdentitySelectCompont.vue')['default']
+    ResetPasswordComponent: typeof import('./src/components/auth/forgetPasswordComponents/ResetPasswordComponent.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    StepsComponent: typeof import('./src/components/auth/forgetPasswordComponents/StepsComponent.vue')['default']
+    VerifyIdentityComponent: typeof import('./src/components/auth/forgetPasswordComponents/VerifyIdentityComponent.vue')['default']
     WechatLoginComponent: typeof import('./src/components/auth/loginComponents/WechatLoginComponent.vue')['default']
     WechatRegisterComponent: typeof import('./src/components/auth/registerComponents/WechatRegisterComponent.vue')['default']
     WxLoginComponent: typeof import('./src/components/system/loginComponents/wxLoginComponent.vue')['default']

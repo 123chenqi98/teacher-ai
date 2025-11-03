@@ -40,6 +40,12 @@ const router = createRouter({
       path:'/register',
       name:"register",
       component:()=>import('@/views/auth/RegisterView.vue'),
+    },
+    {
+      // 忘记密码页面路由
+      path:'/forgetPassword',
+      name:"forgetPassword",
+      component:()=>import('@/views/auth/ForgetPasswordView.vue'),
     }
   ],
 })

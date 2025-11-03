@@ -20,7 +20,7 @@ const handleTermsChange = (value: boolean) => {
 
 <template>
   <div>
-    <el-link type="warning"  @click="" style="margin-left: 75%">
+    <el-link type="warning"  @click="()=>{router.push('/forgetPassword')}" style="margin-left: 75%">
       忘记密码？
     </el-link>
     <el-button @click="loginButtonClick" class="button-login" >
