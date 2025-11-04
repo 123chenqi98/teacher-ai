@@ -11,6 +11,7 @@ const router = createRouter({
       name: 'home',
       component: () => import('@/views/HomeView.vue'),
     },
+    // 后台布局路由
     {
       path: '/admin',
       component: () => import('@/layouts/AdminLayout.vue'),
@@ -31,24 +32,6 @@ const router = createRouter({
           component: () => import('@/views/SystemSettings.vue'),
         },
       ]
-    },
-    // 用户管理页面路由
-    {
-      path: '/user-management',
-      name: 'user-management',
-      component: () => import('@/views/UserManagement.vue'),
-    },
-    // 角色权限页面路由
-    {
-      path: '/role-permission',
-      name: 'role-permission',
-      component: () => import('@/views/RolePermission.vue'),
-    },
-    // 系统设置页面路由
-    {
-      path: '/system-settings',
-      name: 'system-settings',
-      component: () => import('@/views/SystemSettings.vue'),
     },
     // 兼容旧路由：角色列表页面路由
     {

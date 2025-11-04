@@ -7,6 +7,8 @@ export interface Role {
   permissionScope: string;
   permissionIds?: (number | string)[]; // 权限ID数组
   createTime: string;
+  userCount?: number; // 用户数量
+  type?: 'system' | 'custom'; // 类型：系统角色/自定义角色
 }
 
 export interface RoleForm {

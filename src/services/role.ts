@@ -17,27 +17,43 @@ export function getRoleList(params?: { query?: string; page?: number; size?: num
     data: [
       {
         id: 1,
-        roleName: '管理员',
-        description: '系统超级管理员，拥有所有操作权限',
-        permissionScope: '全部',
-        permissionIds: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-        createTime: '2025-10-30 10:00:00'
+        roleName: '学生',
+        description: '系统中的学生用户,可查看个人相关信息和学习资料',
+        permissionScope: '个人学习数据、课程资料、作业提交',
+        permissionIds: [1, 2, 5, 6],
+        createTime: '2025-09-01 08:00:00',
+        userCount: 45,
+        type: 'system'
       },
       {
         id: 2,
-        roleName: '普通用户',
-        description: '仅能查看基础数据，无修改/删除权限',
-        permissionScope: '部分',
-        permissionIds: [1, 2, 5, 6],
-        createTime: '2025-10-31 15:30:00'
+        roleName: '教师',
+        description: '系统中的教师用户,负责班级管理和教学工作',
+        permissionScope: '班级管理、课程安排、成绩录入、作业批改',
+        permissionIds: [1, 2, 3, 4, 5, 6, 7, 8],
+        createTime: '2025-09-01 08:00:00',
+        userCount: 5,
+        type: 'system'
       },
       {
         id: 3,
-        roleName: '运营人员',
-        description: '负责数据统计与内容管理',
-        permissionScope: '运营模块',
-        permissionIds: [3, 4, 7, 8],
-        createTime: '2025-11-01 09:15:00'
+        roleName: '家长',
+        description: '学生家长用户,可查看子女的学习情况和学校通知',
+        permissionScope: '子女成绩、出勤情况、学校通知、家校沟通',
+        permissionIds: [1, 2, 5],
+        createTime: '2025-09-01 08:00:00',
+        userCount: 38,
+        type: 'system'
+      },
+      {
+        id: 4,
+        roleName: '年级组长',
+        description: '负责年级管理的教师,拥有跨班级查看权限',
+        permissionScope: '年级所有班级数据、教师管理、成绩分析',
+        permissionIds: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+        createTime: '2025-10-15 14:30:00',
+        userCount: 2,
+        type: 'custom'
       }
     ]
   });

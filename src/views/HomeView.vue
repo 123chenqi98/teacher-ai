@@ -10,41 +10,7 @@ const navigateTo = (path: string) => {
 </script>
 
 <template>
-  <div class="home-view">
-    <el-card shadow="never">
-      <template #header>
-        <h2>系统管理模块</h2>
-      </template>
-      <div class="nav-grid">
-        <el-card class="nav-card" shadow="hover" @click="navigateTo('/user-management')">
-          <div class="nav-item">
-            <el-icon :size="48" color="#409eff"><User /></el-icon>
-            <h3>用户管理</h3>
-            <p>用户列表、新增、编辑、权限管理</p>
-            <p class="author">开发者：王煦登、吴忠艳</p>
-          </div>
-        </el-card>
-        
-        <el-card class="nav-card" shadow="hover" @click="navigateTo('/role-permission')">
-          <div class="nav-item">
-            <el-icon :size="48" color="#67c23a"><Lock /></el-icon>
-            <h3>角色权限</h3>
-            <p>角色管理、权限分配、角色复制</p>
-            <p class="author">开发者：罗鑫</p>
-          </div>
-        </el-card>
-        
-        <el-card class="nav-card" shadow="hover" @click="navigateTo('/system-settings')">
-          <div class="nav-item">
-            <el-icon :size="48" color="#e6a23c"><Setting /></el-icon>
-            <h3>系统设置</h3>
-            <p>基础设置、安全设置、日志管理</p>
-            <p class="author">开发者：罗桂生</p>
-          </div>
-        </el-card>
-      </div>
-    </el-card>
-  </div>
+  <el-button>测试</el-button>
 </template>
 
 <style scoped>

@@ -11,6 +11,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    Admin: typeof import('./src/components/admin/admin.vue')['default']
     ElAlert: typeof import('element-plus/es')['ElAlert']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElButton: typeof import('element-plus/es')['ElButton']
@@ -40,7 +41,12 @@ declare module 'vue' {
     ElTimelineItem: typeof import('element-plus/es')['ElTimelineItem']
     ElTree: typeof import('element-plus/es')['ElTree']
     ElUpload: typeof import('element-plus/es')['ElUpload']
+    EmailLoginComponent: typeof import('./src/components/system/loginComponents/EmailLoginComponent.vue')['default']
+    Login: typeof import('./src/components/auth/login.vue')['default']
+    LoginWaysComponent: typeof import('./src/components/system/loginComponents/LoginWaysComponent.vue')['default']
+    PageFooterComponenet: typeof import('./src/components/system/PageFooterComponenet.vue')['default']
     PageHeader: typeof import('./src/components/common/PageHeader.vue')['default']
+    PasswordLoginComponent: typeof import('./src/components/system/loginComponents/PasswordLoginComponent.vue')['default']
     RoleComponents: typeof import('./src/components/common/RoleComponents.vue')['default']
     RoleDialog: typeof import('./src/components/common/RoleDialog.vue')['default']
     RolePermissionTree: typeof import('./src/components/common/RolePermissionTree.vue')['default']
@@ -49,6 +55,7 @@ declare module 'vue' {
     StatsCards: typeof import('./src/components/common/StatsCards.vue')['default']
     UserDetail: typeof import('./src/components/common/UserDetail.vue')['default']
     UserDialog: typeof import('./src/components/common/UserDialog.vue')['default']
+    WechatLoginComponent: typeof import('./src/components/system/loginComponents/WechatLoginComponent.vue')['default']
   }
   export interface GlobalDirectives {
     vLoading: typeof import('element-plus/es')['ElLoadingDirective']

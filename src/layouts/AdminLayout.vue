@@ -3,9 +3,9 @@
     <aside class="sidebar">
       <div class="brand">小知智能教师系统</div>
       <el-menu :default-active="activeMenu" router class="menu" :unique-opened="true">
-        <el-menu-item index="/admin/user-management">用户管理</el-menu-item>
-        <el-menu-item index="/admin/role-permission">角色权限</el-menu-item>
-        <el-menu-item index="/admin/system-settings">系统设置</el-menu-item>
+        <el-menu-item index="/admin/user-management" @click="handleMenuClick('/admin/user-management')">用户管理</el-menu-item>
+        <el-menu-item index="/admin/role-permission" @click="handleMenuClick('/admin/role-permission')">角色权限</el-menu-item>
+        <el-menu-item index="/admin/system-settings" @click="handleMenuClick('/admin/system-settings')">系统设置</el-menu-item>
       </el-menu>
     </aside>
     <section class="main">
@@ -30,14 +30,20 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 const keyword = ref('')
 const route = useRoute()
+const router = useRouter()
 const activeMenu = computed(() => {
   if (route.path.startsWith('/admin')) return route.path
   return '/admin/user-management'
 })
+
+// 菜单点击处理
+const handleMenuClick = (path: string) => {
+  router.push(path)
+}
 
 // 头像设置（本地预览并持久化到 localStorage）
 const AVATAR_KEY = 'admin_avatar_url'
