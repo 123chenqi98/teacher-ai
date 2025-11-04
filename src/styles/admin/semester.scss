@@ -1,0 +1,90 @@
+// 学期管理页面专用样式
+
+// 学期管理页面容器
+.semester-management-page {
+  height: 100vh;
+  overflow: hidden;
+}
+
+// 学期管理相关组件样式
+.semester-filter-card {
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+.semester-action-section {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 12px;
+}
+
+.semester-table-card {
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.semester-pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+// 状态标签样式增强
+.semester-status-tag {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.status-running {
+  background-color: #f0f9eb;
+  border-color: #b7eb8f;
+  color: #52c41a;
+}
+
+.status-ended {
+  background-color: #e6f7ff;
+  border-color: #91d5ff;
+  color: #1890ff;
+}
+
+.status-not-started {
+  background-color: #fff7e6;
+  border-color: #ffd591;
+  color: #fa8c16;
+}
+
+// 操作按钮组样式
+.semester-operations {
+  display: flex;
+  gap: 8px;
+}
+
+// 筛选表单样式
+.semester-filter-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+// 响应式调整
+@media (max-width: 768px) {
+  .semester-filter-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .semester-action-section {
+    flex-direction: column;
+  }
+  
+  .semester-table-card {
+    overflow-x: auto;
+  }
+}
