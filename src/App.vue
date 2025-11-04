@@ -20,6 +20,8 @@ import PageFooter from "@/components/system/PageFooterComponenet.vue";
 <template>
   <div id="app">
     <RouterView />
+    <!--页脚：所有页面都显示-->
+    <PageFooter/>
   </div>
 </template>
 <style>
