@@ -4,6 +4,7 @@ import "@/assets/auth/login/LoginBoxCss.css"
 import {ruleForm, ruleFormRef, rules} from "@/forms/auth/login/PasswordLoginForm.ts";
 import {Lock, UserFilled} from "@element-plus/icons-vue";
 import {ref} from "vue";
+import router from "@/router";
 import {ElMessage} from "element-plus";
 import LoginButtonComponent from "@/components/auth/loginComponents/LoginButtonComponent.vue";
 
@@ -18,6 +19,10 @@ const loginButtonClick = ()=>{
      //表单校验通过进行查看用户是否查看服务条款
       if (termsOfService.value) {
         ElMessage.success("登录成功")
+        // 登录成功后跳转到管理页面
+        setTimeout(() => {
+          router.push('/admin/semester')
+        }, 1000)
       }else {
         ElMessage.warning("请勾选服务条款")
       }
@@ -90,8 +95,8 @@ const loginButtonClick = ()=>{
       <LoginButtonComponent
           :login-button-click="loginButtonClick"
           :terms-of-service="termsOfService"
-          @update:termsOfService="(val: boolean) => termsOfService = val"
-      />
+          @update:termsOfService="(val: boolean) => termsOfService.value = val"
+        />
     </div>
   </div>
 </template>

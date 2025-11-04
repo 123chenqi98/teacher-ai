@@ -1,0 +1,97 @@
+// 学生管理页面样式
+.student-management-page {
+  height: 100vh;
+  overflow: hidden;
+}
+
+// 页面内容区域样式
+.page-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #f5f7fa;
+}
+
+// 导航标签样式
+.nav-tabs {
+  margin-bottom: 20px;
+}
+
+// 筛选卡片样式
+.filter-card {
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.05);
+}
+
+// 操作按钮区域样式
+.action-section {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 12px;
+}
+
+// 表格卡片样式
+.table-card {
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.05);
+}
+
+// 分页容器样式
+.pagination-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+// 性别标签样式增强
+.el-tag.primary {
+  background-color: #1890ff;
+  border-color: #1890ff;
+}
+
+.el-tag.success {
+  background-color: #52c41a;
+  border-color: #52c41a;
+}
+
+// 状态标签样式增强
+.el-tag.warning {
+  background-color: #faad14;
+  border-color: #faad14;
+}
+
+.el-tag.danger {
+  background-color: #f5222d;
+  border-color: #f5222d;
+}
+
+.el-tag.info {
+  background-color: #13c2c2;
+  border-color: #13c2c2;
+}
+
+// 表格操作列按钮间距优化
+.el-table-column__content .el-button {
+  margin-right: 5px !important;
+}
+
+.el-table-column__content .el-button:last-child {
+  margin-right: 0 !important;
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .page-content {
+    padding: 10px;
+  }
+  
+  .action-section {
+    flex-wrap: wrap;
+  }
+  
+  .pagination-container {
+    justify-content: center;
+  }
+}

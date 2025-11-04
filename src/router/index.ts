@@ -46,6 +46,44 @@ const router = createRouter({
       path:'/forgetPassword',
       name:"forgetPassword",
       component:()=>import('@/views/auth/ForgetPasswordView.vue'),
+    },
+    {
+      // 管理页面路由
+      path: '/admin',
+      name: 'admin',
+      redirect: '/admin/semester',
+      children: [
+        {
+          // 学期管理页面
+          path: 'semester',
+          name: 'semesterManagement',
+          component: () => import('@/views/admin/SemesterManagement.vue'),
+        },
+        {
+          // 学科管理页面
+          path: 'subject',
+          name: 'subjectManagement',
+          component: () => import('@/views/admin/SubjectManagement.vue'),
+        },
+        {
+          // 学生信息页面
+          path: 'student',
+          name: 'studentInfo',
+          component: () => import('@/views/admin/StudentInfo.vue'),
+        },
+        {
+          // 年级管理页面
+          path: 'grade',
+          name: 'gradeManagement',
+          component: () => import('@/views/admin/GradeManagement.vue'),
+        },
+        {
+          // 教学大纲管理页面
+          path: 'syllabus',
+          name: 'syllabusManagement',
+          component: () => import('@/views/admin/SyllabusManagement.vue'),
+        }
+      ]
     }
   ],
 })
