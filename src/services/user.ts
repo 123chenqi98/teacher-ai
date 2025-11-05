@@ -1,5 +1,4 @@
 // 用户管理相关 API 服务
-import { jsonTokenPost, jsonTokenGet } from '@/net/jsonRequst';
 import type { User, UserForm, UserFilter, UserDetail } from '@/types/user';
 
 /**

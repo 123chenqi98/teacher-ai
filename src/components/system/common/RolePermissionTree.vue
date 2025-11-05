@@ -54,7 +54,7 @@
 <script setup lang="ts">
 import { ref, watch, computed } from 'vue';
 import type { ElTree } from 'element-plus';
-import type { PermissionNode } from '@/types/role';
+import type { PermissionNode } from '@/types/role.ts';
 
 const props = defineProps<{
   permissionTree: PermissionNode[];

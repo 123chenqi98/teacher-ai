@@ -29,7 +29,7 @@ export interface UserForm {
 
 export interface UserFilter {
   role?: string;
-  status?: 'enable' | 'disable';
+  status?: 'enable' | 'disable'|'';
   subject?: string;
   grade?: string;
   keyword?: string; // 搜索关键词（用户名、手机号）
