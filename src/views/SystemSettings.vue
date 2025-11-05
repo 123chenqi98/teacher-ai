@@ -281,8 +281,8 @@ import { ref, reactive, onMounted } from 'vue';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import type { FormInstance, FormRules } from 'element-plus';
 import { Plus } from '@element-plus/icons-vue';
-import PageHeader from '@/components/common/PageHeader.vue'
-import StatsCards, { type StatItem } from '@/components/common/StatsCards.vue'
+import PageHeader from '@/components/system/common/PageHeader.vue'
+import StatsCards, { type StatItem } from '@/components/system/common/StatsCards.vue'
 import type {
   SystemBasicConfig,
   SystemSecurityConfig,
@@ -483,7 +483,7 @@ const handleSaveTemplate = async () => {
       if (res.code === 200) {
         ElMessage.success('保存成功');
         templateDialogVisible.value = false;
-        loadTemplates();
+        await loadTemplates();
       }
     }
   });
@@ -524,7 +524,7 @@ const handleAuditResource = async (resource: TeachingResource, status: 'approved
     const res = await auditResource(resource.id, status);
     if (res.code === 200) {
       ElMessage.success(`${action}成功`);
-      loadResources();
+      await loadResources();
     }
   } catch (error) {
     // 用户取消

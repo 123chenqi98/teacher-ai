@@ -4,14 +4,11 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     // 主页直接进入后台布局（用户管理）
-    { path: '/', redirect: '/admin/user-management' },
-    // 原首页入口保留在 /portal
     {
-      path: '/portal',
+      path: '/',
       name: 'home',
       component: () => import('@/views/HomeView.vue'),
     },
-<<<<<<< HEAD
     // 系统相关路由 - 嵌套子路由方式
     {
       path: '/system',
@@ -64,8 +61,7 @@ const router = createRouter({
           component: () => import('@/views/system/user/resource-center.vue')
         }
       ]
-    }
-=======
+    },
     // 登录页面路由
     {
       path:'/login',
@@ -146,28 +142,23 @@ const router = createRouter({
           component: () => import('@/views/admin/SyllabusManagement.vue'),
         }
       ]
-    }
+    },
         {
-          path: 'role-permission',
+          path: '/role-permission',
           name: 'admin-role-permission',
           component: () => import('@/views/RolePermission.vue'),
         },
         {
-          path: 'system-settings',
+          path: '/system-settings',
           name: 'admin-system-settings',
           component: () => import('@/views/SystemSettings.vue'),
         },
+        {
+          path: '/role-list',
+          name: 'role-list',
+          component: () => import('@/components/system/common/RoleComponents.vue'),
+        }
       ]
-    },
-    // 兼容旧路由：角色列表页面路由
-    {
-      path: '/role-list',
-      name: 'role-list',
-      component: () => import('@/components/common/RoleComponents.vue'),
-    },
->>>>>>> 43ea468d4475aab5b169b681a121b4bea3de99d5
->>>>>>> system
-  ],
 })
 
 export default router
