@@ -5,22 +5,22 @@
 <template>
   <div class="system-container">
     <!-- 这里可以添加公共的导航栏、侧边栏等 -->
-    <div class="content-wrapper">
+    <!-- <div class="content-wrapper"> -->
       <!-- 子路由内容将在这里渲染 -->
       <router-view />
-    </div>
+    <!-- </div> -->
   </div>
 </template>
 
 <style scoped>
 .system-container {
   width: 100%;
-  height: 100%;
+  min-height: 100vh; /* 页面至少占满视窗高度 */
 }
 
 .content-wrapper {
   padding: 20px;
   background-color: #f5f7fa;
-  min-height: calc(100vh - 60px);
+  min-height: 100vh; /* 子内容也占满视窗 */
 }
 </style>

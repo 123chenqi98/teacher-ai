@@ -11,10 +11,10 @@ const router = createRouter({
       name: 'home',
       component: () => import('@/views/HomeView.vue'),
     },
-<<<<<<< HEAD
+
     // 系统相关路由 - 嵌套子路由方式
     {
-      path: '/system',
+      path: '/system/user',
       name: 'system',
       component: () => import('@/views/system/system.vue'),
       children: [
@@ -64,8 +64,7 @@ const router = createRouter({
           component: () => import('@/views/system/user/resource-center.vue')
         }
       ]
-    }
-=======
+    },
     // 登录页面路由
     {
       path:'/login',
@@ -143,10 +142,8 @@ const router = createRouter({
           // 教学大纲管理页面
           path: 'syllabus',
           name: 'syllabusManagement',
-          component: () => import('@/views/admin/SyllabusManagement.vue'),
-        }
-      ]
-    }
+          component: () => import('@/views/admin/SyllabusManagement.vue')
+        },
         {
           path: 'role-permission',
           name: 'admin-role-permission',
@@ -165,8 +162,6 @@ const router = createRouter({
       name: 'role-list',
       component: () => import('@/components/common/RoleComponents.vue'),
     },
->>>>>>> 43ea468d4475aab5b169b681a121b4bea3de99d5
->>>>>>> system
   ],
 })
 
