@@ -138,9 +138,9 @@ import { ref, onMounted, watch } from 'vue';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import type { Role } from '@/types/role';
 import { getRoleList, addRole, editRole, deleteRole, copyRole, exportRoles } from '@/services/role';
-import RoleDialog from '@/components/system/common/RoleDialog.vue';
-import PageHeader from '@/components/system/common/PageHeader.vue'
-import StatsCards, { type StatItem } from '@/components/system/common/StatsCards.vue'
+import RoleDialog from '@/components/common/RoleDialog.vue';
+import PageHeader from '@/components/common/PageHeader.vue'
+import StatsCards, { type StatItem } from '@/components/common/StatsCards.vue'
 
 const roleList = ref<Role[]>([]);
 const filteredRoleList = ref<Role[]>([]);

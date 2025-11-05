@@ -174,9 +174,9 @@ import {
   exportUsers
 } from '@/services/user';
 import { getRoleList } from '@/services/role';
-import UserDialog from '@/components/system/common/UserDialog.vue';
-import UserDetail from '@/components/system/common/UserDetail.vue';
-import PageHeader from '@/components/system/common/PageHeader.vue'
+import UserDialog from '@/components/common/UserDialog.vue';
+import UserDetail from '@/components/common/UserDetail.vue';
+import PageHeader from '@/components/common/PageHeader.vue'
 
 const userList = ref<User[]>([]);
 const roleOptions = ref<Role[]>([]);
@@ -192,7 +192,7 @@ const userDetailRef = ref();
 
 const filterForm = reactive<UserFilter>({
   role: '',
-  status:'',
+  status: '',
   subject: '',
   grade: '',
   keyword: ''
@@ -269,7 +269,7 @@ const handleDelete = async (row: User) => {
     const res = await deleteUser(row.userId);
     if (res.code === 200) {
       ElMessage.success('删除成功');
-      await loadUsers();
+      loadUsers();
     }
   } catch (error) {
     // 用户取消
@@ -287,7 +287,7 @@ const handleToggleStatus = async (row: User) => {
     const res = await toggleUserStatus(row.userId, newStatus);
     if (res.code === 200) {
       ElMessage.success(`${action}成功`);
-      await loadUsers();
+      loadUsers();
     }
   } catch (error) {
     // 用户取消
@@ -331,7 +331,7 @@ const handleBatchDisable = async () => {
     const res = await batchToggleUserStatus(userIds, 'disable');
     if (res.code === 200) {
       ElMessage.success('批量禁用成功');
-      await loadUsers();
+      loadUsers();
       selectedUsers.value = [];
     }
   } catch (error) {
@@ -353,7 +353,7 @@ const handleBatchEnable = async () => {
     const res = await batchToggleUserStatus(userIds, 'enable');
     if (res.code === 200) {
       ElMessage.success('批量启用成功');
-      await loadUsers();
+      loadUsers();
       selectedUsers.value = [];
     }
   } catch (error) {
@@ -394,7 +394,7 @@ const handleDialogSuccess = async () => {
     }
     if (res.code === 200) {
       ElMessage.success(res.message);
-      await loadUsers();
+      loadUsers();
     }
   } catch (error) {
     ElMessage.error('操作失败');
@@ -435,6 +435,22 @@ onMounted(() => {
 
 .action-card {
   margin-bottom: 20px;
+}
+
+.action-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.right-actions {
+  display: flex;
+  gap: 10px;
 }
 
 .pagination {

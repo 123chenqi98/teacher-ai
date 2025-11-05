@@ -60,6 +60,7 @@ import { ref } from 'vue';
 import Sidebar from '../components/Sidebar.vue';
 import Header from '../components/Header.vue';
 import DataTable from '../components/DataTable.vue';
+import { TableColumn, TableItem } from '../types';
 
 // 页面数据
 const pageTitle = ref('数据管理');

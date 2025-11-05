@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { getRoleList } from '@/services/role.ts';
-import type { Role } from '@/types/role.ts';
+import { getRoleList } from '@/services/role';
+import type { Role } from '@/types/role';
 
 // 角色列表数据
 const roleList = ref<Role[]>([]);
