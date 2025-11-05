@@ -60,9 +60,9 @@
 import { ref, reactive, watch } from 'vue';
 import { ElMessage } from 'element-plus';
 import type { FormInstance, FormRules } from 'element-plus';
-import type { UserForm } from '@/types/user';
-import { getRoleList } from '@/services/role';
-import type { Role } from '@/types/role';
+import type { UserForm } from '@/types/user.ts';
+import { getRoleList } from '@/services/role.ts';
+import type { Role } from '@/types/role.ts';
 
 const props = defineProps<{
   modelValue: boolean;

@@ -68,7 +68,7 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import type { UserDetail } from '@/types/user';
+import type { UserDetail } from '@/types/user.ts';
 
 const props = defineProps<{
   modelValue: boolean;
