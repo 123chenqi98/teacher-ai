@@ -31,7 +31,7 @@ const router = createRouter({
           component: () => import('@/views/system/user/data-stats.vue')
         },
         {
-          path: 'goalManagement',
+          path: 'goal-management',
           name: '目标管理',
           component: () => import('@/views/system/user/goal-management.vue')
         },
