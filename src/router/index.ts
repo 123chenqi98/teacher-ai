@@ -11,57 +11,66 @@ const router = createRouter({
     },
     // 系统相关路由 - 嵌套子路由方式
     {
-      path: '/system/user',
+      path: '/system',
       name: 'system',
       component: () => import('@/views/system/system.vue'),
       children: [
-        {
-          path: 'personal-overview',
-          name: '个人概览',
-          component: () => import('@/views/system/user/personal-overview.vue')
-        },
-        {
-          path: 'basic-info',
-          name: '基本信息',
-          component: () => import('@/views/system/user/basic-info.vue')
-        },
-        {
-          path: 'data-stats',
-          name: '数据统计',
-          component: () => import('@/views/system/user/data-stats.vue')
-        },
-        {
-          path: 'goal-management',
-          name: '目标管理',
-          component: () => import('@/views/system/user/goal-management.vue')
-        },
-        {
-          path: 'notification-center',
-          name: '通知中心',
-          component: () => import('@/views/system/user/notification-center.vue')
-        },
-        {
-          path: 'lesson-plan',
-          name: '教案管理',
-          component: () => import('@/views/system/user/lesson-plan.vue')
-        },
-        {
-          path: 'question-bank',
-          name: '学习题库',
-          component: () => import('@/views/system/user/question-bank.vue')
-        },
-        {
-          path: 'message-center',
-          name: '消息中心',
-          component: () => import('@/views/system/user/message-center.vue')
-        },
-        {
-          path: 'resource-center',
-          name: '资源中心',
-          component: () => import('@/views/system/user/resource-center.vue')
-        }
+          // 用户主页受登录保护，将重定向至登录页
+          {
+              path: '/user',
+              name: 'user',
+              component: () => import('@/views/auth/LoginView.vue'),
+              children: [
+                  {
+                      path: 'dashboard',
+                      name: 'dashboard',
+                      component: () => import('@/views/system/user/UserDashboard.vue')
+                  },
+                  {
+                      path: 'profile',
+                      name: 'profile',
+                      component: () => import('@/views/system/user/UserProfile.vue')
+                  },
+                  {
+                      path: 'analytics',
+                      name: 'analytics',
+                      component: () => import('@/views/system/user/AnalyticsDashboard.vue')
+                  },
+                  {
+                      path: 'goals',
+                      name: 'goals',
+                      component: () => import('@/views/system/user/GoalManagement.vue')
+                  },
+                  {
+                      path: 'notifications',
+                      name: 'notifications',
+                      component: () => import('@/views/system/user/NotificationCenter.vue')
+                  },
+                  {
+                      path: 'lessonPlans',
+                      name: 'lessonPlans',
+                      component: () => import('@/views/system/user/LessonPlanManager.vue')
+                  },
+                  {
+                      path: 'questionBank',
+                      name: 'questionBank',
+                      component: () => import('@/views/system/user/QuestionBank.vue')
+                  },
+                  {
+                      path: 'messages',
+                      name: 'messages',
+                      component: () => import('@/views/system/user/MessageCenter.vue')
+                  },
+                  {
+                      path: 'resources',
+                      name: 'resources',
+                      component: () => import('@/views/system/user/ResourceCenter.vue')
+                  }
+              ]
+          },
       ]
     },
+
     // 登录页面路由
     {
       path:'/login',

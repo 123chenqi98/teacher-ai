@@ -20,10 +20,8 @@ import LoginWaysComponent from "@/components/auth/loginComponents/LoginWaysCompo
         <div class="login-component-box">
           <router-view/>
         </div>
-
       </div>
     </div>
-
 </template>
 
 <style scoped>
