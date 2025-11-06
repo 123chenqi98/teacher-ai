@@ -21,46 +21,55 @@ const router = createRouter({
               name: 'user',
               component: () => import('@/views/auth/LoginView.vue'),
               children: [
+                  // 个人概览页
                   {
                       path: 'dashboard',
                       name: 'dashboard',
                       component: () => import('@/views/system/user/UserDashboard.vue')
                   },
+                  // 基本信息页
                   {
                       path: 'profile',
                       name: 'profile',
                       component: () => import('@/views/system/user/UserProfile.vue')
                   },
+                  // 数据统计页
                   {
                       path: 'analytics',
                       name: 'analytics',
                       component: () => import('@/views/system/user/AnalyticsDashboard.vue')
                   },
+                  // 目标管理页
                   {
                       path: 'goals',
                       name: 'goals',
                       component: () => import('@/views/system/user/GoalManagement.vue')
                   },
+                  // 通知中心页
                   {
                       path: 'notifications',
                       name: 'notifications',
                       component: () => import('@/views/system/user/NotificationCenter.vue')
                   },
+                  // 教案管理页
                   {
                       path: 'lessonPlans',
                       name: 'lessonPlans',
                       component: () => import('@/views/system/user/LessonPlanManager.vue')
                   },
+                  // 学习题库页
                   {
                       path: 'questionBank',
                       name: 'questionBank',
                       component: () => import('@/views/system/user/QuestionBank.vue')
                   },
+                  // 消息中心页
                   {
                       path: 'messages',
                       name: 'messages',
                       component: () => import('@/views/system/user/MessageCenter.vue')
                   },
+                  // 资源中心页
                   {
                       path: 'resources',
                       name: 'resources',
