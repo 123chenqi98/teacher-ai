@@ -1,82 +1,83 @@
 <template>
   <div class="basic-info-module">
-    <!-- 左侧导航栏 -->
-    <aside class="sidebar">
+    <!-- 左侧导航栏（Element Plus） -->
+    <el-aside class="sidebar" width="240px">
       <div class="logo">
-        <i class="fa fa-graduation-cap"></i>
+        <el-icon><Reading /></el-icon>
         <span>教师个人中心</span>
       </div>
-      <nav class="nav-menu">
-        <ul>
-          <li class="nav-item">
-            <i class="fa fa-user-circle"></i>
-            <span>个人概览</span>
-          </li>
-          <li class="nav-item active">
-            <i class="fa fa-id-card"></i>
-            <span>基本信息</span>
-          </li>
-          <li class="nav-item">
-            <i class="fa fa-bar-chart"></i>
-            <span>数据统计</span>
-          </li>
-          <li class="nav-item">
-            <i class="fa fa-bullseye"></i>
-            <span>目标管理</span>
-          </li>
-          <li class="nav-item">
-            <i class="fa fa-bell"></i>
-            <span>通知中心</span>
-          </li>
-          <li class="nav-item">
-            <i class="fa fa-book"></i>
-            <span>教案管理</span>
-          </li>
-          <li class="nav-item">
-            <i class="fa fa-question-circle"></i>
-            <span>学习题库</span>
-          </li>
-          <li class="nav-item">
-            <i class="fa fa-envelope"></i>
-            <span>消息中心</span>
-          </li>
-          <li class="nav-item">
-            <i class="fa fa-folder-open"></i>
-            <span>资源中心</span>
-          </li>
-        </ul>
-      </nav>
-    </aside>
+      <el-menu router :default-active="$route.path" class="nav-menu" :unique-opened="true">
+        <el-menu-item index="/user/dashboard">
+          <el-icon><User /></el-icon>
+          <span>个人概览</span>
+        </el-menu-item>
+        <el-menu-item index="/user/profile">
+          <el-icon><UserFilled /></el-icon>
+          <span>基本信息</span>
+        </el-menu-item>
+        <el-menu-item index="/user/analytics">
+          <el-icon><DataAnalysis /></el-icon>
+          <span>数据统计</span>
+        </el-menu-item>
+        <el-menu-item index="/user/goals">
+          <el-icon><Aim /></el-icon>
+          <span>目标管理</span>
+        </el-menu-item>
+        <el-menu-item index="/user/notifications">
+          <el-icon><Bell /></el-icon>
+          <span>通知中心</span>
+        </el-menu-item>
+        <el-menu-item index="/user/lessonPlans">
+          <el-icon><Notebook /></el-icon>
+          <span>教案管理</span>
+        </el-menu-item>
+        <el-menu-item index="/user/questionBank">
+          <el-icon><QuestionFilled /></el-icon>
+          <span>学习题库</span>
+        </el-menu-item>
+        <el-menu-item index="/user/messages">
+          <el-icon><Message /></el-icon>
+          <span>消息中心</span>
+        </el-menu-item>
+        <el-menu-item index="/user/resources">
+          <el-icon><Folder /></el-icon>
+          <span>资源中心</span>
+        </el-menu-item>
+      </el-menu>
+    </el-aside>
 
     <!-- 右侧主内容区 -->
     <main class="main-content">
-      <!-- 顶部导航栏 -->
-      <header class="top-nav">
-        <div class="search-box">
-          <i class="fa fa-search"></i>
-          <input type="text" placeholder="搜索...">
-        </div>
+      <!-- 顶部导航栏（Element Plus） -->
+      <el-header class="top-nav">
+        <el-input v-model="searchText" placeholder="搜索..." class="search-box" size="large">
+          <template #prefix>
+            <el-icon><Search /></el-icon>
+          </template>
+        </el-input>
         <div class="user-actions">
-          <button class="action-btn">
-            <i class="fa fa-bell"></i>
-            <span class="badge">3</span>
-          </button>
-          <button class="action-btn">
-            <i class="fa fa-envelope"></i>
-            <span class="badge">5</span>
-          </button>
-          <button class="action-btn">
-            <i class="fa fa-cog"></i>
-          </button>
+          <el-badge :value="3" class="item">
+            <el-button text circle>
+              <el-icon><Bell /></el-icon>
+            </el-button>
+          </el-badge>
+          <el-badge :value="5" class="item">
+            <el-button text circle>
+              <el-icon><Message /></el-icon>
+            </el-button>
+          </el-badge>
+          <el-button text circle>
+            <el-icon><Setting /></el-icon>
+          </el-button>
           <div class="user-profile">
-            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="用户头像">
+            <el-avatar src="https://randomuser.me/api/portraits/women/44.jpg" size="large" />
             <div class="user-info">
               <span class="user-name">张三老师</span>
               <span class="user-role">数学教师</span>
             </div>
           </div>
         </div>
-      </header>
+      </el-header>
 
       <!-- 内容区域 -->
       <div class="content-area">
@@ -86,21 +87,12 @@
           <p>管理您的个人信息、账号安全及隐私设置</p>
         </div>
 
-        <!-- 标签页导航 -->
-        <div class="tabs-nav">
-          <button class="tab-btn" :class="{ active: activeTab === 'profile' }" @click="switchTab('profile')">
-            <span>个人资料</span>
-            <div class="tab-indicator" :class="{ show: activeTab === 'profile' }"></div>
-          </button>
-          <button class="tab-btn" :class="{ active: activeTab === 'security' }" @click="switchTab('security')">
-            <span>账号安全</span>
-            <div class="tab-indicator" :class="{ show: activeTab === 'security' }"></div>
-          </button>
-          <button class="tab-btn" :class="{ active: activeTab === 'login-log' }" @click="switchTab('login-log')">
-            <span>登录日志</span>
-            <div class="tab-indicator" :class="{ show: activeTab === 'login-log' }"></div>
-          </button>
-        </div>
+        <!-- 标签页导航（Element Plus） -->
+        <el-tabs v-model="activeTab" class="tabs-nav">
+          <el-tab-pane label="个人资料" name="profile" />
+          <el-tab-pane label="账号安全" name="security" />
+          <el-tab-pane label="登录日志" name="login-log" />
+        </el-tabs>
 
         <!-- 标签页内容 -->
         <div class="tab-content">
@@ -187,117 +179,109 @@
               </div>
             </div>
 
-            <!-- 编辑模式 -->
+            <!-- 编辑模式（Element Plus 表单） -->
             <div v-if="isEditing" class="edit-mode">
-              <div class="card edit-card">
-                <div class="card-body">
-                  <div class="form-group avatar-upload">
-                    <label class="form-label">上传头像</label>
-                    <div class="avatar-preview">
-                      <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="预览头像">
-                      <div class="avatar-placeholder" v-if="!avatarPreview">
-                        <i class="fa fa-camera"></i>
-                        <span>点击上传</span>
-                      </div>
-                    </div>
-                    <div class="avatar-info">
-                      <p>支持 JPG/PNG 格式，建议尺寸 200×200px，大小不超过 5MB</p>
-                      <button class="btn upload-btn">选择图片</button>
-                    </div>
-                  </div>
+              <el-card class="edit-card" shadow="hover">
+                <el-form :model="form" label-width="110px" class="el-form-grid">
+                  <el-row :gutter="20">
+                    <el-col :span="8">
+                      <el-form-item label="上传头像">
+                        <div class="avatar-preview">
+                          <el-avatar :src="avatarPreview" size="large" />
+                          <div class="avatar-info">
+                            <p>支持 JPG/PNG，建议 200×200px，≤5MB</p>
+                            <el-upload action="#" :show-file-list="false">
+                              <el-button type="primary">选择图片</el-button>
+                            </el-upload>
+                          </div>
+                        </div>
+                      </el-form-item>
+                    </el-col>
+                  </el-row>
 
-                  <div class="form-row">
-                    <div class="form-group">
-                      <label class="form-label">姓名 <span class="required">*</span></label>
-                      <input type="text" class="form-input" value="张三" required>
-                    </div>
-                    <div class="form-group">
-                      <label class="form-label">昵称</label>
-                      <input type="text" class="form-input" value="数学达人">
-                    </div>
-                    <div class="form-group">
-                      <label class="form-label">性别</label>
-                      <select class="form-select">
-                        <option value="female" selected>女</option>
-                        <option value="male">男</option>
-                        <option value="other">其他</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label class="form-label">出生日期</label>
-                      <input type="date" class="form-input" value="1985-06-15">
-                    </div>
-                  </div>
+                  <el-row :gutter="20">
+                    <el-col :span="6">
+                      <el-form-item label="姓名" required>
+                        <el-input v-model="form.name" />
+                      </el-form-item>
+                    </el-col>
+                    <el-col :span="6">
+                      <el-form-item label="昵称">
+                        <el-input v-model="form.nickname" />
+                      </el-form-item>
+                    </el-col>
+                    <el-col :span="6">
+                      <el-form-item label="性别">
+                        <el-select v-model="form.gender" placeholder="请选择">
+                          <el-option label="女" value="female" />
+                          <el-option label="男" value="male" />
+                          <el-option label="其他" value="other" />
+                        </el-select>
+                      </el-form-item>
+                    </el-col>
+                    <el-col :span="6">
+                      <el-form-item label="出生日期">
+                        <el-date-picker v-model="form.birthDate" type="date" placeholder="选择日期" value-format="YYYY-MM-DD" />
+                      </el-form-item>
+                    </el-col>
+                  </el-row>
 
-                  <div class="form-row">
-                    <div class="form-group">
-                      <label class="form-label">手机号码 <span class="required">*</span></label>
-                      <input type="tel" class="form-input" value="13812345678" required>
-                    </div>
-                    <div class="form-group">
-                      <label class="form-label">电子邮箱</label>
-                      <input type="email" class="form-input" value="zhangsan@example.com">
-                    </div>
-                    <div class="form-group">
-                      <label class="form-label">所属部门</label>
-                      <select class="form-select">
-                        <option value="">请选择</option>
-                        <option value="primary" selected>初中部</option>
-                        <option value="junior">高中部</option>
-                        <option value="senior">小学部</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label class="form-label">任教学科</label>
-                      <select class="form-select">
-                        <option value="">请选择</option>
-                        <option value="math" selected>数学</option>
-                        <option value="chinese">语文</option>
-                        <option value="english">英语</option>
-                        <option value="physics">物理</option>
-                        <option value="chemistry">化学</option>
-                      </select>
-                    </div>
-                  </div>
+                  <el-row :gutter="20">
+                    <el-col :span="6">
+                      <el-form-item label="手机号码" required>
+                        <el-input v-model="form.mobile" />
+                      </el-form-item>
+                    </el-col>
+                    <el-col :span="6">
+                      <el-form-item label="电子邮箱">
+                        <el-input v-model="form.email" />
+                      </el-form-item>
+                    </el-col>
+                    <el-col :span="6">
+                      <el-form-item label="所属部门">
+                        <el-select v-model="form.department" placeholder="请选择">
+                          <el-option v-for="d in departments" :key="d.value" :label="d.label" :value="d.value" />
+                        </el-select>
+                      </el-form-item>
+                    </el-col>
+                    <el-col :span="6">
+                      <el-form-item label="任教学科">
+                        <el-select v-model="form.subject" placeholder="请选择">
+                          <el-option v-for="s in subjects" :key="s.value" :label="s.label" :value="s.value" />
+                        </el-select>
+                      </el-form-item>
+                    </el-col>
+                  </el-row>
 
-                  <div class="form-row">
-                    <div class="form-group">
-                      <label class="form-label">职称</label>
-                      <select class="form-select">
-                        <option value="">请选择</option>
-                        <option value="junior">初级教师</option>
-                        <option value="intermediate">中级教师</option>
-                        <option value="senior" selected>高级教师</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label class="form-label">入职时间</label>
-                      <input type="date" class="form-input" value="2017-09-01">
-                    </div>
-                  </div>
+                  <el-row :gutter="20">
+                    <el-col :span="6">
+                      <el-form-item label="职称">
+                        <el-select v-model="form.title" placeholder="请选择">
+                          <el-option v-for="t in titles" :key="t.value" :label="t.label" :value="t.value" />
+                        </el-select>
+                      </el-form-item>
+                    </el-col>
+                    <el-col :span="6">
+                      <el-form-item label="入职时间">
+                        <el-date-picker v-model="form.entryDate" type="date" placeholder="选择日期" value-format="YYYY-MM-DD" />
+                      </el-form-item>
+                    </el-col>
+                  </el-row>
 
-                  <div class="form-group">
-                    <label class="form-label">个人简介</label>
-                    <textarea class="form-textarea" rows="4">
-数学教育专业毕业，拥有8年教学经验，专注于初中数学教学。曾获得市级优秀教师称号，
-擅长激发学生学习兴趣，培养学生的数学思维能力。
-                    </textarea>
-                  </div>
+                  <el-form-item label="个人简介">
+                    <el-input v-model="form.intro" type="textarea" :rows="4" />
+                  </el-form-item>
 
-                  <div class="form-group">
-                    <label class="form-label">教育经历</label>
-                    <textarea class="form-textarea" rows="3">
-2003-2007年 北京师范大学 数学教育专业 本科
-2007-2010年 北京师范大学 数学教育专业 硕士
-                    </textarea>
-                  </div>
+                  <el-form-item label="教育经历">
+                    <el-input v-model="form.education" type="textarea" :rows="3" />
+                  </el-form-item>
 
                   <div class="form-actions">
-                    <button class="btn cancel-btn" @click="toggleEditMode">取消</button>
-                    <button class="btn save-btn">保存修改</button>
+                    <el-button @click="toggleEditMode">取消</el-button>
+                    <el-button type="primary">保存修改</el-button>
                   </div>
-                </div>
-              </div>
+                </el-form>
+              </el-card>
             </div>
           </div>
 
@@ -315,8 +299,8 @@
                     </div>
                   </div>
                   <div class="security-actions">
-                    <button class="btn action-btn">修改密码</button>
-                    <span class="status-tag success">已设置</span>
+                    <el-button class="action-btn">修改密码</el-button>
+                    <el-tag type="success">已设置</el-tag>
                   </div>
                 </div>
 
@@ -330,8 +314,8 @@
                     </div>
                   </div>
                   <div class="security-actions">
-                    <button class="btn action-btn">更换手机</button>
-                    <span class="status-tag success">已绑定</span>
+                    <el-button class="action-btn">更换手机</el-button>
+                    <el-tag type="success">已绑定</el-tag>
                   </div>
                 </div>
 
@@ -345,8 +329,8 @@
                     </div>
                   </div>
                   <div class="security-actions">
-                    <button class="btn action-btn">更换邮箱</button>
-                    <span class="status-tag success">已绑定</span>
+                    <el-button class="action-btn">更换邮箱</el-button>
+                    <el-tag type="success">已绑定</el-tag>
                   </div>
                 </div>
 
@@ -358,8 +342,8 @@
                     </div>
                   </div>
                   <div class="security-actions">
-                    <button class="btn action-btn">立即开启</button>
-                    <span class="status-tag warning">未开启</span>
+                    <el-button class="action-btn">立即开启</el-button>
+                    <el-tag type="warning">未开启</el-tag>
                   </div>
                 </div>
 
@@ -371,8 +355,8 @@
                     </div>
                   </div>
                   <div class="security-actions">
-                    <button class="btn action-btn">管理设备</button>
-                    <span class="status-tag info">查看</span>
+                    <el-button class="action-btn">管理设备</el-button>
+                    <el-tag type="info">查看</el-tag>
                   </div>
                 </div>
               </div>
@@ -388,57 +372,19 @@
               </div>
               <div class="card-body">
                 <div class="table-container">
-                  <table class="login-log-table">
-                    <thead>
-                      <tr>
-                        <th>登录时间</th>
-                        <th>登录 IP</th>
-                        <th>登录设备</th>
-                        <th>状态</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>2025-07-20 09:30:25</td>
-                        <td>192.168.1.100</td>
-                        <td>Windows 10, Chrome 114.0.0.0</td>
-                        <td><span class="status success">成功</span></td>
-                      </tr>
-                      <tr>
-                        <td>2025-07-19 16:45:12</td>
-                        <td>192.168.1.100</td>
-                        <td>Windows 10, Chrome 114.0.0.0</td>
-                        <td><span class="status success">成功</span></td>
-                      </tr>
-                      <tr>
-                        <td>2025-07-18 14:20:36</td>
-                        <td>192.168.1.100</td>
-                        <td>Windows 10, Chrome 114.0.0.0</td>
-                        <td><span class="status success">成功</span></td>
-                      </tr>
-                      <tr>
-                        <td>2025-07-17 08:15:42</td>
-                        <td>192.168.1.100</td>
-                        <td>Windows 10, Chrome 114.0.0.0</td>
-                        <td><span class="status success">成功</span></td>
-                      </tr>
-                      <tr>
-                        <td>2025-07-16 20:05:18</td>
-                        <td>192.168.1.100</td>
-                        <td>Windows 10, Chrome 114.0.0.0</td>
-                        <td><span class="status success">成功</span></td>
-                      </tr>
-                      <tr>
-                        <td>2025-07-15 11:30:05</td>
-                        <td>192.168.1.101</td>
-                        <td>macOS Monterey, Safari 15.5</td>
-                        <td><span class="status danger">失败（密码错误）</span></td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <el-table :data="loginLogs" style="width: 100%">
+                    <el-table-column prop="time" label="登录时间" width="220" />
+                    <el-table-column prop="ip" label="登录 IP" width="160" />
+                    <el-table-column prop="device" label="登录设备" />
+                    <el-table-column label="状态" width="160">
+                      <template #default="scope">
+                        <el-tag :type="scope.row.status === '成功' ? 'success' : 'danger'">{{ scope.row.status }}</el-tag>
+                      </template>
+                    </el-table-column>
+                  </el-table>
                 </div>
                 <div class="load-more">
-                  <button class="btn load-more-btn">加载更多</button>
+                  <el-button class="load-more-btn">加载更多</el-button>
                 </div>
               </div>
             </div>
@@ -470,21 +416,58 @@
 </template>
 
 <script>
+import { User, UserFilled, DataAnalysis, Aim, Bell, Notebook, QuestionFilled, Message, Folder, Setting, Search, Reading } from '@element-plus/icons-vue';
 export default {
   name: 'BasicInfoModule',
+  components: { User, UserFilled, DataAnalysis, Aim, Bell, Notebook, QuestionFilled, Message, Folder, Setting, Search, Reading },
   data() {
     return {
-      activeTab: 'profile', // 默认选中个人资料标签页
-      isEditing: false, // 默认处于查看模式
-      avatarPreview: 'https://randomuser.me/api/portraits/women/44.jpg' // 头像预览图
+      activeTab: 'profile',
+      isEditing: false,
+      avatarPreview: 'https://randomuser.me/api/portraits/women/44.jpg',
+      searchText: '',
+      form: {
+        name: '张三',
+        nickname: '数学达人',
+        gender: 'female',
+        birthDate: '1985-06-15',
+        mobile: '13812345678',
+        email: 'zhangsan@example.com',
+        department: 'primary',
+        subject: 'math',
+        title: 'senior',
+        entryDate: '2017-09-01',
+        intro: '数学教育专业毕业，拥有8年教学经验，专注于初中数学教学。曾获得市级优秀教师称号，\n擅长激发学生学习兴趣，培养学生的数学思维能力。',
+        education: '2003-2007年 北京师范大学 数学教育专业 本科\n2007-2010年 北京师范大学 数学教育专业 硕士'
+      },
+      departments: [
+        { label: '初中部', value: 'primary' },
+        { label: '高中部', value: 'junior' },
+        { label: '小学部', value: 'senior' }
+      ],
+      subjects: [
+        { label: '数学', value: 'math' },
+        { label: '语文', value: 'chinese' },
+        { label: '英语', value: 'english' },
+        { label: '物理', value: 'physics' },
+        { label: '化学', value: 'chemistry' }
+      ],
+      titles: [
+        { label: '初级教师', value: 'junior' },
+        { label: '中级教师', value: 'intermediate' },
+        { label: '高级教师', value: 'senior' }
+      ],
+      loginLogs: [
+        { time: '2025-07-20 09:30:25', ip: '192.168.1.100', device: 'Windows 10, Chrome 114.0.0.0', status: '成功' },
+        { time: '2025-07-19 16:45:12', ip: '192.168.1.100', device: 'Windows 10, Chrome 114.0.0.0', status: '成功' },
+        { time: '2025-07-18 14:20:36', ip: '192.168.1.100', device: 'Windows 10, Chrome 114.0.0.0', status: '成功' },
+        { time: '2025-07-17 08:15:42', ip: '192.168.1.100', device: 'Windows 10, Chrome 114.0.0.0', status: '成功' },
+        { time: '2025-07-16 20:05:18', ip: '192.168.1.100', device: 'Windows 10, Chrome 114.0.0.0', status: '成功' },
+        { time: '2025-07-15 11:30:05', ip: '192.168.1.101', device: 'macOS Monterey, Safari 15.5', status: '失败（密码错误）' }
+      ]
     };
   },
   methods: {
-    // 切换标签页
-    switchTab(tab) {
-      this.activeTab = tab;
-    },
-    // 切换编辑/查看模式
     toggleEditMode() {
       this.isEditing = !this.isEditing;
     }

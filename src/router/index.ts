@@ -14,72 +14,69 @@ const router = createRouter({
       path: '/system',
       name: 'system',
       component: () => import('@/views/system/system.vue'),
+    },
+    // 用户主页受登录保护，将重定向至登录页
+    {
+      path: '/user',
+      name: 'user',
+      component: () => import('@/views/auth/LoginView.vue'),
       children: [
-          // 用户主页受登录保护，将重定向至登录页
+          // 个人概览页
           {
-              path: '/user',
-              name: 'user',
-              component: () => import('@/views/auth/LoginView.vue'),
-              children: [
-                  // 个人概览页
-                  {
-                      path: 'dashboard',
-                      name: 'dashboard',
-                      component: () => import('@/views/system/user/UserDashboard.vue')
-                  },
-                  // 基本信息页
-                  {
-                      path: 'profile',
-                      name: 'profile',
-                      component: () => import('@/views/system/user/UserProfile.vue')
-                  },
-                  // 数据统计页
-                  {
-                      path: 'analytics',
-                      name: 'analytics',
-                      component: () => import('@/views/system/user/AnalyticsDashboard.vue')
-                  },
-                  // 目标管理页
-                  {
-                      path: 'goals',
-                      name: 'goals',
-                      component: () => import('@/views/system/user/GoalManagement.vue')
-                  },
-                  // 通知中心页
-                  {
-                      path: 'notifications',
-                      name: 'notifications',
-                      component: () => import('@/views/system/user/NotificationCenter.vue')
-                  },
-                  // 教案管理页
-                  {
-                      path: 'lessonPlans',
-                      name: 'lessonPlans',
-                      component: () => import('@/views/system/user/LessonPlanManager.vue')
-                  },
-                  // 学习题库页
-                  {
-                      path: 'questionBank',
-                      name: 'questionBank',
-                      component: () => import('@/views/system/user/QuestionBank.vue')
-                  },
-                  // 消息中心页
-                  {
-                      path: 'messages',
-                      name: 'messages',
-                      component: () => import('@/views/system/user/MessageCenter.vue')
-                  },
-                  // 资源中心页
-                  {
-                      path: 'resources',
-                      name: 'resources',
-                      component: () => import('@/views/system/user/ResourceCenter.vue')
-                  }
-              ]
+              path: 'dashboard',
+              name: 'dashboard',
+              component: () => import('@/views/user/UserDashboard.vue')
           },
+          // 基本信息页
+          {
+              path: 'profile',
+              name: 'profile',
+              component: () => import('@/views/user/UserProfile.vue')
+          },
+          // 数据统计页
+          {
+              path: 'analytics',
+              name: 'analytics',
+              component: () => import('@/views/user/AnalyticsDashboard.vue')
+          },
+          // 目标管理页
+          {
+              path: 'goals',
+              name: 'goals',
+              component: () => import('@/views/user/GoalManagement.vue')
+          },
+          // 通知中心页
+          {
+              path: 'notifications',
+              name: 'notifications',
+              component: () => import('@/views/user/NotificationCenter.vue')
+          },
+          // 教案管理页
+          {
+              path: 'lessonPlans',
+              name: 'lessonPlans',
+              component: () => import('@/views/user/LessonPlanManager.vue')
+          },
+          // 学习题库页
+          {
+              path: 'questionBank',
+              name: 'questionBank',
+              component: () => import('@/views/user/QuestionBank.vue')
+          },
+          // 消息中心页
+          {
+              path: 'messages',
+              name: 'messages',
+              component: () => import('@/views/user/MessageCenter.vue')
+          },
+          // 资源中心页
+          {
+              path: 'resources',
+              name: 'resources',
+              component: () => import('@/views/user/ResourceCenter.vue')
+          }
       ]
     },
-
     // 登录页面路由
     {
       path:'/login',
@@ -117,66 +114,8 @@ const router = createRouter({
       path:'/forgetPassword',
       name:"forgetPassword",
       component:()=>import('@/views/auth/ForgetPasswordView.vue'),
-    },
-    {
-      // 管理页面路由 - 后台布局
-      path: '/admin',
-      component: () => import('@/layouts/AdminLayout.vue'),
-      redirect: '/admin/semester',
-      children: [
-        {
-          path: 'user-management',
-          name: 'admin-user-management',
-          component: () => import('@/views/UserManagement.vue'),
-        },
-        {
-          // 学期管理页面
-          path: 'semester',
-          name: 'semesterManagement',
-          component: () => import('@/views/admin/SemesterManagement.vue'),
-        },
-        {
-          // 学科管理页面
-          path: 'subject',
-          name: 'subjectManagement',
-          component: () => import('@/views/admin/SubjectManagement.vue'),
-        },
-        {
-          // 学生信息页面
-          path: 'student',
-          name: 'studentInfo',
-          component: () => import('@/views/admin/StudentInfo.vue'),
-        },
-        {
-          // 年级管理页面
-          path: 'grade',
-          name: 'gradeManagement',
-          component: () => import('@/views/admin/GradeManagement.vue'),
-        },
-        {
-          // 教学大纲管理页面
-          path: 'syllabus',
-          name: 'syllabusManagement',
-          component: () => import('@/views/admin/SyllabusManagement.vue'),
-        }
-      ]
-    },
-        {
-          path: '/role-permission',
-          name: 'admin-role-permission',
-          component: () => import('@/views/RolePermission.vue'),
-        },
-        {
-          path: '/system-settings',
-          name: 'admin-system-settings',
-          component: () => import('@/views/SystemSettings.vue'),
-        },
-        {
-          path: '/role-list',
-          name: 'role-list',
-          component: () => import('@/components/system/common/RoleComponents.vue'),
-        }
-      ]
+    }
+  ]
 })
 
 export default router

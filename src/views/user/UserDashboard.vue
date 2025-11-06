@@ -1,82 +1,82 @@
 <template>
   <div class="teacher-dashboard">
-    <!-- 左侧导航栏 -->
-    <aside class="sidebar">
+    <!-- 左侧导航栏（Element Plus） -->
+    <el-aside class="sidebar" width="240px">
       <div class="logo">
-        <i class="fa fa-graduation-cap"></i>
+        <el-icon><Reading /></el-icon>
         <span>教师个人中心</span>
       </div>
-      <nav class="nav-menu">
-        <ul>
-          <li class="nav-item active">
-            <i class="fa fa-user-circle"></i>
-            <span>个人概览</span>
-          </li>
-          <li class="nav-item">
-            <i class="fa fa-id-card"></i>
-            <span>基本信息</span>
-          </li>
-          <li class="nav-item">
-            <i class="fa fa-bar-chart"></i>
-            <span>数据统计</span>
-          </li>
-          <li class="nav-item">
-            <i class="fa fa-bullseye"></i>
-            <span>目标管理</span>
-          </li>
-          <li class="nav-item">
-            <i class="fa fa-bell"></i>
-            <span>通知中心</span>
-          </li>
-          <li class="nav-item">
-            <i class="fa fa-book"></i>
-            <span>教案管理</span>
-          </li>
-          <li class="nav-item">
-            <i class="fa fa-question-circle"></i>
-            <span>学习题库</span>
-          </li>
-          <li class="nav-item">
-            <i class="fa fa-envelope"></i>
-            <span>消息中心</span>
-          </li>
-          <li class="nav-item">
-            <i class="fa fa-folder-open"></i>
-            <span>资源中心</span>
-          </li>
-        </ul>
-      </nav>
-    </aside>
+      <el-menu router :default-active="$route.path" class="nav-menu" :unique-opened="true">
+        <el-menu-item index="/user/dashboard">
+          <el-icon><User /></el-icon>
+          <span>个人概览</span>
+        </el-menu-item>
+        <el-menu-item index="/user/profile">
+          <el-icon><UserFilled /></el-icon>
+          <span>基本信息</span>
+        </el-menu-item>
+        <el-menu-item index="/user/analytics">
+          <el-icon><DataAnalysis /></el-icon>
+          <span>数据统计</span>
+        </el-menu-item>
+        <el-menu-item index="/user/goals">
+          <el-icon><Aim /></el-icon>
+          <span>目标管理</span>
+        </el-menu-item>
+        <el-menu-item index="/user/notifications">
+          <el-icon><Bell /></el-icon>
+          <span>通知中心</span>
+        </el-menu-item>
+        <el-menu-item index="/user/lessonPlans">
+          <el-icon><Notebook /></el-icon>
+          <span>教案管理</span>
+        </el-menu-item>
+        <el-menu-item index="/user/questionBank">
+          <el-icon><QuestionFilled /></el-icon>
+          <span>学习题库</span>
+        </el-menu-item>
+        <el-menu-item index="/user/messages">
+          <el-icon><Message /></el-icon>
+          <span>消息中心</span>
+        </el-menu-item>
+        <el-menu-item index="/user/resources">
+          <el-icon><Folder /></el-icon>
+          <span>资源中心</span>
+        </el-menu-item>
+      </el-menu>
+    </el-aside>
 
-    <!-- 右侧主内容区 -->
+    <!-- 右侧主内容区（Element Plus 顶部导航） -->
     <main class="main-content">
-      <!-- 顶部导航栏 -->
-      <header class="top-nav">
-        <div class="search-box">
-          <i class="fa fa-search"></i>
-          <input type="text" placeholder="搜索...">
-        </div>
+      <el-header class="top-nav">
+        <el-input v-model="searchText" placeholder="搜索..." class="search-box" size="large">
+          <template #prefix>
+            <el-icon><Search /></el-icon>
+          </template>
+        </el-input>
         <div class="user-actions">
-          <button class="action-btn">
-            <i class="fa fa-bell"></i>
-            <span class="badge">3</span>
-          </button>
-          <button class="action-btn">
-            <i class="fa fa-envelope"></i>
-            <span class="badge">5</span>
-          </button>
-          <button class="action-btn">
-            <i class="fa fa-cog"></i>
-          </button>
+          <el-badge :value="3" class="item">
+            <el-button text circle>
+              <el-icon><Bell /></el-icon>
+            </el-button>
+          </el-badge>
+          <el-badge :value="5" class="item">
+            <el-button text circle>
+              <el-icon><Message /></el-icon>
+            </el-button>
+          </el-badge>
+          <el-button text circle>
+            <el-icon><Setting /></el-icon>
+          </el-button>
           <div class="user-profile">
-            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="用户头像">
+            <el-avatar src="https://randomuser.me/api/portraits/women/44.jpg" size="large" />
             <div class="user-info">
               <span class="user-name">张三老师</span>
               <span class="user-role">数学教师</span>
             </div>
           </div>
         </div>
-      </header>
+      </el-header>
 
       <!-- 内容区域 -->
       <div class="content-area">
@@ -95,8 +95,8 @@
                 <p>数学教师 | 初中部 | 教龄 8 年</p>
               </div>
               <div class="actions">
-                <button class="btn edit-btn">编辑资料</button>
-                <button class="btn message-btn">查看消息</button>
+                <el-button type="primary" size="small">编辑资料</el-button>
+                <el-button type="success" size="small">查看消息</el-button>
               </div>
             </div>
             <div class="stats-grid">
@@ -489,9 +489,18 @@
 
 <script>
 import { Chart } from 'chart.js';
+import { 
+  User, UserFilled, DataAnalysis, Aim, Bell, Notebook, QuestionFilled, Message, Folder, Setting, Search, Reading
+} from '@element-plus/icons-vue';
 
 export default {
   name: 'TeacherDashboard',
+  components: { User, UserFilled, DataAnalysis, Aim, Bell, Notebook, QuestionFilled, Message, Folder, Setting, Search, Reading },
+  data() {
+    return {
+      searchText: ''
+    };
+  },
   mounted() {
     // 初始化使用趋势图表
     this.initUsageChart();

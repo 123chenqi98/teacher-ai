@@ -1,82 +1,83 @@
 <template>
   <div class="resource-center">
-    <!-- 左侧导航栏 -->
-    <aside class="sidebar">
+    <!-- 左侧导航栏（Element Plus） -->
+    <el-aside class="sidebar" width="240px">
       <div class="logo">
-        <i class="fa fa-graduation-cap"></i>
+        <el-icon><Reading /></el-icon>
         <span>教师个人中心</span>
       </div>
-      <nav class="nav-menu">
-        <ul>
-          <li class="nav-item">
-            <i class="fa fa-user-circle"></i>
-            <span>个人概览</span>
-          </li>
-          <li class="nav-item">
-            <i class="fa fa-id-card"></i>
-            <span>基本信息</span>
-          </li>
-          <li class="nav-item">
-            <i class="fa fa-bar-chart"></i>
-            <span>数据统计</span>
-          </li>
-          <li class="nav-item">
-            <i class="fa fa-bullseye"></i>
-            <span>目标管理</span>
-          </li>
-          <li class="nav-item">
-            <i class="fa fa-bell"></i>
-            <span>通知中心</span>
-          </li>
-          <li class="nav-item">
-            <i class="fa fa-book"></i>
-            <span>教案管理</span>
-          </li>
-          <li class="nav-item">
-            <i class="fa fa-question-circle"></i>
-            <span>学习题库</span>
-          </li>
-          <li class="nav-item">
-            <i class="fa fa-envelope"></i>
-            <span>消息中心</span>
-          </li>
-          <li class="nav-item active">
-            <i class="fa fa-folder-open"></i>
-            <span>资源中心</span>
-          </li>
-        </ul>
-      </nav>
-    </aside>
+      <el-menu router :default-active="$route.path" class="nav-menu" :unique-opened="true">
+        <el-menu-item index="/user/dashboard">
+          <el-icon><User /></el-icon>
+          <span>个人概览</span>
+        </el-menu-item>
+        <el-menu-item index="/user/profile">
+          <el-icon><UserFilled /></el-icon>
+          <span>基本信息</span>
+        </el-menu-item>
+        <el-menu-item index="/user/analytics">
+          <el-icon><DataAnalysis /></el-icon>
+          <span>数据统计</span>
+        </el-menu-item>
+        <el-menu-item index="/user/goals">
+          <el-icon><Aim /></el-icon>
+          <span>目标管理</span>
+        </el-menu-item>
+        <el-menu-item index="/user/notifications">
+          <el-icon><Bell /></el-icon>
+          <span>通知中心</span>
+        </el-menu-item>
+        <el-menu-item index="/user/lessonPlans">
+          <el-icon><Notebook /></el-icon>
+          <span>教案管理</span>
+        </el-menu-item>
+        <el-menu-item index="/user/questionBank">
+          <el-icon><QuestionFilled /></el-icon>
+          <span>学习题库</span>
+        </el-menu-item>
+        <el-menu-item index="/user/messages">
+          <el-icon><Message /></el-icon>
+          <span>消息中心</span>
+        </el-menu-item>
+        <el-menu-item index="/user/resources">
+          <el-icon><Folder /></el-icon>
+          <span>资源中心</span>
+        </el-menu-item>
+      </el-menu>
+    </el-aside>
 
     <!-- 右侧主内容区 -->
     <main class="main-content">
-      <!-- 顶部导航栏 -->
-      <header class="top-nav">
-        <div class="search-box">
-          <i class="fa fa-search"></i>
-          <input type="text" placeholder="搜索...">
-        </div>
+      <!-- 顶部导航栏（Element Plus） -->
+      <el-header class="top-nav">
+        <el-input v-model="searchQuery" placeholder="搜索..." class="search-box" size="large">
+          <template #prefix>
+            <el-icon><Search /></el-icon>
+          </template>
+        </el-input>
         <div class="user-actions">
-          <button class="action-btn">
-            <i class="fa fa-bell"></i>
-            <span class="badge">3</span>
-          </button>
-          <button class="action-btn">
-            <i class="fa fa-envelope"></i>
-            <span class="badge">5</span>
-          </button>
-          <button class="action-btn">
-            <i class="fa fa-cog"></i>
-          </button>
+          <el-badge :value="3" class="item">
+            <el-button text circle>
+              <el-icon><Bell /></el-icon>
+            </el-button>
+          </el-badge>
+          <el-badge :value="5" class="item">
+            <el-button text circle>
+              <el-icon><Message /></el-icon>
+            </el-button>
+          </el-badge>
+          <el-button text circle>
+            <el-icon><Setting /></el-icon>
+          </el-button>
           <div class="user-profile">
-            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="用户头像">
+            <el-avatar src="https://randomuser.me/api/portraits/women/44.jpg" size="large" />
             <div class="user-info">
               <span class="user-name">张三老师</span>
               <span class="user-role">数学教师</span>
             </div>
           </div>
         </div>
-      </header>
+      </el-header>
 
       <!-- 内容区域 -->
       <div class="content-area">
@@ -126,52 +127,41 @@
           </div>
         </div>
 
-        <!-- 标签页与搜索筛选区 -->
+        <!-- 标签页与搜索筛选区（Element Plus） -->
         <div class="tab-search-filter">
-          <div class="tabs">
-            <div class="tab-item active" :class="{ 'active': currentTab === 'my-resources' }" @click="switchTab('my-resources')">
-              <span>我的资源</span>
-              <div class="tab-indicator"></div>
-            </div>
-            <div class="tab-item" :class="{ 'active': currentTab === 'collections' }" @click="switchTab('collections')">
-              <span>收藏资源</span>
-              <div class="tab-indicator"></div>
-            </div>
-            <div class="tab-item" :class="{ 'active': currentTab === 'categories' }" @click="switchTab('categories')">
-              <span>资源分类</span>
-              <div class="tab-indicator"></div>
-            </div>
-            <div class="tab-item" :class="{ 'active': currentTab === 'upload' }" @click="switchTab('upload')">
-              <span>上传资源</span>
-              <div class="tab-indicator"></div>
-            </div>
-          </div>
+          <el-tabs v-model="currentTab">
+            <el-tab-pane label="我的资源" name="my-resources" />
+            <el-tab-pane label="收藏资源" name="collections" />
+            <el-tab-pane label="资源分类" name="categories" />
+            <el-tab-pane label="上传资源" name="upload" />
+          </el-tabs>
           <div class="search-filter">
-            <div class="search-box">
-              <i class="fa fa-search"></i>
-              <input type="text" placeholder="搜索资源名称、类型..." v-model="searchQuery" @input="filterResources">
-            </div>
+            <el-input v-model="searchQuery" placeholder="搜索资源名称、类型..." @input="filterResources" class="search-box">
+              <template #prefix>
+                <el-icon><Search /></el-icon>
+              </template>
+            </el-input>
             <div class="filter-dropdowns">
-              <select class="filter-select" v-model="typeFilter" @change="filterResources">
-                <option value="all">全部类型</option>
-                <option value="ppt">PPT</option>
-                <option value="doc">文档</option>
-                <option value="pdf">PDF</option>
-                <option value="video">视频</option>
-                <option value="image">图片</option>
-                <option value="audio">音频</option>
-              </select>
-              <select class="filter-select" v-model="sortFilter" @change="filterResources">
-                <option value="time-desc">按时间排序（新→旧）</option>
-                <option value="time-asc">按时间排序（旧→新）</option>
-                <option value="size-desc">按大小排序（大→小）</option>
-                <option value="size-asc">按大小排序（小→大）</option>
-              </select>
+              <el-select v-model="typeFilter" @change="filterResources" style="width: 160px; margin-right: 12px;">
+                <el-option label="全部类型" value="all" />
+                <el-option label="PPT" value="ppt" />
+                <el-option label="文档" value="doc" />
+                <el-option label="PDF" value="pdf" />
+                <el-option label="视频" value="video" />
+                <el-option label="图片" value="image" />
+                <el-option label="音频" value="audio" />
+              </el-select>
+              <el-select v-model="sortFilter" @change="filterResources" style="width: 220px;">
+                <el-option label="按时间排序（新→旧）" value="time-desc" />
+                <el-option label="按时间排序（旧→新）" value="time-asc" />
+                <el-option label="按大小排序（大→小）" value="size-desc" />
+                <el-option label="按大小排序（小→大）" value="size-asc" />
+              </el-select>
             </div>
-            <button class="btn primary-btn new-folder-btn" @click="showCreateFolderModal">
-              <i class="fa fa-folder"></i>
-              <span>新建文件夹</span>
-            </button>
+            <el-button type="primary" class="new-folder-btn" @click="showCreateFolderModal">
+              <el-icon><Folder /></el-icon>
+              新建文件夹
+            </el-button>
           </div>
         </div>
 
@@ -470,8 +460,13 @@
 
 
 <script>
+import { 
+  User, UserFilled, DataAnalysis, Aim, Bell, Notebook, QuestionFilled, Message, Folder, Setting, Search, Reading
+} from '@element-plus/icons-vue';
+
 export default {
   name: 'ResourceCenter',
+  components: { User, UserFilled, DataAnalysis, Aim, Bell, Notebook, QuestionFilled, Message, Folder, Setting, Search, Reading },
   data() {
     return {
       currentTab: 'my-resources',

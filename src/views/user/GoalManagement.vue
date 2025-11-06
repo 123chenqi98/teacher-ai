@@ -1,82 +1,81 @@
 <template>
   <div class="goal-management-page">
-    <!-- 左侧导航栏 -->
-    <aside class="sidebar">
+    <!-- 左侧导航栏（Element Plus） -->
+    <el-aside class="sidebar" width="240px">
       <div class="logo">
-        <i class="fa fa-graduation-cap"></i>
+        <el-icon><Reading /></el-icon>
         <span>教师个人中心</span>
       </div>
-      <nav class="nav-menu">
-        <ul>
-          <li class="nav-item">
-            <i class="fa fa-user-circle"></i>
-            <span>个人概览</span>
-          </li>
-          <li class="nav-item">
-            <i class="fa fa-id-card"></i>
-            <span>基本信息</span>
-          </li>
-          <li class="nav-item">
-            <i class="fa fa-bar-chart"></i>
-            <span>数据统计</span>
-          </li>
-          <li class="nav-item active">
-            <i class="fa fa-bullseye"></i>
-            <span>目标管理</span>
-          </li>
-          <li class="nav-item">
-            <i class="fa fa-bell"></i>
-            <span>通知中心</span>
-          </li>
-          <li class="nav-item">
-            <i class="fa fa-book"></i>
-            <span>教案管理</span>
-          </li>
-          <li class="nav-item">
-            <i class="fa fa-question-circle"></i>
-            <span>学习题库</span>
-          </li>
-          <li class="nav-item">
-            <i class="fa fa-envelope"></i>
-            <span>消息中心</span>
-          </li>
-          <li class="nav-item">
-            <i class="fa fa-folder-open"></i>
-            <span>资源中心</span>
-          </li>
-        </ul>
-      </nav>
-    </aside>
+      <el-menu router :default-active="$route.path" class="nav-menu" :unique-opened="true">
+        <el-menu-item index="/user/dashboard">
+          <el-icon><User /></el-icon>
+          <span>个人概览</span>
+        </el-menu-item>
+        <el-menu-item index="/user/profile">
+          <el-icon><UserFilled /></el-icon>
+          <span>基本信息</span>
+        </el-menu-item>
+        <el-menu-item index="/user/analytics">
+          <el-icon><DataAnalysis /></el-icon>
+          <span>数据统计</span>
+        </el-menu-item>
+        <el-menu-item index="/user/goals">
+          <el-icon><Aim /></el-icon>
+          <span>目标管理</span>
+        </el-menu-item>
+        <el-menu-item index="/user/notifications">
+          <el-icon><Bell /></el-icon>
+          <span>通知中心</span>
+        </el-menu-item>
+        <el-menu-item index="/user/lessonPlans">
+          <el-icon><Notebook /></el-icon>
+          <span>教案管理</span>
+        </el-menu-item>
+        <el-menu-item index="/user/questionBank">
+          <el-icon><QuestionFilled /></el-icon>
+          <span>学习题库</span>
+        </el-menu-item>
+        <el-menu-item index="/user/messages">
+          <el-icon><Message /></el-icon>
+          <span>消息中心</span>
+        </el-menu-item>
+        <el-menu-item index="/user/resources">
+          <el-icon><Folder /></el-icon>
+          <span>资源中心</span>
+        </el-menu-item>
+      </el-menu>
+    </el-aside>
 
     <!-- 右侧主内容区 -->
     <main class="main-content">
       <!-- 顶部导航栏 -->
-      <header class="top-nav">
+      <el-header class="top-nav">
         <div class="search-box">
-          <i class="fa fa-search"></i>
-          <input type="text" placeholder="搜索...">
+          <el-input v-model="search" placeholder="搜索..." :prefix-icon="Search" clearable />
         </div>
         <div class="user-actions">
-          <button class="action-btn">
-            <i class="fa fa-bell"></i>
-            <span class="badge">3</span>
-          </button>
-          <button class="action-btn">
-            <i class="fa fa-envelope"></i>
-            <span class="badge">5</span>
-          </button>
-          <button class="action-btn">
-            <i class="fa fa-cog"></i>
-          </button>
+          <el-button text>
+            <el-badge :value="3" class="item">
+              <el-icon><Bell /></el-icon>
+            </el-badge>
+          </el-button>
+          <el-button text>
+            <el-badge :value="5" class="item">
+              <el-icon><Message /></el-icon>
+            </el-badge>
+          </el-button>
+          <el-button text>
+            <el-icon><Setting /></el-icon>
+          </el-button>
           <div class="user-profile">
-            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="用户头像">
+            <el-avatar src="https://randomuser.me/api/portraits/women/44.jpg" />
             <div class="user-info">
               <span class="user-name">张三老师</span>
               <span class="user-role">数学教师</span>
             </div>
           </div>
         </div>
-      </header>
+      </el-header>
 
       <!-- 内容区域 -->
       <div class="content-area">
@@ -160,41 +159,40 @@
         <div class="section-title">我的目标</div>
         
         <!-- 筛选栏 -->
-        <div class="filter-bar">
-          <div class="filter-group">
-            <label class="filter-label">目标类型</label>
-            <select class="filter-select" v-model="filter.type">
-              <option value="all">全部类型</option>
-              <option value="learning">学习目标</option>
-              <option value="task">任务目标</option>
-              <option value="teaching">教学目标</option>
-              <option value="reading">阅读目标</option>
-            </select>
-          </div>
-          <div class="filter-group">
-            <label class="filter-label">目标状态</label>
-            <select class="filter-select" v-model="filter.status">
-              <option value="all">全部状态</option>
-              <option value="in-progress">进行中</option>
-              <option value="completed">已完成</option>
-              <option value="pending">待开始</option>
-            </select>
-          </div>
-          <div class="filter-group">
-            <label class="filter-label">排序方式</label>
-            <select class="filter-select" v-model="filter.sort">
-              <option value="deadline">按截止日期</option>
-              <option value="progress">按完成进度</option>
-              <option value="created">按创建时间</option>
-            </select>
-          </div>
-          <div class="filter-actions">
-            <button class="btn add-btn" @click="openAddGoalModal">
-              <i class="fa fa-plus"></i>
-              <span>添加新目标</span>
-            </button>
-          </div>
-        </div>
+        <el-card class="filter-bar" shadow="never">
+          <el-form inline>
+            <el-form-item label="目标类型">
+              <el-select v-model="filter.type" placeholder="请选择">
+                <el-option label="全部类型" value="all" />
+                <el-option label="学习目标" value="learning" />
+                <el-option label="任务目标" value="task" />
+                <el-option label="教学目标" value="teaching" />
+                <el-option label="阅读目标" value="reading" />
+              </el-select>
+            </el-form-item>
+            <el-form-item label="目标状态">
+              <el-select v-model="filter.status" placeholder="请选择">
+                <el-option label="全部状态" value="all" />
+                <el-option label="进行中" value="in-progress" />
+                <el-option label="已完成" value="completed" />
+                <el-option label="待开始" value="pending" />
+              </el-select>
+            </el-form-item>
+            <el-form-item label="排序方式">
+              <el-select v-model="filter.sort" placeholder="请选择">
+                <el-option label="按截止日期" value="deadline" />
+                <el-option label="按完成进度" value="progress" />
+                <el-option label="按创建时间" value="created" />
+              </el-select>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" @click="openAddGoalModal">
+                <el-icon><Plus /></el-icon>
+                添加新目标
+              </el-button>
+            </el-form-item>
+          </el-form>
+        </el-card>
         
         <!-- 目标卡片区 -->
         <div class="goal-cards">
@@ -254,103 +252,58 @@
     </main>
 
     <!-- 添加/编辑目标弹窗 -->
-    <div class="modal-backdrop" v-if="showGoalModal">
-      <div class="modal">
-        <div class="modal-header">
-          <h3 class="modal-title">{{ isEditing ? '编辑目标' : '添加新目标' }}</h3>
-          <button class="close-btn" @click="closeGoalModal">
-            <i class="fa fa-times"></i>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form @submit.prevent="saveGoal">
-            <div class="form-group">
-              <label class="form-label">目标名称 <span class="required">*</span></label>
-              <input 
-                type="text" 
-                class="form-input" 
-                v-model="currentGoal.title" 
-                placeholder="请输入目标名称" 
-                required
-              >
-            </div>
-            <div class="form-group">
-              <label class="form-label">目标类型 <span class="required">*</span></label>
-              <select 
-                class="form-select" 
-                v-model="currentGoal.type" 
-                required
-              >
-                <option value="">请选择目标类型</option>
-                <option value="learning">学习目标</option>
-                <option value="task">任务目标</option>
-                <option value="teaching">教学目标</option>
-                <option value="reading">阅读目标</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label">目标描述 <span class="required">*</span></label>
-              <textarea 
-                class="form-textarea" 
-                v-model="currentGoal.description" 
-                placeholder="请详细描述目标内容和衡量标准" 
-                rows="4"
-                required
-              ></textarea>
-            </div>
-            <div class="form-group">
-              <label class="form-label">截止日期 <span class="required">*</span></label>
-              <input 
-                type="date" 
-                class="form-input" 
-                v-model="currentGoal.deadline" 
-                required
-              >
-            </div>
-            <div class="form-group">
-              <label class="form-label">当前进度（%）</label>
-              <input 
-                type="number" 
-                class="form-input" 
-                v-model="currentGoal.progress" 
-                min="0" 
-                max="100" 
-                placeholder="0-100"
-              >
-            </div>
-            <div class="form-actions">
-              <button type="button" class="btn cancel-btn" @click="closeGoalModal">取消</button>
-              <button type="submit" class="btn save-btn">保存</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+    <el-dialog v-model="showGoalModal" :title="isEditing ? '编辑目标' : '添加新目标'" width="500px">
+      <el-form @submit.prevent="saveGoal" label-position="top">
+        <el-form-item label="目标名称" required>
+          <el-input v-model="currentGoal.title" placeholder="请输入目标名称" />
+        </el-form-item>
+        <el-form-item label="目标类型" required>
+          <el-select v-model="currentGoal.type" placeholder="请选择目标类型">
+            <el-option label="学习目标" value="learning" />
+            <el-option label="任务目标" value="task" />
+            <el-option label="教学目标" value="teaching" />
+            <el-option label="阅读目标" value="reading" />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="目标描述" required>
+          <el-input v-model="currentGoal.description" type="textarea" :rows="4" placeholder="请详细描述目标内容和衡量标准" />
+        </el-form-item>
+        <el-form-item label="截止日期" required>
+          <el-date-picker v-model="currentGoal.deadline" type="date" value-format="YYYY-MM-DD" placeholder="选择日期" style="width: 100%;" />
+        </el-form-item>
+        <el-form-item label="当前进度（%）">
+          <el-input-number v-model="currentGoal.progress" :min="0" :max="100" />
+        </el-form-item>
+      </el-form>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="closeGoalModal">取消</el-button>
+          <el-button type="primary" @click="saveGoal">保存</el-button>
+        </span>
+      </template>
+    </el-dialog>
 
     <!-- 删除确认弹窗 -->
-    <div class="modal-backdrop" v-if="showDeleteModal">
-      <div class="modal confirm-modal">
-        <div class="modal-header">
-          <h3 class="modal-title">确认删除</h3>
-          <button class="close-btn" @click="closeDeleteModal">
-            <i class="fa fa-times"></i>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>您确定要删除这个目标吗？此操作不可撤销。</p>
-          <div class="form-actions">
-            <button class="btn cancel-btn" @click="closeDeleteModal">取消</button>
-            <button class="btn delete-btn" @click="deleteGoal">确认删除</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <el-dialog v-model="showDeleteModal" title="确认删除" width="400px">
+      <p>您确定要删除这个目标吗？此操作不可撤销。</p>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="closeDeleteModal">取消</el-button>
+          <el-button type="danger" @click="deleteGoal">确认删除</el-button>
+        </span>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
 <script>
+import { 
+  User, UserFilled, DataAnalysis, Aim, Bell, Notebook, QuestionFilled, Message, Folder, Setting, Search, Plus, Reading
+} from '@element-plus/icons-vue';
+
 export default {
   name: 'GoalManagement',
+  components: { User, UserFilled, DataAnalysis, Aim, Bell, Notebook, QuestionFilled, Message, Folder, Setting, Search, Plus, Reading },
   data() {
     return {
       // 筛选条件
