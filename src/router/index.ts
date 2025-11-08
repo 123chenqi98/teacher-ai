@@ -15,65 +15,71 @@ const router = createRouter({
       name: 'system',
       component: () => import('@/views/system/system.vue'),
     },
-    // 用户主页受登录保护，将重定向至登录页
+    // 测试页面
+    {
+      path: '/test',
+      name: 'test',
+      component: () => import('@/components/user/TopNavigationComponents.vue'),
+    },
+    // 个人中心页面路由
     {
       path: '/user',
       name: 'user',
-      component: () => import('@/views/auth/LoginView.vue'),
+      component: () => import('@/views/HomeView.vue'),
       children: [
           // 个人概览页
           {
               path: 'dashboard',
               name: 'dashboard',
-              component: () => import('@/views/user/UserDashboard.vue')
+              component: () => import('@/views/user/UserDashboardView.vue')
           },
           // 基本信息页
           {
               path: 'profile',
               name: 'profile',
-              component: () => import('@/views/user/UserProfile.vue')
+              component: () => import('@/views/user/UserProfileView.vue')
           },
           // 数据统计页
           {
               path: 'analytics',
               name: 'analytics',
-              component: () => import('@/views/user/AnalyticsDashboard.vue')
+              component: () => import('@/views/user/AnalyticsDashboardView.vue')
           },
           // 目标管理页
           {
               path: 'goals',
               name: 'goals',
-              component: () => import('@/views/user/GoalManagement.vue')
+              component: () => import('@/views/user/GoalManagementView.vue')
           },
           // 通知中心页
           {
               path: 'notifications',
               name: 'notifications',
-              component: () => import('@/views/user/NotificationCenter.vue')
+              component: () => import('@/views/user/NotificationCenterView.vue')
           },
           // 教案管理页
           {
               path: 'lessonPlans',
               name: 'lessonPlans',
-              component: () => import('@/views/user/LessonPlanManager.vue')
+              component: () => import('@/views/user/LessonPlanManagerView.vue')
           },
           // 学习题库页
           {
               path: 'questionBank',
               name: 'questionBank',
-              component: () => import('@/views/user/QuestionBank.vue')
+              component: () => import('@/views/user/QuestionBankView.vue')
           },
           // 消息中心页
           {
               path: 'messages',
               name: 'messages',
-              component: () => import('@/views/user/MessageCenter.vue')
+              component: () => import('@/views/user/MessageCenterView.vue')
           },
           // 资源中心页
           {
               path: 'resources',
               name: 'resources',
-              component: () => import('@/views/user/ResourceCenter.vue')
+              component: () => import('@/views/user/ResourceCenterView.vue')
           }
       ]
     },

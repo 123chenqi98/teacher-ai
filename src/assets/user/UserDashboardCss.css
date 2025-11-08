@@ -1,0 +1,9 @@
+/* 全局样式 作用：包裹侧边栏和主内容区，实现Flex横向布局 */
+.teacher-dashboard {
+    display: flex; /* 启用Flex布局：让侧边栏（固定宽度）和主内容区（自适应宽度）横向排列 */
+    min-height: 100vh; /* 最小高度占满整个视口：确保页面至少铺满屏幕，内容不足时也不会缩窄 */
+    font-family: 'Inter', 'system-ui', 'sans-serif';  /* 字体族：优先使用Inter（现代无衬线字体），兼容系统默认字体，提升可读性 */
+    margin: 0; /* 重置默认margin/padding：避免浏览器默认样式导致布局偏移 */
+    padding: 0;
+    background-color: #f5f7fa; /* 页面整体背景色，与主内容区呼应 */
+}

@@ -1,0 +1,87 @@
+/* 左侧导航栏 核心：固定宽度、垂直布局、固定定位，承载Logo和菜单 */
+.sidebar {
+    width: 250px; /* 侧边栏展开宽度（中后台常用舒适宽度：200-260px） */
+    height: 100vh; /* 高度占满整个视口，与页面同高 */
+    background-color: #7E42DE; /* 紫色背景（可替换为项目品牌色）5a4bcf这个颜色也可以 */
+    color: white; /* 文字白色（高对比度，保护视力，提升可读性） */
+    padding: 20px 0 0; /* 内边距：顶部20px（与Logo上沿对齐，避免贴边），左右0（子元素统一控制），底部0 */
+    display: flex; /* 启用Flex布局，用于子元素垂直排列 */
+    flex-direction: column; /* 子元素（Logo→菜单→折叠按钮）垂直分布 */
+    box-sizing: border-box; /* 盒模型：width包含padding和border，避免padding导致宽度溢出屏幕 */
+    top: 0; /* 顶部对齐视口 */
+    left: 0; /* 左侧对齐视口 *
+    overflow-y: auto; /* 内容溢出时（如菜单过多）显示垂直滚动条，避免内容丢失 */
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.08); /* 右侧轻微阴影，视觉上区分侧边栏和主内容区，提升层次感 */
+    transition: width 0.3s ease; /* 宽度变化过渡动画（折叠/展开时平滑切换，提升用户体验） */
+    z-index: 999; /* 层级优先级：确保侧边栏在最上层，不被主内容区或其他组件遮挡 */
+}
+
+/* logo样式 */
+.logo {
+    display: flex; /* 图标与文字横向排列 */
+    align-items: center; /* 垂直居中对齐（图标和文字在同一水平线） */
+    padding: 0 35px 13px; /* 左右20px内边距（与侧边栏子元素统一），底部20px（与分隔线间距） */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5); /* 底部浅色半透明分隔线，区分Logo区和菜单区 */
+    margin-bottom: 20px; /* 与下方菜单保持20px间距，布局更舒展 */
+    cursor: pointer; /* 鼠标悬浮变指针，提示可点击（通常跳转首页） */
+    transition: opacity 0.2s ease; /* hover透明度过渡，提升交互反馈 */
+}
+
+/* 图标 */
+.logo .el-icon { /* 实则.el-icon存在，且页面可以正常渲染 */
+    font-size: 25px; /* 图标尺寸，与文字比例协调 */
+    margin-right: 10px; /* 图标与文字间距，避免拥挤 */
+}
+
+/* Logo hover效果：提升交互反馈 */
+.logo:hover {
+    opacity: 0.8; /* 轻微透明，提示可点击 */
+}
+
+/* 文字样式 */
+.logo span {
+    font-size: 20px; /* 文字大小，突出品牌感 */
+    font-weight: 600; /* 字体加粗，提升辨识度 */
+    letter-spacing: 1px; /* 字间距微调，更美观 */
+}
+
+/* 核心菜单样式：统一菜单项布局和交互 */
+.nav-menu {
+    flex: 1;
+    background-color: transparent;
+}
+
+/* 单个菜单项基础样式 */
+.nav-menu .el-menu-item { /* 实则.el-menu-item存在，且页面可以正常渲染 */
+    height: 60px; /* 菜单项高度（舒适点击区域） */
+    line-height: 60px; /* 文字垂直居中 */
+    padding: 0 35px !important; /* 左右内边距（与Logo对齐），!important覆盖Element默认样式 */
+    color: rgba(255, 255, 255, 0.9); /* 默认文字颜色（高对比度） */
+    font-size: 16px; /* 菜单文字大小 */
+    border-radius: 8px; /* 圆角优化，提升视觉柔和度 */
+    margin: 0 20px 8px; /* 上下间距+左右边距，让菜单项不贴边 */
+    transition: all 0.2s ease; /* 所有属性过渡，提升交互流畅度 */
+}
+
+/* 图标样式 */
+.nav-menu .el-menu-item .el-icon { /* ，.el-icon存在，且页面可以正常渲染 */
+    font-size: 18px; /* 图标尺寸（与文字比例协调） */
+    margin-right: 12px; /* 图标与文字间距 */
+    width: 20px; /* 固定图标宽度，避免文字错位 */
+    text-align: center; /* 行内内容水平居中 */
+}
+
+/* 菜单项hover状态：鼠标悬浮反馈 */
+.nav-menu .el-menu-item:hover { /* :hover 的核心价值是给用户提供 “悬浮交互反馈”，让用户知道 “这个元素可以点击 / 操作”。 */
+    background-color: rgba(255, 255, 255, 0.15); /* 半透明白色背景，不遮挡主色调 */
+    color: #ffffff; /* 文字变白，增强高亮 */
+    transform: translateX(3px); /* 轻微右移，增加交互动感 */
+}
+
+/* 菜单项选中状态：当前页面高亮 */
+.nav-menu .el-menu-item.is-active {
+    background-color: rgba(255, 255, 255, 0.25); /* 更深的半透明背景，突出选中 */
+    color: #ffffff; /* 纯白文字 */
+    font-weight: 500; /* 字体加粗，强化辨识度 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 轻微阴影，提升层级感 */
+}
