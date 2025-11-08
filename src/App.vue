@@ -1,22 +1,10 @@
-<!--<script setup lang="ts">-->
-<!--import {RouterView} from "vue-router";-->
-<!--import PageFooter from "@/components/system/PageFooterComponenet.vue";-->
-<!--</script>-->
-
-<!--<template>-->
-<!--    <RouterView />-->
-<!--    &lt;!&ndash;页脚&ndash;&gt;-->
-<!--    <page-footer/>-->
-<!--</template>-->
-<!--<style scoped>-->
-
-<!--</style>-->
-
+<!--负责逻辑处理-->
 <script setup lang="ts">
 import {RouterView} from "vue-router";
 import PageFooter from "@/components/system/PageFooterComponenet.vue";
 </script>
 
+<!--负责视图渲染-->
 <template>
   <div id="app">
     <RouterView />
@@ -24,6 +12,7 @@ import PageFooter from "@/components/system/PageFooterComponenet.vue";
     <PageFooter/>
   </div>
 </template>
+<!--负责样式美化-->
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
