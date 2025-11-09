@@ -1,0 +1,17 @@
+/*首页样式*/
+.homeTopInfoBox{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    background-color: #ddc8ff;
+}
+
+/*首页盒子样式*/
+.homeBox{
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, rgb(219, 152, 215) 0%, rgb(121, 94, 171) 50%, rgb(115, 52, 188) 100%);
+}

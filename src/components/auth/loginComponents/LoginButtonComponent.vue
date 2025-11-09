@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import "@/assets/auth/login/LoginBoxCss.css"
+import "@/assets/auth/login/authBoxCss.css"
 import router from "@/router";
 
 // 将父组件的方法传入

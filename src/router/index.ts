@@ -7,7 +7,7 @@ const router = createRouter({
       // 首页路由
       path: '/',
       name: 'home',
-      component: () => import('@/views/HomeView.vue'),
+      component: () => import('@/views/system/HomeView.vue'),
     },
     {
       // 登录页面路由

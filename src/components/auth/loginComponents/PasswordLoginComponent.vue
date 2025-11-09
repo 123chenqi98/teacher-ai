@@ -1,5 +1,5 @@
 <script setup lang="ts" >
-import "@/assets/auth/login/LoginBoxCss.css"
+import "@/assets/auth/login/authBoxCss.css"
 // 引入表单
 import {ruleForm, ruleFormRef, rules} from "@/forms/auth/login/PasswordLoginForm.ts";
 import {Lock, UserFilled} from "@element-plus/icons-vue";
