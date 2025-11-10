@@ -1,9 +1,133 @@
-/* 全局样式 作用：包裹侧边栏和主内容区，实现Flex横向布局 */
+/* 全局样式：包裹侧边栏和主内容区，实现Flex横向布局 */
 .teacher-dashboard {
-    display: flex; /* 启用Flex布局：让侧边栏（固定宽度）和主内容区（自适应宽度）横向排列 */
-    min-height: 100vh; /* 最小高度占满整个视口：确保页面至少铺满屏幕，内容不足时也不会缩窄 */
-    font-family: 'Inter', 'system-ui', 'sans-serif';  /* 字体族：优先使用Inter（现代无衬线字体），兼容系统默认字体，提升可读性 */
-    margin: 0; /* 重置默认margin/padding：避免浏览器默认样式导致布局偏移 */
-    padding: 0;
-    background-color: #f5f7fa; /* 页面整体背景色，与主内容区呼应 */
+    display: flex; /* 启用Flex布局，使侧边栏（固定宽度）和主内容区（自适应宽度）横向排列 */
+    min-height: 100vh; /* 最小高度占满整个视口，确保页面内容不足时也铺满屏幕 */
+    font-family: 'Inter', 'system-ui', 'sans-serif'; /* 优先使用Inter字体，兼容系统默认字体，提升可读性 */
+    margin: 0; /* 重置默认margin，避免浏览器默认样式导致布局偏移 */
+    padding: 0; /* 重置默认padding */
+    background-color: #f5f7fa; /* 页面整体背景色，与主内容区风格呼应 */
 }
+
+/* 右侧主内容区样式 */
+.main-content {
+    flex: 1; /* 占满剩余宽度 */
+    background-color: #f8f9fa; /* 主内容区背景色 */
+    display: flex;
+    flex-direction: column; /* 纵向布局，使子元素垂直排列 */
+}
+
+/* 内容区域样式 */
+.content-area {
+    flex: 1; /* 占满主内容区剩余高度 */
+    padding: 20px; /* 内边距，控制内容与容器边缘的距离 */
+    overflow-y: auto; /* 内容溢出时纵向滚动 */
+}
+
+/* 个人概览卡片样式 */
+.teacher-profile-card {
+    margin-bottom: 20px; /* 底部外边距，与下方元素保持间距 */
+    border-radius: 12px !important; /* 卡片圆角，增强视觉柔和度 */
+}
+
+/* 教师信息区域布局样式 */
+.teacher-info {
+    display: flex; /* Flex布局，使头像、文字、按钮区域横向排列 */
+    align-items: center; /* 垂直居中对齐 */
+    padding: 10px 20px; /* 内边距 */
+}
+
+/* 头像容器样式 */
+.avatar-container {
+    width: 100px !important; /* 头像宽度 */
+    height: 100px !important; /* 头像高度 */
+    border-radius: 50%; /* 圆形头像 */
+    overflow: hidden; /* 裁剪超出容器的头像部分 */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* 头像阴影，突出层次 */
+}
+
+/* 头像图片样式 */
+.avatar-img {
+    width: 100%; /* 宽度铺满容器 */
+    height: 100%; /* 高度铺满容器 */
+    object-fit: cover; /* 保持图片比例并铺满容器 */
+}
+
+/* 教师姓名样式 */
+.teacher-name {
+    font-size: 22px; /* 字体大小 */
+    font-weight: 600; /* 字体加粗 */
+    color: #333; /* 字体颜色 */
+}
+
+/* 教师描述样式 */
+.teacher-desc {
+    font-size: 14px; /* 字体大小 */
+    color: #6c757d; /* 字体颜色 */
+    margin-top: 5px; /* 顶部外边距，与上方姓名保持间距 */
+}
+
+/* 操作按钮区域布局样式 */
+.actions-col {
+    display: flex; /* Flex布局，使按钮横向排列 */
+    justify-content: flex-end; /* 按钮靠右对齐 */
+    align-items: center; /* 垂直居中对齐 */
+}
+
+/* 编辑资料按钮样式 */
+.edit-btn {
+    font-size: 18px; /* 字体大小 */
+    padding: 15px 20px; /* 按钮内边距，控制按钮尺寸 */
+    background-color: #6c63ff !important; /* 按钮背景色 */
+    border-color: #6c63ff !important; /* 按钮边框色 */
+    margin-left: 170px; /* 与左侧按钮的间距 */
+}
+
+/* 查看消息按钮样式 */
+.message-btn {
+    font-size: 18px; /* 字体大小 */
+    padding: 15px 20px; /* 按钮内边距，控制按钮尺寸 */
+    background-color: #4cd263 !important; /* 按钮背景色 */
+    border-color: #4cd263 !important; /* 按钮边框色 */
+}
+
+/* 统计数据区域布局样式 */
+.stats-row {
+    padding: 0 5px; /* 内边距，控制与上下元素的间距 */
+    display: flex; /* Flex布局 */
+    flex-wrap: wrap; /* 自适应换行，适配小屏幕 */
+    gap: 20px; /* 卡片之间的间距 */
+    justify-content: center; /* 卡片整体居中对齐 */
+}
+
+/* 统计卡片样式 */
+.stat-card {
+    background-color: #f8f9ff; /* 卡片背景色 */
+    border-radius: 10px; /* 卡片圆角 */
+    padding: 10px; /* 内边距 */
+    text-align: center; /* 文字居中对齐 */
+    flex: 1; /* 自动分配宽度 */
+    min-width: 180px; /* 最小宽度，避免过度压缩 */
+    transition: all 0.3s ease; /* 过渡动画，用于hover效果 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* 卡片阴影，突出层次 */
+}
+
+/* 统计卡片hover效果 */
+.stat-card:hover {
+    transform: translateY(-5px); /* 上浮动画，增强交互感 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* 阴影加深，突出层次 */
+}
+
+/* 统计数值样式 */
+.stat-value {
+    font-size: 28px; /* 字体大小 */
+    font-weight: 600; /* 字体加粗 */
+    color: #6c63ff; /* 字体颜色 */
+    margin-bottom: 5px; /* 底部外边距，与下方标签保持间距 */
+}
+
+/* 统计标签样式 */
+.stat-label {
+    font-size: 14px; /* 字体大小 */
+    color: #6c757d; /* 字体颜色 */
+}
+

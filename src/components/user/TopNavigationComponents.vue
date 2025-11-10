@@ -8,6 +8,13 @@ import { ref } from "vue";
 
 // 搜索框绑定的响应式变量，初始值为空字符串
 const searchText = ref<string>("");
+
+const props = defineProps<{
+  navTitle?: string; // 可选参数，支持父组件传递
+}>();
+
+// 解构 props，设置默认值（父组件未传递时显示“个人概览”）
+const { navTitle = "个人概览" } = props;
 </script>
 
 <template>
@@ -17,6 +24,9 @@ const searchText = ref<string>("");
            max-length="50": 输入最大长度限制：50个字符
            aria-describedby="search-hint": 关联辅助说明文本，增强无障碍体验
            父组件：el-input（支持 prefix/suffix 等插槽） -->
+      <!-- 动态标题：由父组件传递 -->
+      <div class="top-title">{{ navTitle }}</div>
+
       <el-input
           v-model="searchText"
           placeholder="搜索教案、题库、资源..."
@@ -76,7 +86,7 @@ const searchText = ref<string>("");
           />
           <!-- 个人信息文本 -->
           <div class="user-info">
-            <span class="user-name">张三老师</span>
+            <span class="user-name">内格老师</span>
           </div>
         </div>
       </div>

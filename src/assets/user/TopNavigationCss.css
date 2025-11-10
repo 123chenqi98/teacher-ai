@@ -4,7 +4,7 @@
     height: 64px;
     /* 弹性布局：使搜索框和用户区左右分布 */
     display: flex;
-    /* 水平对齐：搜索框靠左，用户区靠右 */
+    /* 都向右对齐 */
     justify-content: right;
     /* 垂直居中对齐 */
     align-items: center;
@@ -19,6 +19,15 @@
     top: 0;
     /* 层级置顶：避免被其他元素覆盖 */
     z-index: 999;
+}
+
+.top-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-right: auto;
+    padding-left: 10px;
+    color: #6c63ff; /* 与主题色统一的紫色系，更协调 */
+    border-left: 3px solid #6c63ff; /* 增加左侧强调线 */
 }
 
 /* 搜索框样式：宽度、圆角、边框颜色 */
