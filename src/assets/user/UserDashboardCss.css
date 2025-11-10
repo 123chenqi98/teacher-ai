@@ -131,3 +131,150 @@
     color: #6c757d; /* 字体颜色 */
 }
 
+/* 本周数据概览卡片 */
+.weekly-stats-card {
+    margin-bottom: 20px;
+    border-radius: 12px !important;
+}
+
+/* 数据统计行 - 控制列间距和换行 */
+.weekly-stats-row {
+    margin-bottom: 12px;
+}
+
+.text-right {
+    color: #6c63ff !important;
+}
+
+.view-detail-btn {
+    font-size: 18px; /* 字体大小 */
+    padding: 14px 15px; /* 按钮内边距，控制按钮尺寸 */
+    background-color: #6c63ff !important; /* 按钮背景色 */
+    border-color: #6c63ff !important; /* 按钮边框色 */
+    margin-bottom: 10px;
+}
+
+/* 单个统计项 hover 效果 */
+.weekly-stat-card:hover {
+    background-color: #f5f4ff; /* 主题色关联背景，呼应按钮色 */
+    transform: translateY(-2px); /* 轻微上浮，增强交互反馈 */
+    box-shadow: 0 4px 16px 0 rgba(108, 99, 255, 0.1); /* hover 时加深阴影 */
+}
+
+/* 近期操作历史卡片 */
+.recent-activities-card {
+    padding: 16px;
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: 12px;
+}
+
+.recent-activities-card .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.activity-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.activity-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: #fff;
+    transition: background-color 0.25s ease;
+    border-left: 3px solid #722ed1;
+}
+
+.activity-item:hover {
+    background-color: #f8f9ff;
+}
+
+.activity-avatar {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eef2ff;
+    color: #722ed1;
+}
+
+.activity-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.activity-desc {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    font-weight: 500;
+}
+
+.activity-time {
+    margin-top: 4px;
+    font-size: 13px;
+    color: #909399;
+}
+
+/* 个性化设置卡片：字体与排版优化 */
+.settings-card {
+    padding: 20px;
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(114, 46, 209, 0.08);
+    border: 1px solid #f0f0f5;
+}
+
+.settings-form {
+    width: 100%;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.settings-form .el-form-item {
+    margin-bottom: 19px;
+}
+
+.settings-form .el-form-item__label {
+    font-size: 15px;
+    color: #424242;
+    font-weight: 500;
+}
+
+.theme-select, .language-select {
+    width: 180px;
+}
+
+.permission-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.layout-group {
+    display: flex;
+    gap: 16px;
+}
+
+.sync-btn {
+    display: flex;
+    align-items: center;
+}
+
+.security-btn-item {
+    margin-top: 16px;
+}
+
+.security-btn {
+    width: 30%;
+}
