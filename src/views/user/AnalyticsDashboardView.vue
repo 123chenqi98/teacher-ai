@@ -6,7 +6,7 @@
         <el-icon><Reading /></el-icon>
         <span>教师个人中心</span>
       </div>
-      <el-menu router :default-active="$route.path" class="nav-menu" :unique-opened="true">
+      <el-menu router :default-active="route.path" class="nav-menu" :unique-opened="true">
         <el-menu-item index="/user/dashboard">
           <el-icon><User /></el-icon>
           <span>个人概览</span>
@@ -477,12 +477,30 @@
 
 <script>
 import Chart from 'chart.js/auto';
-import { 
-  User, UserFilled, DataAnalysis, Aim, Bell, Notebook, QuestionFilled, Message, Folder, Setting, Search, Reading, Refresh
+import {
+  Aim,
+  Bell,
+  DataAnalysis,
+  Folder,
+  Message,
+  Notebook,
+  QuestionFilled,
+  Reading,
+  Refresh,
+  Search,
+  Setting,
+  User,
+  UserFilled
 } from '@element-plus/icons-vue';
+import {START_LOCATION_NORMALIZED as $route} from "vue-router/dist/devtools-BLCumUwL.mjs";
 
 export default {
   name: 'DataStatsModule',
+  computed: {
+    route() {
+      return $route
+    }
+  },
   components: { User, UserFilled, DataAnalysis, Aim, Bell, Notebook, QuestionFilled, Message, Folder, Setting, Search, Reading, Refresh },
   data() {
     return {
@@ -936,9 +954,7 @@ export default {
         // 如果图表已初始化，更新数据
         if (this.charts.usageTrend) {
           const periodData = this.chartData.usageTrend[this.chartPeriod];
-          const newData = periodData.data.map(value => value * (0.9 + Math.random() * 0.2));
-          
-          this.charts.usageTrend.data.datasets[0].data = newData;
+          this.charts.usageTrend.data.datasets[0].data = periodData.data.map(value => value * (0.9 + Math.random() * 0.2));
           this.charts.usageTrend.update();
         }
       }, 1000);
@@ -1002,23 +1018,6 @@ export default {
   padding: 0;
 }
 
-.nav-item {
-  display: flex;
-  align-items: center;
-  padding: 12px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.nav-item:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.nav-item.active {
-  background-color: rgba(255, 255, 255, 0.2);
-  border-left: 4px solid white;
-}
-
 .nav-item i {
   font-size: 18px;
   margin-right: 10px;
@@ -1071,30 +1070,6 @@ export default {
   align-items: center;
 }
 
-.action-btn {
-  background: none;
-  border: none;
-  font-size: 18px;
-  color: #6c757d;
-  margin-left: 15px;
-  cursor: pointer;
-  position: relative;
-}
-
-.badge {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  background-color: #e63946;
-  color: white;
-  border-radius: 50%;
-  width: 18px;
-  height: 18px;
-  font-size: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .user-profile {
   display: flex;
@@ -1160,56 +1135,11 @@ export default {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-.filter-group {
-  display: flex;
-  align-items: center;
-  margin-right: 20px;
-}
-
-.filter-label {
-  font-size: 14px;
-  color: #6c757d;
-  margin-right: 10px;
-}
-
-.filter-select {
-  padding: 8px 15px;
-  border: 1px solid #e9ecef;
-  border-radius: 6px;
-  font-size: 14px;
-  color: #333;
-  outline: none;
-  transition: border-color 0.3s;
-}
-
-.filter-select:focus {
-  border-color: #6c63ff;
-}
-
-.filter-actions {
-  margin-left: auto;
-}
-
-.refresh-btn {
-  background-color: #f8f9ff;
-  color: #6c63ff;
-  border: 1px solid #6c63ff;
-  border-radius: 6px;
-  padding: 8px 15px;
-  cursor: pointer;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  transition: background-color 0.3s;
-}
 
 .refresh-btn i {
   margin-right: 5px;
 }
 
-.refresh-btn:hover {
-  background-color: #e6e3ff;
-}
 
 /* 章节标题 */
 .section-title {
@@ -1302,9 +1232,6 @@ export default {
   color: #4cae50;
 }
 
-.stat-trend.negative {
-  color: #f5222d;
-}
 
 .stat-trend i {
   margin-right: 3px;
@@ -1609,11 +1536,6 @@ export default {
   border-radius: 4px;
 }
 
-.progress-value {
-  font-size: 14px;
-  font-weight: 500;
-  color: #333;
-}
 
 /* 底部数据导出区 */
 .export-section {
@@ -1693,23 +1615,14 @@ export default {
     display: none;
   }
   
-  .nav-item {
-    justify-content: center;
-  }
-  
-  .nav-item.active {
-    border-left: none;
-    background-color: rgba(255, 255, 255, 0.1);
-  }
+
+
   
   .filter-bar {
     flex-wrap: wrap;
   }
   
-  .filter-group {
-    margin-bottom: 10px;
-  }
-  
+
   .overview-cards {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }

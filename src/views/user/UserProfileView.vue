@@ -6,7 +6,7 @@
         <el-icon><Reading /></el-icon>
         <span>教师个人中心</span>
       </div>
-      <el-menu router :default-active="$route.path" class="nav-menu" :unique-opened="true">
+      <el-menu router :default-active="router().path" class="nav-menu" :unique-opened="true">
         <el-menu-item index="/user/dashboard">
           <el-icon><User /></el-icon>
           <span>个人概览</span>
@@ -417,6 +417,7 @@
 
 <script>
 import { User, UserFilled, DataAnalysis, Aim, Bell, Notebook, QuestionFilled, Message, Folder, Setting, Search, Reading } from '@element-plus/icons-vue';
+import router from "@/router/index.ts";
 export default {
   name: 'BasicInfoModule',
   components: { User, UserFilled, DataAnalysis, Aim, Bell, Notebook, QuestionFilled, Message, Folder, Setting, Search, Reading },
@@ -468,6 +469,9 @@ export default {
     };
   },
   methods: {
+    router() {
+      return router
+    },
     toggleEditMode() {
       this.isEditing = !this.isEditing;
     }
@@ -516,22 +520,6 @@ export default {
   padding: 0;
 }
 
-.nav-item {
-  display: flex;
-  align-items: center;
-  padding: 12px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.nav-item:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.nav-item.active {
-  background-color: rgba(255, 255, 255, 0.2);
-  border-left: 4px solid white;
-}
 
 .nav-item i {
   font-size: 18px;
@@ -595,20 +583,7 @@ export default {
   position: relative;
 }
 
-.badge {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  background-color: #e63946;
-  color: white;
-  border-radius: 50%;
-  width: 18px;
-  height: 18px;
-  font-size: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 
 .user-profile {
   display: flex;
@@ -668,37 +643,6 @@ export default {
   display: flex;
   border-bottom: 1px solid #e9ecef;
   margin-bottom: 20px;
-}
-
-.tab-btn {
-  position: relative;
-  padding: 12px 20px;
-  background: none;
-  border: none;
-  font-size: 16px;
-  color: #6c757d;
-  cursor: pointer;
-  margin-right: 10px;
-}
-
-.tab-btn.active {
-  color: #6c63ff;
-  font-weight: bold;
-}
-
-.tab-indicator {
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background-color: #6c63ff;
-  transform: scaleX(0);
-  transition: transform 0.3s;
-}
-
-.tab-indicator.show {
-  transform: scaleX(1);
 }
 
 /* 标签页内容 */
@@ -830,56 +774,6 @@ export default {
   border: 1px solid #e6e3ff;
 }
 
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-label {
-  display: block;
-  font-size: 14px;
-  font-weight: 500;
-  color: #333;
-  margin-bottom: 8px;
-}
-
-.required {
-  color: #e63946;
-}
-
-.form-input, .form-select, .form-textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #6c63ff;
-  border-radius: 6px;
-  font-size: 14px;
-  transition: border-color 0.3s;
-}
-
-.form-input:focus, .form-select:focus, .form-textarea:focus {
-  outline: none;
-  border-color: #5a4bcf;
-  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
-}
-
-.form-row {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 -10px 20px;
-}
-
-.form-row .form-group {
-  flex: 1;
-  min-width: 200px;
-  padding: 0 10px;
-  margin-bottom: 0;
-}
-
-.avatar-upload {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 30px;
-}
-
 .avatar-preview {
   width: 120px;
   height: 120px;
@@ -896,19 +790,6 @@ export default {
   object-fit: cover;
 }
 
-.avatar-placeholder {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: #6c63ff;
-  background-color: rgba(108, 99, 255, 0.05);
-}
 
 .avatar-placeholder i {
   font-size: 24px;
@@ -925,25 +806,10 @@ export default {
   margin-bottom: 10px;
 }
 
-.upload-btn {
-  background-color: #f8f9ff;
-  color: #6c63ff;
-  border: 1px solid #6c63ff;
-  border-radius: 6px;
-  padding: 8px 15px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s;
-}
 
-.upload-btn:hover {
-  background-color: #e6e3ff;
-}
 
-.form-textarea {
-  min-height: 100px;
-  resize: vertical;
-}
+
+
 
 .form-actions {
   display: flex;
@@ -951,36 +817,6 @@ export default {
   margin-top: 30px;
 }
 
-.cancel-btn {
-  background-color: #f1f3f5;
-  color: #6c757d;
-  border: 1px solid #dee2e6;
-  border-radius: 6px;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 14px;
-  margin-right: 10px;
-  transition: background-color 0.3s;
-}
-
-.cancel-btn:hover {
-  background-color: #e9ecef;
-}
-
-.save-btn {
-  background-color: #6c63ff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s;
-}
-
-.save-btn:hover {
-  background-color: #5a4bcf;
-}
 
 /* 账号安全标签页 */
 .security-card {
@@ -1042,27 +878,10 @@ export default {
   background-color: #e6e3ff;
 }
 
-.status-tag {
-  padding: 3px 8px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 500;
-}
 
-.status-tag.success {
-  background-color: #e6f7ee;
-  color: #4cae50;
-}
 
-.status-tag.warning {
-  background-color: #fff3e0;
-  color: #ff9800;
-}
 
-.status-tag.info {
-  background-color: #e6f7ff;
-  color: #1890ff;
-}
+
 
 /* 登录日志标签页 */
 .login-log-card {
@@ -1078,10 +897,7 @@ export default {
   overflow-x: auto;
 }
 
-.login-log-table {
-  width: 100%;
-  border-collapse: collapse;
-}
+
 
 .login-log-table th,
 .login-log-table td {
@@ -1102,23 +918,6 @@ export default {
 
 .login-log-table tbody tr:last-child {
   border-bottom: none;
-}
-
-.status {
-  padding: 3px 8px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-.status.success {
-  background-color: #e6f7ee;
-  color: #4cae50;
-}
-
-.status.danger {
-  background-color: #fff1f0;
-  color: #f5222d;
 }
 
 .load-more {

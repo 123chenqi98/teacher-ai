@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import type { CoreOverview, TrendSeries } from "@/utils/types";
+import CoreOverview from "@/components/dashboard/CoreOverview.vue";
 
 const props = defineProps<{ core: CoreOverview | null; trends: TrendSeries[] }>();
 

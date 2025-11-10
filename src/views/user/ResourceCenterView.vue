@@ -6,7 +6,7 @@
         <el-icon><Reading /></el-icon>
         <span>教师个人中心</span>
       </div>
-      <el-menu router :default-active="$route.path" class="nav-menu" :unique-opened="true">
+      <el-menu router :default-active="router.path" class="nav-menu" :unique-opened="true">
         <el-menu-item index="/user/dashboard">
           <el-icon><User /></el-icon>
           <span>个人概览</span>
@@ -463,6 +463,7 @@
 import { 
   User, UserFilled, DataAnalysis, Aim, Bell, Notebook, QuestionFilled, Message, Folder, Setting, Search, Reading
 } from '@element-plus/icons-vue';
+import router from "@/router/index.js";
 
 export default {
   name: 'ResourceCenter',
@@ -529,8 +530,8 @@ export default {
     };
   },
   methods: {
-    switchTab(tab) {
-      this.currentTab = tab;
+    router() {
+      return router
     },
     filterResources() {
       // 实际应用中这里会根据搜索词和筛选条件过滤资源
@@ -538,30 +539,6 @@ export default {
     },
     showCreateFolderModal() {
       this.showCreateFolderModal = true;
-    },
-    closeCreateFolderModal() {
-      this.showCreateFolderModal = false;
-      this.newFolderName = '';
-      this.newFolderParent = '';
-    },
-    createFolder() {
-      if (!this.newFolderName) {
-        alert('请输入文件夹名称');
-        return;
-      }
-      
-      // 创建新文件夹
-      const newFolder = {
-        id: this.folders.length + 1,
-        name: this.newFolderName,
-        fileCount: 0,
-        size: '0B',
-        parentId: this.newFolderParent
-      };
-      
-      this.folders.push(newFolder);
-      this.closeCreateFolderModal();
-      alert('文件夹创建成功');
     },
     openFolder(folderId) {
       console.log('打开文件夹:', folderId);
@@ -706,22 +683,7 @@ export default {
   margin: 0;
 }
 
-.nav-item {
-  display: flex;
-  align-items: center;
-  padding: 12px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
 
-.nav-item:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.nav-item.active {
-  background-color: rgba(255, 255, 255, 0.2);
-  border-left: 4px solid white;
-}
 
 .nav-item i {
   font-size: 18px;
@@ -790,20 +752,6 @@ export default {
   position: relative;
 }
 
-.badge {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  background-color: #f5222d;
-  color: white;
-  border-radius: 50%;
-  width: 18px;
-  height: 18px;
-  font-size: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .user-profile {
   display: flex;
@@ -868,13 +816,12 @@ export default {
 }
 
 .stat-card {
-  background-color: white;
   border-radius: 8px;
   padding: 15px;
   display: flex;
   align-items: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-  background: linear-gradient(135deg, #f0f5ff 0%, #e6f7ff 100%);
+  background: white linear-gradient(135deg, #f0f5ff 0%, #e6f7ff 100%);
 }
 
 .stat-icon {
@@ -913,18 +860,6 @@ export default {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-.tabs {
-  display: flex;
-  margin-bottom: 15px;
-  border-bottom: 1px solid #eee;
-}
-
-.tab-item {
-  margin-right: 20px;
-  position: relative;
-  cursor: pointer;
-}
-
 .tab-item span {
   font-size: 14px;
   color: #666;
@@ -937,20 +872,7 @@ export default {
   font-weight: bold;
 }
 
-.tab-indicator {
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: #5a2ca0;
-  transform: scaleX(0);
-  transition: transform 0.3s;
-}
 
-.tab-item.active .tab-indicator {
-  transform: scaleX(1);
-}
 
 .search-filter {
   display: flex;
@@ -987,14 +909,6 @@ export default {
   margin-left: 15px;
 }
 
-.filter-select {
-  padding: 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  margin-right: 10px;
-  outline: none;
-  background-color: white;
-}
 
 .new-folder-btn {
   margin-left: 15px;
@@ -1485,7 +1399,6 @@ export default {
 }
 
 .form-select,
-.form-input,
 .form-textarea {
   width: 100%;
   padding: 8px 12px;
@@ -1554,13 +1467,7 @@ export default {
   background-color: #f9f9f9;
 }
 
-.status-success {
-  color: #52c41a;
-}
 
-.status-error {
-  color: #f5222d;
-}
 
 .history-actions {
   display: flex;
@@ -1577,44 +1484,7 @@ export default {
   color: #5a2ca0;
 }
 
-/* 新建文件夹弹窗样式 */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
 
-.modal-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modal-content {
-  position: relative;
-  background-color: white;
-  border-radius: 8px;
-  width: 400px;
-  max-width: 90%;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.modal-header {
-  padding: 15px 20px;
-  border-bottom: 1px solid #eee;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
 .modal-header h3 {
   font-size: 16px;
@@ -1622,24 +1492,6 @@ export default {
   color: #333;
 }
 
-.close-btn {
-  background: none;
-  border: none;
-  font-size: 18px;
-  color: #666;
-  cursor: pointer;
-}
-
-.modal-body {
-  padding: 20px;
-}
-
-.modal-footer {
-  padding: 15px 20px;
-  border-top: 1px solid #eee;
-  display: flex;
-  justify-content: flex-end;
-}
 
 .modal-footer .btn {
   margin-left: 10px;

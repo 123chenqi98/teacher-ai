@@ -985,15 +985,8 @@ export default {
   color: #1890ff;
 }
 
-.tag.subject.chinese {
-  background-color: #fff1f0;
-  color: #f5222d;
-}
 
-.tag.subject.english {
-  background-color: #f6ffed;
-  color: #52c41a;
-}
+
 
 .tag.status {
   font-weight: normal;

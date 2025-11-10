@@ -6,7 +6,7 @@
         <el-icon><Reading /></el-icon>
         <span>教师个人中心</span>
       </div>
-      <el-menu router :default-active="$route.path" class="nav-menu" :unique-opened="true">
+      <el-menu router :default-active="router.path" class="nav-menu" :unique-opened="true">
         <el-menu-item index="/user/dashboard">
           <el-icon><User /></el-icon>
           <span>个人概览</span>
@@ -300,6 +300,7 @@
 import { 
   User, UserFilled, DataAnalysis, Aim, Bell, Notebook, QuestionFilled, Message, Folder, Setting, Search, Plus, Reading
 } from '@element-plus/icons-vue';
+import router from "@/router/index.ts";
 
 export default {
   name: 'GoalManagement',
@@ -415,6 +416,9 @@ export default {
     };
   },
   computed: {
+    Search() {
+      return Search
+    },
     // 将原来的 methods.filter 改名为 filteredGoals
     filteredGoals() {
       let result = [...this.goals];
@@ -448,6 +452,9 @@ export default {
     }
   },
   methods: {
+    router() {
+      return router
+    },
     // 格式化日期
     formatDate(dateString) {
       if (!dateString) return '';
@@ -640,22 +647,9 @@ export default {
   padding: 0;
 }
 
-.nav-item {
-  display: flex;
-  align-items: center;
-  padding: 12px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
 
-.nav-item:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
 
-.nav-item.active {
-  background-color: rgba(255, 255, 255, 0.2);
-  border-left: 4px solid white;
-}
+
 
 .nav-item i {
   font-size: 18px;
@@ -709,30 +703,6 @@ export default {
   align-items: center;
 }
 
-.action-btn {
-  background: none;
-  border: none;
-  font-size: 18px;
-  color: #6c757d;
-  margin-left: 15px;
-  cursor: pointer;
-  position: relative;
-}
-
-.badge {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  background-color: #e63946;
-  color: white;
-  border-radius: 50%;
-  width: 18px;
-  height: 18px;
-  font-size: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .user-profile {
   display: flex;
@@ -867,56 +837,11 @@ export default {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-.filter-group {
-  display: flex;
-  align-items: center;
-  margin-right: 20px;
-}
-
-.filter-label {
-  font-size: 14px;
-  color: #6c757d;
-  margin-right: 10px;
-}
-
-.filter-select {
-  padding: 8px 15px;
-  border: 1px solid #e9ecef;
-  border-radius: 6px;
-  font-size: 14px;
-  color: #333;
-  outline: none;
-  transition: border-color 0.3s;
-}
-
-.filter-select:focus {
-  border-color: #6c63ff;
-}
-
-.filter-actions {
-  margin-left: auto;
-}
-
-.add-btn {
-  background-color: #6c63ff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 8px 15px;
-  cursor: pointer;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  transition: background-color 0.3s;
-}
 
 .add-btn i {
   margin-right: 5px;
 }
 
-.add-btn:hover {
-  background-color: #5a4bcf;
-}
 
 /* 目标卡片区 */
 .goal-cards {
@@ -1080,133 +1005,18 @@ export default {
   margin-bottom: 15px;
 }
 
-/* 弹窗样式 */
-.modal-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
 
-.modal {
-  background-color: white;
-  border-radius: 8px;
-  width: 500px;
-  max-width: 90%;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
 
-.confirm-modal {
-  width: 400px;
-}
 
-.modal-header {
-  padding: 15px 20px;
-  border-bottom: 1px solid #e9ecef;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
-.modal-title {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-}
 
-.close-btn {
-  background: none;
-  border: none;
-  font-size: 20px;
-  color: #6c757d;
-  cursor: pointer;
-}
 
-.modal-body {
-  padding: 20px;
-}
 
-/* 表单样式 */
-.form-group {
-  margin-bottom: 20px;
-}
 
-.form-label {
-  display: block;
-  font-size: 14px;
-  font-weight: 500;
-  color: #333;
-  margin-bottom: 8px;
-}
 
-.required {
-  color: #e63946;
-}
 
-.form-input, .form-select, .form-textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #e9ecef;
-  border-radius: 6px;
-  font-size: 14px;
-  transition: border-color 0.3s;
-}
 
-.form-input:focus, .form-select:focus, .form-textarea:focus {
-  outline: none;
-  border-color: #6c63ff;
-  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
-}
 
-.form-textarea {
-  min-height: 100px;
-  resize: vertical;
-}
-
-.form-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.cancel-btn {
-  background-color: #f1f3f5;
-  color: #6c757d;
-  border: none;
-  border-radius: 6px;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s;
-}
-
-.cancel-btn:hover {
-  background-color: #e9ecef;
-}
-
-.save-btn {
-  background-color: #6c63ff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s;
-}
-
-.save-btn:hover {
-  background-color: #5a4bcf;
-}
 
 /* 响应式调整 */
 @media (max-width: 992px) {
@@ -1225,25 +1035,13 @@ export default {
     display: none;
   }
   
-  .nav-item {
-    justify-content: center;
-  }
-  
-  .nav-item.active {
-    border-left: none;
-    background-color: rgba(255, 255, 255, 0.1);
-  }
+
   
   .filter-bar {
     flex-wrap: wrap;
   }
   
-  .filter-group {
-    margin-bottom: 10px;
-    flex: 1;
-    min-width: 150px;
-  }
-  
+
   .stats-cards {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
@@ -1276,13 +1074,6 @@ export default {
   .stat-value {
     font-size: 18px;
   }
-  
-  .form-actions {
-    flex-direction: column;
-  }
-  
-  .cancel-btn, .save-btn {
-    width: 100%;
-  }
+
 }
 </style>
