@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // 数据
-import features from "@/data/FeaturesDatas.ts";
+import features from "@/data/system/FeaturesDatas.ts";
 //样式
 import "@/assets/system/homeCss/FeatureBoxCss.css";
 

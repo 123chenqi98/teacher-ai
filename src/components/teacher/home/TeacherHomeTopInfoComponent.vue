@@ -1,12 +1,10 @@
 <script setup lang="ts">
-// 样式
-import "@/assets/system/homeCss/homeBoxCss.css"
-import "@/assets/system/homeCss/TopInfoCss.css"
-import TopNavigationComponent from "@/components/system/homeComponents/TopNavigationComponent.vue";
-import {ref} from "vue";
+import "@/assets/teacher/homeCss/HomeTopCss.css"
 import router from "@/router";
-// 模拟数据，使用store中的数据进行更改
+import {ref} from "vue";
+
 const isLogin = ref(true)
+
 // 处理下拉菜单命令
 const handleCommand = (command: string) => {
   switch(command) {
@@ -22,21 +20,23 @@ const handleCommand = (command: string) => {
       break
   }
 }
+
 </script>
 
 <template>
-<!--  顶部信息组件-->
-  <div class="homeTopInfoBox">
-    <div class="logo-box">
+<!--  教师端首页头部信息-->
+  <div class="teacher-home-top-Box">
+<!--    logo-->
+    <div class="teacher-side-logo-box">
       <el-image src="src/static/logo.png" class="logo-img"></el-image>
-      <el-text class="home-title">智慧科技</el-text>
+      <el-text class="logo-title">小知教师端</el-text>
     </div>
-    <div class="navigation-box">
-<!--      导航栏-->
-      <top-navigation-component/>
+<!--    标题-->
+    <div style="display: flex; align-items: center;">
+      <el-text class="teacher-top-text">小知尽最大能力帮助教师们完成教学任务</el-text>
     </div>
-<!--    登录显示的组件-->
-    <div class="auth-box" v-if="!isLogin">
+    <!--    登录显示的组件-->
+    <div class="auth-box-teacher" v-if="!isLogin">
       <el-button type="success" @click="router.push('/login')">
         登录
       </el-button>
@@ -44,10 +44,10 @@ const handleCommand = (command: string) => {
         注册
       </el-button>
     </div>
-<!--    未来登录显示的组件-->
-    <div class="auth-box" v-if="isLogin">
+    <!--    未来登录显示的组件-->
+    <div class="auth-box-teacher" v-if="isLogin">
       <el-dropdown @command="handleCommand">
-        <span class="el-dropdown-link">
+        <span class="dropdown-menu-teacher">
           <el-avatar :size="60" src="https://empty"></el-avatar>
         </span>
         <template #dropdown>
@@ -59,30 +59,12 @@ const handleCommand = (command: string) => {
         </template>
       </el-dropdown>
     </div>
+
   </div>
 
 </template>
 
 <style scoped>
-/*标题样式*/
-.home-title{
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin-left: 0.5rem;
-  font-family: 楷体,serif;
-  color: rgb(13, 23, 42);
-}
-.auth-box{
-  display: flex;
-  align-items: center;
-  margin-left:15%;
-}
 
-/* 下拉菜单样式 */
-.el-dropdown-link {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-}
 
 </style>
