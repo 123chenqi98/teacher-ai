@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import {Collection, Folder, Message, User} from "@element-plus/icons-vue";
+import {Collection, Folder, Message, User,Document} from "@element-plus/icons-vue";
 
 // 近期操作历史数据
 export const activityList = ref([

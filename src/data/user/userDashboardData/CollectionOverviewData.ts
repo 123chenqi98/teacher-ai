@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import { Collection, Files, Folder } from "@element-plus/icons-vue";
+import { Collection, Files, Folder,Document } from "@element-plus/icons-vue";
 
 // 收藏概览数据（分类展示收藏资源）
 export const collectionStats = [

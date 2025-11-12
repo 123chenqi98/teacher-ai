@@ -15,3 +15,4 @@ const handleSync = () => {
 const closeDialog = () => {
     syncDialogVisible.value = false;
 };
+export { syncDialogVisible, handleSync, closeDialog };
