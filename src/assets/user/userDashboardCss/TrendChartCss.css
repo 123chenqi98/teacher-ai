@@ -1,0 +1,90 @@
+/* 趋势图表样式 */
+/* 核心修复：给实际的头部容器 .card-header 加 Flex 布局，强制一行 */
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* 标题居左、统计项居中、按钮居右 */
+    gap: 270px; /* 三个模块之间的间距（避免挤在一起） */
+    flex-wrap: nowrap; /* 强制不换行，确保一行显示 */
+}
+
+.trend-card {
+    width: 1400px !important;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.chart-container {
+    width: 100%;
+    height: 300px;
+    border: 1px solid #f0f2f5;
+    border-radius: 8px;
+}
+
+/* 统计项内部横向排列 */
+.growth-stats {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* 单个统计项之间的间距 */
+    flex-wrap: nowrap;
+}
+
+.growth-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.growth-label {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.growth-value {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.text-green-600 {
+    color: #10b981;
+}
+
+.text-red-600 {
+    color: #ef4444;
+}
+
+/* 下载按钮样式（去掉 margin-left，靠 .card-header 的 gap 控制间距） */
+.download-btn {
+    font-size: 14px; /* 适配小尺寸按钮，更协调 */
+    padding: 4px 12px;
+}
+
+/* 响应式调整：小屏幕下自动换行，避免拥挤 */
+@media (max-width: 1200px) {
+    .card-row {
+        flex-direction: column;
+    }
+
+    .el-col {
+        width: 100% !important;
+    }
+
+    /* 小屏幕下允许头部换行，保证可读性 */
+    .card-header {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+}
+
+/* 适配更小屏幕（可选，优化体验） */
+@media (max-width: 768px) {
+    .growth-stats {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 15px;
+    }
+
+    .trend-card {
+        width: 100% !important; /* 小屏幕下卡片自适应宽度 */
+    }
+}

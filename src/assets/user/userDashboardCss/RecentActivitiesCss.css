@@ -1,0 +1,63 @@
+/* 近期操作历史卡片 */
+.recent-activities-card {
+    padding: 16px;
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: 12px;
+}
+
+.recent-activities-card .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.activity-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.activity-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: #fff;
+    transition: background-color 0.25s ease;
+    border-left: 3px solid #722ed1;
+}
+
+.activity-item:hover {
+    background-color: #f8f9ff;
+}
+
+.activity-avatar {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eef2ff;
+    color: #722ed1;
+}
+
+.activity-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.activity-desc {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    font-weight: 500;
+}
+
+.activity-time {
+    margin-top: 4px;
+    font-size: 13px;
+    color: #909399;
+}

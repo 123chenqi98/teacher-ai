@@ -1,0 +1,92 @@
+/* 待办任务卡片（统一盒子样式）*/
+.todo-card {
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    padding: 10px;
+    width: 700px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.todo-card .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.add-todo-btn {
+    font-size: 16px;
+    padding: 8px 12px;
+    background-color: #6366f1;
+}
+
+.todo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.todo-item {
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px 12px;
+    transition: background-color 0.25s ease;
+}
+
+.todo-item:hover {
+    background-color: #f8f9ff;
+}
+
+.todo-checkbox {
+    width: 10px;
+}
+
+.todo-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 12px;
+}
+
+.todo-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.todo-completed {
+    color: #a0a0a0;
+    text-decoration: line-through;
+}
+
+.todo-priority {
+    margin-left: 8px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.priority-high {
+    background-color: #fde8e8;
+    color: #d93025;
+}
+
+.priority-medium {
+    background-color: #fff4cc;
+    color: #b36b00;
+}
+
+.priority-low {
+    background-color: #e8f6f1;
+    color: #0f8b58;
+}
+
+.todo-deadline {
+    font-size: 13px;
+    color: #909399;
+    display: flex;
+    align-items: center;
+}

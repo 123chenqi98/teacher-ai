@@ -1,0 +1,107 @@
+/* 收藏概览卡片（统一盒子样式） */
+.collection-card {
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    padding: 16px;
+    width: 700px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.collection-card .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.view-all-btn {
+    color: #6366f1 !important;
+    font-size: 16px;
+}
+
+.collection-stat-item {
+    background: #fff;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-left: 3px solid var(--color, #6366f1);
+}
+
+.collection-stat-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.collection-stat-item .stat-icon {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.collection-stat-item .stat-value {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--color, #6366f1);
+}
+
+.collection-stat-item .stat-label {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.collection-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.collection-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: #fff;
+    transition: background-color 0.25s ease;
+    border-left: 3px solid #6366f1;
+}
+
+.collection-item:hover {
+    background-color: #f8f9ff;
+}
+
+.collection-avatar {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #6366f1;
+}
+
+.collection-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.collection-title {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    font-weight: 600;
+}
+
+.collection-meta {
+    margin-top: 4px;
+    font-size: 13px;
+    color: #909399;
+}
+
+.collection-time {
+    font-size: 13px;
+    color: #909399;
+    white-space: nowrap;
+}
