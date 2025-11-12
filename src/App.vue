@@ -1,7 +1,7 @@
 <!--负责逻辑处理-->
 <script setup lang="ts">
 import {RouterView} from "vue-router";
-import PageFooter from "@/components/system/PageFooterComponenet.vue";
+import PageFooter from "@/components/system/PageFooterComponent.vue";
 </script>
 
 <!--负责视图渲染-->

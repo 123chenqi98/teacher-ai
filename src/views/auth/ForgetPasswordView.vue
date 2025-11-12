@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { ref} from "vue";
-import "@/assets/auth/login/LoginBoxCss.css"
+import "@/assets/auth/login/authBoxCss.css"
 import "@/assets/auth/register/RegisterCss.css"
 import StepsComponent from "@/components/auth/forgetPasswordComponents/StepsComponent.vue";
 import AccountIdentityComponent from "@/components/auth/forgetPasswordComponents/AccountIdentityComponent.vue";
 import VerifyIdentityComponent from "@/components/auth/forgetPasswordComponents/VerifyIdentityComponent.vue";
 import ResetPasswordComponent from "@/components/auth/forgetPasswordComponents/ResetPasswordComponent.vue";
+import router from "@/router";
 const activeStep = ref(0)
 // 下一步
 const nextStep = async (formRef: any, form: any) => {
@@ -28,6 +29,15 @@ const prevStep = () => {
   <div class="auth-container">
     <span class="system-title">小知智能教师系统</span>
     <div class="content-box">
+      <!-- 返回首页按钮 -->
+      <el-button
+          type="text"
+          size="large"
+          @click="router.push('/')"
+          class="back-home-btn"
+      >
+        返回首页
+      </el-button>
       <span class="login-title">忘记密码</span>
       
       <!-- 步骤条 -->

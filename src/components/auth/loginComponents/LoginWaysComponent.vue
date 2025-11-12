@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // 引入css
-import '@/assets/auth/login/LoginBoxCss.css'
+import '@/assets/auth/login/authBoxCss.css'
 import router from "@/router";
 //密码登录按钮执行方法
 function passwordLoginWay(){

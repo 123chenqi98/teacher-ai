@@ -1,6 +1,6 @@
 
 /* 页面整体布局和背景 */
-.login-container {
+.auth-container {
   /* 设置容器为固定宽度，居中显示 */
   width: 100%;
   height: 100%;
@@ -74,6 +74,30 @@
 }
 
 /*表单内的*/
+.form-item-style{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 180px;
+  width: 100%;
+  height: 35px;
+}
+
+/*组件排布*/
+.form-item-style label{
+  font-size: 1.2rem;
+  width: 120px;
+  color: #0d172a;
+}
+/*返回首页按钮*/
+.back-home-btn {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 1.2rem;
+  color: rgba(0, 0, 0, 0.84);
+}
 
 
 
