@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import "@/assets/user/userDashboardCss/PerformanceDashboardCss.css"
-import { stats } from "@/data/user/PerformanceDashboardData.ts"
+import { stats } from "@/data/user/userDashboardData/PerformanceDashboardData.ts"
 import {ElAvatar, ElButton, ElCard, ElCol, ElIcon, ElRow, ElText} from "element-plus";
 </script>
 

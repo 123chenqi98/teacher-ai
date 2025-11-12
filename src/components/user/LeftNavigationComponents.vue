@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import "@/assets/user/LeftNavigationCss.css"
 import { Avatar, User, UserFilled, DataAnalysis, Aim, Notebook, Reading, Folder, Bell, Message } from '@element-plus/icons-vue';
+import router from "@/router";
 </script>
 
 <template>
@@ -74,4 +75,8 @@ import { Avatar, User, UserFilled, DataAnalysis, Aim, Notebook, Reading, Folder,
       </el-menu>
     </el-aside>
 </template>
+
+<style>
+
+</style>
 

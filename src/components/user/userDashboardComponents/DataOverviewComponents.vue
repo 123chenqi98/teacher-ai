@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import "@/assets/user/userDashboardCss/DataOverviewCss.css"
-import { weeklyStats } from "@/data/user/DataOverviewData.ts";
+import { weeklyStats } from "@/data/user/userDashboardData/DataOverviewData.ts";
 import {ElButton, ElCard, ElCol, ElIcon, ElRow} from "element-plus";
 </script>
 
