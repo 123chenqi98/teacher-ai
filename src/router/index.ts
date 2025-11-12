@@ -9,12 +9,7 @@ const router = createRouter({
       name: 'home',
       component: () => import('@/views/HomeView.vue'),
     },
-    // 系统相关路由 - 嵌套子路由方式
-    {
-      path: '/system',
-      name: 'system',
-      component: () => import('@/views/system/system.vue'),
-    },
+
     // 测试页面
     {
       path: '/test',
