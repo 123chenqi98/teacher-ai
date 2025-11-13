@@ -1,83 +1,79 @@
+<script>
+import { User, UserFilled, DataAnalysis, Aim, Bell, Notebook, QuestionFilled, Message, Folder, Setting, Search, Reading } from '@element-plus/icons-vue';
+import router from "@/router/index.ts";
+import LeftNavigationComponents from "@/components/user/LeftNavigationComponents.vue";
+import TopNavigationComponents from "@/components/user/TopNavigationComponents.vue";
+
+export default {
+  name: 'BasicInfoModule',
+  components: {
+    TopNavigationComponents,
+    LeftNavigationComponents, User, UserFilled, DataAnalysis, Aim, Bell, Notebook, QuestionFilled, Message, Folder, Setting, Search, Reading },
+  data() {
+    return {
+      activeTab: 'profile',
+      isEditing: false,
+      avatarPreview: 'https://randomuser.me/api/portraits/women/44.jpg',
+      searchText: '',
+      form: {
+        name: '张三',
+        nickname: '数学达人',
+        gender: 'female',
+        birthDate: '1985-06-15',
+        mobile: '13812345678',
+        email: 'zhangsan@example.com',
+        department: 'primary',
+        subject: 'math',
+        title: 'senior',
+        entryDate: '2017-09-01',
+        intro: '数学教育专业毕业，拥有8年教学经验，专注于初中数学教学。曾获得市级优秀教师称号，\n擅长激发学生学习兴趣，培养学生的数学思维能力。',
+        education: '2003-2007年 北京师范大学 数学教育专业 本科\n2007-2010年 北京师范大学 数学教育专业 硕士'
+      },
+      departments: [
+        { label: '初中部', value: 'primary' },
+        { label: '高中部', value: 'junior' },
+        { label: '小学部', value: 'senior' }
+      ],
+      subjects: [
+        { label: '数学', value: 'math' },
+        { label: '语文', value: 'chinese' },
+        { label: '英语', value: 'english' },
+        { label: '物理', value: 'physics' },
+        { label: '化学', value: 'chemistry' }
+      ],
+      titles: [
+        { label: '初级教师', value: 'junior' },
+        { label: '中级教师', value: 'intermediate' },
+        { label: '高级教师', value: 'senior' }
+      ],
+      loginLogs: [
+        { time: '2025-07-20 09:30:25', ip: '192.168.1.100', device: 'Windows 10, Chrome 114.0.0.0', status: '成功' },
+        { time: '2025-07-19 16:45:12', ip: '192.168.1.100', device: 'Windows 10, Chrome 114.0.0.0', status: '成功' },
+        { time: '2025-07-18 14:20:36', ip: '192.168.1.100', device: 'Windows 10, Chrome 114.0.0.0', status: '成功' },
+        { time: '2025-07-17 08:15:42', ip: '192.168.1.100', device: 'Windows 10, Chrome 114.0.0.0', status: '成功' },
+        { time: '2025-07-16 20:05:18', ip: '192.168.1.100', device: 'Windows 10, Chrome 114.0.0.0', status: '成功' },
+        { time: '2025-07-15 11:30:05', ip: '192.168.1.101', device: 'macOS Monterey, Safari 15.5', status: '失败（密码错误）' }
+      ]
+    };
+  },
+  methods: {
+    router() {
+      return router
+    },
+    toggleEditMode() {
+      this.isEditing = !this.isEditing;
+    }
+  }
+};
+</script>
+
 <template>
   <div class="basic-info-module">
-    <!-- 左侧导航栏（Element Plus） -->
-    <el-aside class="sidebar" width="240px">
-      <div class="logo">
-        <el-icon><Reading /></el-icon>
-        <span>教师个人中心</span>
-      </div>
-      <el-menu router :default-active="router().path" class="nav-menu" :unique-opened="true">
-        <el-menu-item index="/user/dashboard">
-          <el-icon><User /></el-icon>
-          <span>个人概览</span>
-        </el-menu-item>
-        <el-menu-item index="/user/profile">
-          <el-icon><UserFilled /></el-icon>
-          <span>基本信息</span>
-        </el-menu-item>
-        <el-menu-item index="/user/analytics">
-          <el-icon><DataAnalysis /></el-icon>
-          <span>数据统计</span>
-        </el-menu-item>
-        <el-menu-item index="/user/goals">
-          <el-icon><Aim /></el-icon>
-          <span>目标管理</span>
-        </el-menu-item>
-        <el-menu-item index="/user/notifications">
-          <el-icon><Bell /></el-icon>
-          <span>通知中心</span>
-        </el-menu-item>
-        <el-menu-item index="/user/lessonPlans">
-          <el-icon><Notebook /></el-icon>
-          <span>教案管理</span>
-        </el-menu-item>
-        <el-menu-item index="/user/questionBank">
-          <el-icon><QuestionFilled /></el-icon>
-          <span>学习题库</span>
-        </el-menu-item>
-        <el-menu-item index="/user/messages">
-          <el-icon><Message /></el-icon>
-          <span>消息中心</span>
-        </el-menu-item>
-        <el-menu-item index="/user/resources">
-          <el-icon><Folder /></el-icon>
-          <span>资源中心</span>
-        </el-menu-item>
-      </el-menu>
-    </el-aside>
+    <left-navigation-components />
 
     <!-- 右侧主内容区 -->
     <main class="main-content">
-      <!-- 顶部导航栏（Element Plus） -->
-      <el-header class="top-nav">
-        <el-input v-model="searchText" placeholder="搜索..." class="search-box" size="large">
-          <template #prefix>
-            <el-icon><Search /></el-icon>
-          </template>
-        </el-input>
-        <div class="user-actions">
-          <el-badge :value="3" class="item">
-            <el-button text circle>
-              <el-icon><Bell /></el-icon>
-            </el-button>
-          </el-badge>
-          <el-badge :value="5" class="item">
-            <el-button text circle>
-              <el-icon><Message /></el-icon>
-            </el-button>
-          </el-badge>
-          <el-button text circle>
-            <el-icon><Setting /></el-icon>
-          </el-button>
-          <div class="user-profile">
-            <el-avatar src="https://randomuser.me/api/portraits/women/44.jpg" size="large" />
-            <div class="user-info">
-              <span class="user-name">张三老师</span>
-              <span class="user-role">数学教师</span>
-            </div>
-          </div>
-        </div>
-      </el-header>
+      <top-navigation-components />
 
       <!-- 内容区域 -->
       <div class="content-area">
@@ -414,70 +410,6 @@
     </main>
   </div>
 </template>
-
-<script>
-import { User, UserFilled, DataAnalysis, Aim, Bell, Notebook, QuestionFilled, Message, Folder, Setting, Search, Reading } from '@element-plus/icons-vue';
-import router from "@/router/index.ts";
-export default {
-  name: 'BasicInfoModule',
-  components: { User, UserFilled, DataAnalysis, Aim, Bell, Notebook, QuestionFilled, Message, Folder, Setting, Search, Reading },
-  data() {
-    return {
-      activeTab: 'profile',
-      isEditing: false,
-      avatarPreview: 'https://randomuser.me/api/portraits/women/44.jpg',
-      searchText: '',
-      form: {
-        name: '张三',
-        nickname: '数学达人',
-        gender: 'female',
-        birthDate: '1985-06-15',
-        mobile: '13812345678',
-        email: 'zhangsan@example.com',
-        department: 'primary',
-        subject: 'math',
-        title: 'senior',
-        entryDate: '2017-09-01',
-        intro: '数学教育专业毕业，拥有8年教学经验，专注于初中数学教学。曾获得市级优秀教师称号，\n擅长激发学生学习兴趣，培养学生的数学思维能力。',
-        education: '2003-2007年 北京师范大学 数学教育专业 本科\n2007-2010年 北京师范大学 数学教育专业 硕士'
-      },
-      departments: [
-        { label: '初中部', value: 'primary' },
-        { label: '高中部', value: 'junior' },
-        { label: '小学部', value: 'senior' }
-      ],
-      subjects: [
-        { label: '数学', value: 'math' },
-        { label: '语文', value: 'chinese' },
-        { label: '英语', value: 'english' },
-        { label: '物理', value: 'physics' },
-        { label: '化学', value: 'chemistry' }
-      ],
-      titles: [
-        { label: '初级教师', value: 'junior' },
-        { label: '中级教师', value: 'intermediate' },
-        { label: '高级教师', value: 'senior' }
-      ],
-      loginLogs: [
-        { time: '2025-07-20 09:30:25', ip: '192.168.1.100', device: 'Windows 10, Chrome 114.0.0.0', status: '成功' },
-        { time: '2025-07-19 16:45:12', ip: '192.168.1.100', device: 'Windows 10, Chrome 114.0.0.0', status: '成功' },
-        { time: '2025-07-18 14:20:36', ip: '192.168.1.100', device: 'Windows 10, Chrome 114.0.0.0', status: '成功' },
-        { time: '2025-07-17 08:15:42', ip: '192.168.1.100', device: 'Windows 10, Chrome 114.0.0.0', status: '成功' },
-        { time: '2025-07-16 20:05:18', ip: '192.168.1.100', device: 'Windows 10, Chrome 114.0.0.0', status: '成功' },
-        { time: '2025-07-15 11:30:05', ip: '192.168.1.101', device: 'macOS Monterey, Safari 15.5', status: '失败（密码错误）' }
-      ]
-    };
-  },
-  methods: {
-    router() {
-      return router
-    },
-    toggleEditMode() {
-      this.isEditing = !this.isEditing;
-    }
-  }
-};
-</script>
 
 <style scoped>
 /* 全局样式 */

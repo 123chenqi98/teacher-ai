@@ -19,7 +19,7 @@ import VipSynopsisComponent from "@/components/teacher/home/VipSynopsisComponent
       <teacher-side-navigation-component/>
       <!--    内容展示-->
       <div class="teacher-home-products-box" >
-<!--        简介-->
+        <!-- 简介 -->
         <synopsis-component/>
 <!--        课程介绍-->
         <synopsis-class-component/>

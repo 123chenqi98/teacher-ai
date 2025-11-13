@@ -1,50 +1,7 @@
+
 <template>
   <div class="data-stats-module">
-    <!-- 左侧导航栏（Element Plus） -->
-    <el-aside class="sidebar" width="240px">
-      <div class="logo">
-        <el-icon><Reading /></el-icon>
-        <span>教师个人中心</span>
-      </div>
-      <el-menu router :default-active="route.path" class="nav-menu" :unique-opened="true">
-        <el-menu-item index="/user/dashboard">
-          <el-icon><User /></el-icon>
-          <span>个人概览</span>
-        </el-menu-item>
-        <el-menu-item index="/user/profile">
-          <el-icon><UserFilled /></el-icon>
-          <span>基本信息</span>
-        </el-menu-item>
-        <el-menu-item index="/user/analytics">
-          <el-icon><DataAnalysis /></el-icon>
-          <span>数据统计</span>
-        </el-menu-item>
-        <el-menu-item index="/user/goals">
-          <el-icon><Aim /></el-icon>
-          <span>目标管理</span>
-        </el-menu-item>
-        <el-menu-item index="/user/notifications">
-          <el-icon><Bell /></el-icon>
-          <span>通知中心</span>
-        </el-menu-item>
-        <el-menu-item index="/user/lessonPlans">
-          <el-icon><Notebook /></el-icon>
-          <span>教案管理</span>
-        </el-menu-item>
-        <el-menu-item index="/user/questionBank">
-          <el-icon><QuestionFilled /></el-icon>
-          <span>学习题库</span>
-        </el-menu-item>
-        <el-menu-item index="/user/messages">
-          <el-icon><Message /></el-icon>
-          <span>消息中心</span>
-        </el-menu-item>
-        <el-menu-item index="/user/resources">
-          <el-icon><Folder /></el-icon>
-          <span>资源中心</span>
-        </el-menu-item>
-      </el-menu>
-    </el-aside>
+
 
     <!-- 右侧主内容区（Element Plus 顶部导航） -->
     <main class="main-content">

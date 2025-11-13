@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import "@/assets/user/userDashboardCss/CollectionOverviewCss.css"
-import { collectionStats, collectionList } from "@/data/user/userDashboardData/CollectionOverviewData.ts"
+import {collectionStats, collectionList } from "@/data/user/userDashboardData/CollectionOverviewData.ts"
 import {ElAvatar, ElButton, ElCard, ElCol, ElIcon, ElRow} from "element-plus";
 </script>
 
