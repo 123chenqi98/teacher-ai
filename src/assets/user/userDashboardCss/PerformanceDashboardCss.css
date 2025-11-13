@@ -1,4 +1,5 @@
 /* 教师效能仪表盘样式 */
+/* 教师档案卡片：统一外观与填充宽度 */
 .teacher-profile-card {
     margin-bottom: 20px; /* 底部外边距，与下方元素保持间距 */
     border-radius: 12px !important; /* 卡片圆角，增强视觉柔和度 */
@@ -58,6 +59,7 @@
     box-shadow: 0 4px 16px 0 rgba(108, 99, 255, 0.3); /* hover 时加深阴影 */
 }
 
+/* 编辑按钮悬浮态：背景加深与放大 */
 .edit-btn:hover {
     box-shadow: 0 4px 16px 0 rgba(108, 99, 255, 0.3); /* hover 时加深阴影 */
 }
@@ -93,12 +95,14 @@
 }
 
 /* 统计卡片hover效果 */
+/* 统计卡片悬浮态：背景高亮与阴影增强 */
 .stat-card:hover {
     transform: translateY(-5px); /* 上浮动画，增强交互感 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* 阴影加深，突出层次 */
 }
 
 /* 统计数值样式 */
+/* 统计数值：强调色与字号加大 */
 .stat-value {
     font-size: 28px; /* 字体大小 */
     font-weight: 600; /* 字体加粗 */
@@ -107,6 +111,7 @@
 }
 
 /* 统计标签样式 */
+/* 统计标签：次要说明文本 */
 .stat-label {
     font-size: 14px; /* 字体大小 */
     color: #6c757d; /* 字体颜色 */

@@ -9,10 +9,12 @@
     margin-bottom: 12px;
 }
 
+/* 右对齐工具类：用于操作按钮区域 */
 .text-right {
     color: #6c63ff !important;
 }
 
+/* 查看详情按钮：主题色、圆角与阴影 */
 .view-detail-btn {
     font-size: 18px; /* 字体大小 */
     padding: 14px 15px; /* 按钮内边距，控制按钮尺寸 */
@@ -21,6 +23,7 @@
     margin-bottom: 10px;
 }
 
+/* 悬浮态：背景加深与轻微放大 */
 .view-detail-btn:hover {
     box-shadow: 0 4px 16px 0 rgba(108, 99, 255, 0.3); /* hover 时加深阴影 */
 }

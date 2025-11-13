@@ -7,8 +7,8 @@ import router from "@/router";
 <template>
     <!-- 左侧导航栏：使用Element Plus的el-aside布局组件，承载Logo和功能菜单 -->
     <el-aside class="sidebar">
-      <!-- Logo区域：品牌标识，包含图标和文字，点击通常跳转首页 -->
-      <div class="logo">
+      <!-- Logo区域：品牌标识，点击跳转至个人概览 -->
+      <div class="logo" @click="router.push('/user/dashboard')">
         <el-icon><Avatar /></el-icon> <!-- Logo图标：Reading图标贴合教师/学习场景 -->
         <span>教师个人中心</span> <!-- Logo文字：明确导航栏所属模块 -->
       </div>
@@ -17,7 +17,8 @@ import router from "@/router";
       <!-- 1.router: 启用路由模式：点击菜单项时，会根据index属性的路径跳转路由
            2.:default-active="$route.path": 绑定当前路由路径：实现"当前页面菜单项自动高亮"
            3.:unique-opened="true": 仅展开一个子菜单：当前都是一级菜单，作用是避免冗余展开逻辑，保持布局整洁 -->
-      <el-menu router:default-active="$route.path" class="nav-menu" :unique-opened="true">
+      <!-- 启用路由联动并根据当前路径高亮菜单项 -->
+      <el-menu router :default-active="$route.path" class="nav-menu" :unique-opened="true">
 
         <!-- 1. 个人概览：首页级菜单，展示教师核心数据总览（使用频率最高，放首位） -->
         <el-menu-item index="/user/dashboard"> <!-- index：路由跳转路径，与路由配置对应 -->

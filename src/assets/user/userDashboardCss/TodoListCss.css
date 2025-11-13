@@ -1,13 +1,15 @@
 /* 待办任务卡片（统一盒子样式）*/
+/* 待办卡片容器：统一外观与填充宽度 */
 .todo-card {
     border-radius: 12px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
     padding: 10px;
-    width: 700px;
+    width: 760px;
     height: 100%;
     box-sizing: border-box;
 }
 
+/* 卡片头部：标题与新增按钮左右分布 */
 .todo-card .card-header {
     display: flex;
     align-items: center;
@@ -15,18 +17,21 @@
     margin-bottom: 12px;
 }
 
+/* 新增任务按钮：主题色与尺寸增强 */
 .add-todo-btn {
     font-size: 16px;
     padding: 8px 12px;
     background-color: #6366f1;
 }
 
+/* 待办列表容器：纵向堆叠与间距 */
 .todo-list {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
+/* 单个待办项：卡片化外观与悬浮反馈 */
 .todo-item {
     background: #fff;
     border-radius: 10px;
@@ -34,14 +39,17 @@
     transition: background-color 0.25s ease;
 }
 
+/* 悬浮态：轻微高亮增强交互 */
 .todo-item:hover {
     background-color: #f8f9ff;
 }
 
+/* 复选框区域宽度（与内容对齐） */
 .todo-checkbox {
     width: 10px;
 }
 
+/* 内容容器：左右分布标题与截止时间 */
 .todo-content {
     display: flex;
     align-items: center;
@@ -50,17 +58,20 @@
     gap: 12px;
 }
 
+/* 待办标题：加粗强调 */
 .todo-title {
     font-size: 16px;
     font-weight: 600;
     color: #333;
 }
 
+/* 完成态：灰色并添加删除线 */
 .todo-completed {
     color: #a0a0a0;
     text-decoration: line-through;
 }
 
+/* 优先级标识：胶囊标签样式 */
 .todo-priority {
     margin-left: 8px;
     padding: 2px 8px;
@@ -69,21 +80,25 @@
     font-weight: 600;
 }
 
+/* 高优先级：红色系提示 */
 .priority-high {
     background-color: #fde8e8;
     color: #d93025;
 }
 
+/* 中优先级：黄色系提示 */
 .priority-medium {
     background-color: #fff4cc;
     color: #b36b00;
 }
 
+/* 低优先级：绿色系提示 */
 .priority-low {
     background-color: #e8f6f1;
     color: #0f8b58;
 }
 
+/* 截止时间：次要信息，与图标水平居中 */
 .todo-deadline {
     font-size: 13px;
     color: #909399;

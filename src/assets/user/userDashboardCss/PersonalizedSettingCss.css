@@ -1,13 +1,16 @@
 /* 个性化设置卡片：字体与排版优化 */
+/* 个性化设置卡片容器：统一外观与填充宽度 */
 .settings-card {
     border-radius: 12px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
     padding: 20px;
-    max-width: 800px; /* 限制容器宽度，便于居中 */
-    margin: 0 auto; /* 容器水平居中 */
+    max-width: 810px; /* 限制容器宽度，便于居中 */
+    height: 460px;
+    margin-bottom: 30px;
 }
 
 /* 表单项整体居中布局 */
+/* 表单容器：垂直堆叠与项间距 */
 .settings-form {
     padding-top: 15px;
     padding-left: 10px;
@@ -74,12 +77,14 @@
 }
 
 /* 数据同步按钮样式放大 & 居中 */
+/* 同步按钮：主题色、阴影与悬浮放大 */
 .sync-btn {
     font-size: 20px;
     padding: 10px 20px;
     margin-left: 125px; /* 按钮水平居中 */
 }
 
+/* 同步按钮图标：右侧偏移与旋转动画 */
 .sync-btn .el-icon {
     font-size: 18px;
     margin-right: 8px;

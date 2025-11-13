@@ -1,11 +1,12 @@
 /* 近期操作历史卡片 */
 .recent-activities-card {
     padding: 16px;
-    height: 100%;
+    height: 110%;
     box-sizing: border-box;
-    border-radius: 12px;
+    border-radius: 15px;
 }
 
+/* 卡片头部：标题与操作区域布局 */
 .recent-activities-card .card-header {
     display: flex;
     align-items: center;
@@ -13,11 +14,13 @@
     margin-bottom: 15px;
 }
 
+/* 列表容器：限定高度并开启垂直滚动 */
 .activity-list {
     max-height: 300px;
     overflow-y: auto;
 }
 
+/* 单条活动项：左侧色条、悬浮背景变化 */
 .activity-item {
     display: flex;
     align-items: flex-start;
@@ -29,10 +32,12 @@
     border-left: 3px solid #722ed1;
 }
 
+/* 悬浮态：提升可读性与交互反馈 */
 .activity-item:hover {
     background-color: #f8f9ff;
 }
 
+/* 头像占位：统一尺寸与主题色背景 */
 .activity-avatar {
     width: 36px;
     height: 36px;
@@ -43,12 +48,14 @@
     color: #722ed1;
 }
 
+/* 内容容器：占满剩余宽度并垂直排布 */
 .activity-content {
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
+/* 活动描述：加粗文本增强重点信息 */
 .activity-desc {
     font-size: 16px;
     line-height: 1.5;
@@ -56,6 +63,7 @@
     font-weight: 500;
 }
 
+/* 时间标识：次要信息颜色与缩小字号 */
 .activity-time {
     margin-top: 4px;
     font-size: 13px;

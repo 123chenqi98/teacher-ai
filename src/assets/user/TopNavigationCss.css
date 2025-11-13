@@ -1,149 +1,109 @@
 /* 顶部导航栏整体样式：固定高度、弹性布局、对齐方式、背景色、阴影 */
 .top-nav {
-    /* 导航栏高度：符合 Element Plus 大尺寸组件视觉比例 */
-    height: 64px;
-    /* 弹性布局：使搜索框和用户区左右分布 */
-    display: flex;
-    /* 都向右对齐 */
-    justify-content: right;
-    /* 垂直居中对齐 */
-    align-items: center;
-    /* 导航栏背景色：白色 */
-    background-color: #ffffff;
-    /* 底部阴影：增强层次感，避免与内容粘连 */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    /* 内边距：左右留空，避免内容贴边 */
-    padding: 0 20px;
-    /* 固定顶部：滚动时导航栏不消失 */
-    position: sticky;
-    top: 0;
-    /* 层级置顶：避免被其他元素覆盖 */
-    z-index: 999;
+    height: 64px; /* 导航栏高度：符合 Element Plus 大尺寸组件视觉比例 */
+    display: flex; /* 弹性布局：使搜索框和用户区左右分布 */
+    justify-content: right; /* 都向右对齐 */
+    align-items: center; /* 垂直居中对齐 */
+    background-color: #ffffff; /* 导航栏背景色：白色 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* 底部阴影：增强层次感，避免与内容粘连 */
+    padding: 0 20px; /* 内边距：左右留空，避免内容贴边 */
+    position: sticky; /* 固定顶部：滚动时导航栏不消失 */
+    top: 0; /* 置顶定位基准 */
+    z-index: 999; /* 层级置顶：避免被其他元素覆盖 */
 }
 
+/* 页面标题：左侧强调线与主题色标题 */
 .top-title {
-    font-size: 20px;
-    font-weight: 600;
-    margin-right: auto;
-    padding-left: 10px;
-    color: #6c63ff; /* 与主题色统一的紫色系，更协调 */
-    border-left: 3px solid #6c63ff; /* 增加左侧强调线 */
+    font-size: 20px; /* 标题字体大小：突出视觉层级 */
+    font-weight: 600; /* 字体加粗：强化标题辨识度 */
+    margin-right: auto; /* 自动margin：将标题推至左侧 */
+    padding-left: 10px; /* 左侧内边距：与强调线保持间距 */
+    color: #6c63ff; /* 字体颜色：与主题色统一的紫色系，更协调 */
+    border-left: 3px solid #6c63ff; /* 左侧强调线：增强标题视觉焦点 */
 }
 
 /* 搜索框样式：宽度、圆角、边框颜色 */
 .search-box {
-    /* 搜索框宽度：适配中等屏幕，占导航栏1/3左右 */
-    width: 360px;
-    /* 圆角：与 Element Plus 组件风格一致（4px） */
-    --el-input-border-radius: 4px;
-    /* 边框颜色：默认浅灰色，聚焦时会自动切换主题色 */
-    --el-input-border-color: #e4e7ed;
+    width: 360px; /* 搜索框宽度：适配中等屏幕，占导航栏1/3左右 */
+    --el-input-border-radius: 4px; /* 圆角：与 Element Plus 组件风格一致 */
+    --el-input-border-color: #e4e7ed; /* 边框颜色：默认浅灰色，聚焦时自动切换主题色 */
 }
 
 /* 搜索图标样式：颜色、大小、间距 */
 .search-icon {
-    /* 图标颜色：浅灰色，符合占位提示的视觉层级 */
-    color: #c0c4cc;
-    /* 图标大小：与输入框文字大小匹配（16px） */
-    font-size: 18px;
-    /* 图标与输入框左侧的间距：避免贴边 */
-    margin-left: 10px;
+    color: #c0c4cc; /* 图标颜色：浅灰色，符合占位提示的视觉层级 */
+    font-size: 18px; /* 图标大小：与输入框文字大小匹配 */
+    margin-left: 10px; /* 左侧间距：避免图标贴边 */
 }
 
 /* 用户功能区样式：弹性布局、对齐方式、间距 */
 .user-actions {
-    /* 弹性布局：使图标和个人信息横向排列 */
-    display: flex;
-    /* 垂直居中对齐 */
-    align-items: center;
-    /* 子元素之间的间距：避免拥挤 */
-    gap: 22px;
+    display: flex; /* 弹性布局：使图标和个人信息横向排列 */
+    align-items: center; /* 垂直居中对齐 */
+    gap: 22px; /* 子元素间距：避免拥挤 */
 }
 
 /* 调整与输入框的距离 */
 .action-badge {
-    padding-left: 10px;
+    padding-left: 10px; /* 左侧内边距：拉开与搜索框的距离 */
 }
 
-/* 功能按钮（通知、消息、设置）样式： hover 效果优化 */
+/* 功能按钮（通知、消息、设置）样式：hover 效果优化 */
 .action-btn {
-    font-size: 18px;
-    /* 按钮默认颜色：深灰色 */
-    color: #606266;
-    /* 过渡效果：颜色变化平滑（0.2秒） */
-    transition: color 0.2s ease;
+    font-size: 18px; /* 图标大小：与导航栏视觉比例协调 */
+    color: #606266; /* 按钮默认颜色：深灰色 */
+    transition: color 0.2s ease; /* 过渡效果：颜色变化平滑 */
 }
 
 /* 功能按钮 hover 状态：颜色变主题色 */
 .action-btn:hover {
-    color: #409eff;
+    color: #409eff; /* hover颜色：切换为主题蓝色，增强交互反馈 */
 }
 
 /* 徽章样式：调整位置，避免与图标重叠 */
 .action-badge {
-    /* 徽章相对于按钮的偏移：上移2px，右移2px，更美观 */
-    --el-badge-offset: 2px 2px;
+    --el-badge-offset: 2px 2px; /* 徽章偏移：上移2px，右移2px，更美观 */
 }
 
 /* 个人信息区域样式：弹性布局、对齐方式、间距 */
 .user-profile {
-    /* 弹性布局：头像和文本横向排列 */
-    display: flex;
-    /* 垂直居中对齐 */
-    align-items: center;
-    /* 子元素之间的间距：12px，符合文字与图片的间距规范 */
-    gap: 12px;
-    /* 鼠标悬浮变指针：提示可点击 */
-    cursor: pointer;
-    /* 内边距：增加点击区域 */
-    padding: 4px 8px;
-    /* 圆角：hover 时的背景色会有圆角效果 */
-    border-radius: 4px;
-    /* 过渡效果：背景色变化平滑 */
-    transition: background-color 0.2s ease;
+    display: flex; /* 弹性布局：头像和文本横向排列 */
+    align-items: center; /* 垂直居中对齐 */
+    gap: 12px; /* 子元素间距：符合文字与图片的间距规范 */
+    cursor: pointer; /* 鼠标样式：提示可点击 */
+    padding: 4px 8px; /* 内边距：增加点击区域 */
+    border-radius: 4px; /* 圆角：hover 背景色会有圆角效果 */
+    transition: background-color 0.2s ease; /* 过渡效果：背景色变化平滑 */
 }
 
 /* 个人信息区域 hover 状态：浅灰色背景，增强交互反馈 */
 .user-profile:hover {
-    background-color: #f5f7fa;
+    background-color: #f5f7fa; /* hover背景：浅灰色，提升交互辨识度 */
 }
 
 /* 个人信息文本容器：垂直排列 */
 .user-info {
-    /* 弹性布局：文字垂直排列 */
-    display: flex;
-    /* 垂直方向排列 */
-    flex-direction: column;
-    /* 文本对齐：左对齐 */
-    align-items: flex-start;
+    display: flex; /* 弹性布局：文字垂直排列 */
+    flex-direction: column; /* 排列方向：垂直方向 */
+    align-items: flex-start; /* 文本对齐：左对齐 */
 }
 
 /* 用户名样式：字体大小、颜色、粗细 */
 .user-name {
-    /* 字体大小：14px，符合正文文字大小规范 */
-    font-size: 14px;
-    /* 字体颜色：深黑色，突出显示 */
-    color: #1e293b;
-    /* 字体粗细：500（中等粗），比普通文字突出 */
-    font-weight: 500;
-    /* 底部间距：与角色文字分隔 */
-    margin-bottom: 2px;
+    font-size: 14px; /* 字体大小：符合正文文字大小规范 */
+    color: #1e293b; /* 字体颜色：深黑色，突出显示 */
+    font-weight: 500; /* 字体粗细：中等粗，比普通文字突出 */
+    margin-bottom: 2px; /* 底部间距：与角色文字分隔 */
 }
 
 /* 屏幕阅读器专用样式：视觉隐藏，仅屏幕阅读器可读取 */
 .sr-only {
-    /* 绝对定位：脱离文档流，不占用空间 */
-    position: absolute;
-    /* 宽度高度设为1px：避免完全隐藏导致屏幕阅读器忽略 */
-    width: 1px;
-    height: 1px;
-    /* 边距设为-1px：移出可视区域 */
-    padding: 0;
-    margin: -1px;
-    /* 溢出隐藏：避免内容超出1px范围 */
-    overflow: hidden;
-    /* 裁剪：完全隐藏 */
-    clip: rect(0, 0, 0, 0);
-    /* 边框设为0：避免额外样式 */
-    border: 0;
+    position: absolute; /* 绝对定位：脱离文档流，不占用空间 */
+    width: 1px; /* 宽度：1px 避免完全隐藏导致屏幕阅读器忽略 */
+    height: 1px; /* 高度：1px 保持元素可识别性 */
+    padding: 0; /* 内边距：0 消除额外空间 */
+    margin: -1px; /* 外边距：-1px 移出可视区域 */
+    overflow: hidden; /* 溢出隐藏：避免内容超出1px范围 */
+    clip: rect(0, 0, 0, 0); /* 裁剪：完全隐藏元素 */
+    border: 0; /* 边框：0 避免额外样式 */
 }
