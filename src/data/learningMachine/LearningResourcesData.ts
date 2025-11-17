@@ -1,6 +1,3 @@
-// 资源
-import {ref} from "vue";
-
 export const teachers = [
     {
         image: 'src/static/img.png',

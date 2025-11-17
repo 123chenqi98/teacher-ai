@@ -53,6 +53,7 @@ declare module 'vue' {
     EmailRegisterComponent: typeof import('./src/components/auth/registerComponents/EmailRegisterComponent.vue')['default']
     FeatureDisplayComponent: typeof import('./src/components/system/homeComponents/FeatureDisplayComponent.vue')['default']
     HotIntroductionComponent: typeof import('./src/components/learningMachine/home/HotIntroductionComponent.vue')['default']
+    HotProductCard: typeof import('./src/components/learningMachine/home/HotProductCard.vue')['default']
     LearningMachineHomeTopInfoComponent: typeof import('./src/components/learningMachine/home/LearningMachineHomeTopInfoComponent.vue')['default']
     LearningMachineSideNavigationComponent: typeof import('./src/components/learningMachine/home/LearningMachineSideNavigationComponent.vue')['default']
     LearningResourcesComponent: typeof import('./src/components/learningMachine/home/LearningResourcesComponent.vue')['default']

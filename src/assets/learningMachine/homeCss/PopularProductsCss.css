@@ -46,7 +46,7 @@
     border-radius: 10px;
     padding: 40px;
     box-sizing: border-box;
-    opacity: 0;
+    opacity:1;
     transform: translateY(30px);
     transition: all 0.8s ease-out;
 }

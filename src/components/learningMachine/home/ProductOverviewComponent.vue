@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import "@/assets/learningMachine/homeCss/ProductOverviewCss.css"
 import { carouselItems } from "@/data/learningMachine/ProductOverviewData.ts";
 
-// 当前轮播项索引（保留，不影响功能，如需隐藏指示器可后续调整）
+// 当前轮播项索引
 const currentIndex = ref(0)
 
 // 处理轮播切换（保留，与索引联动）
