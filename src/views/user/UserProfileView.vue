@@ -7,30 +7,6 @@ import {User, Lock, Clock, UploadFilled, Edit, Check, Close, RefreshRight} from 
 import { ref } from "vue";
 import { ElMessage, ElNotification, ElMessageBox } from "element-plus";
 
-// 🔥 关键修复：1. 先声明 userInfo（移到最前面，所有依赖它的代码之前）
-const userInfo = ref({
-  avatar: "https://randomuser.me/api/portraits/men/80.jpg",
-  intro: "作为拥有十余年教学沉淀的资深教师，不仅熟知各学段知识体系与学生认知规律，更能精准把握课堂节奏与学情动态。在教学中深耕启发式方法，不直接灌输答案，而是以问题为导向、以案例为依托，引导学生主动拆解难题、探索本质，既点燃学习热情，又培养独立思考与解决问题的核心素养。",
-  realName: "凯登内格",
-  nickname: "内格老师",
-  gender: "男",
-  birthDate: "2005-08-19",
-  phone: "13800138008",
-  email: "lihuimin_edu@163.com",
-  department: "初中英语教研组",
-  teachingAge: "15年",
-  subject: "初中英语",
-  title: "高级教师",
-  hireDate: "2010-09-01",
-  educationBackground: "硕士",
-});
-
-// 1. 定义缺失的响应式变量（解决 "activeTab 未定义" 报错）
-const activeTab = ref("profile"); // 默认选中个人资料标签页
-const isEditing = ref(false); // 编辑模式开关
-const editFormRef = ref(null); // 表单引用
-const isSubmitting = ref(false); // 提交加载态
-
 // 账号安全表单（现在 userInfo 已声明，可正常访问）
 const securityFormRef = ref(null);
 const securityForm = ref({
@@ -220,10 +196,7 @@ const formRules = ref({
 });
 
 // 4. 实现缺失的方法
-// 切换编辑模式
-const toggleEditMode = () => {
-  isEditing.value = !isEditing.value;
-};
+
 
 // 头像上传成功处理
 const handleAvatarUpload = (response) => {
@@ -288,66 +261,6 @@ const handleCancel = (formRef) => {
       <TopNavigationComponents />
       <!-- 内容区域 -->
       <div class="content-area">
-        <!-- 页面标题 -->
-        <div class="page-title">
-          <h1 class="el-title el-title--large">基本信息</h1>
-          <p class="el-text el-text--secondary">管理您的个人信息、账号安全及隐私设置</p>
-        </div>
-
-        <el-divider /> <!-- 小写短横线形式 -->
-
-        <!-- 合并容器：将标签导航移入卡片顶部，内容按 activeTab 切换 -->
-        <div class="profile-tab">
-          <!-- 查看模式（头像右侧展示摘要信息，下方为简介与详细信息） -->
-          <el-card shadow="hover" class="profile-card" v-if="!isEditing">
-            <el-tabs v-model="activeTab" class="tabs-inside" type="card">
-              <el-tab-pane label="个人资料" name="profile" :icon="User" />
-              <el-tab-pane label="账号安全" name="security" :icon="Lock" />
-              <el-tab-pane label="登录日志" name="login-log" :icon="Clock" />
-            </el-tabs>
-
-            <div v-if="activeTab === 'profile'">
-              <!-- 头部：头像 + 摘要信息 + 编辑按钮 -->
-              <el-row :gutter="20" class="profile-header">
-                <el-col :span="3">
-                  <el-avatar :size="100" class="avatar">
-                    <img :src="userInfo.avatar" alt="教师头像" />
-                  </el-avatar>
-                </el-col>
-                <el-col :span="18">
-                  <div class="profile-title">
-                    <h2 class="profile-name">{{ userInfo.nickname }}</h2>
-                    <p class="basic-meta">{{ userInfo.subject }} | {{ userInfo.department }} | 教龄 {{ userInfo.teachingAge }}</p>
-                  </div>
-                  <div class="header-actions">
-                    <el-button type="primary" :icon="Edit" @click="toggleEditMode" class="edit-btn">编辑信息</el-button>
-                  </div><!-- 摘要信息：在头像右侧展示关键字段，避免留白 -->
-                  <el-descriptions :column="2" class="summary-descriptions">
-                    <el-descriptions-item label="姓名"><el-text class="detail-value">{{ userInfo.realName }}</el-text></el-descriptions-item>
-                    <el-descriptions-item label="昵称"><el-text class="detail-value">{{ userInfo.nickname }}</el-text></el-descriptions-item>
-                    <el-descriptions-item label="职称"><el-text class="detail-value">{{ userInfo.title }}</el-text></el-descriptions-item>
-                    <el-descriptions-item label="所属部门"><el-text class="detail-value">{{ userInfo.department }}</el-text></el-descriptions-item>
-                  </el-descriptions>
-                </el-col>
-              </el-row>
-
-              <el-divider content-position="left">个人简介</el-divider>
-              <el-text class="profile-intro">{{ userInfo.intro || '暂无简介' }}</el-text>
-
-              <el-divider content-position="left">详细信息</el-divider>
-              <!-- 详细信息：统一使用 Descriptions，整齐排版 -->
-              <el-descriptions :column="4" border class="details-descriptions" :content-style="{ 'font-size': '14px' }">
-                <el-descriptions-item label="性别"><el-text class="detail-value">{{ userInfo.gender }}</el-text></el-descriptions-item>
-                <el-descriptions-item label="出生日期"><el-text class="detail-value">{{ userInfo.birthDate }}</el-text></el-descriptions-item>
-                <el-descriptions-item label="教龄"><el-text class="detail-value">{{ userInfo.teachingAge }}</el-text></el-descriptions-item>
-                <el-descriptions-item label="任教学科"><el-text class="detail-value">{{ userInfo.subject }}</el-text></el-descriptions-item>
-                <el-descriptions-item label="手机"><el-text class="detail-value">{{ userInfo.phone }}</el-text></el-descriptions-item>
-                <el-descriptions-item label="邮箱"><el-text class="detail-value">{{ userInfo.email }}</el-text></el-descriptions-item>
-                <el-descriptions-item label="入职时间"><el-text class="detail-value">{{ userInfo.hireDate }}</el-text></el-descriptions-item>
-                <el-descriptions-item label="学历"><el-text class="detail-value">{{ userInfo.educationBackground }}</el-text></el-descriptions-item>
-              </el-descriptions>
-            </div>
-            
             <!-- 账号安全标签页 -->
             <div v-if="activeTab === 'security'" class="security-tab">
               <el-form :model="securityForm" :rules="securityRules" ref="securityFormRef" label-width="120px">
@@ -674,13 +587,5 @@ const handleCancel = (formRef) => {
 /* 登录日志样式 */
 .login-log-tab {
   margin-top: 8px;
-}
-
-/* 两步验证对话框辅助样式 */
-.twofactor-dst :deep(.el-descriptions__label) {
-  color: var(--el-text-color-secondary);
-}
-.twofactor-dst :deep(.el-descriptions__cell) {
-  padding: 4px 0;
 }
 </style>

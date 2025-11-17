@@ -61,6 +61,7 @@ declare module 'vue' {
     PageFooterComponent: typeof import('./src/components/system/PageFooterComponent.vue')['default']
     PasswordLoginComponent: typeof import('./src/components/auth/loginComponents/PasswordLoginComponent.vue')['default']
     PerformanceDashboardComponents: typeof import('./src/components/user/userDashboardComponents/PerformanceDashboardComponents.vue')['default']
+    PersonalInformationComponents: typeof import('./src/components/user/userProfileComponents/PersonalInformationComponents.vue')['default']
     PersonalizedSettingsComponents: typeof import('./src/components/user/userDashboardComponents/PersonalizedSettingsComponents.vue')['default']
     PhoneRegisterComponent: typeof import('./src/components/auth/registerComponents/PhoneRegisterComponent.vue')['default']
     ProductDisplayComponent: typeof import('./src/components/system/homeComponents/ProductDisplayComponent.vue')['default']
