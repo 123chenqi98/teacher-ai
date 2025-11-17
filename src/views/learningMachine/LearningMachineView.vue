@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import "@/assets/learningMachine/homeCss/LearningMachineHomeTopCss.css"
+import "@/assets/learningMachine/homeCss/LearningMachineHomePageCss.css"
 import LearningMachineHomeTopInfoComponent from "@/components/learningMachine/home/LearningMachineHomeTopInfoComponent.vue";
 import LearningMachineSideNavigationComponent from "@/components/learningMachine/home/LearningMachineSideNavigationComponent.vue";
 import ProductIntroductionComponent from "@/components/learningMachine/home/ProductIntroductionComponent.vue";
