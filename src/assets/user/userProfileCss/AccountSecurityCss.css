@@ -1,0 +1,15 @@
+/* 账号安全样式 */
+.security-tab {
+    padding: 20px;
+}
+.security-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 12px;
+}
+.security-tab :deep(.el-divider__text) {
+    font-weight: 600;
+}
+.cofactor-dst {
+    margin: 16px 0;
+}

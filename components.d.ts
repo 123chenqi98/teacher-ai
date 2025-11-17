@@ -12,6 +12,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AccountIdentityComponent: typeof import('./src/components/auth/forgetPasswordComponents/AccountIdentityComponent.vue')['default']
+    AccountSecurityComponents: typeof import('./src/components/user/userProfileComponents/AccountSecurityComponents.vue')['default']
     ActivitiesSynopsisComponent: typeof import('./src/components/teacher/home/ActivitiesSynopsisComponent.vue')['default']
     CollectionOverviewComponents: typeof import('./src/components/user/userDashboardComponents/CollectionOverviewComponents.vue')['default']
     DataOverviewComponents: typeof import('./src/components/user/userDashboardComponents/DataOverviewComponents.vue')['default']
@@ -55,8 +56,10 @@ declare module 'vue' {
     EmailLoginComponent: typeof import('./src/components/auth/loginComponents/EmailLoginComponent.vue')['default']
     EmailRegisterComponent: typeof import('./src/components/auth/registerComponents/EmailRegisterComponent.vue')['default']
     FeatureDisplayComponent: typeof import('./src/components/system/homeComponents/FeatureDisplayComponent.vue')['default']
+    InformationEditComponents: typeof import('./src/components/user/userProfileComponents/InformationEditComponents.vue')['default']
     LeftNavigationComponents: typeof import('./src/components/user/LeftNavigationComponents.vue')['default']
     LoginButtonComponent: typeof import('./src/components/auth/loginComponents/LoginButtonComponent.vue')['default']
+    LoginLogComponents: typeof import('./src/components/user/userProfileComponents/LoginLogComponents.vue')['default']
     LoginWaysComponent: typeof import('./src/components/auth/loginComponents/LoginWaysComponent.vue')['default']
     PageFooterComponent: typeof import('./src/components/system/PageFooterComponent.vue')['default']
     PasswordLoginComponent: typeof import('./src/components/auth/loginComponents/PasswordLoginComponent.vue')['default']

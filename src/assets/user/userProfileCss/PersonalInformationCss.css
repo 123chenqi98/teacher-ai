@@ -1,0 +1,110 @@
+/* 页面标题样式 */
+.page-title {
+    margin-bottom: 20px;
+}
+
+/* 个人资料卡片样式 */
+.profile-card {
+    padding: 24px;
+}
+
+/* 头像区域样式 */
+.profile-header {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.avatar {
+    border: 2px solid #e6f7ff;
+    margin: 30px 40px;
+    cursor: pointer;
+}
+.header-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 8px;
+}
+
+.edit-btn {
+    width: 140px;
+    margin-left: auto;
+}
+
+/* 头像右侧姓名与摘要样式 */
+.profile-title {
+    margin-top: 5px;
+}
+.profile-name {
+    margin: 0;
+    color: #409eff;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+.basic-meta {
+    margin: 4px 0 8px;
+    color: var(--el-text-color-secondary);
+    font-size: 16px;
+}
+
+/* 个人简介样式 */
+.profile-intro {
+    margin: 16px 0;
+    line-height: 1.8;
+    font-size: 14px;
+}
+.summary-descriptions {
+    margin-top: 4px;
+}
+/* 摘要与详细信息排版优化 */
+
+.details-descriptions {
+    margin-top: 12px;
+}
+
+.detail-value {
+    font-size: 14px;
+}
+
+/* 编辑模式样式 */
+.avatar-form-item {
+    margin-bottom: 24px;
+}
+.upload-avatar {
+    position: relative;
+    overflow: hidden;
+}
+.avatar-upload-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+    cursor: pointer;
+}
+.upload-avatar:hover .avatar-upload-mask {
+    opacity: 1;
+}
+.upload-icon {
+    color: #fff;
+    font-size: 24px;
+}
+
+/* 表单网格样式 */
+.form-grid {
+    margin-bottom: 24px;
+}
+
+/* 表单操作按钮样式 */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+}
