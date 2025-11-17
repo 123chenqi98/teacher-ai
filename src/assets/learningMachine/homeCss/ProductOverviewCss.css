@@ -1,0 +1,23 @@
+/* 走马灯的样式框 */
+.carousel-container {
+    width: 100%;
+    height: auto; /* 轮播高度 */
+}
+
+/* 单个轮播项容器 */
+.carousel-item {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* 隐藏超出轮播项的图片部分 */
+}
+
+/* 轮播图片样式 */
+.carousel-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px; /* 图片圆角（可选，不需要可改为0） */
+}

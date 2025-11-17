@@ -1,0 +1,86 @@
+/* 容器样式 */
+.model-container {
+    padding: 30px 20px;
+    background-color: rgba(157, 120, 227, 0.64);
+}
+
+/* 头部布局：仅标题居中 */
+.model-header {
+    margin-bottom: 36px;
+    padding: 0 10px;
+    text-align: center;
+}
+
+/* 主标题样式（紫色主题） */
+.main-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+/* 网格布局：初始隐藏状态 + 滑入动画（核心新增） */
+.model-grid {
+    padding: 0 10px;
+    opacity: 0; /* 初始透明 */
+    transform: translateY(50px); /* 初始下移50px，隐藏在可视区域下方 */
+    transition: all 0.8s ease-out; /* 动画时长+缓动效果，平滑过渡 */
+}
+
+/* 滑入可见状态（配合组件中 containerVisible 状态） */
+.model-grid-visible {
+    opacity: 1; /* 完全显示 */
+    transform: translateY(0); /* 回到原始位置 */
+}
+
+/* 核心调整：固定卡片高度，确保所有卡片大小统一 */
+.model-card {
+    border-radius: 10px !important;
+    border: 1px solid #f0e6ff !important;
+    padding: 20px 18px !important;
+    text-align: left;
+    background-color: rgba(50, 50, 58, 0.4) !important;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    height: 140px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* 卡片hover效果 */
+.model-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(123, 78, 211, 0.08) !important;
+    border-color: #e1d2ff !important;
+}
+
+/* 序号样式 */
+.model-number {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    font-size: 2rem;
+    color: #c1a9f0;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+/* 模型名称：优化文字换行 */
+.model-name {
+    font-size: 1.05rem;
+    color: rgb(255, 255, 255);
+    margin: 0;
+    font-weight: 600;
+    padding-right: 24px;
+    line-height: 1.5;
+    height: 80px;
+    overflow: hidden;
+}
+
+/* Element列布局补充：确保每列宽度一致 */
+.el-col {
+    display: flex;
+    justify-content: center;
+}
