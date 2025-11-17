@@ -4,7 +4,8 @@ import "@/assets/user/TopNavigationCss.css"
 // 导入 Element Plus 图标组件
 import { Search, Bell, Message, Setting, UserFilled } from "@element-plus/icons-vue";
 // 导入 Vue 响应式 API
-import { ref } from "vue";
+import { ref, computed } from "vue";
+import { useRoute } from "vue-router";
 
 // 搜索框绑定的响应式变量，初始值为空字符串
 const searchText = ref<string>("");
@@ -13,8 +14,12 @@ const props = defineProps<{
   navTitle?: string; // 可选参数，支持父组件传递
 }>();
 
-// 解构 props，设置默认值（父组件未传递时显示“个人概览”）
-const { navTitle = "个人概览" } = props;
+// 根据当前路由动态计算标题；优先使用父组件传入，其次使用路由 meta.title
+const route = useRoute();
+const displayTitle = computed(() => {
+  const metaTitle = (route.meta?.title as string) || "个人概览";
+  return props.navTitle ?? metaTitle;
+});
 </script>
 
 <template>
@@ -24,8 +29,8 @@ const { navTitle = "个人概览" } = props;
            max-length="50": 输入最大长度限制：50个字符
            aria-describedby="search-hint": 关联辅助说明文本，增强无障碍体验
            父组件：el-input（支持 prefix/suffix 等插槽） -->
-      <!-- 动态标题：由父组件传递 -->
-      <div class="top-title">{{ navTitle }}</div>
+      <!-- 动态标题：优先使用外部传入，否则使用当前路由标题 -->
+      <div class="top-title">{{ displayTitle }}</div>
 
       <el-input
           v-model="searchText"

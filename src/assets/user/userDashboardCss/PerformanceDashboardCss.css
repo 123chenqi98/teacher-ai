@@ -1,3 +1,6 @@
+.page-title {
+    margin-bottom: 20px;
+}
 /* 教师效能仪表盘样式 */
 /* 教师档案卡片：统一外观与填充宽度 */
 .teacher-profile-card {
@@ -30,14 +33,14 @@
 
 /* 教师姓名样式 */
 .teacher-name {
-    font-size: 22px; /* 字体大小 */
+    font-size: 22px !important; /* 字体大小 */
     font-weight: 600; /* 字体加粗 */
     color: #333; /* 字体颜色 */
 }
 
 /* 教师描述样式 */
 .teacher-desc {
-    font-size: 14px; /* 字体大小 */
+    font-size: 20px !important;/* 字体大小 */
     color: #6c757d; /* 字体颜色 */
     margin-top: 5px; /* 顶部外边距，与上方姓名保持间距 */
 }
@@ -61,9 +64,8 @@
 
 /* 编辑按钮悬浮态：背景加深与放大 */
 .edit-btn:hover {
-    box-shadow: 0 4px 16px 0 rgba(108, 99, 255, 0.3); /* hover 时加深阴影 */
+    box-shadow: 0 4px 16px 0 rgba(108, 99, 255, 0.7); /* hover 时加深阴影 */
 }
-
 
 /* 查看消息按钮样式 */
 .message-btn {
@@ -71,8 +73,12 @@
     padding: 15px 20px; /* 按钮内边距，控制按钮尺寸 */
     background-color: #4cd263 !important; /* 按钮背景色 */
     border-color: #4cd263 !important; /* 按钮边框色 */
+    box-shadow: 0 4px 16px 0 rgba(108, 99, 255, 0.3); /* hover 时加深阴影 */
 }
 
+.message-btn:hover {
+    box-shadow: 0 4px 16px 0 rgba(108, 99, 255, 0.7);
+}
 /* 统计数据区域布局样式 */
 .stats-row {
     padding: 0 5px; /* 内边距，控制与上下元素的间距 */

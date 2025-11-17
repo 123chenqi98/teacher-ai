@@ -1,930 +1,686 @@
-<script>
-import { User, UserFilled, DataAnalysis, Aim, Bell, Notebook, QuestionFilled, Message, Folder, Setting, Search, Reading } from '@element-plus/icons-vue';
-import router from "@/router/index.ts";
+<script setup>
 import LeftNavigationComponents from "@/components/user/LeftNavigationComponents.vue";
 import TopNavigationComponents from "@/components/user/TopNavigationComponents.vue";
+import "@/assets/user/UserOverallCss.css"
+// 导入 Element Plus 图标
+import {User, Lock, Clock, UploadFilled, Edit, Check, Close, RefreshRight} from "@element-plus/icons-vue";
+import { ref } from "vue";
+import { ElMessage, ElNotification, ElMessageBox } from "element-plus";
 
-export default {
-  name: 'BasicInfoModule',
-  components: {
-    TopNavigationComponents,
-    LeftNavigationComponents, User, UserFilled, DataAnalysis, Aim, Bell, Notebook, QuestionFilled, Message, Folder, Setting, Search, Reading },
-  data() {
-    return {
-      activeTab: 'profile',
-      isEditing: false,
-      avatarPreview: 'https://randomuser.me/api/portraits/women/44.jpg',
-      searchText: '',
-      form: {
-        name: '张三',
-        nickname: '数学达人',
-        gender: 'female',
-        birthDate: '1985-06-15',
-        mobile: '13812345678',
-        email: 'zhangsan@example.com',
-        department: 'primary',
-        subject: 'math',
-        title: 'senior',
-        entryDate: '2017-09-01',
-        intro: '数学教育专业毕业，拥有8年教学经验，专注于初中数学教学。曾获得市级优秀教师称号，\n擅长激发学生学习兴趣，培养学生的数学思维能力。',
-        education: '2003-2007年 北京师范大学 数学教育专业 本科\n2007-2010年 北京师范大学 数学教育专业 硕士'
-      },
-      departments: [
-        { label: '初中部', value: 'primary' },
-        { label: '高中部', value: 'junior' },
-        { label: '小学部', value: 'senior' }
-      ],
-      subjects: [
-        { label: '数学', value: 'math' },
-        { label: '语文', value: 'chinese' },
-        { label: '英语', value: 'english' },
-        { label: '物理', value: 'physics' },
-        { label: '化学', value: 'chemistry' }
-      ],
-      titles: [
-        { label: '初级教师', value: 'junior' },
-        { label: '中级教师', value: 'intermediate' },
-        { label: '高级教师', value: 'senior' }
-      ],
-      loginLogs: [
-        { time: '2025-07-20 09:30:25', ip: '192.168.1.100', device: 'Windows 10, Chrome 114.0.0.0', status: '成功' },
-        { time: '2025-07-19 16:45:12', ip: '192.168.1.100', device: 'Windows 10, Chrome 114.0.0.0', status: '成功' },
-        { time: '2025-07-18 14:20:36', ip: '192.168.1.100', device: 'Windows 10, Chrome 114.0.0.0', status: '成功' },
-        { time: '2025-07-17 08:15:42', ip: '192.168.1.100', device: 'Windows 10, Chrome 114.0.0.0', status: '成功' },
-        { time: '2025-07-16 20:05:18', ip: '192.168.1.100', device: 'Windows 10, Chrome 114.0.0.0', status: '成功' },
-        { time: '2025-07-15 11:30:05', ip: '192.168.1.101', device: 'macOS Monterey, Safari 15.5', status: '失败（密码错误）' }
-      ]
-    };
-  },
-  methods: {
-    router() {
-      return router
-    },
-    toggleEditMode() {
-      this.isEditing = !this.isEditing;
+// 🔥 关键修复：1. 先声明 userInfo（移到最前面，所有依赖它的代码之前）
+const userInfo = ref({
+  avatar: "https://randomuser.me/api/portraits/men/80.jpg",
+  intro: "作为拥有十余年教学沉淀的资深教师，不仅熟知各学段知识体系与学生认知规律，更能精准把握课堂节奏与学情动态。在教学中深耕启发式方法，不直接灌输答案，而是以问题为导向、以案例为依托，引导学生主动拆解难题、探索本质，既点燃学习热情，又培养独立思考与解决问题的核心素养。",
+  realName: "凯登内格",
+  nickname: "内格老师",
+  gender: "男",
+  birthDate: "2005-08-19",
+  phone: "13800138008",
+  email: "lihuimin_edu@163.com",
+  department: "初中英语教研组",
+  teachingAge: "15年",
+  subject: "初中英语",
+  title: "高级教师",
+  hireDate: "2010-09-01",
+  educationBackground: "硕士",
+});
+
+// 1. 定义缺失的响应式变量（解决 "activeTab 未定义" 报错）
+const activeTab = ref("profile"); // 默认选中个人资料标签页
+const isEditing = ref(false); // 编辑模式开关
+const editFormRef = ref(null); // 表单引用
+const isSubmitting = ref(false); // 提交加载态
+
+// 账号安全表单（现在 userInfo 已声明，可正常访问）
+const securityFormRef = ref(null);
+const securityForm = ref({
+  currentPassword: "",
+  newPassword: "",
+  confirmPassword: "",
+  phone: userInfo.value.phone, // 正常访问
+  email: userInfo.value.email, // 正常访问
+  twoFactorEnabled: false,
+});
+
+// 两步验证交互状态
+const twoFactorDialogVisible = ref(false);
+const twoFactorInput = ref("");
+const twoFactorCode = ref("");
+const sendingTwoFactor = ref(false);
+
+const maskPhone = (p) => (p ? p.replace(/(\d{3})\d{4}(\d{4})/, "$1****$2") : "未绑定");
+const maskEmail = (e) => (e ? e.replace(/(^.).+(@.+$)/, "$1***$2") : "未绑定");
+
+const generateTwoFactorCode = () => String(Math.floor(100000 + Math.random() * 900000));
+
+const sendTwoFactorCode = async () => {
+  sendingTwoFactor.value = true;
+  // 模拟发送验证码
+  twoFactorCode.value = generateTwoFactorCode();
+  await new Promise((r) => setTimeout(r, 600));
+  ElNotification({
+    title: "验证码已发送",
+    message: `已发送至 ${maskPhone(securityForm.value.phone)} / ${maskEmail(securityForm.value.email)}`,
+    type: "success",
+    duration: 1600,
+    position: "top-right",
+  });
+  sendingTwoFactor.value = false;
+};
+
+const handleTwoFactorChange = async (val) => {
+  if (val) {
+    twoFactorInput.value = "";
+    await sendTwoFactorCode();
+    twoFactorDialogVisible.value = true;
+  } else {
+    try {
+      await ElMessageBox.confirm("关闭两步验证后，登录将不再需要验证码，是否继续？", "确认关闭", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      });
+      securityForm.value.twoFactorEnabled = false;
+      ElMessage({ message: "已关闭两步验证", type: "success" });
+    } catch {
+      // 用户取消，恢复为开启状态
+      securityForm.value.twoFactorEnabled = true;
+      ElMessage({ message: "已取消关闭", type: "info" });
     }
   }
+};
+
+const confirmEnableTwoFactor = () => {
+  if (twoFactorInput.value !== twoFactorCode.value) {
+    ElMessage({ message: "验证码不正确，请重试", type: "error" });
+    return;
+  }
+  securityForm.value.twoFactorEnabled = true;
+  twoFactorDialogVisible.value = false;
+  ElMessage({ message: "两步验证已开启", type: "success" });
+};
+
+const cancelEnableTwoFactor = () => {
+  twoFactorDialogVisible.value = false;
+  securityForm.value.twoFactorEnabled = false;
+  ElMessage({ message: "已取消开启", type: "info" });
+};
+
+const securityRules = ref({
+  currentPassword: [{ required: true, message: "请输入当前密码", trigger: "blur" }],
+  newPassword: [
+    { required: true, message: "请输入新密码", trigger: "blur" },
+    { min: 8, message: "至少 8 位，建议包含数字与字母", trigger: "blur" },
+  ],
+  confirmPassword: [
+    { required: true, message: "请再次输入新密码", trigger: "blur" },
+    {
+      validator: (rule, value, callback) => {
+        if (value !== securityForm.value.newPassword) {
+          callback(new Error("两次输入的新密码不一致"));
+        } else {
+          callback();
+        }
+      },
+      trigger: "blur",
+    },
+  ],
+  phone: [{ pattern: /^1[3-9]\d{9}$/, message: "请输入正确的手机号码", trigger: "blur" }],
+  email: [{ type: "email", message: "请输入正确的邮箱格式", trigger: "blur" }],
+});
+
+const handleSecuritySubmit = async (formRef) => {
+  try {
+    isSubmitting.value = true;
+    await formRef?.validate();
+
+    ElNotification({
+      title: "正在保存安全设置",
+      message: "请稍候…",
+      type: "info",
+      position: "top-right",
+      duration: 1200,
+    });
+
+    // 假装调用接口保存：更新绑定信息到 userInfo
+    userInfo.value.phone = securityForm.value.phone;
+    userInfo.value.email = securityForm.value.email;
+
+    ElMessage({ message: "安全设置已更新", type: "success", duration: 1800 });
+
+    // 清空密码输入
+    securityForm.value.currentPassword = "";
+    securityForm.value.newPassword = "";
+    securityForm.value.confirmPassword = "";
+  } catch (err) {
+    ElMessage({ message: "保存失败，请检查输入", type: "error", duration: 2500 });
+    console.error("保存账号安全设置失败：", err);
+  } finally {
+    isSubmitting.value = false;
+  }
+};
+
+const securityReset = (formRef) => {
+  formRef?.resetFields();
+  securityForm.value.phone = userInfo.value.phone; // 现在 userInfo 已声明，无报错
+  securityForm.value.email = userInfo.value.email;
+};
+
+// 重置前确认弹窗
+const handleSecurityReset = async (formRef) => {
+  try {
+    await ElMessageBox.confirm(
+      "将恢复为当前绑定的手机号/邮箱，并清空密码输入。是否继续？",
+      "确认重置",
+      {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      }
+    );
+    securityReset(formRef);
+    // 清空密码输入
+    securityForm.value.currentPassword = "";
+    securityForm.value.newPassword = "";
+    securityForm.value.confirmPassword = "";
+    ElMessage({ message: "已重置为当前绑定信息", type: "success" });
+  } catch {
+    ElMessage({ message: "已取消重置", type: "info" });
+  }
+};
+
+// 登录日志示例数据
+const loginLogs = ref([
+  { time: "2025-11-14 14:42:37", device: "Windows / Chrome", ip: "192.168.0.12", location: "上海", status: "成功" },
+  { time: "2025-11-12 08:12:51", device: "iPhone / Safari", ip: "10.0.0.5", location: "北京", status: "成功" },
+  { time: "2025-11-10 21:03:05", device: "Mac / Edge", ip: "203.1.1.8", location: "深圳", status: "失败" },
+  { time: "2025-11-08 10:22:43", device: "Android / Firefox", ip: "182.128.1.10", location: "广州", status: "成功" },
+  { time: "2025-11-06 15:30:20", device: "Windows / Chrome", ip: "192.168.0.12", location: "上海", status: "成功" },
+  { time: "2025-11-04 09:15:12", device: "iPhone / Safari", ip: "10.0.0.5", location: "北京", status: "成功" },
+  { time: "2025-11-02 12:45:30", device: "Mac / Edge", ip: "203.1.1.8", location: "深圳", status: "成功" },
+  { time: "2025-11-01 07:20:15", device: "Android / Firefox", ip: "182.128.1.10", location: "广州", status: "成功" },
+]);
+
+// 3. 定义表单校验规则
+const formRules = ref({
+  realName: [{ required: true, message: "请输入姓名", trigger: "blur" }],
+  nickname: [{ required: true, message: "请输入昵称", trigger: "blur" }],
+  gender: [{ required: true, message: "请选择性别", trigger: "change" }],
+  phone: [
+    { required: true, message: "请输入手机号码", trigger: "blur" },
+    { pattern: /^1[3-9]\d{9}$/, message: "请输入正确的手机号码", trigger: "blur" },
+  ],
+  email: [
+    { required: true, message: "请输入电子邮箱", trigger: "blur" },
+    { type: "email", message: "请输入正确的电子邮箱格式", trigger: "blur" },
+  ],
+  department: [{ required: true, message: "请输入所属部门", trigger: "blur" }],
+  birthDate: [{ required: true, message: "请选择出生日期", trigger: "change" }],
+  hireDate: [{ required: true, message: "请选择入职时间", trigger: "change" }],
+});
+
+// 4. 实现缺失的方法
+// 切换编辑模式
+const toggleEditMode = () => {
+  isEditing.value = !isEditing.value;
+};
+
+// 头像上传成功处理
+const handleAvatarUpload = (response) => {
+  // 实际项目中根据接口返回格式调整
+  if (response.code === 200) {
+    userInfo.value.avatar = response.data.url;
+  }
+};
+
+// 表单提交
+const handleSubmit = async (formRef) => {
+  try {
+    isSubmitting.value = true;
+    await formRef?.validate();
+
+    // 提交过程提示（浮窗）
+    ElNotification({
+      title: "正在保存",
+      message: "请稍候…",
+      type: "info",
+      position: "top-right",
+      duration: 500,
+    });
+
+    // 提交逻辑（如调用接口保存数据）
+    console.log("提交的用户信息：", userInfo.value);
+
+    // 成功提示
+    ElMessage({
+      message: "保存成功",
+      type: "success",
+      duration: 3000,
+    });
+
+    // 提交成功后切换到查看模式
+    toggleEditMode();
+  } catch (error) {
+    ElMessage({
+      message: "保存失败，请检查表单输入",
+      type: "error",
+      duration: 2500,
+    });
+    console.error("表单校验失败：", error);
+  } finally {
+    isSubmitting.value = false;
+  }
+};
+
+// 取消编辑
+const handleCancel = (formRef) => {
+  formRef.resetFields(); // 重置表单
+  toggleEditMode(); // 切换到查看模式
 };
 </script>
 
 <template>
-  <div class="basic-info-module">
-    <left-navigation-components />
-
-    <!-- 右侧主内容区 -->
+  <div class="teacher-dashboard">
+    <!-- 左侧导航栏 -->
+    <LeftNavigationComponents />
     <main class="main-content">
-      <top-navigation-components />
-
+      <!-- 顶部导航栏 -->
+      <TopNavigationComponents />
       <!-- 内容区域 -->
       <div class="content-area">
         <!-- 页面标题 -->
         <div class="page-title">
-          <h1>基本信息</h1>
-          <p>管理您的个人信息、账号安全及隐私设置</p>
+          <h1 class="el-title el-title--large">基本信息</h1>
+          <p class="el-text el-text--secondary">管理您的个人信息、账号安全及隐私设置</p>
         </div>
 
-        <!-- 标签页导航（Element Plus） -->
-        <el-tabs v-model="activeTab" class="tabs-nav">
-          <el-tab-pane label="个人资料" name="profile" />
-          <el-tab-pane label="账号安全" name="security" />
-          <el-tab-pane label="登录日志" name="login-log" />
-        </el-tabs>
+        <el-divider /> <!-- 小写短横线形式 -->
 
-        <!-- 标签页内容 -->
-        <div class="tab-content">
-          <!-- 个人资料标签页 -->
-          <div v-if="activeTab === 'profile'" class="profile-tab">
-            <!-- 查看模式 -->
-            <div v-if="!isEditing" class="view-mode">
-              <div class="card profile-card">
-                <div class="card-body">
-                  <div class="profile-header">
-                    <div class="avatar">
-                      <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="教师头像">
-                    </div>
-                    <div class="profile-actions">
-                      <button class="btn edit-btn" @click="toggleEditMode">编辑信息</button>
-                    </div>
+        <!-- 合并容器：将标签导航移入卡片顶部，内容按 activeTab 切换 -->
+        <div class="profile-tab">
+          <!-- 查看模式（头像右侧展示摘要信息，下方为简介与详细信息） -->
+          <el-card shadow="hover" class="profile-card" v-if="!isEditing">
+            <el-tabs v-model="activeTab" class="tabs-inside" type="card">
+              <el-tab-pane label="个人资料" name="profile" :icon="User" />
+              <el-tab-pane label="账号安全" name="security" :icon="Lock" />
+              <el-tab-pane label="登录日志" name="login-log" :icon="Clock" />
+            </el-tabs>
+
+            <div v-if="activeTab === 'profile'">
+              <!-- 头部：头像 + 摘要信息 + 编辑按钮 -->
+              <el-row :gutter="20" class="profile-header">
+                <el-col :span="3">
+                  <el-avatar :size="100" class="avatar">
+                    <img :src="userInfo.avatar" alt="教师头像" />
+                  </el-avatar>
+                </el-col>
+                <el-col :span="18">
+                  <div class="profile-title">
+                    <h2 class="profile-name">{{ userInfo.nickname }}</h2>
+                    <p class="basic-meta">{{ userInfo.subject }} | {{ userInfo.department }} | 教龄 {{ userInfo.teachingAge }}</p>
                   </div>
-                  
-                  <div class="profile-intro">
-                    <h3>个人简介</h3>
-                    <p>
-                      数学教育专业毕业，拥有8年教学经验，专注于初中数学教学。曾获得市级优秀教师称号，
-                      擅长激发学生学习兴趣，培养学生的数学思维能力。
-                    </p>
-                  </div>
-                  
-                  <div class="profile-details">
-                    <div class="detail-row">
-                      <div class="detail-item">
-                        <div class="detail-label">姓名</div>
-                        <div class="detail-value">张三</div>
-                      </div>
-                      <div class="detail-item">
-                        <div class="detail-label">昵称</div>
-                        <div class="detail-value">数学达人</div>
-                      </div>
-                      <div class="detail-item">
-                        <div class="detail-label">性别</div>
-                        <div class="detail-value">女</div>
-                      </div>
-                      <div class="detail-item">
-                        <div class="detail-label">出生日期</div>
-                        <div class="detail-value">1985-06-15</div>
-                      </div>
-                    </div>
-                    <div class="detail-row">
-                      <div class="detail-item">
-                        <div class="detail-label">手机号码</div>
-                        <div class="detail-value">138****5678</div>
-                      </div>
-                      <div class="detail-item">
-                        <div class="detail-label">电子邮箱</div>
-                        <div class="detail-value">zhangsan@example.com</div>
-                      </div>
-                      <div class="detail-item">
-                        <div class="detail-label">所属部门</div>
-                        <div class="detail-value">初中部</div>
-                      </div>
-                      <div class="detail-item">
-                        <div class="detail-label">教龄</div>
-                        <div class="detail-value">8年</div>
-                      </div>
-                    </div>
-                    <div class="detail-row">
-                      <div class="detail-item">
-                        <div class="detail-label">任教学科</div>
-                        <div class="detail-value">数学</div>
-                      </div>
-                      <div class="detail-item">
-                        <div class="detail-label">职称</div>
-                        <div class="detail-value">高级教师</div>
-                      </div>
-                      <div class="detail-item">
-                        <div class="detail-label">入职时间</div>
-                        <div class="detail-value">2017-09-01</div>
-                      </div>
-                      <div class="detail-item">
-                        <div class="detail-label">最后登录时间</div>
-                        <div class="detail-value">2025-07-20 09:30</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                  <div class="header-actions">
+                    <el-button type="primary" :icon="Edit" @click="toggleEditMode" class="edit-btn">编辑信息</el-button>
+                  </div><!-- 摘要信息：在头像右侧展示关键字段，避免留白 -->
+                  <el-descriptions :column="2" class="summary-descriptions">
+                    <el-descriptions-item label="姓名"><el-text class="detail-value">{{ userInfo.realName }}</el-text></el-descriptions-item>
+                    <el-descriptions-item label="昵称"><el-text class="detail-value">{{ userInfo.nickname }}</el-text></el-descriptions-item>
+                    <el-descriptions-item label="职称"><el-text class="detail-value">{{ userInfo.title }}</el-text></el-descriptions-item>
+                    <el-descriptions-item label="所属部门"><el-text class="detail-value">{{ userInfo.department }}</el-text></el-descriptions-item>
+                  </el-descriptions>
+                </el-col>
+              </el-row>
+
+              <el-divider content-position="left">个人简介</el-divider>
+              <el-text class="profile-intro">{{ userInfo.intro || '暂无简介' }}</el-text>
+
+              <el-divider content-position="left">详细信息</el-divider>
+              <!-- 详细信息：统一使用 Descriptions，整齐排版 -->
+              <el-descriptions :column="4" border class="details-descriptions" :content-style="{ 'font-size': '14px' }">
+                <el-descriptions-item label="性别"><el-text class="detail-value">{{ userInfo.gender }}</el-text></el-descriptions-item>
+                <el-descriptions-item label="出生日期"><el-text class="detail-value">{{ userInfo.birthDate }}</el-text></el-descriptions-item>
+                <el-descriptions-item label="教龄"><el-text class="detail-value">{{ userInfo.teachingAge }}</el-text></el-descriptions-item>
+                <el-descriptions-item label="任教学科"><el-text class="detail-value">{{ userInfo.subject }}</el-text></el-descriptions-item>
+                <el-descriptions-item label="手机"><el-text class="detail-value">{{ userInfo.phone }}</el-text></el-descriptions-item>
+                <el-descriptions-item label="邮箱"><el-text class="detail-value">{{ userInfo.email }}</el-text></el-descriptions-item>
+                <el-descriptions-item label="入职时间"><el-text class="detail-value">{{ userInfo.hireDate }}</el-text></el-descriptions-item>
+                <el-descriptions-item label="学历"><el-text class="detail-value">{{ userInfo.educationBackground }}</el-text></el-descriptions-item>
+              </el-descriptions>
             </div>
+            
+            <!-- 账号安全标签页 -->
+            <div v-if="activeTab === 'security'" class="security-tab">
+              <el-form :model="securityForm" :rules="securityRules" ref="securityFormRef" label-width="120px">
+                <el-divider content-position="left">修改密码</el-divider>
+                <el-row :gutter="16">
+                  <el-col :span="8">
+                    <el-form-item label="当前密码" prop="currentPassword">
+                      <el-input v-model="securityForm.currentPassword" type="password" show-password placeholder="请输入当前密码" />
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-form-item label="新密码" prop="newPassword">
+                      <el-input v-model="securityForm.newPassword" type="password" show-password placeholder="至少 8 位，建议含数字与字母" />
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-form-item label="确认新密码" prop="confirmPassword">
+                      <el-input v-model="securityForm.confirmPassword" type="password" show-password placeholder="再次输入新密码" />
+                    </el-form-item>
+                  </el-col>
+                </el-row>
 
-            <!-- 编辑模式（Element Plus 表单） -->
-            <div v-if="isEditing" class="edit-mode">
-              <el-card class="edit-card" shadow="hover">
-                <el-form :model="form" label-width="110px" class="el-form-grid">
-                  <el-row :gutter="20">
-                    <el-col :span="8">
-                      <el-form-item label="上传头像">
-                        <div class="avatar-preview">
-                          <el-avatar :src="avatarPreview" size="large" />
-                          <div class="avatar-info">
-                            <p>支持 JPG/PNG，建议 200×200px，≤5MB</p>
-                            <el-upload action="#" :show-file-list="false">
-                              <el-button type="primary">选择图片</el-button>
-                            </el-upload>
-                          </div>
-                        </div>
-                      </el-form-item>
-                    </el-col>
-                  </el-row>
+                <el-divider content-position="left">绑定信息</el-divider>
+                <el-row :gutter="16">
+                  <el-col :span="8">
+                    <el-form-item label="绑定手机" prop="phone">
+                      <el-input v-model="securityForm.phone" placeholder="请输入绑定手机号" clearable />
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-form-item label="绑定邮箱" prop="email">
+                      <el-input v-model="securityForm.email" placeholder="请输入绑定邮箱" clearable />
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-form-item label="两步验证">
+                      <el-switch
+                        v-model="securityForm.twoFactorEnabled"
+                        active-text="已启用"
+                        inactive-text="未启用"
+                        @change="handleTwoFactorChange"
+                      />
+                    </el-form-item>
+                  </el-col>
+                </el-row>
 
-                  <el-row :gutter="20">
-                    <el-col :span="6">
-                      <el-form-item label="姓名" required>
-                        <el-input v-model="form.name" />
-                      </el-form-item>
-                    </el-col>
-                    <el-col :span="6">
-                      <el-form-item label="昵称">
-                        <el-input v-model="form.nickname" />
-                      </el-form-item>
-                    </el-col>
-                    <el-col :span="6">
-                      <el-form-item label="性别">
-                        <el-select v-model="form.gender" placeholder="请选择">
-                          <el-option label="女" value="female" />
-                          <el-option label="男" value="male" />
-                          <el-option label="其他" value="other" />
-                        </el-select>
-                      </el-form-item>
-                    </el-col>
-                    <el-col :span="6">
-                      <el-form-item label="出生日期">
-                        <el-date-picker v-model="form.birthDate" type="date" placeholder="选择日期" value-format="YYYY-MM-DD" />
-                      </el-form-item>
-                    </el-col>
-                  </el-row>
-
-                  <el-row :gutter="20">
-                    <el-col :span="6">
-                      <el-form-item label="手机号码" required>
-                        <el-input v-model="form.mobile" />
-                      </el-form-item>
-                    </el-col>
-                    <el-col :span="6">
-                      <el-form-item label="电子邮箱">
-                        <el-input v-model="form.email" />
-                      </el-form-item>
-                    </el-col>
-                    <el-col :span="6">
-                      <el-form-item label="所属部门">
-                        <el-select v-model="form.department" placeholder="请选择">
-                          <el-option v-for="d in departments" :key="d.value" :label="d.label" :value="d.value" />
-                        </el-select>
-                      </el-form-item>
-                    </el-col>
-                    <el-col :span="6">
-                      <el-form-item label="任教学科">
-                        <el-select v-model="form.subject" placeholder="请选择">
-                          <el-option v-for="s in subjects" :key="s.value" :label="s.label" :value="s.value" />
-                        </el-select>
-                      </el-form-item>
-                    </el-col>
-                  </el-row>
-
-                  <el-row :gutter="20">
-                    <el-col :span="6">
-                      <el-form-item label="职称">
-                        <el-select v-model="form.title" placeholder="请选择">
-                          <el-option v-for="t in titles" :key="t.value" :label="t.label" :value="t.value" />
-                        </el-select>
-                      </el-form-item>
-                    </el-col>
-                    <el-col :span="6">
-                      <el-form-item label="入职时间">
-                        <el-date-picker v-model="form.entryDate" type="date" placeholder="选择日期" value-format="YYYY-MM-DD" />
-                      </el-form-item>
-                    </el-col>
-                  </el-row>
-
-                  <el-form-item label="个人简介">
-                    <el-input v-model="form.intro" type="textarea" :rows="4" />
+                <el-space class="security-actions" direction="horizontal" :size="16">
+                  <el-button type="primary" :icon="Check" :loading="isSubmitting" :disabled="isSubmitting" @click="handleSecuritySubmit(securityFormRef)">保存安全设置</el-button>
+                  <el-button :icon="RefreshRight" @click="handleSecurityReset(securityFormRef)">重置</el-button>
+                </el-space>
+              </el-form>
+              <!-- 两步验证开启对话框 -->
+              <el-dialog v-model="twoFactorDialogVisible" title="开启两步验证" width="460px" :close-on-click-modal="false">
+                <el-text class="el-text">为了提升账号安全，开启后登录需额外输入一次性验证码。</el-text>
+                <el-divider />
+                <el-descriptions :column="2" class="twofactor-dst">
+                  <el-descriptions-item label="手机号">
+                    <el-text>{{ maskPhone(securityForm.phone) }}</el-text>
+                  </el-descriptions-item>
+                  <el-descriptions-item label="邮箱">
+                    <el-text>{{ maskEmail(securityForm.email) }}</el-text>
+                  </el-descriptions-item>
+                </el-descriptions>
+                <el-space direction="horizontal" :size="12" style="margin-bottom: 8px;">
+                  <el-button type="primary" :loading="sendingTwoFactor" @click="sendTwoFactorCode">重新发送验证码</el-button>
+                  <el-text class="el-text el-text--secondary">当前验证码：{{ twoFactorCode }}</el-text>
+                </el-space>
+                <el-form label-width="100px">
+                  <el-form-item label="验证码">
+                    <el-input v-model="twoFactorInput" placeholder="请输入6位验证码" maxlength="6" style="max-width: 240px;" />
                   </el-form-item>
-
-                  <el-form-item label="教育经历">
-                    <el-input v-model="form.education" type="textarea" :rows="3" />
-                  </el-form-item>
-
-                  <div class="form-actions">
-                    <el-button @click="toggleEditMode">取消</el-button>
-                    <el-button type="primary">保存修改</el-button>
-                  </div>
                 </el-form>
-              </el-card>
+                <template #footer>
+                  <el-space :size="12">
+                    <el-button @click="cancelEnableTwoFactor">取消</el-button>
+                    <el-button type="primary" @click="confirmEnableTwoFactor">验证并开启</el-button>
+                  </el-space>
+                </template>
+              </el-dialog>
             </div>
-          </div>
 
-          <!-- 账号安全标签页 -->
-          <div v-if="activeTab === 'security'" class="security-tab">
-            <div class="card security-card">
-              <div class="card-body">
-                <div class="security-item">
-                  <div class="security-info">
-                    <div class="security-title">登录密码</div>
-                    <div class="security-desc">
-                      <span>密码强度：强</span>
-                      <span class="separator">|</span>
-                      <span>上次修改时间：2025-07-15</span>
-                    </div>
-                  </div>
-                  <div class="security-actions">
-                    <el-button class="action-btn">修改密码</el-button>
-                    <el-tag type="success">已设置</el-tag>
-                  </div>
-                </div>
-
-                <div class="security-item">
-                  <div class="security-info">
-                    <div class="security-title">绑定手机号码</div>
-                    <div class="security-desc">
-                      <span>138****5678</span>
-                      <span class="separator">|</span>
-                      <span>用于登录和安全验证</span>
-                    </div>
-                  </div>
-                  <div class="security-actions">
-                    <el-button class="action-btn">更换手机</el-button>
-                    <el-tag type="success">已绑定</el-tag>
-                  </div>
-                </div>
-
-                <div class="security-item">
-                  <div class="security-info">
-                    <div class="security-title">绑定电子邮箱</div>
-                    <div class="security-desc">
-                      <span>zhangsan@example.com</span>
-                      <span class="separator">|</span>
-                      <span>用于密码找回和重要通知</span>
-                    </div>
-                  </div>
-                  <div class="security-actions">
-                    <el-button class="action-btn">更换邮箱</el-button>
-                    <el-tag type="success">已绑定</el-tag>
-                  </div>
-                </div>
-
-                <div class="security-item">
-                  <div class="security-info">
-                    <div class="security-title">二次验证</div>
-                    <div class="security-desc">
-                      <span>开启后，登录时需要输入验证码，提高账号安全性</span>
-                    </div>
-                  </div>
-                  <div class="security-actions">
-                    <el-button class="action-btn">立即开启</el-button>
-                    <el-tag type="warning">未开启</el-tag>
-                  </div>
-                </div>
-
-                <div class="security-item">
-                  <div class="security-info">
-                    <div class="security-title">登录设备管理</div>
-                    <div class="security-desc">
-                      <span>查看当前登录的设备，可远程退出异常登录</span>
-                    </div>
-                  </div>
-                  <div class="security-actions">
-                    <el-button class="action-btn">管理设备</el-button>
-                    <el-tag type="info">查看</el-tag>
-                  </div>
-                </div>
-              </div>
+            <!-- 登录日志标签页 -->
+            <div v-if="activeTab === 'login-log'" class="login-log-tab">
+              <el-table :data="loginLogs" stripe style="width: 100%">
+                <el-table-column prop="time" label="登录时间" width="180" />
+                <el-table-column prop="device" label="设备" />
+                <el-table-column prop="ip" label="IP 地址" width="140" />
+                <el-table-column prop="location" label="位置" width="120" />
+                <el-table-column prop="status" label="状态" width="100" />
+              </el-table>
             </div>
-          </div>
+            </el-card>
 
-          <!-- 登录日志标签页 -->
-          <div v-if="activeTab === 'login-log'" class="login-log-tab">
-            <div class="card login-log-card">
-              <div class="card-header">
-                <div class="card-title">登录日志</div>
-                <div class="record-count">共 24 条记录</div>
-              </div>
-              <div class="card-body">
-                <div class="table-container">
-                  <el-table :data="loginLogs" style="width: 100%">
-                    <el-table-column prop="time" label="登录时间" width="220" />
-                    <el-table-column prop="ip" label="登录 IP" width="160" />
-                    <el-table-column prop="device" label="登录设备" />
-                    <el-table-column label="状态" width="160">
-                      <template #default="scope">
-                        <el-tag :type="scope.row.status === '成功' ? 'success' : 'danger'">{{ scope.row.status }}</el-tag>
-                      </template>
-                    </el-table-column>
-                  </el-table>
-                </div>
-                <div class="load-more">
-                  <el-button class="load-more-btn">加载更多</el-button>
-                </div>
-              </div>
+            <!-- 编辑模式（el-form 组件） -->
+            <el-card shadow="hover" class="profile-card" v-else>
+              <el-tabs v-model="activeTab" class="tabs-inside" type="card">
+                <el-tab-pane label="个人资料" name="profile" :icon="User" />
+                <el-tab-pane label="账号安全" name="security" :icon="Lock" />
+                <el-tab-pane label="登录日志" name="login-log" :icon="Clock" />
+              </el-tabs>
+              <div v-if="activeTab === 'profile'">
+              <el-form :model="userInfo" :rules="formRules" ref="editFormRef" label-width="100px" :label-suffix="''">
+                <!-- 头像上传区域 -->
+                <el-form-item label="头像" class="avatar-form-item">
+                  <el-upload action="/api/upload/avatar" :on-success="handleAvatarUpload" :file-list="[]" list-type="picture-card" :limit="1" accept="image/*">
+                    <el-avatar :size="100" class="upload-avatar">
+                      <img :src="userInfo.avatar" alt="头像" />
+                      <div class="avatar-upload-mask">
+                        <UploadFilled class="upload-icon" />
+                      </div>
+                    </el-avatar>
+                  </el-upload>
+                </el-form-item>
+
+                <!-- 个人简介 -->
+                <el-form-item label="个人简介">
+                  <el-input v-model="userInfo.intro" type="textarea" :rows="3" placeholder="请输入个人简介" :resize="none"/>
+                </el-form-item>
+
+                <!-- 表单网格布局（使用 el-row + el-col 替代原生 div） -->
+                <el-row :gutter="20" class="form-grid">
+                  <el-col :span="12">
+                    <el-form-item label="姓名" prop="realName">
+                      <el-input v-model="userInfo.realName" placeholder="请输入姓名" clearable />
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="12">
+                    <el-form-item label="昵称" prop="nickname">
+                      <el-input v-model="userInfo.nickname" placeholder="请输入昵称" clearable />
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="12">
+                    <el-form-item label="性别" prop="gender">
+                      <el-select v-model="userInfo.gender" placeholder="请选择性别" clearable>
+                        <el-option label="男" value="男" />
+                        <el-option label="女" value="女" />
+                        <el-option label="其他" value="其他" />
+                      </el-select>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="12">
+                    <el-form-item label="出生日期" prop="birthDate">
+                      <el-date-picker v-model="userInfo.birthDate" type="date" placeholder="请选择出生日期" value-format="YYYY-MM-DD" clearable/>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="12">
+                    <el-form-item label="手机号码" prop="phone">
+                      <el-input v-model="userInfo.phone" placeholder="请输入手机号码" clearable />
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="12">
+                    <el-form-item label="电子邮箱" prop="email">
+                      <el-input v-model="userInfo.email" placeholder="请输入电子邮箱" clearable />
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="12">
+                    <el-form-item label="所属部门" prop="department">
+                      <el-input v-model="userInfo.department" placeholder="请输入所属部门" clearable />
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="12">
+                    <el-form-item label="教龄">
+                      <el-input v-model="userInfo.teachingAge" placeholder="请输入教龄" clearable type="number" />
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="12">
+                    <el-form-item label="任教学科">
+                      <el-input v-model="userInfo.subject" placeholder="请输入任教学科" clearable />
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="12">
+                    <el-form-item label="职称">
+                      <el-input v-model="userInfo.title" placeholder="请输入职称" clearable />
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="12">
+                    <el-form-item label="入职时间" prop="hireDate">
+                      <el-date-picker v-model="userInfo.hireDate" type="date" placeholder="请选择入职时间" value-format="YYYY-MM-DD" clearable/>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="12"> 
+                    <el-form-item label="学历">
+                      <el-input v-model="userInfo.educationBackground" placeholder="请输入学历" clearable />
+                    </el-form-item>
+                  </el-col>
+                </el-row>
+
+                <!-- 表单操作按钮（使用 el-space 优化按钮间距） -->
+                <el-space class="form-actions" direction="horizontal" :size="16">
+                  <el-button type="primary" @click="handleSubmit(editFormRef)" :icon="Check" :loading="isSubmitting" :disabled="isSubmitting">提交保存</el-button>
+                  <el-button @click="handleCancel(editFormRef)" :icon="Close">取消编辑</el-button>
+                </el-space>
+              </el-form>
             </div>
-          </div>
+          </el-card>
         </div>
+
+
       </div>
-
-      <!-- 底部版权区 -->
-      <footer class="footer">
-        <div class="footer-content">
-          <div class="copyright">
-            <p>© 版权归智慧科技有限公司所有 ©2025 年 10 月 20 日</p>
-          </div>
-          <div class="footer-links">
-            <a href="#">服务条款</a>
-            <a href="#">个人信息保护</a>
-            <a href="#">隐私中心</a>
-          </div>
-          <div class="contact">
-            <div class="qrcode">
-              <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://example.com/contact" alt="联系我们二维码">
-              <p>联系我们</p>
-            </div>
-          </div>
-        </div>
-      </footer>
     </main>
   </div>
 </template>
 
 <style scoped>
-/* 全局样式 */
-.basic-info-module {
-  display: flex;
-  min-height: 100vh;
-  font-family: 'Inter', system-ui, sans-serif;
-}
-
-/* 左侧导航栏 */
-.sidebar {
-  width: 240px;
-  background-color: #5a4bcf;
-  color: white;
-  padding: 20px 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  padding: 0 20px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  margin-bottom: 20px;
-}
-
-.logo i {
-  font-size: 24px;
-  margin-right: 10px;
-}
-
-.logo span {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.nav-menu ul {
-  list-style: none;
-  padding: 0;
-}
-
-
-.nav-item i {
-  font-size: 18px;
-  margin-right: 10px;
-  width: 24px;
-  text-align: center;
-}
-
-/* 右侧主内容区 */
-.main-content {
-  flex: 1;
-  background-color: #f8f9fa;
-  display: flex;
-  flex-direction: column;
-}
-
-/* 顶部导航栏 */
-.top-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
-  background-color: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-}
-
-.search-box {
-  display: flex;
-  align-items: center;
-  background-color: #f1f3f5;
-  border-radius: 4px;
-  padding: 8px 15px;
-  width: 300px;
-}
-
-.search-box i {
-  color: #6c757d;
-  margin-right: 10px;
-}
-
-.search-box input {
-  background: none;
-  border: none;
-  outline: none;
-  flex: 1;
-  font-size: 14px;
-}
-
-.user-actions {
-  display: flex;
-  align-items: center;
-}
-
-.action-btn {
-  background: none;
-  border: none;
-  font-size: 18px;
-  color: #6c757d;
-  margin-left: 15px;
-  cursor: pointer;
-  position: relative;
-}
-
-
-
-.user-profile {
-  display: flex;
-  align-items: center;
-  margin-left: 20px;
-  cursor: pointer;
-}
-
-.user-profile img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-right: 10px;
-}
-
-.user-info {
-  text-align: left;
-}
-
-.user-name {
-  font-weight: bold;
-  font-size: 14px;
-}
-
-.user-role {
-  font-size: 12px;
-  color: #6c757d;
-}
-
-/* 内容区域 */
-.content-area {
-  flex: 1;
-  padding: 20px;
-  overflow-y: auto;
-}
-
-/* 页面标题 */
+/* 页面标题样式 */
 .page-title {
   margin-bottom: 20px;
 }
 
-.page-title h1 {
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 5px;
-}
-
-.page-title p {
-  font-size: 14px;
-  color: #6c757d;
-}
-
-/* 标签页导航 */
-.tabs-nav {
-  display: flex;
-  border-bottom: 1px solid #e9ecef;
-  margin-bottom: 20px;
-}
-
-/* 标签页内容 */
-.tab-content {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-}
-
-/* 卡片样式 */
-.card {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-}
-
-.card-header {
-  padding: 15px 20px;
-  border-bottom: 1px solid #f1f3f5;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.card-title {
-  font-size: 16px;
-  font-weight: bold;
-  color: #333;
-}
-
-.card-body {
-  padding: 20px;
-}
-
-/* 个人资料标签页 */
+/* 个人资料卡片样式 */
 .profile-card {
-  background-color: #f8f9ff;
-  border: 1px solid #e6e3ff;
+  padding: 24px;
 }
 
+/* 头像区域样式 */
 .profile-header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 20px;
 }
 
 .avatar {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 4px solid white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e6f7ff;
+  margin: 30px 40px;
+  cursor: pointer;
 }
-
-.avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.header-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 8px;
 }
 
 .edit-btn {
-  background-color: #6c63ff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 8px 15px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s;
+  width: 140px;
+  margin-left: auto;
 }
 
-.edit-btn:hover {
-  background-color: #5a4bcf;
+/* 头像右侧姓名与摘要样式 */
+.profile-title {
+  margin-top: 5px;
 }
-
-.profile-intro {
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #e9ecef;
+.profile-name {
+  margin: 0;
+  color: #409eff;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.2;
 }
-
-.profile-intro h3 {
+.basic-meta {
+  margin: 4px 0 8px;
+  color: var(--el-text-color-secondary);
   font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: #333;
 }
 
-.profile-intro p {
-  color: #6c757d;
-  line-height: 1.6;
-}
-
-.profile-details {
-  margin-top: 20px;
-}
-
-.detail-row {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 15px;
-}
-
-.detail-item {
-  flex: 1;
-  min-width: 200px;
-  margin-right: 15px;
-  margin-bottom: 15px;
-}
-
-.detail-label {
+/* 个人简介样式 */
+.profile-intro {
+  margin: 16px 0;
+  line-height: 1.8;
   font-size: 14px;
-  color: #6c757d;
-  margin-bottom: 5px;
+}
+.summary-descriptions {
+  margin-top: 4px;
+}
+/* 摘要与详细信息排版优化 */
+
+.details-descriptions {
+  margin-top: 12px;
 }
 
 .detail-value {
   font-size: 14px;
-  color: #333;
-  font-weight: 500;
 }
-
-/* 编辑模式 */
-.edit-card {
-  border: 1px solid #e6e3ff;
+/* 编辑模式样式 */
+.avatar-form-item {
+  margin-bottom: 24px;
 }
-
-.avatar-preview {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px dashed #6c63ff;
-  margin-right: 20px;
+.upload-avatar {
   position: relative;
+  overflow: hidden;
 }
-
-.avatar-preview img {
+.avatar-upload-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+  cursor: pointer;
 }
-
-
-.avatar-placeholder i {
+.upload-avatar:hover .avatar-upload-mask {
+  opacity: 1;
+}
+.upload-icon {
+  color: #fff;
   font-size: 24px;
-  margin-bottom: 5px;
 }
 
-.avatar-info {
-  flex: 1;
+/* 表单网格样式 */
+.form-grid {
+  margin-bottom: 24px;
 }
 
-.avatar-info p {
-  font-size: 12px;
-  color: #6c757d;
-  margin-bottom: 10px;
-}
-
-
-
-
-
-
+/* 表单操作按钮样式 */
 .form-actions {
   display: flex;
   justify-content: flex-end;
-  margin-top: 30px;
+  margin-top: 16px;
 }
-
-
-/* 账号安全标签页 */
-.security-card {
-  border: 1px solid #e9ecef;
-}
-
-.security-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 0;
-  border-bottom: 1px solid #f1f3f5;
-}
-
-.security-item:last-child {
-  border-bottom: none;
-}
-
-.security-info {
-  flex: 1;
-}
-
-.security-title {
-  font-size: 16px;
-  font-weight: 500;
-  color: #333;
-  margin-bottom: 5px;
-}
-
-.security-desc {
-  font-size: 14px;
-  color: #6c757d;
-}
-
-.separator {
-  margin: 0 10px;
-  color: #adb5bd;
-}
-
+/* 账号安全样式 */
 .security-actions {
   display: flex;
-  align-items: center;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+.security-tab :deep(.el-divider__text) {
+  font-weight: 600;
 }
 
-.action-btn {
-  background-color: #f8f9ff;
-  color: #6c63ff;
-  border: 1px solid #6c63ff;
-  border-radius: 6px;
-  padding: 6px 12px;
-  cursor: pointer;
-  font-size: 14px;
-  margin-left: 0;
-  margin-right: 15px;
-  transition: background-color 0.3s;
+/* 登录日志样式 */
+.login-log-tab {
+  margin-top: 8px;
 }
 
-.action-btn:hover {
-  background-color: #e6e3ff;
+/* 两步验证对话框辅助样式 */
+.twofactor-dst :deep(.el-descriptions__label) {
+  color: var(--el-text-color-secondary);
 }
-
-
-
-
-
-
-/* 登录日志标签页 */
-.login-log-card {
-  border: 1px solid #e9ecef;
-}
-
-.record-count {
-  font-size: 14px;
-  color: #6c757d;
-}
-
-.table-container {
-  overflow-x: auto;
-}
-
-
-
-.login-log-table th,
-.login-log-table td {
-  padding: 12px 15px;
-  text-align: left;
-  font-size: 14px;
-}
-
-.login-log-table th {
-  background-color: #f8f9ff;
-  color: #6c63ff;
-  font-weight: 500;
-}
-
-.login-log-table tbody tr {
-  border-bottom: 1px solid #f1f3f5;
-}
-
-.login-log-table tbody tr:last-child {
-  border-bottom: none;
-}
-
-.load-more {
-  text-align: center;
-  padding: 15px 0;
-}
-
-.load-more-btn {
-  background-color: #f8f9ff;
-  color: #6c63ff;
-  border: 1px solid #6c63ff;
-  border-radius: 6px;
-  padding: 8px 20px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s;
-}
-
-.load-more-btn:hover {
-  background-color: #e6e3ff;
-}
-
-/* 底部版权区 */
-.footer {
-  background-color: #f8f9fa;
-  border-top: 1px solid #e9ecef;
-  padding: 20px;
-  margin-top: auto;
-}
-
-.footer-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.copyright p {
-  font-size: 14px;
-  color: #6c757d;
-}
-
-.footer-links {
-  display: flex;
-  gap: 20px;
-}
-
-.footer-links a {
-  font-size: 14px;
-  color: #6c63ff;
-  text-decoration: none;
-}
-
-.footer-links a:hover {
-  text-decoration: underline;
-}
-
-.contact {
-  display: flex;
-  align-items: center;
-}
-
-.qrcode {
-  text-align: center;
-}
-
-.qrcode img {
-  width: 80px;
-  height: 80px;
-  margin-bottom: 5px;
-}
-
-.qrcode p {
-  font-size: 12px;
-  color: #6c757d;
+.twofactor-dst :deep(.el-descriptions__cell) {
+  padding: 4px 0;
 }
 </style>

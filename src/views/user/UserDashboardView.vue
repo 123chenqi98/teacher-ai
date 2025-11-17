@@ -9,23 +9,15 @@ import CollectionOverviewComponents from "@/components/user/userDashboardCompone
 import TodoListComponents from "@/components/user/userDashboardComponents/TodoListComponents.vue";
 import TrendChartComponents from "@/components/user/userDashboardComponents/TrendChartComponents.vue";
 import "@/assets/user/UserOverallCss.css"
-import { ref } from "vue";
-// 定义当前标题（默认“个人概览”）
-const currentTitle = ref("个人概览");
-
-// 接收左侧导航的切换事件，更新标题
-const handleNavChange = (title: string) => {
-  currentTitle.value = title;
-};
 </script>
 
 <template>
   <div class="teacher-dashboard">
     <!-- 左侧导航栏-->
-    <LeftNavigationComponents  @change-nav="handleNavChange" />
+    <LeftNavigationComponents />
     <main class="main-content">
       <!-- 顶部导航栏 -->
-      <TopNavigationComponents :nav-title="currentTitle" />
+      <TopNavigationComponents />
       <div class="content-area">
         <!-- 教师效能仪表盘组件 -->
         <performance-dashboard-components/>

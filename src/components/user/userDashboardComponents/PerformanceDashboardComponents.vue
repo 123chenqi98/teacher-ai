@@ -5,10 +5,18 @@ import {ElAvatar, ElButton, ElCard, ElCol, ElIcon, ElRow, ElText} from "element-
 </script>
 
 <template>
+  <!-- 页面标题 -->
+  <div class="page-title">
+    <h1 class="el-title el-title--large">个人概览</h1>
+    <p class="el-text el-text--secondary">涵盖个人信息概览、数据和收藏概览及使用趋势等核心内容。</p>
+  </div>
+
+  <el-divider /> <!-- 小写短横线形式 -->
+
   <!-- 教师效能仪表盘 -->
   <el-card shadow="hover" class="teacher-profile-card" :border="false">
     <!-- 教师基本信息区域 -->
-    <!-- :gutter="20":表示子元素之间的间距为 20px。-->
+    <!-- :gutter="20":表示子元素之间的间距为 20px-->
     <el-row :gutter="20" align="middle" class="teacher-info">
       <!-- 头像 -->
       <el-col :span="3">
