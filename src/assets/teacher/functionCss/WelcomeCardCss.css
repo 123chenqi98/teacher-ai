@@ -1,0 +1,59 @@
+/* 欢迎容器样式 */
+.function-welcome-container {
+    margin-top: 0; /* 上外边距为0px */
+    padding: 5px; /* 内边距为25px */
+    background-color: #efedf3; /* 背景颜色为白色 */
+    width: 100%;
+    flex: 1;
+}
+
+/* 欢迎卡片样式 */
+.welcome-card {
+    background: linear-gradient(135deg, #992ada 0%, #072455 100%);
+    /* 背景为135度的渐变，从淡紫色到深蓝色 */
+}
+
+/* 欢迎标题样式 */
+.welcome-title {
+    margin: 0 0 1px 0; /* 外边距：上0 右0 下1px 左0 */
+    font-size: 28px; /* 字体大小为28px */
+    font-weight: 600; /* 字体粗细为600（半粗体） */
+    color: #f3e7e7; /* 字体颜色为白色 */
+}
+
+/* 欢迎副标题样式 */
+.welcome-subtitle {
+    display: block; /* 显示方式为块级元素 */
+    margin-top: 10px; /* 上外边距为20px */
+    margin-bottom: 20px; /* 下外边距为20px */
+    font-size: 15px;/*字体大小15px */
+    color: #a8a1a1;/*字体颜色为淡灰色 */
+}
+
+/* 快速开始按钮样式 */
+.btn-quick-start {
+    background-color: white; /* 背景颜色为白色 */
+    color: #6b4a9e; /* 字体颜色为深紫色 */
+    border: none; /* 移除边框 */
+    text-decoration: none; /* 移除文本装饰（下划线） */
+}
+
+/* 快速开始按钮悬停状态 */
+.btn-quick-start:hover {
+    background-color: #f5f5f5; /* 悬停时背景颜色为浅灰色 */
+    color: #6b4a9e ; /* 悬停时字体颜色保持深紫色 */
+}
+
+/* 观看教程按钮样式 */
+.btn-tutorial {
+    background-color: transparent ; /* 背景为透明 */
+    color: white ; /* 字体颜色为白色 */
+    border: 1px solid white ; /* 边框为1px白色实线 */
+    text-decoration: none ; /* 移除文本装饰（下划线） */
+}
+
+/* 观看教程按钮悬停状态 */
+.btn-tutorial:hover {
+    background-color: rgba(255, 255, 255, 0.1) ; /* 悬停时背景为半透明白色 */
+    color: white ; /* 悬停时字体颜色保持白色 */
+}
