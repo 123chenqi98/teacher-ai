@@ -3,29 +3,15 @@ import { userInfo, editFormRef, isSubmitting, activeTab, isEditing, toggleEditMo
 import { formRules, handleAvatarUpload, handleSubmit, handleCancel } from "@/forms/user/userProfileForms/PersonalInformationForms.ts";
 import "@/assets/user/userProfileCss/PersonalInformationCss.css"
 // 导入 Element Plus 图标
-import { User, Lock, Clock, Edit, UploadFilled, Close, Check } from "@element-plus/icons-vue";
+import { Edit, UploadFilled, Close, Check } from "@element-plus/icons-vue";
 </script>
 
 <template>
-  <!-- 页面标题 -->
-  <div class="page-title">
-    <h1 class="el-title el-title--large">基本信息</h1>
-    <p class="el-text el-text--secondary">管理您的个人信息、账号安全及隐私设置</p>
-  </div>
-
-  <el-divider /> <!-- 小写短横线形式 -->
-
   <!-- 合并容器：将标签导航移入卡片顶部，内容按 activeTab 切换 -->
   <div class="profile-tab">
-    <!-- 查看模式（头像右侧展示摘要信息，下方为简介与详细信息） -->
-    <el-card shadow="hover" class="profile-card" v-if="!isEditing">
-      <el-tabs v-model="activeTab" class="tabs-inside" type="card">
-        <el-tab-pane label="个人资料" name="profile" :icon="User" />
-        <el-tab-pane label="账号安全" name="security" :icon="Lock" />
-        <el-tab-pane label="登录日志" name="login-log" :icon="Clock" />
-      </el-tabs>
-
-      <div v-if="activeTab === 'profile'">
+    <!-- 查看模式（仅在 activeTab 为个人资料时展示内容，由父级卡片承载容器） -->
+    <div v-if="activeTab === 'profile' && !isEditing" class="profile-card">
+      <div>
         <!-- 头部：头像 + 摘要信息 + 编辑按钮 -->
         <el-row :gutter="20" class="profile-header">
           <el-col :span="3">
@@ -66,16 +52,11 @@ import { User, Lock, Clock, Edit, UploadFilled, Close, Check } from "@element-pl
           <el-descriptions-item label="学历"><el-text class="detail-value">{{ userInfo.educationBackground }}</el-text></el-descriptions-item>
         </el-descriptions>
       </div>
-    </el-card>
+    </div>
 
-    <!-- 编辑模式（el-form 组件） -->
-    <el-card shadow="hover" class="profile-card" v-else>
-      <el-tabs v-model="activeTab" class="tabs-inside" type="card">
-        <el-tab-pane label="个人资料" name="profile" :icon="User" />
-        <el-tab-pane label="账号安全" name="security" :icon="Lock" />
-        <el-tab-pane label="登录日志" name="login-log" :icon="Clock" />
-      </el-tabs>
-      <div v-if="activeTab === 'profile'">
+    <!-- 编辑模式（由父级卡片承载容器） -->
+    <div v-else-if="activeTab === 'profile' && isEditing" class="profile-card">
+      <div>
         <el-form :model="userInfo" :rules="formRules" ref="editFormRef" label-width="100px" :label-suffix="''">
           <!-- 头像上传区域 -->
           <el-form-item label="头像" class="avatar-form-item">
@@ -169,7 +150,7 @@ import { User, Lock, Clock, Edit, UploadFilled, Close, Check } from "@element-pl
           </el-space>
         </el-form>
       </div>
-    </el-card>
+    </div>
   </div>
 </template>
 

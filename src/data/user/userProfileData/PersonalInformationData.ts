@@ -1,5 +1,27 @@
-import { ref } from "vue";
+import { ref, computed } from "vue";
+const headerTitle = computed(() => {
+    switch (activeTab.value) {
+        case "security":
+            return "账号安全";
+        case "login-log":
+            return "登录日志";
+        case "profile":
+        default:
+            return "基本信息";
+    }
+});
 
+const headerSubtitle = computed(() => {
+    switch (activeTab.value) {
+        case "security":
+            return "管理账号安全设置与两步验证";
+        case "login-log":
+            return "查看最近登录活动与设备";
+        case "profile":
+        default:
+            return "管理您的个人信息、账号安全及隐私设置";
+    }
+});
 // 定义用户信息接口（规范数据类型）
 interface UserInfo {
     avatar: string;
@@ -53,4 +75,4 @@ const toggleEditMode = () => {
     isEditing.value = !isEditing.value;
 };
 
-export { userInfo, editFormRef, isSubmitting, activeTab, isEditing, toggleEditMode, type UserInfo };
+export { headerTitle, headerSubtitle, userInfo, editFormRef, isSubmitting, activeTab, isEditing, toggleEditMode, type UserInfo };
