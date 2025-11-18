@@ -44,15 +44,5 @@ import "@/assets/user/UserOverallCss.css"
 </template>
 
 <style scoped>
-.profile-card-container :deep(.el-card__header) {
-  padding: 0;
-  border-bottom: none; /* 移除卡片头部底部边线 */
-}
-.tabs-inside {
-  margin: 0;
-}
-/* 移除卡片样式下的 tabs 组件下边线（card 类型）*/
-.profile-card-container :deep(.el-tabs--card .el-tabs__header) {
-  border-bottom: none;
-}
+
 </style>
