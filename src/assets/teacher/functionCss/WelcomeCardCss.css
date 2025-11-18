@@ -2,7 +2,8 @@
 .function-welcome-container {
     margin-top: 0; /* 上外边距为0px */
     padding: 5px; /* 内边距为25px */
-    background-color: #efedf3; /* 背景颜色为白色 */
+    background: linear-gradient(135deg, rgb(180, 140, 229), rgb(219, 172, 255));
+    /*引用HomePageCss.css背景颜色*/
     width: 100%;
     flex: 1;
 }
