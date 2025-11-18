@@ -12,10 +12,4 @@ export const teacherRouters = [
         name: 'function',
         component:() =>import("@/views/teacher/FunctionSelectionView.vue")
     },
-    {
-        //测试页面
-        path: '/teacher/test',
-        name: 'test',
-        component:() =>import("@/views/teacher/test.vue")
-    }
 ]
