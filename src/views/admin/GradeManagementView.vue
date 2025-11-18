@@ -2,6 +2,7 @@
 
 <script setup lang="ts">
 import '@/components/admin/GradeList/GradeListComponents.vue'
+import GradeListComponents from "@/components/admin/GradeList/GradeListComponents.vue";
 
 </script>
 

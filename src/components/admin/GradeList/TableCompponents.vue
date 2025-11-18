@@ -69,10 +69,10 @@ const handleDelete = (row: any) => {
       <el-table-column label="操作" width="288" align="center">
         <!-- 操作按钮 -->
         <template #default="scope">
-          <el-button class="edit-button" size="small" @click="handleEdit(scope.row)">
+          <el-button class="edit-button" size="small" @click="handleEdit(scope)">
             编辑
           </el-button>
-          <el-button class="delete-button" size="small" @click="handleDelete(scope.row)">
+          <el-button class="delete-button" size="small" @click="handleDelete(scope)">
             删除
           </el-button>
         </template>

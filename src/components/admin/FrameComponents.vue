@@ -1,7 +1,7 @@
 <!-- 通用组件：侧边栏+页头 -->
 <script setup lang="ts">
 // 导入图标组件
-import { Search, User } from '@element-plus/icons-vue'
+import {Calendar, Collection, Document, Grid, Search, User} from '@element-plus/icons-vue'
 //导入FrameCss样式
 import '@/assets/admin/FrameCss.css'
 </script>
@@ -16,19 +16,19 @@ import '@/assets/admin/FrameCss.css'
             router
           >
             <el-menu-item index="/grade">
-                <el-icon><i-ep-grid /></el-icon>
+                <el-icon><grid /></el-icon>
                 <span>年级管理</span>
             </el-menu-item>
             <el-menu-item index="/subject">
-                <el-icon><i-ep-document /></el-icon>
+                <el-icon><document /></el-icon>
                 <span>科目管理</span>
             </el-menu-item>
             <el-menu-item index="/semester">
-                <el-icon><i-ep-calendar /></el-icon>
+                <el-icon><calendar /></el-icon>
                 <span>学期管理</span>
             </el-menu-item>
             <el-menu-item index="/syllabas">
-                <el-icon><i-ep-collection /></el-icon>
+                <el-icon><collection /></el-icon>
                 <span>大纲管理</span>
             </el-menu-item>
           </el-menu>

@@ -7,3 +7,4 @@ export const gradeRouters = [
         component:()=>import('@/views/admin/GradeManagementView.vue'),
     }
 ]
+// 路由统一封装，不是每个页面一个路由文件
