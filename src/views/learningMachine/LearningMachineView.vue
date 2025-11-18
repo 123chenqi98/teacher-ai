@@ -6,7 +6,7 @@ import ProductIntroductionComponent from "@/components/learningMachine/home/Prod
 import ProductOverviewComponent from "@/components/learningMachine/home/ProductOverviewComponent.vue";
 import LearningResourcesComponent from "@/components/learningMachine/home/LearningResourcesComponent.vue";
 import CoreAlgorithmModelComponent from "@/components/learningMachine/home/CoreAlgorithmModelComponent.vue";
-
+import CustomerServiceComponent from "@/components/learningMachine/home/CustomerServiceComponent.vue";
 </script>
 
 <template>
@@ -17,6 +17,8 @@ import CoreAlgorithmModelComponent from "@/components/learningMachine/home/CoreA
     <div class="learning-machine-home-content">
       <!--侧边栏导航-->
       <learning-machine-side-navigation-component/>
+      <!-- 客服悬浮按钮：固定在页面右侧 -->
+      <customer-service-component/>
       <!--内容展示-->
       <div class="learning-machine-home-products-box" >
         <!--产品概况-->

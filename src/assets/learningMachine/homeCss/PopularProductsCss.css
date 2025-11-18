@@ -88,22 +88,26 @@
     max-width: 500px;
 }
 
-/* 按钮样式 */
+/* 按钮样式 - 默认灰色状态（图1） */
 .product-btn {
     padding: 12px 30px;
-    background-color: rgba(154, 120, 206, 0.15);
-    color: #000;
+    background-color: #6c757d;
+    color: #ffffff;
     font-size: 1.1rem;
+    font-weight: 600;
     border-radius: 24px;
     cursor: pointer;
     transition: all 0.3s ease;
-    border: none; /* 合并重复border（原代码重复定义border） */
+    border: none;
+    white-space: nowrap;
 }
 
+/* 按钮悬停效果 - 红色状态（图2） */
 .product-btn:hover {
-    background-color: rgba(154, 120, 206, 0.3);
-    border-color: rgba(0, 0, 0, 0.1);
+    background-color: #af0b0b !important;
+    color: #ffffff !important;
     transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(175, 11, 11, 0.3);
 }
 
 /* 图片区域 */
