@@ -1,0 +1,94 @@
+/* AI创意教学容器*/
+.ai-creative-container {
+    margin-top: 30px;        /* 上方外边距 */
+    padding: 25px;           /* 内边距 */
+    background-color: #b196e2; /* 背景颜色：紫色背景 */
+}
+
+/* 卡片网格布局 */
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);    /* 四列等宽布局 */
+    gap: 15px;                                 /* 卡片间距：相邻卡片之间的距离 */
+}
+
+/* 单个工具卡片 */
+.tool-card {
+    border-radius: 12px;     /* 圆角 */
+    padding: 20px;           /* 内边距 */
+    display: flex;
+    flex-direction: column;   /* 纵向排列 */
+    align-items: center;      /* 项目居中对齐 */
+    gap: 12px;               /* 子元素之间的间距 */
+    transition: all 0.3s ease; /* 过渡效果：所有属性在0.3秒内平滑变化 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 阴影：轻微的投影阴影 */
+}
+
+/* 工具卡片悬停效果：鼠标悬停时的交互效果 */
+.tool-card:hover {
+    transform: translateY(-5px);              /* 向上移动5像素 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* 增强阴影效果 */
+}
+
+/* 圆形icon包装器：包含工具图标的圆形容器 */
+.icon-wrapper {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;       /* 圆角：50%使其成为完整圆形 */
+    display: flex;            /* 用于居中图标 */
+    align-items: center;      /* 垂直居中 */
+    justify-content: center;  /* 水平居中 */
+    overflow: hidden;         /* 超出部分隐藏：确保圆形内容不超出 */
+}
+
+/* 工具icon样式：工具的图标图片 */
+.tool-icon {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;       /* 填充方式：保持宽高比并填充容器 */
+}
+
+/* 工具内容区域样式：包含标题、描述和链接的区域 */
+.tool-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;   /* 纵向排列 */
+    gap: 8px;                /* 间距 */
+}
+
+/* 工具标题样式：工具名称的样式 */
+.tool-title {
+    font-size: 15px;         /* 字体大小 */
+    font-weight: bold;       /* 字体粗细 */
+    color: #40389e;          /* 深紫色 */
+    margin: 0;               /* 重置外边距 */
+    line-height: 1.3;        /* 1.3倍的字体大小 */
+}
+
+/* 工具描述样式：工具功能描述文本 */
+.tool-description {
+    font-size: 12px;         /* 字体大小 */
+    color: #666;             /* 深灰色 */
+    margin: 0;               /* 重置外边距 */
+    line-height: 1.4;        /* 1.4倍的字体大小 */
+    display: -webkit-box;    /* 用于WebKit浏览器的多行文本省略 */
+    -webkit-line-clamp: 2;   /* 限制文本显示行数：最多显示2行 */
+    -webkit-box-orient: vertical; /* 文本纵向排列 */
+    overflow: hidden;        /* 超出部分隐藏 */
+}
+
+/* 立即使用链接样式：操作链接的样式 */
+.use-link {
+    font-size: 12px;         /* 字体大小 */
+    color: #7209b7;          /* 紫色 */
+    text-decoration: none;   /* 无下划线 */
+    font-weight: 500;        /* 中等粗细 */
+    transition: all 0.3s ease; /* 过渡效果：平滑变化 */
+    margin-top: 4px;         /* 上外边距 */
+}
+
+/* 立即使用链接悬停效果：鼠标悬停时的样式 */
+.use-link:hover {
+    color: #9d4edd;          /* 颜色变化：更浅的紫色 */
+    text-decoration: underline; /* 显示下划线 */
+}
