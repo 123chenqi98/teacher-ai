@@ -488,887 +488,877 @@ export default {
 };
 </script>
 
-<style scoped>
-/* 基础样式 */
-.message-center-v2 {
-  display: flex;
-  min-height: 100vh;
-}
-
-/* 左侧导航栏样式 */
-.sidebar {
-  width: 240px;
-  background-color: #5a2ca0;
-  color: white;
-  padding: 20px 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  padding: 0 20px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  margin-bottom: 20px;
-}
-
-.logo i {
-  font-size: 24px;
-  margin-right: 10px;
-}
-
-.logo span {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.nav-menu ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.nav-item {
-  display: flex;
-  align-items: center;
-  padding: 12px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.nav-item:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.nav-item.active {
-  background-color: rgba(255, 255, 255, 0.2);
-  border-left: 4px solid white;
-}
-
-.nav-item i {
-  font-size: 18px;
-  margin-right: 10px;
-  width: 20px;
-  text-align: center;
-}
-
-.nav-item span {
-  font-size: 14px;
-}
-
-/* 右侧主内容区样式 */
-.main-content {
-  flex: 1;
-  background-color: #f5f7fa;
-  display: flex;
-  flex-direction: column;
-}
-
-/* 顶部导航栏样式 */
-.top-nav {
-  height: 60px;
-  background-color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.search-box {
-  display: flex;
-  align-items: center;
-  background-color: #f5f7fa;
-  border-radius: 20px;
-  padding: 0 15px;
-  width: 300px;
-}
-
-.search-box i {
-  color: #999;
-  margin-right: 10px;
-}
-
-.search-box input {
-  border: none;
-  background: transparent;
-  outline: none;
-  flex: 1;
-  height: 36px;
-}
-
-.user-actions {
-  display: flex;
-  align-items: center;
-}
-
-.action-btn {
-  background: none;
-  border: none;
-  color: #666;
-  font-size: 18px;
-  margin-left: 15px;
-  cursor: pointer;
-  position: relative;
-}
-
-.badge {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  background-color: #f5222d;
-  color: white;
-  border-radius: 50%;
-  width: 18px;
-  height: 18px;
-  font-size: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.user-profile {
-  display: flex;
-  align-items: center;
-  margin-left: 20px;
-}
-
-.user-profile img {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-right: 10px;
-}
-
-.user-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.user-name {
-  font-size: 14px;
-  font-weight: bold;
-  color: #333;
-}
-
-.user-role {
-  font-size: 12px;
-  color: #999;
-}
-
-/* 内容区域样式 */
-.content-area {
-  flex: 1;
-  padding: 20px;
-  overflow-y: auto;
-}
-
-/* 页面标题样式 */
-.page-title {
-  margin-bottom: 20px;
-}
-
-.page-title h1 {
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-}
-
-/* 顶部数据概览卡片区样式 */
-.stats-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
-.stat-card {
-  background-color: #f0e6ff;
-  border-radius: 8px;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.stat-value {
-  font-size: 24px;
-  font-weight: bold;
-  color: #5a2ca0;
-  margin-bottom: 5px;
-}
-
-.stat-label {
-  font-size: 14px;
-  color: #666;
-}
-
-/* 标签页与搜索区样式 */
-.tabs-search-bar {
-  background-color: white;
-  border-radius: 8px;
-  padding: 15px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-  margin-bottom: 20px;
-}
-
-.tab-navigation {
-  margin-bottom: 15px;
-}
-
-.tabs {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  border-bottom: 1px solid #eee;
-}
-
-.tab-item {
-  margin-right: 20px;
-  position: relative;
-  cursor: pointer;
-}
-
-.tab-item span {
-  font-size: 14px;
-  color: #666;
-  padding: 10px 0;
-  display: inline-block;
-}
-
-.tab-item.active span {
-  color: #5a2ca0;
-  font-weight: bold;
-}
-
-.tab-indicator {
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: #5a2ca0;
-  transform: scaleX(0);
-  transition: transform 0.3s;
-}
-
-.tab-item.active .tab-indicator {
-  transform: scaleX(1);
-}
-
-.search-actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.search-container {
-  display: flex;
-  align-items: center;
-  background-color: #f5f7fa;
-  border-radius: 20px;
-  padding: 0 15px;
-  width: 350px;
-}
-
-.search-icon {
-  color: #999;
-  margin-right: 10px;
-}
-
-.search-input {
-  border: none;
-  background: transparent;
-  outline: none;
-  flex: 1;
-  height: 36px;
-  font-size: 14px;
-}
-
-.action-controls {
-  display: flex;
-  align-items: center;
-}
-
-.filter-select {
-  padding: 8px 15px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  margin-right: 10px;
-  font-size: 14px;
-  color: #666;
-  outline: none;
-}
-
-/* 按钮样式 */
-.btn {
-  padding: 8px 15px;
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s;
-  display: flex;
-  align-items: center;
-}
-
-.btn i {
-  margin-right: 5px;
-}
-
-.primary-btn {
-  background-color: #5a2ca0;
-  color: white;
-  border: none;
-}
-
-.primary-btn:hover {
-  background-color: #4a2486;
-}
-
-.secondary-btn {
-  background-color: #f5f7fa;
-  color: #666;
-  border: 1px solid #ddd;
-}
-
-.secondary-btn:hover {
-  background-color: #eee;
-}
-
-.delete-selected-btn {
-  margin-right: 10px;
-}
-
-/* 消息列表和聊天窗口区域样式 */
-.messages-container {
-  display: flex;
-  height: calc(100vh - 240px);
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-}
-
-.messages-container.chat-open .messages-list-container {
-  width: 40%;
-}
-
-.messages-container.chat-open .chat-window {
-  width: 60%;
-  display: flex;
-}
-
-.messages-list-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  transition: width 0.3s;
-}
-
-.messages-list {
-  flex: 1;
-  overflow-y: auto;
-  padding: 10px;
-}
-
-.message-item {
-  display: flex;
-  align-items: flex-start;
-  padding: 10px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin-bottom: 5px;
-}
-
-.message-item:hover {
-  background-color: #f5f7fa;
-}
-
-.message-item.unread {
-  background-color: #f9f0ff;
-  border-left: 3px solid #5a2ca0;
-}
-
-.message-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-right: 10px;
-  flex-shrink: 0;
-}
-
-.message-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.message-content {
-  flex: 1;
-  min-width: 0;
-}
-
-.message-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 5px;
-}
-
-.message-sender {
-  font-size: 14px;
-  font-weight: bold;
-  color: #333;
-}
-
-.message-time {
-  font-size: 12px;
-  color: #999;
-  white-space: nowrap;
-}
-
-.message-text {
-  font-size: 14px;
-  color: #666;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin-bottom: 5px;
-}
-
-.message-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-}
-
-.tag {
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 12px;
-}
-
-.tag.private {
-  background-color: #e6f7ff;
-  color: #1890ff;
-}
-
-.tag.comment {
-  background-color: #fff7e6;
-  color: #faad14;
-}
-
-.tag.mention {
-  background-color: #f6ffed;
-  color: #52c41a;
-}
-
-.message-status {
-  display: flex;
-  align-items: center;
-  margin-left: 10px;
-}
-
-.unread-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: #5a2ca0;
-}
-
-/* 聊天窗口区域样式 */
-.chat-window {
-  display: none;
-  flex-direction: column;
-  border-left: 1px solid #eee;
-  transition: width 0.3s;
-}
-
-.chat-header {
-  padding: 15px;
-  border-bottom: 1px solid #eee;
-  display: flex;
-  align-items: center;
-}
-
-.back-btn {
-  background: none;
-  border: none;
-  color: #5a2ca0;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  margin-right: 15px;
-  cursor: pointer;
-}
-
-.back-btn i {
-  margin-right: 5px;
-}
-
-.chat-contact {
-  display: flex;
-  align-items: center;
-  flex: 1;
-}
-
-.contact-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-right: 10px;
-}
-
-.contact-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.contact-info {
-  min-width: 0;
-}
-
-.contact-name {
-  font-size: 16px;
-  font-weight: bold;
-  color: #333;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.contact-status {
-  font-size: 12px;
-  color: #52c41a;
-}
-
-.chat-actions {
-  display: flex;
-  align-items: center;
-}
-
-.chat-actions .action-btn {
-  margin-left: 10px;
-  color: #666;
-}
-
-.chat-messages {
-  flex: 1;
-  padding: 20px;
-  overflow-y: auto;
-  background-color: #f9f9f9;
-}
-
-.message {
-  margin-bottom: 15px;
-  display: flex;
-  max-width: 80%;
-}
-
-.message.received {
-  align-self: flex-start;
-}
-
-.message.sent {
-  align-self: flex-end;
-}
-
-.message-content {
-  padding: 10px 15px;
-  border-radius: 18px;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.message.received .message-content {
-  background-color: #e5e5ea;
-  color: #000;
-  border-bottom-left-radius: 5px;
-}
-
-.message.sent .message-content {
-  background-color: #5a2ca0;
-  color: white;
-  border-bottom-right-radius: 5px;
-}
-
-.message-time {
-  font-size: 12px;
-  color: #999;
-  margin-top: 5px;
-}
-
-.message.received .message-time {
-  margin-left: 15px;
-}
-
-.message.sent .message-time {
-  margin-right: 15px;
-  text-align: right;
-}
-
-.chat-input {
-  padding: 15px;
-  border-top: 1px solid #eee;
-  display: flex;
-  align-items: center;
-  background-color: white;
-}
-
-.input-container {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  background-color: #f5f7fa;
-  border-radius: 20px;
-  padding: 0 15px;
-  height: 40px;
-}
-
-.emoji-btn, .attach-btn {
-  background: none;
-  border: none;
-  color: #666;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-.message-input {
-  flex: 1;
-  border: none;
-  background: transparent;
-  outline: none;
-  height: 100%;
-  font-size: 14px;
-  margin: 0 10px;
-}
-
-.send-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #5a2ca0;
-  color: white;
-  border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 15px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.send-btn:hover {
-  background-color: #4a2486;
-}
-
-/* 分页组件样式 */
-.pagination-container {
-  padding: 15px;
-  border-top: 1px solid #eee;
-  display: flex;
-  justify-content: center;
-}
-
-.pagination {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.pagination-item {
-  margin: 0 5px;
-  width: 36px;
-  height: 36px;
-  border-radius: 4px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.pagination-item:hover:not(.disabled) {
-  background-color: #f5f7fa;
-  color: #5a2ca0;
-}
-
-.pagination-item.active {
-  background-color: #5a2ca0;
-  color: white;
-}
-
-.pagination-item.disabled {
-  color: #ccc;
-  cursor: not-allowed;
-}
-
-.pagination-item i {
-  font-size: 16px;
-}
-
-/* 新消息弹窗样式 */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modal-content {
-  background-color: white;
-  border-radius: 8px;
-  width: 500px;
-  max-width: 90%;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.modal-header {
-  padding: 15px 20px;
-  border-bottom: 1px solid #f5f7fa;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.modal-title {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-}
-
-.close-btn {
-  background: none;
-  border: none;
-  color: #666;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-.modal-body {
-  padding: 20px;
-}
-
-.message-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-label {
-  display: block;
-  margin-bottom: 5px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #333;
-}
-
-.recipient-search {
-  display: flex;
-  align-items: center;
-  background-color: #f5f7fa;
-  border-radius: 20px;
-  padding: 0 15px;
-  height: 36px;
-  margin-bottom: 10px;
-}
-
-.recipient-search i {
-  color: #999;
-  margin-right: 10px;
-}
-
-.form-input,
-.form-textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 14px;
-  color: #333;
-  outline: none;
-}
-
-.form-input:focus,
-.form-textarea:focus {
-  border-color: #5a2ca0;
-}
-
-.recipient-list {
-  max-height: 150px;
-  overflow-y: auto;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 5px;
-}
-
-.recipient-item {
-  display: flex;
-  align-items: center;
-  padding: 8px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.recipient-item:hover {
-  background-color: #f5f7fa;
-}
-
-.recipient-item img {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-right: 10px;
-}
-
-.form-textarea {
-  min-height: 150px;
-  resize: vertical;
-}
-
-.modal-footer {
-  padding: 15px 20px;
-  border-top: 1px solid #f5f7fa;
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-}
-
-.cancel-btn {
-  margin-right: 10px;
-}
-
-.send-message-btn {
-  background-color: #5a2ca0;
-  color: white;
-}
-
-.send-message-btn:hover {
-  background-color: #4a2486;
-}
-</style>
+<!--<style scoped>-->
+<!--/* 基础样式 */-->
+<!--.message-center-v2 {-->
+<!--  display: flex;-->
+<!--  min-height: 100vh;-->
+<!--}-->
+
+<!--/* 左侧导航栏样式 */-->
+<!--.sidebar {-->
+<!--  width: 240px;-->
+<!--  background-color: #5a2ca0;-->
+<!--  color: white;-->
+<!--  padding: 20px 0;-->
+<!--  display: flex;-->
+<!--  flex-direction: column;-->
+<!--}-->
+
+<!--.logo {-->
+<!--  display: flex;-->
+<!--  align-items: center;-->
+<!--  padding: 0 20px 20px;-->
+<!--  border-bottom: 1px solid rgba(255, 255, 255, 0.1);-->
+<!--  margin-bottom: 20px;-->
+<!--}-->
+
+<!--.logo i {-->
+<!--  font-size: 24px;-->
+<!--  margin-right: 10px;-->
+<!--}-->
+
+<!--.logo span {-->
+<!--  font-size: 18px;-->
+<!--  font-weight: bold;-->
+<!--}-->
+
+<!--.nav-menu ul {-->
+<!--  list-style: none;-->
+<!--  padding: 0;-->
+<!--  margin: 0;-->
+<!--}-->
+
+<!--.nav-item {-->
+<!--  display: flex;-->
+<!--  align-items: center;-->
+<!--  padding: 12px 20px;-->
+<!--  cursor: pointer;-->
+<!--  transition: background-color 0.3s;-->
+<!--}-->
+
+<!--.nav-item:hover {-->
+<!--  background-color: rgba(255, 255, 255, 0.1);-->
+<!--}-->
+
+<!--.nav-item.active {-->
+<!--  background-color: rgba(255, 255, 255, 0.2);-->
+<!--  border-left: 4px solid white;-->
+<!--}-->
+
+<!--.nav-item i {-->
+<!--  font-size: 18px;-->
+<!--  margin-right: 10px;-->
+<!--  width: 20px;-->
+<!--  text-align: center;-->
+<!--}-->
+
+<!--.nav-item span {-->
+<!--  font-size: 14px;-->
+<!--}-->
+
+<!--/* 右侧主内容区样式 */-->
+<!--.main-content {-->
+<!--  flex: 1;-->
+<!--  background-color: #f5f7fa;-->
+<!--  display: flex;-->
+<!--  flex-direction: column;-->
+<!--}-->
+
+
+<!--.search-box {-->
+<!--  display: flex;-->
+<!--  align-items: center;-->
+<!--  background-color: #f5f7fa;-->
+<!--  border-radius: 20px;-->
+<!--  padding: 0 15px;-->
+<!--  width: 300px;-->
+<!--}-->
+
+<!--.search-box i {-->
+<!--  color: #999;-->
+<!--  margin-right: 10px;-->
+<!--}-->
+
+<!--.search-box input {-->
+<!--  border: none;-->
+<!--  background: transparent;-->
+<!--  outline: none;-->
+<!--  flex: 1;-->
+<!--  height: 36px;-->
+<!--}-->
+
+<!--.user-actions {-->
+<!--  display: flex;-->
+<!--  align-items: center;-->
+<!--}-->
+
+<!--.action-btn {-->
+<!--  background: none;-->
+<!--  border: none;-->
+<!--  color: #666;-->
+<!--  font-size: 18px;-->
+<!--  margin-left: 15px;-->
+<!--  cursor: pointer;-->
+<!--  position: relative;-->
+<!--}-->
+
+<!--.badge {-->
+<!--  position: absolute;-->
+<!--  top: -5px;-->
+<!--  right: -5px;-->
+<!--  background-color: #f5222d;-->
+<!--  color: white;-->
+<!--  border-radius: 50%;-->
+<!--  width: 18px;-->
+<!--  height: 18px;-->
+<!--  font-size: 12px;-->
+<!--  display: flex;-->
+<!--  justify-content: center;-->
+<!--  align-items: center;-->
+<!--}-->
+
+<!--.user-profile {-->
+<!--  display: flex;-->
+<!--  align-items: center;-->
+<!--  margin-left: 20px;-->
+<!--}-->
+
+<!--.user-profile img {-->
+<!--  width: 36px;-->
+<!--  height: 36px;-->
+<!--  border-radius: 50%;-->
+<!--  object-fit: cover;-->
+<!--  margin-right: 10px;-->
+<!--}-->
+
+<!--.user-info {-->
+<!--  display: flex;-->
+<!--  flex-direction: column;-->
+<!--}-->
+
+<!--.user-name {-->
+<!--  font-size: 14px;-->
+<!--  font-weight: bold;-->
+<!--  color: #333;-->
+<!--}-->
+
+<!--.user-role {-->
+<!--  font-size: 12px;-->
+<!--  color: #999;-->
+<!--}-->
+
+<!--/* 内容区域样式 */-->
+<!--.content-area {-->
+<!--  flex: 1;-->
+<!--  padding: 20px;-->
+<!--  overflow-y: auto;-->
+<!--}-->
+
+<!--/* 页面标题样式 */-->
+<!--.page-title {-->
+<!--  margin-bottom: 20px;-->
+<!--}-->
+
+<!--.page-title h1 {-->
+<!--  font-size: 24px;-->
+<!--  font-weight: bold;-->
+<!--  color: #333;-->
+<!--}-->
+
+<!--/* 顶部数据概览卡片区样式 */-->
+<!--.stats-cards-grid {-->
+<!--  display: grid;-->
+<!--  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));-->
+<!--  gap: 15px;-->
+<!--  margin-bottom: 20px;-->
+<!--}-->
+
+<!--.stat-card {-->
+<!--  background-color: #f0e6ff;-->
+<!--  border-radius: 8px;-->
+<!--  padding: 15px;-->
+<!--  display: flex;-->
+<!--  flex-direction: column;-->
+<!--  align-items: center;-->
+<!--  justify-content: center;-->
+<!--  text-align: center;-->
+<!--}-->
+
+<!--.stat-value {-->
+<!--  font-size: 24px;-->
+<!--  font-weight: bold;-->
+<!--  color: #5a2ca0;-->
+<!--  margin-bottom: 5px;-->
+<!--}-->
+
+<!--.stat-label {-->
+<!--  font-size: 14px;-->
+<!--  color: #666;-->
+<!--}-->
+
+<!--/* 标签页与搜索区样式 */-->
+<!--.tabs-search-bar {-->
+<!--  background-color: white;-->
+<!--  border-radius: 8px;-->
+<!--  padding: 15px;-->
+<!--  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);-->
+<!--  margin-bottom: 20px;-->
+<!--}-->
+
+<!--.tab-navigation {-->
+<!--  margin-bottom: 15px;-->
+<!--}-->
+
+<!--.tabs {-->
+<!--  display: flex;-->
+<!--  list-style: none;-->
+<!--  padding: 0;-->
+<!--  margin: 0;-->
+<!--  border-bottom: 1px solid #eee;-->
+<!--}-->
+
+<!--.tab-item {-->
+<!--  margin-right: 20px;-->
+<!--  position: relative;-->
+<!--  cursor: pointer;-->
+<!--}-->
+
+<!--.tab-item span {-->
+<!--  font-size: 14px;-->
+<!--  color: #666;-->
+<!--  padding: 10px 0;-->
+<!--  display: inline-block;-->
+<!--}-->
+
+<!--.tab-item.active span {-->
+<!--  color: #5a2ca0;-->
+<!--  font-weight: bold;-->
+<!--}-->
+
+<!--.tab-indicator {-->
+<!--  position: absolute;-->
+<!--  bottom: -1px;-->
+<!--  left: 0;-->
+<!--  width: 100%;-->
+<!--  height: 2px;-->
+<!--  background-color: #5a2ca0;-->
+<!--  transform: scaleX(0);-->
+<!--  transition: transform 0.3s;-->
+<!--}-->
+
+<!--.tab-item.active .tab-indicator {-->
+<!--  transform: scaleX(1);-->
+<!--}-->
+
+<!--.search-actions {-->
+<!--  display: flex;-->
+<!--  justify-content: space-between;-->
+<!--  align-items: center;-->
+<!--}-->
+
+<!--.search-container {-->
+<!--  display: flex;-->
+<!--  align-items: center;-->
+<!--  background-color: #f5f7fa;-->
+<!--  border-radius: 20px;-->
+<!--  padding: 0 15px;-->
+<!--  width: 350px;-->
+<!--}-->
+
+<!--.search-icon {-->
+<!--  color: #999;-->
+<!--  margin-right: 10px;-->
+<!--}-->
+
+<!--.search-input {-->
+<!--  border: none;-->
+<!--  background: transparent;-->
+<!--  outline: none;-->
+<!--  flex: 1;-->
+<!--  height: 36px;-->
+<!--  font-size: 14px;-->
+<!--}-->
+
+<!--.action-controls {-->
+<!--  display: flex;-->
+<!--  align-items: center;-->
+<!--}-->
+
+<!--.filter-select {-->
+<!--  padding: 8px 15px;-->
+<!--  border: 1px solid #ddd;-->
+<!--  border-radius: 4px;-->
+<!--  margin-right: 10px;-->
+<!--  font-size: 14px;-->
+<!--  color: #666;-->
+<!--  outline: none;-->
+<!--}-->
+
+<!--/* 按钮样式 */-->
+<!--.btn {-->
+<!--  padding: 8px 15px;-->
+<!--  border-radius: 4px;-->
+<!--  font-size: 14px;-->
+<!--  font-weight: 500;-->
+<!--  cursor: pointer;-->
+<!--  transition: all 0.3s;-->
+<!--  display: flex;-->
+<!--  align-items: center;-->
+<!--}-->
+
+<!--.btn i {-->
+<!--  margin-right: 5px;-->
+<!--}-->
+
+<!--.primary-btn {-->
+<!--  background-color: #5a2ca0;-->
+<!--  color: white;-->
+<!--  border: none;-->
+<!--}-->
+
+<!--.primary-btn:hover {-->
+<!--  background-color: #4a2486;-->
+<!--}-->
+
+<!--.secondary-btn {-->
+<!--  background-color: #f5f7fa;-->
+<!--  color: #666;-->
+<!--  border: 1px solid #ddd;-->
+<!--}-->
+
+<!--.secondary-btn:hover {-->
+<!--  background-color: #eee;-->
+<!--}-->
+
+<!--.delete-selected-btn {-->
+<!--  margin-right: 10px;-->
+<!--}-->
+
+<!--/* 消息列表和聊天窗口区域样式 */-->
+<!--.messages-container {-->
+<!--  display: flex;-->
+<!--  height: calc(100vh - 240px);-->
+<!--  background-color: white;-->
+<!--  border-radius: 8px;-->
+<!--  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);-->
+<!--  overflow: hidden;-->
+<!--}-->
+
+<!--.messages-container.chat-open .messages-list-container {-->
+<!--  width: 40%;-->
+<!--}-->
+
+<!--.messages-container.chat-open .chat-window {-->
+<!--  width: 60%;-->
+<!--  display: flex;-->
+<!--}-->
+
+<!--.messages-list-container {-->
+<!--  width: 100%;-->
+<!--  display: flex;-->
+<!--  flex-direction: column;-->
+<!--  transition: width 0.3s;-->
+<!--}-->
+
+<!--.messages-list {-->
+<!--  flex: 1;-->
+<!--  overflow-y: auto;-->
+<!--  padding: 10px;-->
+<!--}-->
+
+<!--.message-item {-->
+<!--  display: flex;-->
+<!--  align-items: flex-start;-->
+<!--  padding: 10px;-->
+<!--  border-radius: 8px;-->
+<!--  cursor: pointer;-->
+<!--  transition: background-color 0.3s;-->
+<!--  margin-bottom: 5px;-->
+<!--}-->
+
+<!--.message-item:hover {-->
+<!--  background-color: #f5f7fa;-->
+<!--}-->
+
+<!--.message-item.unread {-->
+<!--  background-color: #f9f0ff;-->
+<!--  border-left: 3px solid #5a2ca0;-->
+<!--}-->
+
+<!--.message-avatar {-->
+<!--  width: 40px;-->
+<!--  height: 40px;-->
+<!--  border-radius: 50%;-->
+<!--  overflow: hidden;-->
+<!--  margin-right: 10px;-->
+<!--  flex-shrink: 0;-->
+<!--}-->
+
+<!--.message-avatar img {-->
+<!--  width: 100%;-->
+<!--  height: 100%;-->
+<!--  object-fit: cover;-->
+<!--}-->
+
+<!--.message-content {-->
+<!--  flex: 1;-->
+<!--  min-width: 0;-->
+<!--}-->
+
+<!--.message-header {-->
+<!--  display: flex;-->
+<!--  justify-content: space-between;-->
+<!--  align-items: center;-->
+<!--  margin-bottom: 5px;-->
+<!--}-->
+
+<!--.message-sender {-->
+<!--  font-size: 14px;-->
+<!--  font-weight: bold;-->
+<!--  color: #333;-->
+<!--}-->
+
+<!--.message-time {-->
+<!--  font-size: 12px;-->
+<!--  color: #999;-->
+<!--  white-space: nowrap;-->
+<!--}-->
+
+<!--.message-text {-->
+<!--  font-size: 14px;-->
+<!--  color: #666;-->
+<!--  white-space: nowrap;-->
+<!--  overflow: hidden;-->
+<!--  text-overflow: ellipsis;-->
+<!--  margin-bottom: 5px;-->
+<!--}-->
+
+<!--.message-tags {-->
+<!--  display: flex;-->
+<!--  flex-wrap: wrap;-->
+<!--  gap: 5px;-->
+<!--}-->
+
+<!--.tag {-->
+<!--  padding: 2px 6px;-->
+<!--  border-radius: 4px;-->
+<!--  font-size: 12px;-->
+<!--}-->
+
+<!--.tag.private {-->
+<!--  background-color: #e6f7ff;-->
+<!--  color: #1890ff;-->
+<!--}-->
+
+<!--.tag.comment {-->
+<!--  background-color: #fff7e6;-->
+<!--  color: #faad14;-->
+<!--}-->
+
+<!--.tag.mention {-->
+<!--  background-color: #f6ffed;-->
+<!--  color: #52c41a;-->
+<!--}-->
+
+<!--.message-status {-->
+<!--  display: flex;-->
+<!--  align-items: center;-->
+<!--  margin-left: 10px;-->
+<!--}-->
+
+<!--.unread-dot {-->
+<!--  width: 8px;-->
+<!--  height: 8px;-->
+<!--  border-radius: 50%;-->
+<!--  background-color: #5a2ca0;-->
+<!--}-->
+
+<!--/* 聊天窗口区域样式 */-->
+<!--.chat-window {-->
+<!--  display: none;-->
+<!--  flex-direction: column;-->
+<!--  border-left: 1px solid #eee;-->
+<!--  transition: width 0.3s;-->
+<!--}-->
+
+<!--.chat-header {-->
+<!--  padding: 15px;-->
+<!--  border-bottom: 1px solid #eee;-->
+<!--  display: flex;-->
+<!--  align-items: center;-->
+<!--}-->
+
+<!--.back-btn {-->
+<!--  background: none;-->
+<!--  border: none;-->
+<!--  color: #5a2ca0;-->
+<!--  font-size: 14px;-->
+<!--  display: flex;-->
+<!--  align-items: center;-->
+<!--  margin-right: 15px;-->
+<!--  cursor: pointer;-->
+<!--}-->
+
+<!--.back-btn i {-->
+<!--  margin-right: 5px;-->
+<!--}-->
+
+<!--.chat-contact {-->
+<!--  display: flex;-->
+<!--  align-items: center;-->
+<!--  flex: 1;-->
+<!--}-->
+
+<!--.contact-avatar {-->
+<!--  width: 40px;-->
+<!--  height: 40px;-->
+<!--  border-radius: 50%;-->
+<!--  overflow: hidden;-->
+<!--  margin-right: 10px;-->
+<!--}-->
+
+<!--.contact-avatar img {-->
+<!--  width: 100%;-->
+<!--  height: 100%;-->
+<!--  object-fit: cover;-->
+<!--}-->
+
+<!--.contact-info {-->
+<!--  min-width: 0;-->
+<!--}-->
+
+<!--.contact-name {-->
+<!--  font-size: 16px;-->
+<!--  font-weight: bold;-->
+<!--  color: #333;-->
+<!--  white-space: nowrap;-->
+<!--  overflow: hidden;-->
+<!--  text-overflow: ellipsis;-->
+<!--}-->
+
+<!--.contact-status {-->
+<!--  font-size: 12px;-->
+<!--  color: #52c41a;-->
+<!--}-->
+
+<!--.chat-actions {-->
+<!--  display: flex;-->
+<!--  align-items: center;-->
+<!--}-->
+
+<!--.chat-actions .action-btn {-->
+<!--  margin-left: 10px;-->
+<!--  color: #666;-->
+<!--}-->
+
+<!--.chat-messages {-->
+<!--  flex: 1;-->
+<!--  padding: 20px;-->
+<!--  overflow-y: auto;-->
+<!--  background-color: #f9f9f9;-->
+<!--}-->
+
+<!--.message {-->
+<!--  margin-bottom: 15px;-->
+<!--  display: flex;-->
+<!--  max-width: 80%;-->
+<!--}-->
+
+<!--.message.received {-->
+<!--  align-self: flex-start;-->
+<!--}-->
+
+<!--.message.sent {-->
+<!--  align-self: flex-end;-->
+<!--}-->
+
+<!--.message-content {-->
+<!--  padding: 10px 15px;-->
+<!--  border-radius: 18px;-->
+<!--  font-size: 14px;-->
+<!--  line-height: 1.5;-->
+<!--}-->
+
+<!--.message.received .message-content {-->
+<!--  background-color: #e5e5ea;-->
+<!--  color: #000;-->
+<!--  border-bottom-left-radius: 5px;-->
+<!--}-->
+
+<!--.message.sent .message-content {-->
+<!--  background-color: #5a2ca0;-->
+<!--  color: white;-->
+<!--  border-bottom-right-radius: 5px;-->
+<!--}-->
+
+<!--.message-time {-->
+<!--  font-size: 12px;-->
+<!--  color: #999;-->
+<!--  margin-top: 5px;-->
+<!--}-->
+
+<!--.message.received .message-time {-->
+<!--  margin-left: 15px;-->
+<!--}-->
+
+<!--.message.sent .message-time {-->
+<!--  margin-right: 15px;-->
+<!--  text-align: right;-->
+<!--}-->
+
+<!--.chat-input {-->
+<!--  padding: 15px;-->
+<!--  border-top: 1px solid #eee;-->
+<!--  display: flex;-->
+<!--  align-items: center;-->
+<!--  background-color: white;-->
+<!--}-->
+
+<!--.input-container {-->
+<!--  flex: 1;-->
+<!--  display: flex;-->
+<!--  align-items: center;-->
+<!--  background-color: #f5f7fa;-->
+<!--  border-radius: 20px;-->
+<!--  padding: 0 15px;-->
+<!--  height: 40px;-->
+<!--}-->
+
+<!--.emoji-btn, .attach-btn {-->
+<!--  background: none;-->
+<!--  border: none;-->
+<!--  color: #666;-->
+<!--  font-size: 18px;-->
+<!--  cursor: pointer;-->
+<!--}-->
+
+<!--.message-input {-->
+<!--  flex: 1;-->
+<!--  border: none;-->
+<!--  background: transparent;-->
+<!--  outline: none;-->
+<!--  height: 100%;-->
+<!--  font-size: 14px;-->
+<!--  margin: 0 10px;-->
+<!--}-->
+
+<!--.send-btn {-->
+<!--  width: 40px;-->
+<!--  height: 40px;-->
+<!--  border-radius: 50%;-->
+<!--  background-color: #5a2ca0;-->
+<!--  color: white;-->
+<!--  border: none;-->
+<!--  display: flex;-->
+<!--  justify-content: center;-->
+<!--  align-items: center;-->
+<!--  margin-left: 15px;-->
+<!--  cursor: pointer;-->
+<!--  transition: background-color 0.3s;-->
+<!--}-->
+
+<!--.send-btn:hover {-->
+<!--  background-color: #4a2486;-->
+<!--}-->
+
+<!--/* 分页组件样式 */-->
+<!--.pagination-container {-->
+<!--  padding: 15px;-->
+<!--  border-top: 1px solid #eee;-->
+<!--  display: flex;-->
+<!--  justify-content: center;-->
+<!--}-->
+
+<!--.pagination {-->
+<!--  display: flex;-->
+<!--  list-style: none;-->
+<!--  padding: 0;-->
+<!--  margin: 0;-->
+<!--}-->
+
+<!--.pagination-item {-->
+<!--  margin: 0 5px;-->
+<!--  width: 36px;-->
+<!--  height: 36px;-->
+<!--  border-radius: 4px;-->
+<!--  display: flex;-->
+<!--  justify-content: center;-->
+<!--  align-items: center;-->
+<!--  font-size: 14px;-->
+<!--  cursor: pointer;-->
+<!--  transition: all 0.3s;-->
+<!--}-->
+
+<!--.pagination-item:hover:not(.disabled) {-->
+<!--  background-color: #f5f7fa;-->
+<!--  color: #5a2ca0;-->
+<!--}-->
+
+<!--.pagination-item.active {-->
+<!--  background-color: #5a2ca0;-->
+<!--  color: white;-->
+<!--}-->
+
+<!--.pagination-item.disabled {-->
+<!--  color: #ccc;-->
+<!--  cursor: not-allowed;-->
+<!--}-->
+
+<!--.pagination-item i {-->
+<!--  font-size: 16px;-->
+<!--}-->
+
+<!--/* 新消息弹窗样式 */-->
+<!--.modal-overlay {-->
+<!--  position: fixed;-->
+<!--  top: 0;-->
+<!--  left: 0;-->
+<!--  right: 0;-->
+<!--  bottom: 0;-->
+<!--  background-color: rgba(0, 0, 0, 0.5);-->
+<!--  display: flex;-->
+<!--  justify-content: center;-->
+<!--  align-items: center;-->
+<!--  z-index: 1000;-->
+<!--}-->
+
+<!--.modal-content {-->
+<!--  background-color: white;-->
+<!--  border-radius: 8px;-->
+<!--  width: 500px;-->
+<!--  max-width: 90%;-->
+<!--  max-height: 90vh;-->
+<!--  overflow-y: auto;-->
+<!--  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);-->
+<!--}-->
+
+<!--.modal-header {-->
+<!--  padding: 15px 20px;-->
+<!--  border-bottom: 1px solid #f5f7fa;-->
+<!--  display: flex;-->
+<!--  justify-content: space-between;-->
+<!--  align-items: center;-->
+<!--}-->
+
+<!--.modal-title {-->
+<!--  font-size: 18px;-->
+<!--  font-weight: bold;-->
+<!--  color: #333;-->
+<!--}-->
+
+<!--.close-btn {-->
+<!--  background: none;-->
+<!--  border: none;-->
+<!--  color: #666;-->
+<!--  font-size: 18px;-->
+<!--  cursor: pointer;-->
+<!--}-->
+
+<!--.modal-body {-->
+<!--  padding: 20px;-->
+<!--}-->
+
+<!--.message-form {-->
+<!--  display: flex;-->
+<!--  flex-direction: column;-->
+<!--}-->
+
+<!--.form-group {-->
+<!--  margin-bottom: 15px;-->
+<!--}-->
+
+<!--.form-label {-->
+<!--  display: block;-->
+<!--  margin-bottom: 5px;-->
+<!--  font-size: 14px;-->
+<!--  font-weight: 500;-->
+<!--  color: #333;-->
+<!--}-->
+
+<!--.recipient-search {-->
+<!--  display: flex;-->
+<!--  align-items: center;-->
+<!--  background-color: #f5f7fa;-->
+<!--  border-radius: 20px;-->
+<!--  padding: 0 15px;-->
+<!--  height: 36px;-->
+<!--  margin-bottom: 10px;-->
+<!--}-->
+
+<!--.recipient-search i {-->
+<!--  color: #999;-->
+<!--  margin-right: 10px;-->
+<!--}-->
+
+<!--.form-input,-->
+<!--.form-textarea {-->
+<!--  width: 100%;-->
+<!--  padding: 10px;-->
+<!--  border: 1px solid #ddd;-->
+<!--  border-radius: 4px;-->
+<!--  font-size: 14px;-->
+<!--  color: #333;-->
+<!--  outline: none;-->
+<!--}-->
+
+<!--.form-input:focus,-->
+<!--.form-textarea:focus {-->
+<!--  border-color: #5a2ca0;-->
+<!--}-->
+
+<!--.recipient-list {-->
+<!--  max-height: 150px;-->
+<!--  overflow-y: auto;-->
+<!--  border: 1px solid #ddd;-->
+<!--  border-radius: 4px;-->
+<!--  padding: 5px;-->
+<!--}-->
+
+<!--.recipient-item {-->
+<!--  display: flex;-->
+<!--  align-items: center;-->
+<!--  padding: 8px;-->
+<!--  border-radius: 4px;-->
+<!--  cursor: pointer;-->
+<!--  transition: background-color 0.3s;-->
+<!--}-->
+
+<!--.recipient-item:hover {-->
+<!--  background-color: #f5f7fa;-->
+<!--}-->
+
+<!--.recipient-item img {-->
+<!--  width: 30px;-->
+<!--  height: 30px;-->
+<!--  border-radius: 50%;-->
+<!--  object-fit: cover;-->
+<!--  margin-right: 10px;-->
+<!--}-->
+
+<!--.form-textarea {-->
+<!--  min-height: 150px;-->
+<!--  resize: vertical;-->
+<!--}-->
+
+<!--.modal-footer {-->
+<!--  padding: 15px 20px;-->
+<!--  border-top: 1px solid #f5f7fa;-->
+<!--  display: flex;-->
+<!--  justify-content: flex-end;-->
+<!--  gap: 10px;-->
+<!--}-->
+
+<!--.cancel-btn {-->
+<!--  margin-right: 10px;-->
+<!--}-->
+
+<!--.send-message-btn {-->
+<!--  background-color: #5a2ca0;-->
+<!--  color: white;-->
+<!--}-->
+
+<!--.send-message-btn:hover {-->
+<!--  background-color: #4a2486;-->
+<!--}-->
+<!--</style>-->

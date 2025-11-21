@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import "@/assets/user/userDashboardCss/TrendChartCss.css"
 import { trendData, downloadReport } from "@/data/user/userDashboardData/TrendChartData.ts"
-import { chartRef, setupTrendChart } from "@/utils/user/echarts/TrendChartUtils.ts"
+import { chartRef, setupTrendChart } from "@/utils/echarts/teacher/info/TrendChartUtils.ts"
 import {ElButton, ElCard, ElCol, ElIcon, ElRow} from "element-plus";
 import {ArrowDown, ArrowUp, Download} from "@element-plus/icons-vue";
 
@@ -10,7 +10,7 @@ setupTrendChart()
 </script>
 
 <template>
-  <!-- 本月平台使用趋势（echarts 原生实现折线图） -->
+  <!-- 本月平台使用趋势（info 原生实现折线图） -->
   <el-row :gutter="20" class="card-row mt-4">
     <el-col :span="24">
       <el-card shadow="hover" :border="false" class="trend-card">

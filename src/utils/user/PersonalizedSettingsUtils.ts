@@ -1,4 +1,4 @@
-import {syncDialogVisible} from "@/entity/auth/useinfo/PersonalInformation.ts";
+import {syncDialogVisible} from "@/entity/auth/teacherInfo/PersonalInformation.ts";
 // 数据同步处理函数
 const handleSync = () => {
     // 模拟同步接口请求

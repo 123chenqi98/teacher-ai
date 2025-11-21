@@ -1,0 +1,95 @@
+/* 排行榜页面样式 */
+
+/* 附加模块布局 - 使用网格布局，两列排列 */
+.additional-sections {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* 模块项基础样式 */
+.section-item {
+    background-color: #c2dcd8;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 12px 0 rgba(199, 103, 103, 0.1);
+}
+
+/* 模块头部样式 */
+.section-header {
+    margin-bottom: 20px;
+}
+
+/* 排行表格样式 */
+.ranking-table {
+    width: 100%;
+}
+
+/* 第一名排名样式 - 金色 */
+.rank-first {
+    color: #ffd700;
+    font-weight: bold;
+}
+
+/* 第二名排名样式 - 银色 */
+.rank-second {
+    color: #c0c0c0;
+    font-weight: bold;
+}
+
+/* 第三名排名样式 - 铜色 */
+.rank-third {
+    color: #cd7f32;
+    font-weight: bold;
+}
+
+/* 分数值样式 - 蓝色加粗 */
+.score-value {
+    font-weight: bold;
+    color: #78a5d4;
+}
+
+/* 效率条容器 */
+.efficiency-bars {
+    width: 100%;
+}
+
+/* 效率条项目 - 弹性布局，垂直居中 */
+.efficiency-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* 效率条标签 - 固定宽度 */
+.efficiency-label {
+    width: 150px;
+    font-size: 14px;
+    color: #666;
+}
+
+/* 进度条轨道 */
+.progress-bar {
+    flex: 1;
+    height: 10px;
+    background-color: #ebeef5;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 0 15px;
+}
+
+/* 进度条填充 - 默认蓝色 */
+.progress-fill {
+    height: 100%;
+    background-color: #409eff;
+    border-radius: 5px;
+    transition: width 0.3s ease;
+}
+
+/* 效率值显示 - 固定宽度 */
+.efficiency-value {
+    width: 50px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}

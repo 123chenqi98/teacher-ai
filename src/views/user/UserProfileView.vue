@@ -15,7 +15,7 @@ import "@/assets/user/UserOverallCss.css"
   <div class="teacher-dashboard">
     <!-- 左侧导航栏 -->
     <LeftNavigationComponents />
-    <main class="main-content">
+    <main class="main-content-teacher-info">
       <!-- 顶部导航栏 -->
       <TopNavigationComponents />
       <!-- 内容区域 -->

@@ -6,13 +6,13 @@
     font-family: 'Inter', 'system-ui', 'sans-serif'; /* 优先使用Inter字体，兼容系统默认字体，提升可读性 */
     margin: 0; /* 重置默认margin，避免浏览器默认样式导致布局偏移 */
     padding: 0; /* 重置默认padding */
-    background-color: #f5f7fa; /* 页面整体背景色，与主内容区风格呼应 */
+    background-color: #844fde; /* 页面整体背景色，与主内容区风格呼应 */
 }
 
 /* 右侧主内容区样式 */
-.main-content {
+.main-content-teacher-info {
     flex: 1; /* 占满剩余宽度 */
-    background-color: #f8f9fa; /* 主内容区背景色 */
+    background-color: #f1f1f1; /* 主内容区背景色 */
     display: flex;
     flex-direction: column; /* 纵向布局，使子元素垂直排列 */
 }
@@ -20,6 +20,7 @@
 /* 内容区域样式 */
 .content-area {
     flex: 1; /* 占满主内容区剩余高度 */
-    padding: 20px; /* 内边距，控制内容与容器边缘的距离 */
     overflow-y: auto; /* 内容溢出时纵向滚动 */
+    padding: 20px;
+
 }

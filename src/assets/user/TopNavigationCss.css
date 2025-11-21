@@ -1,15 +1,11 @@
 /* 顶部导航栏整体样式：固定高度、弹性布局、对齐方式、背景色、阴影 */
 .top-nav {
-    height: 64px; /* 导航栏高度：符合 Element Plus 大尺寸组件视觉比例 */
-    display: flex; /* 弹性布局：使搜索框和用户区左右分布 */
-    justify-content: right; /* 都向右对齐 */
-    align-items: center; /* 垂直居中对齐 */
-    background-color: #ffffff; /* 导航栏背景色：白色 */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* 底部阴影：增强层次感，避免与内容粘连 */
-    padding: 0 10px; /* 内边距：左右留空，避免内容贴边 */
-    position: sticky; /* 固定顶部：滚动时导航栏不消失 */
-    top: 0; /* 置顶定位基准 */
-    z-index: 999; /* 层级置顶：避免被其他元素覆盖 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 /* 页面标题：左侧强调线与主题色标题 */
@@ -33,7 +29,6 @@
 .search-icon {
     color: #c0c4cc; /* 图标颜色：浅灰色，符合占位提示的视觉层级 */
     font-size: 18px; /* 图标大小：与输入框文字大小匹配 */
-    margin-left: 10px; /* 左侧间距：避免图标贴边 */
 }
 
 /* 用户功能区样式：弹性布局、对齐方式、间距 */

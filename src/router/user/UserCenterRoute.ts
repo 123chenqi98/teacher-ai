@@ -3,7 +3,7 @@ export const userCenterRoute = [
     {
         path: '/test',
         name: 'test',
-        component: () => import('@/components/user/userProfileComponents/PersonalInformationComponents.vue'),
+        component: () => import('@/views/user/oo.vue'),
     },
     // 个人中心页面路由
     {

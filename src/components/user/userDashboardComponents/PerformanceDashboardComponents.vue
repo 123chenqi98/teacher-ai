@@ -7,8 +7,8 @@ import {ElAvatar, ElButton, ElCard, ElCol, ElIcon, ElRow, ElText} from "element-
 <template>
   <!-- 页面标题 -->
   <div class="page-title">
-    <h1 class="el-title el-title--large">个人概览</h1>
-    <p class="el-text el-text--secondary">涵盖个人信息概览、数据和收藏概览及使用趋势等核心内容。</p>
+    <h1 >个人概览</h1>
+    <p >涵盖个人信息概览、数据和收藏概览及使用趋势等核心内容。</p>
   </div>
 
   <el-divider /> <!-- 小写短横线形式 -->

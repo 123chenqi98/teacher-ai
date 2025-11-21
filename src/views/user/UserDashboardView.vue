@@ -1,6 +1,5 @@
-<script setup lang="ts">
+<script setup>
 import LeftNavigationComponents from "@/components/user/LeftNavigationComponents.vue";
-import TopNavigationComponents from "@/components/user/TopNavigationComponents.vue";
 import PerformanceDashboardComponents from "@/components/user/userDashboardComponents/PerformanceDashboardComponents.vue";
 import DataOverviewComponents from "@/components/user/userDashboardComponents/DataOverviewComponents.vue";
 import RecentActivitiesComponents from "@/components/user/userDashboardComponents/RecentActivitiesComponents.vue";
@@ -9,13 +8,15 @@ import CollectionOverviewComponents from "@/components/user/userDashboardCompone
 import TodoListComponents from "@/components/user/userDashboardComponents/TodoListComponents.vue";
 import TrendChartComponents from "@/components/user/userDashboardComponents/TrendChartComponents.vue";
 import "@/assets/user/UserOverallCss.css"
+import TopNavigationComponents from "@/components/user/TopNavigationComponents.vue";
+
 </script>
 
 <template>
   <div class="teacher-dashboard">
     <!-- 左侧导航栏-->
     <LeftNavigationComponents />
-    <main class="main-content">
+    <main class="main-content-teacher-info">
       <!-- 顶部导航栏 -->
       <TopNavigationComponents />
       <div class="content-area">

@@ -1,0 +1,61 @@
+/* 图表容器样式 */
+.charts-container {
+    background: linear-gradient(3deg, rgb(196, 219, 193), rgba(222, 242, 214, 0.5));
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.1);
+    margin-bottom: 24px;
+}
+
+/* 图表头部样式 */
+.chart-header {
+    margin-bottom: 20px;
+}
+
+/* 图表标题样式 */
+.chart-header h3 {
+    font-size: 18px;
+    color: #303133;
+    margin: 0;
+}
+
+/* 图表描述样式 */
+.chart-header p {
+    font-size: 14px;
+    color: #909399;
+    margin: 4px 0;
+}
+
+/* 图表主体容器样式 */
+.chart-container-analytics {
+    width: 100%;
+    height: 300px;
+    background: #a2ceb7;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
+    padding: 16px;
+}
+
+/* 图表行布局样式 */
+.chart-row {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+/* 半宽图表项样式 */
+.chart-item.half {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* 响应式设计 - 在小屏幕上堆叠显示 */
+@media (max-width: 768px) {
+    .chart-row {
+        flex-direction: column;
+    }
+
+    .chart-item.half {
+        min-width: auto;
+    }
+}
