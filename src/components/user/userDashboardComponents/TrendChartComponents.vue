@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import "@/assets/user/userDashboardCss/TrendChartCss.css"
 import { trendData, downloadReport } from "@/data/user/userDashboardData/TrendChartData.ts"
-import { chartRef, setupTrendChart } from "@/forms/user/userDashboardForms/TrendChartForms.ts"
+import { chartRef, setupTrendChart } from "@/utils/user/echarts/TrendChartUtils.ts"
 import {ElButton, ElCard, ElCol, ElIcon, ElRow} from "element-plus";
 import {ArrowDown, ArrowUp, Download} from "@element-plus/icons-vue";
 

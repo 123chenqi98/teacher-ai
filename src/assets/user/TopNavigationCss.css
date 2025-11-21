@@ -6,7 +6,7 @@
     align-items: center; /* 垂直居中对齐 */
     background-color: #ffffff; /* 导航栏背景色：白色 */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* 底部阴影：增强层次感，避免与内容粘连 */
-    padding: 0 20px; /* 内边距：左右留空，避免内容贴边 */
+    padding: 0 10px; /* 内边距：左右留空，避免内容贴边 */
     position: sticky; /* 固定顶部：滚动时导航栏不消失 */
     top: 0; /* 置顶定位基准 */
     z-index: 999; /* 层级置顶：避免被其他元素覆盖 */

@@ -2,7 +2,7 @@
 import "@/assets/user/userDashboardCss/PersonalizedSettingCss.css"
 import { settingsForm } from "@/data/user/userDashboardData/PersonalizedSettingsData.ts"
 import { CircleCheckFilled, Refresh } from "@element-plus/icons-vue";
-import { syncDialogVisible, handleSync, closeDialog } from "@/forms/user/userDashboardForms/PersonalizedSettingsForms.ts"
+import { syncDialogVisible, handleSync, closeDialog } from "@/utils/user/PersonalizedSettingsUtils.ts"
 </script>
 
 <template>

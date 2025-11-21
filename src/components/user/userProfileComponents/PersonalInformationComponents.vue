@@ -1,9 +1,32 @@
 <script setup lang="ts">
-import { userInfo, editFormRef, isSubmitting, activeTab, isEditing, toggleEditMode } from "@/data/user/userProfileData/PersonalInformationData.ts"
-import { formRules, handleAvatarUpload, handleSubmit, handleCancel } from "@/forms/user/userProfileForms/PersonalInformationForms.ts";
+import { userInfo, isSubmitting, activeTab, isEditing, toggleEditMode } from "@/data/user/userProfileData/PersonalInformationData.ts"
+import {
+  teacherFormRules,
+  handleAvatarUpload,
+  handleSubmit,
+  handleCancel,
+  teacherInfoForm, teacherInfoRef
+} from "@/forms/user/userProfileForms/PersonalInformationForms.ts";
 import "@/assets/user/userProfileCss/PersonalInformationCss.css"
 // 导入 Element Plus 图标
 import { Edit, UploadFilled, Close, Check } from "@element-plus/icons-vue";
+import {onMounted} from "vue";
+import {ElMessage} from "element-plus";
+
+
+// 组件挂载完成后初始化表单数据
+onMounted(() => {
+  // 确保 userInfo 已加载完成
+  if (userInfo && Object.keys(userInfo.value).length > 0) {
+    // 使用 Object.assign 保证响应性，避免手动赋值
+    Object.assign(teacherInfoForm, userInfo.value);
+    ElMessage.success("数据同步成功");
+  } else {
+    ElMessage.warning("未获取到用户数据");
+  }
+});
+
+
 </script>
 
 <template>
@@ -57,12 +80,17 @@ import { Edit, UploadFilled, Close, Check } from "@element-plus/icons-vue";
     <!-- 编辑模式（由父级卡片承载容器） -->
     <div v-else-if="activeTab === 'profile' && isEditing" class="profile-card">
       <div>
-        <el-form :model="userInfo" :rules="formRules" ref="editFormRef" label-width="100px" :label-suffix="''">
+        <el-form
+            :model="teacherInfoForm"
+            :rules="teacherFormRules"
+            ref="teacherInfoRef"
+            label-width="100px"
+            :label-suffix="''">
           <!-- 头像上传区域 -->
           <el-form-item label="头像" class="avatar-form-item">
             <el-upload action="/api/upload/avatar" :on-success="handleAvatarUpload" :file-list="[]" list-type="picture-card" :limit="1" accept="image/*">
               <el-avatar :size="100" class="upload-avatar">
-                <img :src="userInfo.avatar" alt="头像" />
+                <img :src="teacherInfoForm.avatar" alt="头像" />
                 <div class="avatar-upload-mask">
                   <UploadFilled class="upload-icon" />
                 </div>
@@ -72,24 +100,24 @@ import { Edit, UploadFilled, Close, Check } from "@element-plus/icons-vue";
 
           <!-- 个人简介 -->
           <el-form-item label="个人简介">
-            <el-input v-model="userInfo.intro" type="textarea" :rows="3" placeholder="请输入个人简介" :resize="null"/>
+            <el-input v-model="teacherInfoForm.intro" type="textarea" :rows="3" placeholder="请输入个人简介" :resize="null"/>
           </el-form-item>
 
           <!-- 表单网格布局（使用 el-row + el-col 替代原生 div） -->
           <el-row :gutter="20" class="form-grid">
             <el-col :span="12">
               <el-form-item label="姓名" prop="realName">
-                <el-input v-model="userInfo.realName" placeholder="请输入姓名" clearable />
+                <el-input v-model="teacherInfoForm.realName" placeholder="请输入姓名" clearable />
               </el-form-item>
             </el-col>
             <el-col :span="12">
               <el-form-item label="昵称" prop="nickname">
-                <el-input v-model="userInfo.nickname" placeholder="请输入昵称" clearable />
+                <el-input v-model="teacherInfoForm.nickname" placeholder="请输入昵称" clearable />
               </el-form-item>
             </el-col>
             <el-col :span="12">
               <el-form-item label="性别" prop="gender">
-                <el-select v-model="userInfo.gender" placeholder="请选择性别" clearable>
+                <el-select v-model="teacherInfoForm.gender" placeholder="请选择性别" clearable>
                   <el-option label="男" value="男" />
                   <el-option label="女" value="女" />
                   <el-option label="其他" value="其他" />
@@ -98,55 +126,55 @@ import { Edit, UploadFilled, Close, Check } from "@element-plus/icons-vue";
             </el-col>
             <el-col :span="12">
               <el-form-item label="出生日期" prop="birthDate">
-                <el-date-picker v-model="userInfo.birthDate" type="date" placeholder="请选择出生日期" value-format="YYYY-MM-DD" clearable/>
+                <el-date-picker v-model="teacherInfoForm.birthDate" type="date" placeholder="请选择出生日期" value-format="YYYY-MM-DD" clearable/>
               </el-form-item>
             </el-col>
             <el-col :span="12">
               <el-form-item label="手机号码" prop="phone">
-                <el-input v-model="userInfo.phone" placeholder="请输入手机号码" clearable />
+                <el-input v-model="teacherInfoForm.phone" placeholder="请输入手机号码" clearable />
               </el-form-item>
             </el-col>
             <el-col :span="12">
               <el-form-item label="电子邮箱" prop="email">
-                <el-input v-model="userInfo.email" placeholder="请输入电子邮箱" clearable />
+                <el-input v-model="teacherInfoForm.email" placeholder="请输入电子邮箱" clearable />
               </el-form-item>
             </el-col>
             <el-col :span="12">
               <el-form-item label="所属部门" prop="department">
-                <el-input v-model="userInfo.department" placeholder="请输入所属部门" clearable />
+                <el-input v-model="teacherInfoForm.department" placeholder="请输入所属部门" clearable />
               </el-form-item>
             </el-col>
             <el-col :span="12">
               <el-form-item label="教龄">
-                <el-input v-model="userInfo.teachingAge" placeholder="请输入教龄" clearable type="number" />
+                <el-input v-model="teacherInfoForm.teachingAge" placeholder="请输入教龄" clearable type="number" />
               </el-form-item>
             </el-col>
             <el-col :span="12">
               <el-form-item label="任教学科">
-                <el-input v-model="userInfo.subject" placeholder="请输入任教学科" clearable />
+                <el-input v-model="teacherInfoForm.subject" placeholder="请输入任教学科" clearable />
               </el-form-item>
             </el-col>
             <el-col :span="12">
               <el-form-item label="职称">
-                <el-input v-model="userInfo.title" placeholder="请输入职称" clearable />
+                <el-input v-model="teacherInfoForm.title" placeholder="请输入职称" clearable />
               </el-form-item>
             </el-col>
             <el-col :span="12">
               <el-form-item label="入职时间" prop="hireDate">
-                <el-date-picker v-model="userInfo.hireDate" type="date" placeholder="请选择入职时间" value-format="YYYY-MM-DD" clearable/>
+                <el-date-picker v-model="teacherInfoForm.hireDate" type="date" placeholder="请选择入职时间" value-format="YYYY-MM-DD" clearable/>
               </el-form-item>
             </el-col>
             <el-col :span="12">
               <el-form-item label="学历">
-                <el-input v-model="userInfo.educationBackground" placeholder="请输入学历" clearable />
+                <el-input v-model="teacherInfoForm.educationBackground" placeholder="请输入学历" clearable />
               </el-form-item>
             </el-col>
           </el-row>
 
           <!-- 表单操作按钮（使用 el-space 优化按钮间距） -->
           <el-space class="form-actions" direction="horizontal" :size="16">
-            <el-button type="primary" @click="handleSubmit(editFormRef)" :icon="Check" :loading="isSubmitting" :disabled="isSubmitting">提交保存</el-button>
-            <el-button @click="handleCancel(editFormRef)" :icon="Close">取消编辑</el-button>
+            <el-button type="primary" @click="handleSubmit(teacherInfoRef)" :icon="Check" :loading="isSubmitting" :disabled="isSubmitting">提交保存</el-button>
+            <el-button @click="handleCancel(teacherInfoRef)" :icon="Close">取消编辑</el-button>
           </el-space>
         </el-form>
       </div>

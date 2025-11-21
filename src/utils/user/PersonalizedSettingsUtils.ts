@@ -1,8 +1,4 @@
-import { ref } from 'vue'
-
-// 控制弹窗显示/隐藏
-const syncDialogVisible = ref(false);
-
+import {syncDialogVisible} from "@/entity/auth/useinfo/PersonalInformation.ts";
 // 数据同步处理函数
 const handleSync = () => {
     // 模拟同步接口请求

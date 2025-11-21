@@ -1,5 +1,6 @@
 /* 全局样式：包裹侧边栏和主内容区，实现Flex横向布局 */
 .teacher-dashboard {
+    width: 100%;
     display: flex; /* 启用Flex布局，使侧边栏（固定宽度）和主内容区（自适应宽度）横向排列 */
     min-height: 100vh; /* 最小高度占满整个视口，确保页面内容不足时也铺满屏幕 */
     font-family: 'Inter', 'system-ui', 'sans-serif'; /* 优先使用Inter字体，兼容系统默认字体，提升可读性 */

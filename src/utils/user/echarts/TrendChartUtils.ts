@@ -2,7 +2,6 @@ import {ref, onMounted, nextTick, onBeforeUnmount} from "vue";
 import { trendData } from "@/data/user/userDashboardData/TrendChartData.ts";
 import * as echarts from 'echarts';
 
-// 关键修复：用 ref 绑定图表容器（Vue 推荐方式，避免 DOM 查找失败）
 export const chartRef = ref<HTMLDivElement | null>(null);
 let myChart: echarts.ECharts | null = null;
 const resizeHandler = () => {
@@ -45,7 +44,6 @@ export const initChart = () => {
             left: '5%',
             right: '5%',
             bottom: 30,
-            containLabel: true
         },
         xAxis: {
             type: 'category',
@@ -82,14 +80,13 @@ export const initChart = () => {
         console.error('图表配置错误', error);
     }
 };
-export default initChart
 
 // 提供组合式函数，在组件内调用以注册生命周期
 export const setupTrendChart = () => {
     onMounted(() => {
         nextTick(() => {
             initChart();
-        });
+        }).then( );
         window.addEventListener('resize', resizeHandler);
     });
     onBeforeUnmount(() => {

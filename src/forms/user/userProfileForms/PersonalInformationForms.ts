@@ -1,8 +1,26 @@
 import {ElMessage, ElNotification, type FormInstance, type UploadFile} from "element-plus";
 import { userInfo, isSubmitting, toggleEditMode } from "@/data/user/userProfileData/PersonalInformationData.ts";
+import {reactive, ref} from "vue";
 
+const teacherInfoRef = ref<FormInstance | null>(null);
+const teacherInfoForm = reactive({
+    avatar: "",
+    realName: "",
+    nickname: "",
+    gender: "",
+    phone: "",
+    email: "",
+    department: "",
+    birthDate: "",
+    hireDate: "",
+    teachingAge: "",
+    subject: "",
+    title: "",
+    educationBackground: "",
+    intro: "",
+})
 // 表单校验规则（补充完整必填项校验）
-const formRules = {
+const teacherFormRules = {
     realName: [{ required: true, message: "请输入真实姓名", trigger: "blur" }],
     nickname: [{ required: true, message: "请输入昵称", trigger: "blur" }],
     gender: [{ required: true, message: "请选择性别", trigger: "change" }],
@@ -41,7 +59,7 @@ const handleAvatarUpload = (response: any, fileList: UploadFile[]) => {
             });
             ElMessage.success("头像上传成功");
         } else {
-            ElMessage.error("头像上传失败：" + (response.msg || "接口返回异常"));
+            ElMessage.error("头像上传失败：" + (response || "接口返回异常"));
         }
     } catch (error) {
         ElMessage.error("头像上传失败，请重试");
@@ -101,4 +119,11 @@ const handleCancel = (formRef: FormInstance | null, resetAvatar?: () => void) =>
     ElMessage.info("已取消编辑");
 };
 
-export { formRules, handleAvatarUpload, handleSubmit, handleCancel };
+export {
+    teacherInfoRef,
+    teacherInfoForm,
+    teacherFormRules,
+    handleAvatarUpload,
+    handleSubmit,
+    handleCancel,
+}

@@ -33,7 +33,7 @@ interface UserInfo {
     phone: string;
     email: string;
     department: string;
-    teachingAge: number; // 改为数字类型，展示时拼接"年"
+    teachingAge:string; // 改为数字类型，展示时拼接"年"
     subject: string;
     title: string;
     hireDate: string;
@@ -51,15 +51,13 @@ const userInfo = ref<UserInfo>({
     phone: "13800138008",
     email: "lihuimin_edu@163.com",
     department: "初中英语教研组",
-    teachingAge: 15, // 数字类型
+    teachingAge: "15", // 数字类型
     subject: "初中英语",
     title: "高级教师",
     hireDate: "2010-09-01",
     educationBackground: "硕士",
 });
 
-// 定义表单引用
-const editFormRef = ref()
 
 // 提交加载态
 const isSubmitting = ref(false);
@@ -75,4 +73,4 @@ const toggleEditMode = () => {
     isEditing.value = !isEditing.value;
 };
 
-export { headerTitle, headerSubtitle, userInfo, editFormRef, isSubmitting, activeTab, isEditing, toggleEditMode, type UserInfo };
+export { headerTitle, headerSubtitle, userInfo, isSubmitting, activeTab, isEditing, toggleEditMode, type UserInfo };
