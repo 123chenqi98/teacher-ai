@@ -5,10 +5,10 @@ import {ElAvatar, ElCard, ElCol, ElIcon, ElRow} from "element-plus";
 </script>
 
 <template>
-  <el-row :gutter="20" class="card-row">
+  <el-row :gutter="20" >
     <!-- 近期操作历史卡片 -->
     <el-col :span="24">
-      <el-card shadow="hover" :border="false" class="recent-activities-card">
+      <el-card shadow="hover" :border="false" class="settings-card">
         <div class="card-header">
           <h2 class="top-title">近期操作历史</h2>
         </div>
@@ -30,5 +30,4 @@ import {ElAvatar, ElCard, ElCol, ElIcon, ElRow} from "element-plus";
 </template>
 
 <style scoped>
-
 </style>

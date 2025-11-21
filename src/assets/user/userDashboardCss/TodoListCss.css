@@ -4,9 +4,7 @@
     border-radius: 12px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
     padding: 10px;
-    width: 760px;
     height: 100%;
-    box-sizing: border-box;
 }
 
 /* 卡片头部：标题与新增按钮左右分布 */

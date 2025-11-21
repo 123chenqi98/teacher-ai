@@ -2,32 +2,41 @@
 import "@/assets/user/userDashboardCss/TrendChartCss.css"
 import { trendData, downloadReport } from "@/data/user/userDashboardData/TrendChartData.ts"
 import { chartRef, setupTrendChart } from "@/utils/echarts/teacher/info/TrendChartUtils.ts"
-import {ElButton, ElCard, ElCol, ElIcon, ElRow} from "element-plus";
-import {ArrowDown, ArrowUp, Download} from "@element-plus/icons-vue";
+import { ElButton, ElCard, ElCol, ElIcon, ElRow } from "element-plus";
+import { ArrowDown, ArrowUp, Download } from "@element-plus/icons-vue";
 
 // 在组件内注册图表生命周期，确保挂载后初始化
 setupTrendChart()
 </script>
 
 <template>
-  <!-- 本月平台使用趋势（info 原生实现折线图） -->
-  <el-row :gutter="20" class="card-row mt-4">
+  <!-- 修改后的组件代码 -->
+  <el-row :gutter="20">
     <el-col :span="24">
-      <el-card shadow="hover" :border="false" class="trend-card">
+      <el-card shadow="hover" :border="false" class="trend-chart-card">
         <!-- 卡片头部：标题 + 环比增长 + 下载按钮（类名不变，靠CSS调整布局） -->
-        <div class="card-header flex items-center justify-between mb-4 gap-4">
-          <h2 class="top-title">本月平台使用趋势</h2>
+        <div>
+          <!-- 修改后的代码 -->
+          <h2 class="chart-title">本月平台使用趋势</h2>
           <!-- 环比增长统计 -->
           <div class="growth-stats">
-            <div v-for="(item, index) in trendData.growth" :key="index" class="growth-item flex items-center gap-1">
-              <span class="growth-label text-sm text-gray-600">{{ item.label }}：</span>
-              <span class="growth-value text-sm" :class="item.trend === 'up' ? 'text-green-600' : 'text-red-600'">
-                        <el-icon :size="14" v-if="item.trend === 'up'"><ArrowUp /></el-icon>
-                        <el-icon :size="14" v-else><ArrowDown /></el-icon>
-                        {{ item.value }}
-                      </span>
+            <div
+                v-for="(item, index) in trendData.growth"
+                :key="index"
+                class="growth-item"
+                :class="{ 'growth-up': item.trend === 'up', 'growth-down': item.trend === 'down' }"
+            >
+              <span class="growth-label">{{ item.label }}：</span>
+              <span class="growth-value-wrapper">
+              <el-icon :size="14" class="trend-icon">
+                <ArrowUp v-if="item.trend === 'up'" />
+                <ArrowDown v-else />
+              </el-icon>
+              <span class="growth-value">{{ item.value }}</span>
+            </span>
             </div>
           </div>
+
           <!-- 下载按钮 -->
           <el-button type="primary" size="small" class="download-btn" @click="downloadReport">
             <el-icon :size="14"><Download /></el-icon>
@@ -39,8 +48,11 @@ setupTrendChart()
       </el-card>
     </el-col>
   </el-row>
+
 </template>
 
 <style scoped>
+
+
 
 </style>

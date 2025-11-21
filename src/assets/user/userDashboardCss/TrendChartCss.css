@@ -1,86 +1,53 @@
-/* 趋势图表样式 */
-/* 核心修复：给实际的头部容器 .card-header 加 Flex 布局，强制一行 */
-.card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* 标题居左、统计项居中、按钮居右 */
-    gap: 270px; /* 三个模块之间的间距（避免挤在一起） */
-    flex-wrap: nowrap; /* 强制不换行，确保一行显示 */
-}
-
-/* 趋势图卡片：统一外观与内边距 */
-.trend-card {
-    width: 1570px !important;
-    padding: 20px;
+.trend-chart-card {
+    border-radius: 12px;
     margin-top: 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* ECharts 容器：固定高度与防止塌陷 */
-.chart-container {
-    width: 100%;
-    height: 300px;
-    border: 1px solid #f0f2f5;
-    border-radius: 8px;
+.chart-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #303133;
+    margin: 0 0 15px 0;
 }
 
-/* 统计项内部横向排列 */
-/* 增长统计区域：横向布局与间距 */
 .growth-stats {
     display: flex;
-    align-items: center;
-    gap: 20px; /* 单个统计项之间的间距 */
-    flex-wrap: nowrap;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
 }
 
-/* 单个增长项：标签与数值垂直排列 */
 .growth-item {
     display: flex;
     align-items: center;
-    gap: 4px;
+    padding: 6px 12px;
+    border-radius: 30px;
+    font-size: 14px;
+    transition: background-color 0.3s;
 }
 
-/* 增长项标签：次要文本样式 */
+.growth-up {
+    background-color: #f0f9eb;
+    color: #67c23a;
+}
+
+.growth-down {
+    background-color: #fef0f0;
+    color: #f56c6c;
+}
+
 .growth-label {
-    font-size: 17px;
-    color: #6b7280;
+    margin-right: 5px;
+    color: #606266;
 }
 
-/* 增长项数值：强调色与字号 */
-.growth-value {
-    font-size: 17px;
-    font-weight: 500;
+.growth-value-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 3px;
 }
 
-/* 绿色文本：正向增长标识 */
-.text-green-600 {
-    color: #10b981;
-}
-
-/* 红色文本：负向增长标识 */
-.text-red-600 {
-    color: #ef4444;
-}
-
-/* 下载按钮样式（去掉 margin-left，靠 .card-header 的 gap 控制间距） */
-/* 下载按钮：主题色、阴影与悬浮反馈 */
-.download-btn {
-    font-size: 18px; /* 适配小尺寸按钮，更协调 */
-    padding: 4px 12px;
-}
-
-/* 响应式调整：小屏幕下自动换行，避免拥挤 */
-@media (max-width: 1200px) {
-    .card-row {
-        flex-direction: column;
-    }
-
-    .el-col {
-        width: 100% !important;
-    }
-
-    /* 小屏幕下允许头部换行，保证可读性 */
-    .card-header {
-        flex-wrap: wrap;
-        justify-content: flex-start;
-    }
+.trend-icon {
+    vertical-align: middle;
 }
