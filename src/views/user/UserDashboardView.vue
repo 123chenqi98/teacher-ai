@@ -43,7 +43,7 @@ import TopNavigationComponents from "@/components/user/TopNavigationComponents.v
             <todo-list-components/>
           </el-col>
         </el-row>
-        <!-- 本月平台使用趋势组件 -->
+        <!-- 本月平台使用趋势组件（顶部导航出现问题的组件） -->
         <trend-chart-components/>
       </div>
     </main>

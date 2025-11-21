@@ -6,7 +6,7 @@ import {
   handleSubmit,
   handleCancel,
   teacherInfoForm, teacherInfoRef
-} from "@/forms/user/userProfileForms/PersonalInformationForms.ts";
+} from "@/forms/user/teacherInfo/userProfileForms/PersonalInformationForms.ts";
 import "@/assets/user/userProfileCss/PersonalInformationCss.css"
 // 导入 Element Plus 图标
 import { Edit, UploadFilled, Close, Check } from "@element-plus/icons-vue";

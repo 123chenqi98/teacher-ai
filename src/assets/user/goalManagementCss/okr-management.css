@@ -1,0 +1,396 @@
+/* OKR 目标管理页面主容器 */
+.okr-goal-management {
+  padding: 20px;
+}
+
+/* OKR 页面头部样式 */
+.okr-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 25px;
+  padding: 20px;
+  background: linear-gradient(120deg, #f0f2ff 0%, #e6f7ff 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* 头部标题样式 */
+.okr-header-content h2 {
+  margin: 0 0 8px 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #303133;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 头部图标样式 */
+.okr-header-icon {
+  font-size: 28px;
+  color: #409EFF;
+}
+
+/* 头部副标题样式 */
+.okr-header-subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: #909399;
+}
+
+/* 添加目标按钮样式 */
+.okr-add-goal-btn {
+  height: 40px;
+  font-size: 14px;
+}
+
+/* 统计信息行样式 */
+.okr-stats-row {
+  margin-bottom: 25px;
+}
+
+/* 统计卡片样式 */
+.okr-stat-card {
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+/* 统计卡片悬停效果 */
+.okr-stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* 统计内容布局 */
+.okr-stat-content {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+/* 统计图标容器 */
+.okr-stat-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(64, 158, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+}
+
+/* 统计信息文本 */
+.okr-stat-info {
+  flex: 1;
+}
+
+/* 统计数值样式 */
+.okr-stat-value {
+  font-size: 22px;
+  font-weight: 600;
+  color: #303133;
+  margin-bottom: 4px;
+}
+
+/* 统计标签样式 */
+.okr-stat-label {
+  font-size: 13px;
+  color: #909399;
+}
+
+/* 图表区域样式 */
+.okr-chart-section {
+  margin-bottom: 25px;
+}
+
+/* 图表卡片样式 */
+.okr-chart-card, .okr-completion-card {
+  border-radius: 12px;
+}
+
+/* 卡片头部样式 */
+.okr-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: #303133;
+}
+
+/* 完成度内容布局 */
+.okr-completion-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 20px 0;
+}
+
+/* 完成度图表容器 */
+.okr-completion-chart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 完成度统计信息 */
+.okr-completion-stats {
+  flex: 1;
+  padding-left: 20px;
+}
+
+/* 统计项布局 */
+.okr-stat-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+/* 最后一个统计项 */
+.okr-stat-item:last-child {
+  margin-bottom: 0;
+}
+
+/* 统计项标签 */
+.okr-stat-item .okr-stat-label {
+  font-size: 14px;
+  color: #909399;
+}
+
+/* 统计项数值 */
+.okr-stat-item .okr-stat-value {
+  font-size: 16px;
+  font-weight: 500;
+  color: #303133;
+}
+
+/* 目标列表卡片 */
+.okr-objectives-list-card {
+  border-radius: 12px;
+}
+
+/* 目标项 */
+.okr-objective-item {
+  margin-bottom: 20px;
+}
+
+/* 最后一个目标项 */
+.okr-objective-item:last-child {
+  margin-bottom: 0;
+}
+
+/* 目标卡片样式 */
+.okr-objective-card {
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+/* 目标卡片悬停效果 */
+.okr-objective-card:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* 目标头部布局 */
+.okr-objective-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+/* 目标标题布局 */
+.okr-objective-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* 目标标题文本 */
+.okr-objective-title h4 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #303133;
+}
+
+/* 状态标签样式 */
+.okr-status-tag {
+  height: 22px;
+  line-height: 20px;
+}
+
+/* 目标描述样式 */
+.okr-objective-description {
+  margin: 0 0 15px 0;
+  font-size: 14px;
+  color: #606266;
+  line-height: 1.5;
+}
+
+/* 目标元信息布局 */
+.okr-objective-meta {
+  display: flex;
+  gap: 10px;
+}
+
+/* 元信息标签 */
+.okr-meta-tag {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+  padding: 0 8px;
+}
+
+/* 目标操作区域 */
+.okr-objective-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+/* 进度条区域 */
+.okr-progress-section {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 进度条文字 */
+.okr-progress-text {
+  position: absolute;
+  font-size: 12px;
+  font-weight: 500;
+  color: #606266;
+}
+
+/* 操作按钮组 */
+.okr-action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+/* 操作按钮样式 */
+.okr-action-btn {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* KR分割线 */
+.okr-kr-divider {
+  margin: 20px 0;
+}
+
+/* 关键结果列表 */
+.okr-key-results {
+  padding-left: 0;
+}
+
+/* 关键结果项 */
+.okr-key-result-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: #f5f7fa;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  transition: all 0.3s ease;
+}
+
+/* 关键结果项悬停效果 */
+.okr-key-result-item:hover {
+  background: #eef1f6;
+}
+
+/* 最后一个关键结果项 */
+.okr-key-result-item:last-child {
+  margin-bottom: 0;
+}
+
+/* KR信息区域 */
+.okr-kr-info {
+  flex: 1;
+}
+
+/* KR标题 */
+.okr-kr-info h5 {
+  margin: 0 0 5px 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: #303133;
+}
+
+/* KR进度信息 */
+.okr-kr-progress-info {
+  font-size: 12px;
+  color: #909399;
+}
+
+/* KR进度条 */
+.okr-kr-progress {
+  flex: 2;
+}
+
+/* KR值显示 */
+.okr-kr-value {
+  width: 50px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #606266;
+  text-align: right;
+}
+
+/* KR操作按钮组 */
+.okr-kr-actions {
+  display: flex;
+  gap: 5px;
+}
+
+/* KR操作按钮 */
+.okr-kr-action-btn {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 对话框底部按钮布局 */
+.okr-dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 20px 0 0;
+}
+
+/* 对话框样式 */
+.okr-dialog :deep(.el-dialog) {
+  border-radius: 12px;
+}
+
+/* 对话框头部样式 */
+.okr-dialog :deep(.el-dialog__header) {
+  padding: 20px;
+  border-bottom: 1px solid #ebeef5;
+}
+
+/* 对话框内容样式 */
+.okr-dialog :deep(.el-dialog__body) {
+  padding: 20px;
+}
+
+/* 对话框底部样式 */
+.okr-dialog :deep(.el-dialog__footer) {
+  padding: 0 20px 20px;
+  border-top: 1px solid #ebeef5;
+}

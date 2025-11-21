@@ -17,7 +17,7 @@ const props = defineProps<{
 // 根据当前路由动态计算标题；优先使用父组件传入，其次使用路由 meta.title
 const route = useRoute();
 const displayTitle = computed(() => {
-  const metaTitle = (route.meta?.title as string) || "个人概览";
+  const metaTitle = (route.meta?.title as string);
   return props.navTitle ?? metaTitle;
 });
 </script>

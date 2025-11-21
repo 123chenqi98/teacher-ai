@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { isSubmitting, activeTab } from "@/data/user/userProfileData/PersonalInformationData.ts"
-import { securityForm, securityRules, securityFormRef, handleSecuritySubmit } from "@/forms/user/userProfileForms/AccountSecurityForms.ts";
+import { securityForm, securityRules, securityFormRef, handleSecuritySubmit } from "@/forms/user/teacherInfo/userProfileForms/AccountSecurityForms.ts";
 import { Check } from "@element-plus/icons-vue";
 import "@/assets/user/userProfileCss/AccountSecurityCss.css"
 </script>

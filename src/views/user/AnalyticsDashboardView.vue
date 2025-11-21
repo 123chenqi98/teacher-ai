@@ -24,7 +24,6 @@ import RankingComponent from "@/components/user/analyticsDashboardComponents/Ran
         <ChartsComponent/>
 <!--        排行榜-->
         <RankingComponent />
-
       </div>
     </main>
   </div>
