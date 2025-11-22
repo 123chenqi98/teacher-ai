@@ -1,7 +1,7 @@
 import {
     submitGenerateTeachingPlanForm, submitIntelligentTeachingPlanForm,
     submitPersonalizedTeachingPlanForm, submitPPTTeachingPlanForm
-} from "@/utils/teacher/function/teachingPlan/HandleTeachingPlanForms.ts";
+} from "@/utils/teacher/function/teachingPlan/HandleTeachingPlanFormFunctions.ts";
 
 export const teachingPlanChildrenRouters = [
     {

@@ -29,6 +29,6 @@ export const applications = ref([
         title: '英语作文批改',
         description: '智能批改作文，提高作文质量',
         icon: logoImg,
-        routerPath: '/teacher/plan/ppt'
+        routerPath: '/teacher/plan/english-composition'
     }
 ])

@@ -7,27 +7,27 @@ export const gradingAssignments = ref([
         title: '语文作文批改',
         description: '智能批改作文，提高作文质量',
         icon:Notebook,
-        function:null
+        routerPath: '/teacher/plan/chinese-composition'
     },
     {
         id: 2,
         title: '英语作文批改',
         description: '智能批改作文，提高作文质量',
         icon:Memo,
-        function:null
+        routerPath: '/teacher/plan/english-composition'
     },
     {
         id: 3,
         title: '数学综合题批改',
         description: '智能批改综合题，提高题型质量',
         icon:PieChart,
-        function:null
+        routerPath: '/teacher/plan/math-comprehensive'
     },
     {
         id: 4,
         title: "物理综合题批改",
         description: '智能批改综合题，提高题型质量',
         icon:Guide,
-        function:null
+        routerPath: '/teacher/plan/physics-comprehensive'
     }
 ])

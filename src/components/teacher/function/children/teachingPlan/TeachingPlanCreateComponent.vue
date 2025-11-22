@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import "@/assets/teacher/functionCss/children/TeachingPlanCss.css"
+import "@/assets/teacher/functionCss/children/FunctionChildrenPageCss.css"
 import {useRoute} from "vue-router";
 import TeachingPlanFormComponent
   from "@/components/teacher/function/children/teachingPlan/TeachingPlanFormComponent.vue";
@@ -9,12 +9,6 @@ const route = useRoute()
 const data = route.meta as any
 
 // 提交表单处理方法
-const handleSubmit = (formData: any) => {
-  console.log('提交表单')
-  console.log(formData.file)
-
-}
-
 </script>
 
 <template>

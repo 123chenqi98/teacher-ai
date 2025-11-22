@@ -27,8 +27,17 @@ const grades = [
     { label: '高二', value: '11' },
     { label: '高三', value: '12' }
 ]
+// 定义年级数据（初中到高中）
+const middleGrades = [
+    { label: '初二', value: '8' },
+    { label: '初三', value: '9' },
+    { label: '高一', value: '10' },
+    { label: '高二', value: '11' },
+    { label: '高三', value: '12' }
+]
 
 export {
     disciplines,
-    grades
+    grades,
+    middleGrades
 }

@@ -3,6 +3,7 @@ import "@/assets/teacher/functionCss/GradingAreaCss.css"
 import SectionHeaderComponent from "@/components/teacher/SectionHeaderComponent.vue";
 import {ElMessage} from "element-plus";
 import {gradingAssignments} from "@/data/teacher/funtion/GradingAreaData.ts";
+import router from "@/router";
 
 // 定义查看全部批改作业的处理函数
 const ViewAllGradingAssignments = () => {
@@ -26,6 +27,7 @@ const ViewAllGradingAssignments = () => {
           v-for="(assignment) in gradingAssignments"
           :key="assignment.id"
           class="grading-card"
+          @click="() => router.push(assignment.routerPath)"
       >
         <!-- 卡片顶部：标题+班级（左侧）、状态标签（右侧） -->
         <div class="card-top">
