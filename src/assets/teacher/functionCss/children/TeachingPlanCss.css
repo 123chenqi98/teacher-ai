@@ -1,0 +1,17 @@
+/*总体框样式*/
+.teaching-plan-content-box{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/*表单内容框*/
+.teaching-plan-form-box{
+    width: 100%;
+    display: flex;
+    min-height: 800px;
+    margin-left: 150px;
+    margin-top: 30px;
+}

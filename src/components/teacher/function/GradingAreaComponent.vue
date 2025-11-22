@@ -32,42 +32,13 @@ const ViewAllGradingAssignments = () => {
           <!-- 标题组：包含作业标题和班级名称 -->
           <div class="title-group">
             <!-- 作业标题 -->
+            <el-icon> <component :is="assignment.icon"/></el-icon>
             <h3 class="assignment-title">{{ assignment.title }}</h3>
             <!-- 所属班级 -->
-            <p class="assignment-class">{{ assignment.className }}</p>
           </div>
-          <!-- 状态标签：批改中/已完成/待批改 -->
-          <span class="status-badge" :style="{ backgroundColor: assignment.statusColor }">
-            {{ assignment.statusLabel }}
-          </span>
         </div>
-
-        <!-- 进度条区域：进度条（左侧）、进度数字（右侧） -->
-        <div class="progress-section">
-          <!-- 进度条外层包装器 -->
-          <div class="progress-bar-wrapper">
-            <!-- 进度条背景 -->
-            <div class="progress-bar-background">
-              <!-- 进度条填充：根据完成数/总数计算百分比宽度 -->
-              <div
-                  class="progress-bar-fill"
-                  :style="{
-                    width: (assignment.completed / assignment.total * 100) + '%',
-                    backgroundColor: assignment.progressColor
-                  }"
-              ></div>
-            </div>
-          </div>
-          <!-- 进度数字显示：已完成数/总数 -->
-          <p class="progress-text">{{ assignment.completed }}/{{ assignment.total }}</p>
-        </div>
-
-        <!-- 卡片底部：截止时间（左侧）、操作链接（右侧） -->
         <div class="card-bottom">
-          <!-- 截止时间显示 -->
-          <span class="deadline">截止时间: {{ assignment.deadline }}</span>
-          <!-- 操作链接：继续批改/查看报告/开始批改 -->
-          <a href="#" class="action-link">{{ assignment.actionText }}</a>
+          <span>{{assignment.description}}</span>
         </div>
       </div>
     </div>

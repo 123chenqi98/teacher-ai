@@ -4,34 +4,31 @@ import logoImg from "@/static/logo.png";
 export const applications = ref([
     {
         id: 1,
-        title: '自动批改',
-        description: 'AI自动批改作业，精准分析错误点',
+        title: '一键生成教案',
+        description: '上传课件、教学逐字稿、教材,一键生成教案',
         icon: logoImg,
-        usage: '5.7k',
-        rating: 4.9
+        routerPath: '/teacher/plan/any'
     },
     {
         id: 2,
-        title: '课堂互动',
-        description: '实时互动课堂，提升学生参与度',
+        title: '个性化教案',
+        description: '根据您上传的模板框架进行个性化教案设计',
         icon: logoImg,
-        usage: '3.2k',
-        rating: 4.8
+        routerPath: '/teacher/plan/personal'
     },
     {
         id: 3,
-        title: '智能出题',
-        description: '一键生成个性化练习题，提高教学效率',
+        title: '智能教案',
+        description: '小学至高中根据教材生成教案',
+        downloads: '1.8k',
         icon: logoImg,
-        usage: '2.1k',
-        rating: 4.7
+        routerPath: '/teacher/plan/smart'
     },
     {
         id: 4,
-        title: '学情分析',
-        description: '深度分析学生学习数据，精准掌握学情',
+        title: '英语作文批改',
+        description: '智能批改作文，提高作文质量',
         icon: logoImg,
-        usage: '1.8k',
-        rating: 4.6
+        routerPath: '/teacher/plan/ppt'
     }
 ])

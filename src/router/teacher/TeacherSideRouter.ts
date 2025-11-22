@@ -1,4 +1,6 @@
 // 教师端路由
+import {teachingPlanChildrenRouters} from "@/router/teacher/function/TeachingPlanChildrenRouter.ts";
+
 export const teacherRouters = [
     {
         // 教师端路由
@@ -10,6 +12,15 @@ export const teacherRouters = [
         //教师功能路由
         path: '/teacher/function',
         name: 'function',
-        component:() =>import("@/views/teacher/FunctionSelectionView.vue")
+        component:() =>import("@/views/teacher/function/FunctionSelectionView.vue")
+    },
+    {
+        //教师具体功能页面路由
+        path: '/teacher/plan',
+        name: 'plan',
+        component:() =>import("@/views/teacher/function/FunctionChildrenView.vue"),
+        children:[
+            ...teachingPlanChildrenRouters
+        ]
     },
 ]

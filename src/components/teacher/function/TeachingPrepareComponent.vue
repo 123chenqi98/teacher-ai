@@ -3,6 +3,7 @@ import "@/assets/teacher/functionCss/TeachingPrepareCss.css"
 import SectionHeaderComponent from "@/components/teacher/SectionHeaderComponent.vue";
 import {ElMessage} from "element-plus";
 import {teachingResources} from "@/data/teacher/funtion/TeachingPrepareData.ts";
+import router from "@/router";
 
 // 定义查看全部教学资源的处理函数
 const ViewAllTeachingResources = () => {
@@ -27,10 +28,11 @@ const ViewAllTeachingResources = () => {
           :key="resource.id"
           class="prepare-card"
           shadow="hover"
+          @click="router.push(resource.routerPath)"
       >
         <!-- 彩色背景图片区域：使用图片作为卡片头部背景 -->
         <div class="resource-image-wrapper">
-          <img :src="resource.icon" alt="资源图片" class="resource-image" />
+          <img  :src="resource.icon" alt="资源图片" class="resource-image" />
         </div>
         <!-- 资源内容区域 -->
         <div class="resource-content">

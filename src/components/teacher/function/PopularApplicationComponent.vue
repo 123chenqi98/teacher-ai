@@ -3,6 +3,7 @@ import "@/assets/teacher/functionCss/PopularApplicationCss.css"
 import SectionHeaderComponent from "@/components/teacher/SectionHeaderComponent.vue";
 import {ElMessage} from "element-plus";
 import {applications} from "@/data/teacher/funtion/PopularApplicationData.ts";
+import router from "@/router";
 
 // 定义查看全部热门应用的处理函数
 const ViewAllPopularApplications = () => {
@@ -27,9 +28,11 @@ const ViewAllPopularApplications = () => {
           :key="application.id"
           class="application-card"
           shadow="hover"
+          @click="router.push(application.routerPath)"
       >
         <!-- 应用图标容器 -->
-        <div class="app-icon-wrapper">
+        <div class="app-icon-wrapper"
+        >
           <!-- 应用图标图片 -->
           <img
               :src="application.icon"
@@ -44,12 +47,6 @@ const ViewAllPopularApplications = () => {
           <!-- 应用功能描述 -->
           <p class="app-description">{{ application.description }}</p>
           <!-- 底部信息区域：包含使用人数和评分 -->
-          <div class="app-footer">
-            <!-- 应用使用人数统计 -->
-            <span class="app-usage">{{ application.usage }}教师使用</span>
-            <!-- 应用评分（满分5分） -->
-            <span class="app-rating">{{ application.rating }}</span>
-          </div>
         </div>
       </el-card>
     </div>
