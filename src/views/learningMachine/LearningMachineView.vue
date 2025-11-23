@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import "@/assets/learningMachine/homeCss/LearningMachineHomePageCss.css"
-import LearningMachineHomeTopInfoComponent from "@/components/learningMachine/home/LearningMachineHomeTopInfoComponent.vue";
 import LearningMachineSideNavigationComponent from "@/components/learningMachine/home/LearningMachineSideNavigationComponent.vue";
 import ProductIntroductionComponent from "@/components/learningMachine/home/ProductIntroductionComponent.vue";
 import ProductOverviewComponent from "@/components/learningMachine/home/ProductOverviewComponent.vue";
 import LearningResourcesComponent from "@/components/learningMachine/home/LearningResourcesComponent.vue";
 import CoreAlgorithmModelComponent from "@/components/learningMachine/home/CoreAlgorithmModelComponent.vue";
 import CustomerServiceComponent from "@/components/learningMachine/home/CustomerServiceComponent.vue";
+import TopInformationComponent from "@/components/system/homeComponents/TopInformationComponent.vue";
 </script>
 
 <template>
   <div class="learning-machine-home-box">
     <!--顶部信息-->
-    <learning-machine-home-top-info-component/>
+    <TopInformationComponent/>
     <!-- 内容框-->
     <div class="learning-machine-home-content">
       <!--侧边栏导航-->

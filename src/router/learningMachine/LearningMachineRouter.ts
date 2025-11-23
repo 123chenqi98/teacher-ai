@@ -8,7 +8,7 @@ export const learningMachineRouters=[
     },
     {
         // 智能助手路由（产品中心）
-        path: '/intelligentAssistant',
+        path: '/learningMachine/product',
         name: 'intelligentAssistant',
         component:() =>import("@/views/learningMachine/ProductCenterView.vue")
     },

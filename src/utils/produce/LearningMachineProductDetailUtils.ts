@@ -45,7 +45,7 @@ const buyNow = () => {
 
 // 返回产品中心
 const goBack = () => {
-    router.push('/intelligentAssistant').then();
+    router.push('/learningMachine/product').then();
 };
 
 // 切换标签页

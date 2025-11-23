@@ -11,7 +11,7 @@ import router from "@/router";
     <el-button text size="large" class="nav-button" @click="router.push('/teacher')">
         <el-text class="navigation-font">小知智能教师</el-text>
     </el-button>
-    <el-button text size="large" class="nav-button">
+    <el-button text size="large" class="nav-button" @click="router.push('/learningMachine')">
         <el-text class="navigation-font">学习机</el-text>
     </el-button>
     <el-button text size="large" class="nav-button">
