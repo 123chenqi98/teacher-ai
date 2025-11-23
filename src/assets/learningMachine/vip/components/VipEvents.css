@@ -1,0 +1,117 @@
+@import '../LearningMachineVipVariables.css';
+
+/* VIP专属活动 */
+.lm-vip-events {
+  margin-bottom: 40px;
+}
+
+.lm-event-card {
+  background: var(--bg-white-transparent);
+  border-radius: var(--border-radius-large);
+  padding: 30px 25px;
+  box-shadow: var(--shadow-light);
+  transition: var(--transition-hover);
+  margin-bottom: 25px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid transparent;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  text-align: center;
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+.lm-event-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+  opacity: 0;
+  transition: var(--transition-default);
+  z-index: -1;
+}
+
+.lm-event-card:hover::before {
+  opacity: 1;
+}
+
+.lm-event-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-medium);
+}
+
+.lm-event-icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  animation: iconBounce 2s infinite;
+}
+
+.lm-event-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 15px;
+}
+
+.lm-event-description {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.6;
+  flex-grow: 1;
+  margin-bottom: 20px;
+}
+
+.lm-event-date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #4a00e0;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* 动画 */
+.lm-event-card:nth-child(1) {
+  animation: slideInUp 0.5s ease-out 0.1s forwards;
+}
+
+.lm-event-card:nth-child(2) {
+  animation: slideInUp 0.5s ease-out 0.3s forwards;
+}
+
+.lm-event-card:nth-child(3) {
+  animation: slideInUp 0.5s ease-out 0.5s forwards;
+}
+
+.lm-event-card:nth-child(4) {
+  animation: slideInUp 0.5s ease-out 0.7s forwards;
+}
+
+/* 动画关键帧 */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes iconBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}

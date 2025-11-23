@@ -1,0 +1,119 @@
+@import '../LearningMachineVipVariables.css';
+
+/* 会员成长体系 */
+.lm-growth-system {
+  margin-bottom: 40px;
+}
+
+.lm-growth-level-card {
+  background: var(--bg-white-transparent);
+  border-radius: var(--border-radius-large);
+  padding: 30px;
+  box-shadow: var(--shadow-light);
+  transition: var(--transition-hover);
+  margin-bottom: 25px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid transparent;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+.lm-growth-level-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+  opacity: 0;
+  transition: var(--transition-default);
+  z-index: -1;
+}
+
+.lm-growth-level-card:hover::before {
+  opacity: 1;
+}
+
+.lm-growth-level-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-medium);
+}
+
+.lm-level-header {
+  text-align: center;
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.lm-level-name {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #333;
+  margin: 0 0 12px;
+}
+
+.lm-level-condition {
+  font-size: 1rem;
+  color: #666;
+  margin: 0;
+  font-weight: 500;
+}
+
+.lm-level-benefits {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.lm-benefit-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 10px 0;
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+.lm-benefit-item .el-icon {
+  margin-right: 10px;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+/* 动画 */
+.lm-growth-level-card:nth-child(1) {
+  animation: slideInUp 0.5s ease-out 0.1s forwards;
+}
+
+.lm-growth-level-card:nth-child(2) {
+  animation: slideInUp 0.5s ease-out 0.3s forwards;
+}
+
+.lm-growth-level-card:nth-child(3) {
+  animation: slideInUp 0.5s ease-out 0.5s forwards;
+}
+
+.lm-growth-level-card:nth-child(4) {
+  animation: slideInUp 0.5s ease-out 0.7s forwards;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

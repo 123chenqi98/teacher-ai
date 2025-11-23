@@ -1,0 +1,82 @@
+@import '../LearningMachineVipVariables.css';
+
+/* 页面头部 */
+.lm-checkout-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 1;
+  padding: 0 10px;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.lm-checkout-title {
+  font-size: var(--font-size-title);
+  font-weight: 800;
+  color: var(--primary-color);
+  margin: 0;
+  background: var(--bg-gradient-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.lm-checkout-title::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 0;
+  width: 80px;
+  height: 5px;
+  background: var(--bg-gradient-main);
+  border-radius: 3px;
+}
+
+.lm-back-button {
+  border-radius: var(--border-radius-small);
+  padding: 14px 28px;
+  font-size: var(--font-size-medium);
+  font-weight: 600;
+  transition: var(--transition-default);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-gradient-main);
+  color: white;
+  letter-spacing: 1px;
+  animation: slideInRight 0.8s ease-out;
+}
+
+.lm-back-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* 动画关键帧 */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

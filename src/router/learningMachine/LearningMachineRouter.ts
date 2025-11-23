@@ -13,6 +13,18 @@ export const learningMachineRouters=[
         component:() =>import("@/views/learningMachine/ProductCenterView.vue")
     },
     {
+        // 学习机VIP页面路由
+        path: '/learningMachine/vip',
+        name: 'learningMachineVip',
+        component:() =>import("@/views/learningMachine/VipView.vue")
+    },
+    {
+        // 学习机VIP开通页面路由
+        path: '/learningMachine/vip/checkout',
+        name: 'vipCheckout',
+        component:() =>import("@/views/learningMachine/VipCheckoutView.vue")
+    },
+    {
         // 学习机产品详情页路由
         path: '/intelligentAssistant/product/:id',
         name: 'learningMachineProductDetail',

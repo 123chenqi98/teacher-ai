@@ -1,0 +1,251 @@
+@import '../LearningMachineVipVariables.css';
+
+/* VIP套餐区域 */
+.lm-vip-packages {
+  margin-bottom: 40px;
+}
+
+/* 单个套餐卡片 */
+.lm-vip-package-card {
+  position: relative;
+  border-radius: var(--border-radius-large);
+  padding: 35px 25px;
+  text-align: center;
+  box-shadow: var(--shadow-light);
+  transition: var(--transition-hover);
+  cursor: pointer;
+  border: 3px solid transparent;
+  margin-bottom: 25px;
+  transform: translateY(30px);
+  opacity: 0;
+  background: var(--bg-white-transparent);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  z-index: 1;
+}
+
+
+.lm-vip-package-card:hover::before {
+  opacity: 1;
+}
+
+.lm-vip-package-card.lm-card-enter {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.lm-vip-package-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-medium);
+}
+
+.lm-vip-package-card.lm-popular {
+  border-color: #b4a0e8;
+  transform: scale(1.03);
+  box-shadow: 0 12px 30px rgba(180, 160, 232, 0.3);
+}
+
+.lm-vip-package-card.lm-popular:hover {
+  transform: scale(1.03) translateY(-8px);
+  box-shadow: 0 18px 40px rgba(180, 160, 232, 0.4);
+}
+
+.lm-vip-package-card.lm-popular .lm-popular-tag {
+  margin-top: 20px;
+  animation: bounce 2s infinite;
+}
+
+/* 热门标签 */
+.lm-popular-tag {
+  position: absolute;
+  top: -14px;
+  right: 25px;
+  background: linear-gradient(135deg, #ff6b6b, #ffa500);
+  color: white;
+  padding: 7px 18px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+  z-index: 2;
+}
+
+/* 套餐头部 */
+.lm-package-header {
+  margin-bottom: 30px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.lm-package-name {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #333;
+  margin: 0 0 20px;
+}
+
+/* 价格区域 */
+.lm-price-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.lm-original-price {
+  font-size: 1.2rem;
+  color: #999;
+  text-decoration: line-through;
+  font-weight: 500;
+}
+
+.lm-current-price {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #ff6b6b;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.lm-period {
+  font-size: 1rem;
+  color: #666;
+  font-weight: 500;
+}
+
+/* 套餐特性列表 */
+.lm-package-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 35px;
+  text-align: left;
+}
+
+.lm-feature-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  margin: 10px 0;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.lm-feature-item:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  transform: translateX(5px);
+}
+
+.lm-feature-item .el-icon {
+  margin-right: 12px;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.lm-feature-item span {
+  font-size: 1rem;
+  color: #444;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* 购买按钮 */
+.lm-buy-button {
+  width: 85%;
+  padding: 18px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: var(--border-radius-medium);
+  transition: var(--transition-default);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.lm-buy-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.lm-buy-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s;
+}
+
+.lm-buy-button:hover::before {
+  transform: translateX(100%);
+}
+
+.lm-buy-button.lm-selected {
+  background: linear-gradient(135deg, var(--success-color), #85ce61) !important;
+  box-shadow: 0 6px 15px rgba(103, 194, 58, 0.3);
+}
+
+.lm-buy-button.lm-selected::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+/* 安全提示 */
+.lm-security-tips {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  margin-top: 25px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  flex-wrap: wrap;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+  animation: fadeInUp 1s ease-out;
+}
+
+.lm-security-tips .el-icon {
+  margin-right: 8px;
+  font-size: 1.2rem;
+}
+
+.lm-security-tips span {
+  display: flex;
+  align-items: center;
+  color: #5a5a7a;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* 动画关键帧 */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

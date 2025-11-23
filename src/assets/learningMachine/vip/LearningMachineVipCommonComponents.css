@@ -1,0 +1,153 @@
+/* VIP页面通用组件样式 */
+@import './LearningMachineVipVariables.css';
+
+/* 通用板块样式 */
+.lm-section {
+  background: var(--bg-white-transparent);
+  border-radius: var(--border-radius-large);
+  padding: var(--spacing-xxlarge);
+  box-shadow: var(--shadow-light);
+  backdrop-filter: blur(10px);
+  transition: var(--transition-default);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: var(--spacing-xxlarge);
+}
+
+.lm-section:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-medium);
+}
+
+.lm-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.3), transparent);
+  opacity: 0;
+  transition: var(--transition-default);
+}
+
+.lm-section:hover::before {
+  opacity: 1;
+}
+
+/* 板块标题通用样式 */
+.lm-section-title {
+  font-size: var(--font-size-xxlarge);
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0 0 var(--spacing-xlarge);
+  padding-bottom: var(--spacing-small);
+  border-bottom: 3px solid var(--secondary-color);
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.lm-section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: var(--accent-color);
+  border-radius: 2px;
+}
+
+/* 通用卡片悬停效果 */
+.lm-card-hover {
+  transition: var(--transition-hover);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.lm-card-hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+  opacity: 0;
+  transition: var(--transition-default);
+  z-index: -1;
+}
+
+.lm-card-hover:hover::before {
+  opacity: 1;
+}
+
+.lm-card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-medium);
+}
+
+/* 通用按钮样式 */
+.lm-button {
+  border-radius: var(--border-radius-medium);
+  padding: var(--spacing-medium) var(--spacing-large);
+  font-size: var(--font-size-medium);
+  font-weight: 600;
+  transition: var(--transition-default);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.lm-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.lm-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s;
+}
+
+.lm-button:hover::before {
+  transform: translateX(100%);
+}
+
+/* 通用列表项样式 */
+.lm-list-item {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-medium) var(--spacing-large);
+  border-radius: var(--border-radius-medium);
+  transition: var(--transition-default);
+}
+
+.lm-list-item:hover {
+  background-color: var(--bg-white-transparent-light);
+  transform: translateX(5px);
+}
+
+.lm-list-item .el-icon {
+  margin-right: 12px;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.lm-list-item span {
+  font-size: var(--font-size-normal);
+  color: #444;
+  font-weight: 500;
+  line-height: 1.5;
+}

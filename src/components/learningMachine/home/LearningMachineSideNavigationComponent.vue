@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import "@/assets/learningMachine/homeCss/LearningMachineHomePageCss.css"
-import { HomeFilled,Shop,User,View,Position} from "@element-plus/icons-vue";
+import { HomeFilled,Shop,User} from "@element-plus/icons-vue";
 import router from "@/router";
 //导航信息
 const learningMachineNavigation = [
@@ -16,19 +16,9 @@ const learningMachineNavigation = [
   },
   {
     name: '学习机会员',
-    path: '/learningMachine/member', // 会员路由
+    path: '/learningMachine/vip', // 会员路由
     icon: User // 会员图标
   },
-  {
-    name: '新闻中心',
-    path: '/learningMachine/news', // 新闻路由
-    icon: View // 新闻图标
-  },
-  {
-    name: '关于我们',
-    path: '/learningMachine/about', // 关于路由
-    icon: Position // 关于我们图标
-  }
 ];
 </script>
 <template>

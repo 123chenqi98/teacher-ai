@@ -1,0 +1,162 @@
+@import '../LearningMachineVipVariables.css';
+
+/* 页面头部样式 */
+.lm-vip-header {
+  text-align: center;
+  margin-bottom: 45px;
+  padding: 30px 20px;
+  position: relative;
+  background: rgba(255, 
+  255, 255, 0.7);
+  border-radius: var(--border-radius-medium);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+  z-index: 1;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.lm-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: linear-gradient(135deg, #ffd700, #ff8c00);
+  color: #fff;
+  padding: 6px 16px;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+  z-index: 2;
+  animation: pulse 2s infinite;
+}
+
+.lm-vip-title {
+  font-size: var(--font-size-title);
+  font-weight: 800;
+  color: var(--primary-color);
+  margin: 20px 0 15px;
+  background: var(--bg-gradient-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  z-index: 1;
+  animation: slideInUp 1s ease-out;
+}
+
+.lm-vip-subtitle {
+  font-size: 1.2rem;
+  color: #5a5a7a;
+  max-width: 700px;
+  margin: 0 auto 35px;
+  line-height: 1.7;
+  font-weight: 400;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 0.5s forwards;
+}
+
+/* 数据统计 */
+.lm-stats {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 35px;
+  flex-wrap: wrap;
+}
+
+.lm-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 25px;
+  background: var(--bg-white-transparent-light);
+  border-radius: 14px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+.lm-stat-item:nth-child(1) {
+  animation: slideInUp 0.5s ease-out 0.7s forwards;
+}
+
+.lm-stat-item:nth-child(2) {
+  animation: slideInUp 0.5s ease-out 0.9s forwards;
+}
+
+.lm-stat-item:nth-child(3) {
+  animation: slideInUp 0.5s ease-out 1.1s forwards;
+}
+
+.lm-stat-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+}
+
+.lm-stat-number {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  margin-bottom: 8px;
+  background: var(--bg-gradient-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.lm-stat-label {
+  font-size: 1.1rem;
+  color: #6a6a8a;
+  font-weight: 500;
+}
+
+/* 动画关键帧 */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% { 
+    transform: scale(1);
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+  }
+  50% { 
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(255, 215, 0, 0.6);
+  }
+  100% { 
+    transform: scale(1);
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+  }
+}

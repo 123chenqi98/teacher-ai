@@ -20,7 +20,6 @@
 .learning-machine-home-content{
     display: flex;
     flex-direction:row;
-    gap: 24px; /* 侧边栏与功能组件之间的横向间距 */
     padding: 20px; /* 内容区整体内边距，避免组件贴边 */
 }
 
