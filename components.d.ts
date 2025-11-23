@@ -15,6 +15,7 @@ declare module 'vue' {
     AccountIdentityComPonent: typeof import('./src/components/auth/forgetPasswordComponents/AccountIdentityComPonent.vue')['default']
     ActivitiesSynopsisComponent: typeof import('./src/components/teacher/home/ActivitiesSynopsisComponent.vue')['default']
     Admin: typeof import('./src/components/admin/admin.vue')['default']
+    ContactUsPageTop: typeof import('./src/components/contactUs/home/ContactUsPageTop.vue')['default']
     ElAlert: typeof import('element-plus/es')['ElAlert']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
