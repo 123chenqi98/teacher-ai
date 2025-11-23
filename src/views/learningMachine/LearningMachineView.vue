@@ -28,10 +28,7 @@ import CoreAlgorithmModelComponent from "@/components/learningMachine/home/CoreA
         <!--核心算法模型-->
         <core-algorithm-model-Component/>
       </div>
-
-
     </div>
-
   </div>
 
 </template>
