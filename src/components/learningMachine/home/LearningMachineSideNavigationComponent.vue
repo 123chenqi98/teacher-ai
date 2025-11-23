@@ -10,7 +10,7 @@ const learningMachineNavigation = [
     icon: HomeFilled
   },
   {
-    name: '产品中心',
+    name: '产品',
     path: '/learningMachine/product', // 产品路由
     icon: Shop//产品图标
   },

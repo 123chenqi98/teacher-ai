@@ -1,0 +1,100 @@
+/* 客服容器样式 */
+.customer-service-container {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 999;
+    display: flex;
+    flex-direction: row-reverse; /* 反转顺序，让客服按钮在最右 */
+    align-items: center;
+    gap: 10px;
+}
+
+/* 基础按钮样式 */
+.base-service-btn {
+    width: 55px;
+    height: 55px;
+    background-color: rgba(157, 120, 227, 0.9) !important;
+    color: #ffffff !important;
+    border: none !important;
+    transition: all 0.3s ease !important;
+    border-radius: 12px !important;
+    padding: 0 !important;
+}
+
+/* 按钮内部容器 - 确保垂直排列 */
+.base-service-btn .el-button__inner {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 2px !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* 按钮内容包装器 - 确保垂直排列 */
+.base-service-btn .button-content-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 2px !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* 图标样式 */
+.base-service-btn .service-icon {
+    font-size: 18px !important;
+    line-height: 1 !important;
+    display: block !important;
+    flex-shrink: 0 !important;
+}
+
+/* 文字样式 */
+.base-service-btn .service-text {
+    font-size: 12px !important;
+    line-height: 1 !important;
+    display: block !important;
+    flex-shrink: 0 !important;
+}
+
+/* 联系客服按钮样式 - 默认隐藏 */
+.contact-service-btn {
+    border-radius: 25px;
+    padding: 8px 16px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background-color: #af0b0b !important;
+    border-color: #af0b0b !important;
+    opacity: 0;
+    transform: translateX(-10px); /* 从左侧滑入 */
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+/* 确保联系客服按钮内部内容水平排列 */
+.contact-service-btn .el-button__inner {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 6px !important;
+}
+
+.contact-service-btn:hover {
+    background-color: #8a0909 !important;
+    border-color: #8a0909 !important;
+}
+
+/* 容器悬停时：显示联系客服按钮并改变基础按钮背景 */
+.customer-service-container:hover .base-service-btn {
+    background-color: rgba(13, 13, 14, 0.88) !important;
+}
+
+.customer-service-container:hover .contact-service-btn {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
