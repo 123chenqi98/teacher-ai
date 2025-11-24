@@ -1,6 +1,5 @@
 <!-- 导包处-->
 <script setup lang="ts">
-
 import ContactUsPageTop from "@/components/contactUs/home/ContactUsPageTop.vue"
 </script>
 
