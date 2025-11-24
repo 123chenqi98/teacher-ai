@@ -4,6 +4,19 @@ import "@/assets/contactUs/homeCss/cntactUsTopCss.css"
 
 
 <template>
+<!--  顶部导航栏-->
+<header class="header-navigation">
+  <div class="header-navigation-logo">
+    <el-image src="@/assets/img/logo.png"
+              alt="logo图片"
+    />
+    <span class="">小知老师</span>
+  </div>
+
+
+</header>
+
+<!--  头部照片-->
   <div class="demo-page-top">
     <el-image  class="image-top"
                src="https://www-file.huawei.com/admin/asset/v1/pro/view/924b6fe6e7104e88a5cc36ed8d50b264.jpg"
@@ -28,9 +41,7 @@ import "@/assets/contactUs/homeCss/cntactUsTopCss.css"
 
   </div>
 
-
 </template>
-
 
 <style scoped>
 
