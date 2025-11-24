@@ -7,7 +7,7 @@ import "@/assets/contactUs/homeCss/cntactUsTopCss.css"
 <!--  顶部导航栏-->
 <header class="header-navigation">
   <div class="header-navigation-logo">
-    <el-image src="@/assets/img/logo.png"
+    <el-image src="@/static/logo.png"
               alt="logo图片"
     />
     <span class="">小知老师</span>
