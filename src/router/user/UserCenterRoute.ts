@@ -44,7 +44,7 @@ export const userCenterRoute = [
                 path: 'notifications',
                 name: 'notifications',
                 component: () => import('@/views/user/NotificationCenterView.vue'),
-                meta: { title: '通知中心' }
+                meta: {title: '通知中心'}
             },
             // 教案管理页
             {
@@ -53,26 +53,12 @@ export const userCenterRoute = [
                 component: () => import('@/views/user/LessonPlanManagerView.vue'),
                 meta: { title: '教案管理' }
             },
-            // 学习题库页
-            {
-                path: 'questionBank',
-                name: 'questionBank',
-                component: () => import('@/views/user/QuestionBankView.vue'),
-                meta: { title: '学习题库' }
-            },
             // 消息中心页
             {
                 path: 'messages',
                 name: 'messages',
                 component: () => import('@/views/user/MessageCenterView.vue'),
                 meta: { title: '消息中心' }
-            },
-            // 资源中心页
-            {
-                path: 'resources',
-                name: 'resources',
-                component: () => import('@/views/user/ResourceCenterView.vue'),
-                meta: { title: '资源中心' }
             }
         ]
     }
