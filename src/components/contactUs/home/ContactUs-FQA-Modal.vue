@@ -6,7 +6,6 @@
 
 </template>
 
-
-
 <style scoped>
+
 </style>

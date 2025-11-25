@@ -1,6 +1,7 @@
 <!-- 导包处-->
 <script setup lang="ts">
 import ContactUsPageTop from "@/components/contactUs/home/ContactUsPageTop.vue"
+import ContactUsInformation from "@/components/contactUs/home/ContactUsInformation.vue"
 </script>
 
 
@@ -10,8 +11,8 @@ import ContactUsPageTop from "@/components/contactUs/home/ContactUsPageTop.vue"
 <div class="Contact-Us-Page-Box">
      <!--  顶部导航-->
       <ContactUsPageTop/>
-
-
+      <!--      联系方式-->
+      <ContactUsInformation/>
 
 </div>
 </template>

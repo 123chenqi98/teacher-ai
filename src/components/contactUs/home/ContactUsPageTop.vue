@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import "@/assets/contactUs/homeCss/contactUsTopCss.css"
+import "@/assets/contactUs/homeCss/ContactUsTopCss.css"
 </script>
 
 <template>
