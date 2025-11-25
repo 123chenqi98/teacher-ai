@@ -1,19 +1,29 @@
 <script setup lang="ts">
-import "@/assets/contactUs/homeCss/cntactUsTopCss.css"
+import "@/assets/contactUs/homeCss/contactUsTopCss.css"
 </script>
-
 
 <template>
 <!--  顶部导航栏-->
-<header class="header-navigation">
-  <div class="header-navigation-logo">
-    <el-image src="@/static/logo.png"
-              alt="logo图片"
-    />
-    <span class="">小知老师</span>
+<header class="homeTopInfoBox">
+  <div class="logo-box">
+    <el-image class="logo-image" src="src/static/logo.png" alt="logo图片"/>
+    <el-text class="home-title">小知老师</el-text>
   </div>
-
-
+  <!-- 导航菜单 -->
+<div class="navigation-box">
+  <el-button size="large" class="nav-button">
+    <el-text class="navigation-font">首页</el-text>
+  </el-button>
+  <el-button size="large" class="nav-button">
+    <el-text class="navigation-font">首页ddd</el-text>
+  </el-button >
+  <el-button size="large" class="nav-button">
+    <el-text class="navigation-font">首页aa</el-text>
+  </el-button>
+  <el-button size="large" class="nav-button">
+    <el-text class="navigation-font">首页dddddd</el-text>
+  </el-button>
+</div>
 </header>
 
 <!--  头部照片-->
@@ -44,5 +54,24 @@ import "@/assets/contactUs/homeCss/cntactUsTopCss.css"
 </template>
 
 <style scoped>
-
+/*标题样式*/
+.home-title{
+  width: 100%;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-left: 0.5rem;
+  font-family: 楷体,serif;
+  color: rgb(13, 23, 42);
+}
+.navigation-font {
+  font-size: 1.8rem;
+  font-family: 楷体, serif;
+  font-weight: 700;
+  color: rgb(13, 23, 42);
+  margin-left: 0.5rem;
+}
+/* 使用 !important 确保样式生效 */
+.nav-button:hover {
+  background-color: rgba(120, 76, 172, 0.86) !important;
+}
 </style>
