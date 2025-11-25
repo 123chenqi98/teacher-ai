@@ -71,6 +71,12 @@ import "@/assets/contactUs/homeCss/contactUsTopCss.css"
   margin-left: 0.5rem;
 }
 /* 使用 !important 确保样式生效 */
+.nav-button{
+  /* 关键：去掉按钮默认的背景色、边框、外边框 */
+  background: transparent; /* 背景透明（继承父元素背景，即与页面背景一致） */
+  border: none; /* 去掉默认边框 */
+  outline: none; /* 去掉点击时的蓝色外边框（可选，按需求保留） */
+}
 .nav-button:hover {
   background-color: rgba(120, 76, 172, 0.86) !important;
 }
