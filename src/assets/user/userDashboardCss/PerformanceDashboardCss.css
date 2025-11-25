@@ -47,39 +47,40 @@
 
 /* 操作按钮区域布局样式 */
 .actions-col {
-    display: flex; /* Flex布局，使按钮横向排列 */
-    justify-content: flex-end; /* 按钮靠右对齐 */
-    align-items: center; /* 垂直居中对齐 */
-    gap: 12px; /* 按钮间距，替代单侧大margin */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
 }
 
 /* 编辑资料按钮样式 */
-.edit-btn {
-    font-size: 18px; /* 字体大小 */
-    padding: 15px 20px; /* 统一按钮内边距与高度 */
-    background-color: #6c63ff !important; /* 按钮背景色 */
-    border-color: #6c63ff !important; /* 按钮边框色 */
-    box-shadow: 0 4px 16px 0 rgba(108, 99, 255, 0.3); /* hover 时加深阴影 */
+.el-button.dashboard-edit-btn {
+    font-size: 16px !important;
+    padding: 14px 24px !important;
+    border-radius: 8px !important;
+    background-color: #6c63ff !important;
+    border-color: #6c63ff !important;
+    box-shadow: 0 4px 16px 0 rgba(108, 99, 255, 0.3) !important;
 }
 
 /* 编辑按钮悬浮态：背景加深与放大 */
-.edit-btn:hover {
-    box-shadow: 0 4px 16px 0 rgba(108, 99, 255, 0.7); /* hover 时加深阴影 */
+.el-button.dashboard-edit-btn:hover {
+    box-shadow: 0 4px 16px 0 rgba(108, 99, 255, 0.7);
 }
 
 /* 查看消息按钮样式 */
-.message-btn {
-    font-size: 18px; /* 字体大小 */
-    padding: 15px 20px; /* 统一按钮内边距与高度 */
-    background-color: #4cd263 !important; /* 按钮背景色 */
-    border-color: #4cd263 !important; /* 按钮边框色 */
-    box-shadow: 0 4px 16px 0 rgba(108, 99, 255, 0.3); /* hover 时加深阴影 */
+.el-button.message-btn {
+    font-size: 16px !important;
+    padding: 14px 24px !important;
+    border-radius: 8px !important;
+    background-color: #4cd263 !important;
+    border-color: #4cd263 !important;
+    box-shadow: 0 4px 16px 0 rgba(108, 99, 255, 0.3) !important;
 }
 
 /* 统一按钮最小宽度，保证视觉大小一致 */
-.actions-col .edit-btn,
-.actions-col .message-btn {
-    min-width: 140px;
+.actions-col .el-button {
+    min-width: 150px !important;
 }
 
 .message-btn:hover {

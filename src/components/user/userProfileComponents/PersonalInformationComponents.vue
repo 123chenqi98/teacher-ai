@@ -48,7 +48,7 @@ onMounted(() => {
               <p class="basic-meta">{{ userInfo.subject }} | {{ userInfo.department }} | 教龄 {{ userInfo.teachingAge }}</p>
             </div>
             <div class="header-actions">
-              <el-button type="primary" :icon="Edit" @click="toggleEditMode" class="edit-btn">编辑信息</el-button>
+              <el-button type="primary" :icon="Edit" @click="toggleEditMode" class="profile-edit-btn">编辑信息</el-button>
             </div><!-- 摘要信息：在头像右侧展示关键字段，避免留白 -->
             <el-descriptions :column="2" class="summary-descriptions">
               <el-descriptions-item label="姓名"><el-text class="detail-value">{{ userInfo.realName }}</el-text></el-descriptions-item>

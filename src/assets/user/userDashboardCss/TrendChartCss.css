@@ -13,9 +13,11 @@
 
 .growth-stats {
     display: flex;
-    gap: 20px;
+    gap: 12px;
     flex-wrap: wrap;
-    margin-bottom: 16px;
+    margin-bottom: 0;
+    flex: 1;
+    justify-content: center;
 }
 
 .growth-item {
@@ -50,4 +52,10 @@
 
 .trend-icon {
     vertical-align: middle;
+}
+.chart-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
 }

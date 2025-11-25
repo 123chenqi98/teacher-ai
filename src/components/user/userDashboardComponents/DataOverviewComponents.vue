@@ -13,7 +13,7 @@ import {ElButton, ElCard, ElCol, ElIcon, ElRow} from "element-plus";
         <h2 class="top-title">本周数据概览</h2>
       </el-col>
       <el-col :span="4" class="text-right">
-        <el-button type="primary" size="small" class="view-detail-btn" icon="ArrowRight">
+        <el-button type="primary" size="small" class="overview-detail-btn" icon="ArrowRight">
           查看详情
         </el-button>
       </el-col>

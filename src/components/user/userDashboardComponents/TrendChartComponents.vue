@@ -15,10 +15,8 @@ setupTrendChart()
     <el-col :span="24">
       <el-card shadow="hover" :border="false" class="trend-chart-card">
         <!-- 卡片头部：标题 + 环比增长 + 下载按钮（类名不变，靠CSS调整布局） -->
-        <div>
-          <!-- 修改后的代码 -->
+        <div class="chart-header">
           <h2 class="chart-title">本月平台使用趋势</h2>
-          <!-- 环比增长统计 -->
           <div class="growth-stats">
             <div
                 v-for="(item, index) in trendData.growth"
@@ -28,17 +26,15 @@ setupTrendChart()
             >
               <span class="growth-label">{{ item.label }}：</span>
               <span class="growth-value-wrapper">
-              <el-icon :size="14" class="trend-icon">
-                <ArrowUp v-if="item.trend === 'up'" />
-                <ArrowDown v-else />
-              </el-icon>
-              <span class="growth-value">{{ item.value }}</span>
-            </span>
+                <el-icon :size="14" class="trend-icon">
+                  <ArrowUp v-if="item.trend === 'up'" />
+                  <ArrowDown v-else />
+                </el-icon>
+                <span class="growth-value">{{ item.value }}</span>
+              </span>
             </div>
           </div>
-
-          <!-- 下载按钮 -->
-          <el-button type="primary" size="small" class="download-btn" @click="downloadReport">
+          <el-button type="primary" size="default" class="download-btn" @click="downloadReport">
             <el-icon :size="14"><Download /></el-icon>
             <span class="ml-1">下载报表</span>
           </el-button>
@@ -52,7 +48,5 @@ setupTrendChart()
 </template>
 
 <style scoped>
-
-
 
 </style>

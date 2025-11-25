@@ -37,7 +37,7 @@ import {ElAvatar, ElButton, ElCard, ElCol, ElIcon, ElRow, ElText} from "element-
 
       <!-- 操作按钮 -->
       <el-col :span="8" class="actions-col">
-        <el-button type="primary" size="small" class="edit-btn">
+        <el-button type="primary" size="small" class="dashboard-edit-btn">
           <i class="el-icon-edit mr-1"></i>编辑资料
         </el-button>
         <el-button type="success" size="small" class="message-btn">

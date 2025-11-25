@@ -39,19 +39,19 @@ export const userCenterRoute = [
                 component: () => import('@/views/user/GoalManagementView.vue'),
                 meta: { title: '目标管理' }
             },
-            // 通知中心页
-            {
-                path: 'notifications',
-                name: 'notifications',
-                component: () => import('@/views/user/NotificationCenterView.vue'),
-                meta: {title: '通知中心'}
-            },
             // 教案管理页
             {
                 path: 'lessonPlans',
                 name: 'lessonPlans',
                 component: () => import('@/views/user/LessonPlanManagerView.vue'),
                 meta: { title: '教案管理' }
+            },
+            // 通知中心页
+            {
+                path: 'notifications',
+                name: 'notifications',
+                component: () => import('@/views/user/NotificationCenterView.vue'),
+                meta: {title: '通知中心'}
             },
             // 消息中心页
             {

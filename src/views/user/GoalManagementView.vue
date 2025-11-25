@@ -20,13 +20,13 @@ import KeyResultEditDialogComponent from "@/components/user/goalManagementCompon
       <TopNavigationComponents />
       <!-- 内容区域 -->
       <div class="content-area">
-<!--        头部信息-->
+        <!-- 头部信息 -->
         <HeaderStatComponent />
-<!--        表格-->
+        <!-- 表格 -->
         <TargetInfoComponent />
-<!--        统计数据-->
+        <!-- 统计数据 -->
         <DataSheetComponent />
-<!--        对话框-->
+        <!-- 对话框 -->
         <TargetEditDialogComponent />
         <KeyResultEditDialogComponent />
       </div>

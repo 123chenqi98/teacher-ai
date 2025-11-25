@@ -18,11 +18,11 @@ import RankingComponent from "@/components/user/analyticsDashboardComponents/Ran
       <TopNavigationComponents />
       <!-- 内容区域 -->
       <div class="content-area">
-<!--        统计数据-->
+        <!-- 统计数据 -->
         <StatisticsComponent/>
-<!--        图表数据-->
-        <ChartsComponent/>
-<!--        排行榜-->
+        <!-- 图表数据 -->
+        <ChartsComponent/>`
+        <!-- 排行榜 -->
         <RankingComponent />
       </div>
     </main>

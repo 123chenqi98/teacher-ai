@@ -50,25 +50,13 @@ import router from "@/router";
           <span>教案管理</span>
         </el-menu-item>
 
-        <!-- 6. 学习题库：教案配套资源，出题、选题（与教案强关联，紧跟教案管理） -->
-        <el-menu-item index="/user/questionBank">
-          <el-icon><Reading /></el-icon> <!-- 学习图标：明确题库功能 -->
-          <span>学习题库</span>
-        </el-menu-item>
-
-        <!-- 7. 资源中心：综合教学资源库（课件、素材等，辅助教学，放题库之后） -->
-        <el-menu-item index="/user/resources">
-          <el-icon><Folder /></el-icon> <!-- 文件夹图标：表示"资源存储" -->
-          <span>资源中心</span>
-        </el-menu-item>
-
-        <!-- 8. 通知中心：系统官方提醒（如公告、审核结果，被动接收类，放功能区之后） -->
+        <!-- 6. 通知中心：系统官方提醒（如公告、审核结果，被动接收类，放功能区之后） -->
         <el-menu-item index="/user/notifications">
           <el-icon><Bell /></el-icon> <!-- 铃铛图标：直观表示"通知" -->
           <span>通知中心</span>
         </el-menu-item>
 
-        <!-- 9. 消息中心：人际沟通类（与学生、同事、管理员沟通，非核心紧急，放最后） -->
+        <!-- 7. 消息中心：人际沟通类（与学生、同事、管理员沟通，非核心紧急，放最后） -->
         <el-menu-item index="/user/messages">
           <el-icon><Message /></el-icon> <!-- 消息图标：明确"沟通"功能 -->
           <span>消息中心</span>
