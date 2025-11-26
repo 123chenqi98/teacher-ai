@@ -2,6 +2,7 @@
 <script setup lang="ts">
 import ContactUsPageTop from "@/components/contactUs/home/ContactUsPageTop.vue"
 import ContactUsInformation from "@/components/contactUs/home/ContactUsInformation.vue"
+import Try from "@/components/contactUs/home/Try.vue"
 </script>
 
 
@@ -13,6 +14,7 @@ import ContactUsInformation from "@/components/contactUs/home/ContactUsInformati
       <ContactUsPageTop/>
       <!--      联系方式-->
       <ContactUsInformation/>
+      <Try/>
 
 </div>
 </template>

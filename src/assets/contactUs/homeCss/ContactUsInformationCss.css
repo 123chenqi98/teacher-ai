@@ -1,0 +1,42 @@
+.contact-info-box{
+    display: flex;       /* 让子元素（表格）横向排列 */
+    align-items: center;      /*将卡片上下距离居中*/
+    justify-content: center;/* 可选：水平方向居中（卡片整体在页面水平居中） */
+    height: 300px;
+    width: 100%;             /* 父容器宽度占满，避免溢出 */
+    gap: 150px;              /* 表格之间的间距（替代margin，更优雅） */
+    overflow-x: auto;       /* 小屏幕时允许横向滚动，防止表格挤变形 */
+    background: rgba(137, 55, 241, 0.86);
+
+}
+
+.contact-card{
+        /*flex: 1;                       !* 关键：三个表格均分父容器宽度（1:1:1） *!*/
+    /*display: flex;                 !*图标横向排列*!*/
+    min-width: 20px;               /* 最小宽度，防止表格过窄 */
+    width:300px ;
+    /*padding: 0px;                !* 内边距 *!*/
+    height:200px;
+    border-radius: 10px;          /* 圆角 */
+    border: 1px solid #880707;     /* 可选：表格边框，方便查看 */
+    border-collapse: collapse;     /* 合并表格边框 */
+    box-sizing: border-box;        /* 关键：宽度包含边框/内边距，避免总宽度超100% */
+}
+
+
+.contact-image {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+}
+
+.contact-content {
+
+}
+.contact-title {
+
+}

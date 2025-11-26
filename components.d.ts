@@ -82,6 +82,7 @@ declare module 'vue' {
     TeacherSideNavigationComponent: typeof import('./src/components/teacher/home/TeacherSideNavigationComponent.vue')['default']
     TopInformationComponent: typeof import('./src/components/system/homeComponents/TopInformationComponent.vue')['default']
     TopNavigationComponent: typeof import('./src/components/system/homeComponents/TopNavigationComponent.vue')['default']
+    Try: typeof import('./src/components/contactUs/home/try.vue')['default']
     VerifyIdentityComponent: typeof import('./src/components/auth/forgetPasswordComponents/VerifyIdentityComponent.vue')['default']
     VipSynopsisComponent: typeof import('./src/components/teacher/home/VipSynopsisComponent.vue')['default']
     WechatLoginComponent: typeof import('./src/components/auth/loginComponents/WechatLoginComponent.vue')['default']
