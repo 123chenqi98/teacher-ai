@@ -7,8 +7,6 @@ import LoginLogComponents from "@/components/user/userProfileComponents/LoginLog
 import { activeTab } from "@/data/user/userProfileData/PersonalInformationData.ts";
 import { headerTitle, headerSubtitle } from "@/data/user/userProfileData/PersonalInformationData.ts";
 import "@/assets/user/UserOverallCss.css"
-
-
 </script>
 
 <template>

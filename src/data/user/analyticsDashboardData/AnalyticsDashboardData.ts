@@ -91,7 +91,12 @@ const efficiencyRankingData = ref([
 const personalEfficiencyData = ref([
     { name: '本月教学目标完成度', value: 78 },
     { name: '课堂质量评分', value: 92 },
-    { name: '资源利用率', value: 85 }
+    { name: '资源利用率', value: 85 },
+    { name: '学生参与度', value: 88 },
+    { name: '教学反思完成度', value: 85 },
+    { name: '互动交流次数', value: 90 },
+    { name: '学生反馈满意度', value: 88 },
+    { name: '学生作业完成度', value: 90 }
 ])
 
 export {

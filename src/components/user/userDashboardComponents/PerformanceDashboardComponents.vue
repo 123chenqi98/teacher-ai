@@ -6,9 +6,9 @@ import {ElAvatar, ElButton, ElCard, ElCol, ElIcon, ElRow, ElText} from "element-
 
 <template>
   <!-- 页面标题 -->
-  <div class="page-title">
-    <h1 >个人概览</h1>
-    <p >涵盖个人信息概览、数据和收藏概览及使用趋势等核心内容。</p>
+  <div class="teacher-title">
+    <h1>个人概览</h1>
+    <p class="teacher-subtitle">涵盖个人信息概览、数据和收藏概览及使用趋势等核心内容。</p>
   </div>
 
   <el-divider /> <!-- 小写短横线形式 -->

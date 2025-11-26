@@ -1,7 +1,13 @@
-.page-title {
+/* 教师效能仪表盘样式 */
+.teacher-title {
     margin-bottom: 20px;
 }
-/* 教师效能仪表盘样式 */
+.teacher-subtitle {
+    margin: 0;
+    font-size: 14px;
+    color: #909399;
+}
+
 /* 教师档案卡片：统一外观与填充宽度 */
 .teacher-profile-card {
     margin-bottom: 20px; /* 底部外边距，与下方元素保持间距 */

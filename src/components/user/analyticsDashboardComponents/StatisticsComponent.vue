@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import "@/assets/user/analyticsDashboardCss/StatisticsCss.css"
-import {statsData} from "@/data/user/AnalyticsDashboardData/AnalyticsDashboardData.ts";
+import {statsData} from "@/data/user/analyticsDashboardData/AnalyticsDashboardData.ts";
 </script>
 
 <template>
   <div class="stats-header">
-    <h2>数据统计</h2>
-    <p>常用的教学用数据和统计信息，分析教师工作效率</p>
+    <h1>数据统计</h1>
+    <p class="stats-subtitle">常用的教学用数据和统计信息，分析教师工作效率</p>
   </div>
+  <el-divider /> <!-- 小写短横线形式 -->
 
   <!-- 统计卡片 -->
   <div class="stats-container">

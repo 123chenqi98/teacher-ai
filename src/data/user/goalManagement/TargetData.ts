@@ -1,6 +1,6 @@
 // 模拟目标数据
-import {ref} from "vue";
-import type {Objective} from "@/data/user/goalManagement/interface/TargetInterface.ts";
+import { ref } from "vue";
+import type { Objective } from "@/data/user/goalManagement/interface/TargetInterface.ts";
 
 const objectives = ref<Objective[]>([
     {
@@ -74,6 +74,4 @@ const objectives = ref<Objective[]>([
     }
 ])
 
-export {
-    objectives
-}
+export { objectives }

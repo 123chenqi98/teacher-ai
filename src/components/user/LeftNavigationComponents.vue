@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import "@/assets/user/LeftNavigationCss.css"
-import { Avatar, User, UserFilled, DataAnalysis, Aim, Notebook, Reading, Folder, Bell, Message } from '@element-plus/icons-vue';
+import { Avatar, User, UserFilled, DataAnalysis, Aim, Notebook, Bell, Message } from '@element-plus/icons-vue';
 import router from "@/router";
 </script>
 

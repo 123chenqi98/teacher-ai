@@ -4,7 +4,7 @@ import {
     activityData, comprehensiveTrendData, resourceDistributionData,
     taskCompletionData,
     usageTrendData
-} from "@/data/user/AnalyticsDashboardData/AnalyticsDashboardData.ts";
+} from "@/data/user/analyticsDashboardData/AnalyticsDashboardData.ts";
 
 const initCharts = () => {
     // 确保DOM已经渲染后再初始化图表

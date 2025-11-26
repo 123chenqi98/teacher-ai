@@ -1,21 +1,23 @@
 <script setup lang="ts">
 import "@/assets/user/goalManagementCss/okr-management.css"
-import {ElButton, ElCard, ElCol, ElRow} from "element-plus";
-import {Aim, Plus} from "@element-plus/icons-vue";
-import {addObjective} from "@/utils/user/teacher/info/goalManagement/DataUtlis.ts";
-import {statsData} from "@/utils/user/teacher/info/goalManagement/TargetDatautils.ts";
+import { ElButton, ElCard, ElCol, ElRow } from "element-plus";
+import { Plus } from "@element-plus/icons-vue";
+import { addObjective } from "@/utils/user/teacher/info/goalManagement/DataUtlis.ts";
+import { statsData } from "@/utils/user/teacher/info/goalManagement/TargetDatautils.ts";
 </script>
 
 <template>
     <div class="okr-page-header">
       <div class="okr-header-content">
-        <h2><el-icon class="okr-header-icon"><Aim /></el-icon> 目标管理</h2>
+        <h1>目标管理</h1>
         <p class="okr-header-subtitle">通过OKR方法管理您的教学目标和关键结果</p>
       </div>
       <el-button type="primary" @click="addObjective" class="okr-add-goal-btn">
         <el-icon><Plus /></el-icon> 添加目标
       </el-button>
     </div>
+
+    <el-divider /> <!-- 小写短横线形式 -->
 
     <el-row :gutter="20" class="okr-stats-row">
       <el-col :span="6" v-for="stat in statsData" :key="stat.title">

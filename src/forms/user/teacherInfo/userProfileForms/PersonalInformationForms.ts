@@ -19,6 +19,7 @@ const teacherInfoForm = reactive({
     educationBackground: "",
     intro: "",
 })
+
 // 表单校验规则（补充完整必填项校验）
 const teacherFormRules = {
     realName: [{ required: true, message: "请输入真实姓名", trigger: "blur" }],

@@ -18,6 +18,7 @@ declare module 'vue' {
     CollectionOverviewComponents: typeof import('./src/components/user/userDashboardComponents/CollectionOverviewComponents.vue')['default']
     DataOverviewComponents: typeof import('./src/components/user/userDashboardComponents/DataOverviewComponents.vue')['default']
     DataSheetComponent: typeof import('./src/components/user/goalManagementComponents/DataSheetComponent.vue')['default']
+    DataStatisticsComponents: typeof import('./src/components/user/lessonPlanManagerComponents/DataStatisticsComponents.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElBadge: typeof import('element-plus/es')['ElBadge']

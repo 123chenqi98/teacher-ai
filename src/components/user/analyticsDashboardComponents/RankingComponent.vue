@@ -2,7 +2,7 @@
 import {
   efficiencyRankingData,
   personalEfficiencyData
-} from "@/data/user/AnalyticsDashboardData/AnalyticsDashboardData.ts";
+} from "@/data/user/analyticsDashboardData/AnalyticsDashboardData.ts";
 import "@/assets/user/analyticsDashboardCss/RankingCss.css"
 </script>
 

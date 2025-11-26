@@ -1,17 +1,11 @@
 <script setup lang="ts">
 import { userInfo, isSubmitting, activeTab, isEditing, toggleEditMode } from "@/data/user/userProfileData/PersonalInformationData.ts"
-import {
-  teacherFormRules,
-  handleAvatarUpload,
-  handleSubmit,
-  handleCancel,
-  teacherInfoForm, teacherInfoRef
-} from "@/forms/user/teacherInfo/userProfileForms/PersonalInformationForms.ts";
+import { teacherFormRules, handleAvatarUpload, handleSubmit, handleCancel, teacherInfoForm, teacherInfoRef } from "@/forms/user/teacherInfo/userProfileForms/PersonalInformationForms.ts";
 import "@/assets/user/userProfileCss/PersonalInformationCss.css"
 // 导入 Element Plus 图标
 import { Edit, UploadFilled, Close, Check } from "@element-plus/icons-vue";
-import {onMounted} from "vue";
-import {ElMessage} from "element-plus";
+import { onMounted } from "vue";
+import { ElMessage } from "element-plus";
 
 
 // 组件挂载完成后初始化表单数据
@@ -25,8 +19,6 @@ onMounted(() => {
     ElMessage.warning("未获取到用户数据");
   }
 });
-
-
 </script>
 
 <template>

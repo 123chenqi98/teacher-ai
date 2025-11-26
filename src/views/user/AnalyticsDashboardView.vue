@@ -4,7 +4,6 @@ import TopNavigationComponents from "@/components/user/TopNavigationComponents.v
 import "@/assets/user/UserOverallCss.css"
 import StatisticsComponent from "@/components/user/analyticsDashboardComponents/StatisticsComponent.vue";
 import ChartsComponent from "@/components/user/analyticsDashboardComponents/ChartsComponent.vue";
-import "@/assets/user/UserOverallCss.css"
 import RankingComponent from "@/components/user/analyticsDashboardComponents/RankingComponent.vue";
 
 </script>

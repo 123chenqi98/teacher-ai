@@ -1,12 +1,12 @@
 /* 数据统计标题样式 */
 .stats-header {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 }
-
+.stats-subtitle {
+    margin: 0;
+    font-size: 14px;
+    color: #909399;
+}
 /* 统计卡片容器 - 使用flex布局 */
 .stats-container {
     display: flex;
