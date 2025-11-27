@@ -1,42 +1,102 @@
+/* ContactUsInformationCss.css */
+/* 第一步：声明CSS变量默认值（解决编辑器无法解析的问题） */
+.contact-props-container {
+    --text-color: #333333;
+    --theme-color: #bd3131;
+    --card-border-color: #880707;
+    --theme-color-light: rgba(189, 49, 49, 0.7);
+}
 .contact-info-box{
     display: flex;       /* 让子元素（表格）横向排列 */
     align-items: center;      /*将卡片上下距离居中*/
     justify-content: center;/* 可选：水平方向居中（卡片整体在页面水平居中） */
     height: 300px;
     width: 100%;             /* 父容器宽度占满，避免溢出 */
-    gap: 150px;              /* 表格之间的间距（替代margin，更优雅） */
+    gap: 50px;              /* 表格之间的间距（替代margin，更优雅） */
     overflow-x: auto;       /* 小屏幕时允许横向滚动，防止表格挤变形 */
-    background: rgba(137, 55, 241, 0.86);
-
+    background: rgba(137, 55, 241, 0.86);    /* 保留你的原始背景色 */
+    padding: 0 20px;         /* 补充：避免卡片贴边 */
+    box-sizing: border-box;      /* 宽度包含padding/border，避免溢出 */
 }
 
 .contact-card{
         /*flex: 1;                       !* 关键：三个表格均分父容器宽度（1:1:1） *!*/
-    /*display: flex;                 !*图标横向排列*!*/
-    min-width: 20px;               /* 最小宽度，防止表格过窄 */
+    display: flex;                   /*图标横向排列*/
+    min-width: 280px;               /* 最小宽度，防止表格过窄 */
     width:300px ;
-    /*padding: 0px;                !* 内边距 *!*/
+    /*padding: 0px;                  !* 内边距 *!*/
     height:200px;
-    border-radius: 10px;          /* 圆角 */
-    border: 1px solid #880707;     /* 可选：表格边框，方便查看 */
-    border-collapse: collapse;     /* 合并表格边框 */
-    box-sizing: border-box;        /* 关键：宽度包含边框/内边距，避免总宽度超100% */
+    border-radius: 10px;            /* 圆角 */
+    border: 1px solid var(--card-border-color) !important;    /* 绑定Props边框色 */
+    box-sizing: border-box;         /* 关键：宽度包含边框/内边距，避免总宽度超100% */
+    cursor: pointer;                 /* 补充：鼠标悬浮指针，提示可交互 */
+    overflow: hidden;                   /* 防止hover动画溢出 */
 }
-
+/* 卡片内部布局：让图标+文字横向排列 */
+.card-inner {
+    display: flex;          /* 横向排列 */
+    align-items: center;        /* 垂直居中 */
+    height: 100%;           /* 占满卡片高度，避免内容垂直错位 */
+    padding: 0 20px; /* 内部左右间距 */
+}
 
 .contact-image {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    display: flex;
+    display: flex;          /* 图标居中 */
     align-items: center;
     justify-content: center;
-    margin-right: 1rem;
+    margin-right: 1rem;                      /* 与文字区的间距 */
+    /* 补充：图标背景色（主题色） */
+    background-color: var(--theme-color);        /* 绑定Props主题色作为背景 */
+    transition: all 0.3s ease;               /* 补充：hover过渡，避免动画突变 */
 }
-
+/* 图标样式 */
+.contact-image i {
+    font-size: 1.5rem;          /* 图标大小 */
+    color: #ffffff; /* 图标白色，对比明显 */
+}
 .contact-content {
-
+    flex: 1;        /* 占满剩余宽度，避免文字区被挤压 */
 }
 .contact-title {
+    font-size: 0.9rem;          /* 保留你的原始字号 */
+    font-weight: 500;           /* 保留你的原始字重 */
+    color: var(--text-color);            /* 绑定Props文字色（解决原始绑定失效） */
+    opacity: 0.7;                   /* 保留你的原始透明度 */
+    margin: 0 0 0.25rem 0;          /* 重置默认margin，避免布局错位 */
+    transition: all 0.3s ease; /* 文字hover过渡 */
+}
+/* ---------------------- 鼠标悬浮效果 ---------------------- */
+/* 卡片hover：上浮+阴影+边框变色 */
+.contact-card:hover {
+    transform: translateY(-5px); /* 上浮5px */
+    border-color: var(--theme-color) !important; /* 边框变主题色 */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1) !important;   /* 新增阴影，突出卡片 */
+}
+/* 图标hover：放大+浅一点的主题色 */
+.contact-card:hover .contact-image {
+    transform: scale(1.1); /* 放大1.1倍 */
+    background-color: rgba(137, 55, 241, 0.7);  /* 主题色浅化 */
+}
 
+/* 文字hover：加深不透明度+变主题色 */
+.contact-card:hover .contact-title {
+    color:  var(--theme-color);       /* 文字变主题色 */
+    opacity: 1;             /* 完全不透明，突出文字 */
+}
+/* ---------------------- 响应式适配（小屏幕） ---------------------- */
+@media (max-width: 768px) {
+    .contact-info-box {
+        flex-direction: column; /* 小屏幕垂直排列 */
+        height: auto; /* 取消固定高度，自适应 */
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .contact-card {
+        width: 100%;
+        height: 150px;
+    }
 }
