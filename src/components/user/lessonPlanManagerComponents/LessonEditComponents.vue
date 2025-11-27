@@ -4,7 +4,7 @@ import {downloadLesson, shareLesson} from "@/utils/user/teacher/info/lessonPlanM
 import {Download, Edit, Share, Star, StarFilled, Document} from "@element-plus/icons-vue";
 import {getDifficultyTagProps, getGradeName, getStatusTagProps, getSubjectName} from "@/utils/user/teacher/info/lessonPlanManager/AuxiliaryFunctionUtils.ts";
 import type {Difficulty, LessonPlan, Status} from "@/data/user/lessonPlanManagerData/interface/StatisticsInterface.ts";
-
+import "@/assets/user/lessonPlanManagerCss/LessonEditCss.css"
 </script>
 
 <template>

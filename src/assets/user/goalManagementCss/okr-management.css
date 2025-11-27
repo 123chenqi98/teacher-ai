@@ -87,6 +87,26 @@
   margin-bottom: 25px;
 }
 
+/* 让两侧卡片等高并去除空白 */
+.okr-chart-section .el-col {
+  display: flex;
+}
+.okr-chart-card, .okr-completion-card {
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 340px;
+}
+.okr-chart-card .el-card__body, .okr-completion-card .el-card__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+#progressChart {
+  min-height: 300px;
+}
+
 /* 图表卡片样式 */
 .okr-chart-card, .okr-completion-card {
   border-radius: 12px;
@@ -108,6 +128,7 @@
   align-items: center;
   justify-content: space-around;
   padding: 20px 0;
+  flex: 1;
 }
 
 /* 完成度图表容器 */
