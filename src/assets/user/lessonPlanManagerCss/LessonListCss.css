@@ -1,0 +1,364 @@
+/* ========================= 筛选卡片模块 ========================= */
+/* 筛选卡片外层容器 - 基础布局与样式 */
+.filters-card {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+/* 筛选卡片头部 - 标题与重置按钮横向分布 */
+.filters-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+/* 筛选标题 - 图标+文字组合样式 */
+.filters-title {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: #1d2129;
+}
+
+/* 筛选标题内图标 - 颜色与间距控制 */
+.filters-title el-icon {
+    margin-right: 8px;
+    color: #409eff;
+}
+
+/* 重置按钮 - 基础样式+hover过渡 */
+.reset-btn {
+    font-size: 16px;
+    color: #666;
+    transition: color 0.2s ease;
+}
+
+.reset-btn:hover {
+    color: #409eff;
+}
+
+/* 筛选内容区 - 底部间距 */
+.filters-content {
+    margin-bottom: 16px;
+}
+
+/* 搜索输入框/筛选下拉框 - 宽度100%适配容器 */
+.search-input, .filter-select {
+    width: 100%;
+}
+
+/* 筛选开关容器 - 靠右对齐 */
+.filter-switch {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* 自定义开关样式 - 开/关状态颜色 */
+.el-switch {
+    --el-switch-on-color: #f7ba1e;
+    --el-switch-off-color: #e5e7eb;
+}
+
+/* 排序容器 - 顶部边框分隔+内边距 */
+.sort-container {
+    display: flex;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid #f0f2f5;
+}
+
+/* 排序标签 - 文字样式+右侧间距 */
+.sort-label {
+    font-size: 14px;
+    color: #666;
+    margin-right: 12px;
+}
+
+/* 排序下拉框 - 固定宽度+右侧间距 */
+.sort-select {
+    width: 140px;
+    margin-right: 8px;
+}
+
+/* 排序激活状态 - 文字高亮 */
+.sort-active {
+    color: #409eff;
+}
+
+/* ========================= 教案列表头部 ========================= */
+/* 列表头部容器 - 纵向布局+元素间距 */
+.lesson-list-header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+/* 列表元信息行 - 左右分布+垂直居中 */
+.list-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 列表信息文本 - 基础文字样式 */
+.list-info {
+    font-size: 14px;
+    color: #666;
+}
+
+/* 视图切换容器 - 横向布局+元素间距 */
+.view-toggle {
+    display: flex;
+    gap: 8px;
+}
+
+/* 视图切换激活态 - 文字高亮+加粗 */
+.view-toggle .active {
+    color: #409eff;
+    font-weight: 500;
+}
+
+/* ========================= 教案卡片模块 ========================= */
+/* 教案网格容器 - 底部间距 */
+.lesson-grid {
+    margin-bottom: 24px;
+}
+
+/* 教案合并外层盒子 - 内边距 */
+.lesson-merge-box {
+    padding: 16px;
+}
+
+/* 教案卡片主体 - 弹性纵向布局+hover动效+相对定位 */
+.lesson-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+    position: relative;
+    cursor: pointer;
+}
+
+/* 教案卡片hover效果 - 上移+阴影 */
+.lesson-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* 收藏按钮 - 绝对定位+半透背景 */
+.collect-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    border-color: #e5e7eb;
+}
+
+.collect-btn .el-icon {
+    font-size: 16px;
+    color: #c0c4cc;
+}
+
+.collect-btn.collected {
+    background-color: #fff3e0;
+    border-color: #f7ba1e;
+}
+
+.collect-btn.collected .el-icon {
+    color: #f7ba1e;
+}
+
+/* 教案卡片头部 - 左右分布+顶部对齐 */
+.lesson-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    padding-right: 30px;
+}
+
+/* 教案标题 - 弹性布局+文字溢出省略 */
+.lesson-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #1d2129;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* 标题文字 - 单行溢出省略 */
+.lesson-title span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 教案状态容器 - 左侧间距 */
+.lesson-status {
+    margin-left: 8px;
+}
+
+/* 通用标签样式 - 所有标签基础样式整合 */
+.status-tag, .subject-tag, .grade-tag, .difficulty-tag, .version-tag {
+    padding: 2px 8px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* 版本标签 - 特有背景+文字颜色 */
+.version-tag {
+    background-color: #f5f7fa;
+    color: #888;
+}
+
+/* 教案标签容器 - 横向换行+间距 */
+.lesson-tags {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+/* 教案描述 - 多行溢出省略（3行）+ 行高控制 */
+.lesson-desc {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 教案关键词容器 - 横向换行+间距 */
+.lesson-keywords {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+/* 关键词标签 - 基础样式 */
+.keyword-tag {
+    background-color: #f0f2f5;
+    color: #666;
+    padding: 1px 6px;
+    font-size: 12px;
+}
+
+/* 教案元信息 - 顶部边框分隔+横向换行+文字样式 */
+.lesson-meta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    font-size: 12px;
+    color: #888;
+    border-top: 1px solid #f0f2f5;
+    padding-top: 12px;
+}
+
+/* 元信息项 - 图标+文字垂直居中 */
+.meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* 教案操作区 - 靠右对齐+自动顶到底部 */
+.lesson-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;
+}
+
+/* 更多按钮 - 基础样式+hover过渡 */
+.more-btn {
+    color: #888;
+    transition: color 0.2s ease;
+}
+
+.more-btn:hover {
+    color: #409eff;
+}
+
+/* 操作菜单 - 固定宽度 */
+.action-menu {
+    width: 120px;
+}
+
+/* 危险操作菜单 - 红色文字 */
+.menu-danger {
+    color: #f56c6c;
+}
+
+/* ========================= 空状态模块 ========================= */
+/* 空状态容器 - 居中布局+基础样式 */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 0;
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 24px;
+}
+
+/* 空状态图标 - 大号字体+浅灰色 */
+.empty-icon {
+    font-size: 64px;
+    color: #c0c4cc;
+    margin-bottom: 24px;
+}
+
+/* 空状态标题 - 文字样式+间距 */
+.empty-title {
+    font-size: 18px;
+    color: #1d2129;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+/* 空状态描述 - 居中文字+最大宽度限制 */
+.empty-desc {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 24px;
+    text-align: center;
+    max-width: 400px;
+}
+
+/* 空状态按钮 - 主题色背景+边框 */
+.empty-btn {
+    background-color: #409eff;
+    border-color: #409eff;
+}
+
+/* ========================= 分页模块 ========================= */
+/* 分页容器 - 水平居中+顶部间距 */
+.pagination-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+}

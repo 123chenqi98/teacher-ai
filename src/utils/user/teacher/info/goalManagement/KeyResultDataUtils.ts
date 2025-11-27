@@ -1,5 +1,5 @@
 import {keyResultDialogVisible, objectiveIdForKeyResult} from "@/entity/auth/teacherInfo/GoalManagement.ts";
-import {currentKeyResult} from "@/forms/user/teacherInfo/goalManagement/KeyResultForm.ts";
+import {currentKeyResult} from "@/forms/user/teacherInfo/goalManagementForms/KeyResultForms.ts";
 import type {KeyResult} from "@/data/user/goalManagement/interface/TargetInterface.ts";
 import {objectives} from "@/data/user/goalManagement/TargetData.ts";
 import {updateStats} from "@/utils/user/teacher/info/goalManagement/DataUtlis.ts";

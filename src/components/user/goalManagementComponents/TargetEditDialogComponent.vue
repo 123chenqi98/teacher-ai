@@ -2,7 +2,7 @@
 import "@/assets/user/goalManagementCss/okr-management.css"
 import {ElButton, ElDatePicker, ElDialog, ElForm, ElFormItem, ElInput} from "element-plus";
 import {dialogVisible, editMode} from "@/entity/auth/teacherInfo/GoalManagement.ts";
-import {currentObjective} from "@/forms/user/teacherInfo/goalManagement/TargetEditForm.ts";
+import {currentObjective} from "@/forms/user/teacherInfo/goalManagementForms/TargetEditForms.ts";
 import {saveObjective} from "@/utils/user/teacher/info/goalManagement/DataUtlis.ts";
 </script>
 

@@ -3,6 +3,7 @@ import LeftNavigationComponents from "@/components/user/LeftNavigationComponents
 import TopNavigationComponents from "@/components/user/TopNavigationComponents.vue";
 import "@/assets/user/UserOverallCss.css"
 import DataStatisticsComponents from "@/components/user/lessonPlanManagerComponents/DataStatisticsComponents.vue";
+import LessonListComponents from "@/components/user/lessonPlanManagerComponents/LessonListComponents.vue";
 </script>
 
 <template>
@@ -15,7 +16,8 @@ import DataStatisticsComponents from "@/components/user/lessonPlanManagerCompone
       <div class="content-area">
         <!-- 数据统计卡片 -->
         <DataStatisticsComponents />
-
+        <!-- 课程列表卡片 -->
+        <LessonListComponents />
       </div>
     </main>
   </div>

@@ -2,7 +2,7 @@
 import "@/assets/user/goalManagementCss/okr-management.css"
 import {ElButton, ElDialog, ElForm, ElFormItem, ElInput, ElInputNumber} from "element-plus";
 import {keyResultDialogVisible} from "@/entity/auth/teacherInfo/GoalManagement.ts";
-import {currentKeyResult} from "@/forms/user/teacherInfo/goalManagement/KeyResultForm.ts";
+import {currentKeyResult} from "@/forms/user/teacherInfo/goalManagementForms/KeyResultForms.ts";
 import {saveKeyResult} from "@/utils/user/teacher/info/goalManagement/KeyResultDataUtils.ts";
 </script>
 

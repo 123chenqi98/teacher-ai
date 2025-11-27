@@ -239,7 +239,7 @@
               </template>
               <el-switch
                   v-model="settings[key]"
-                  :active-color="#5a2ca0"
+                  active-color="#5a2ca0"
               ></el-switch>
             </el-form-item>
           </el-form>

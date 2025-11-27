@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import {Check, Clock, Plus, Star, Collection, Document, FolderDelete} from "@element-plus/icons-vue";
-import { addObjective } from "@/utils/user/teacher/info/goalManagement/DataUtlis.ts";
-import { stats } from "@/utils/user/teacher/info/lessonPlanManager/StatisticsDataUtils.ts";
+import {stats} from "@/utils/user/teacher/info/lessonPlanManager/StatisticsDataUtils.ts";
+import { openNewLessonModal } from "@/forms/user/teacherInfo/lessonPlanManagerForms/DataStatisticsForms.ts";
 import "@/assets/user/lessonPlanManagerCss/DataStatisticsCss.css"
-import {ElButton} from "element-plus";
-
 </script>
 
 <template>
@@ -13,7 +11,7 @@ import {ElButton} from "element-plus";
       <h1>教案管理</h1>
       <p class="lesson-header-subtitle">高效管理您的教学资源，提升教学质量。</p>
     </div>
-    <el-button type="primary" @click="addObjective" class="lesson-add-btn">
+    <el-button type="primary" @click="openNewLessonModal" class="lesson-add-btn">
       <el-icon><Plus /></el-icon> 新增教案
     </el-button>
   </div>
@@ -25,7 +23,6 @@ import {ElButton} from "element-plus";
       <el-card shadow="hover" class="lesson-stat-card">
         <div class="lesson-stat-header">
           <el-icon class="lesson-stat-icon"><Collection /></el-icon>
-          <el-button size="default" class="lesson-stat-more-btn">详情</el-button>
         </div>
         <div class="lesson-stat-value">{{ stats.total }}</div>
         <div class="lesson-stat-label">全部教案</div>
@@ -35,7 +32,6 @@ import {ElButton} from "element-plus";
       <el-card shadow="hover" class="lesson-stat-card">
         <div class="lesson-stat-header">
           <el-icon class="lesson-stat-icon" color="#1989fa"><Check /></el-icon>
-          <el-button size="default" class="lesson-stat-more-btn">详情</el-button>
         </div>
         <div class="lesson-stat-value">{{ stats.published }}</div>
         <div class="lesson-stat-label">已发布</div>
@@ -45,7 +41,6 @@ import {ElButton} from "element-plus";
       <el-card shadow="hover" class="lesson-stat-card">
         <div class="lesson-stat-header">
           <el-icon class="lesson-stat-icon" color="#67c23a"><Document /></el-icon>
-          <el-button size="default" class="lesson-stat-more-btn">详情</el-button>
         </div>
         <div class="lesson-stat-value">{{ stats.draft }}</div>
         <div class="lesson-stat-label">草稿</div>
@@ -55,7 +50,6 @@ import {ElButton} from "element-plus";
       <el-card shadow="hover" class="lesson-stat-card">
         <div class="lesson-stat-header">
           <el-icon class="lesson-stat-icon" color="#e6a23c"><Clock /></el-icon>
-          <el-button size="default" class="lesson-stat-more-btn">详情</el-button>
         </div>
         <div class="lesson-stat-value">{{ stats.reviewing }}</div>
         <div class="lesson-stat-label">审核中</div>
@@ -65,7 +59,6 @@ import {ElButton} from "element-plus";
       <el-card shadow="hover" class="lesson-stat-card">
         <div class="lesson-stat-header">
           <el-icon class="lesson-stat-icon" color="#f56c6c"><FolderDelete /></el-icon>
-          <el-button size="default" class="lesson-stat-more-btn">详情</el-button>
         </div>
         <div class="lesson-stat-value">{{ stats.rejected }}</div>
         <div class="lesson-stat-label">已驳回</div>
@@ -75,7 +68,6 @@ import {ElButton} from "element-plus";
       <el-card shadow="hover" class="lesson-stat-card">
         <div class="lesson-stat-header">
           <el-icon class="lesson-stat-icon" color="#f7ba1e"><Star /></el-icon>
-          <el-button size="default" class="lesson-stat-more-btn">详情</el-button>
         </div>
         <div class="lesson-stat-value">{{ stats.collected }}</div>
         <div class="lesson-stat-label">我的收藏</div>

@@ -1,6 +1,6 @@
 import {objectives} from "@/data/user/goalManagement/TargetData.ts";
 import {dialogVisible, editMode} from "@/entity/auth/teacherInfo/GoalManagement.ts";
-import {currentObjective} from "@/forms/user/teacherInfo/goalManagement/TargetEditForm.ts";
+import {currentObjective} from "@/forms/user/teacherInfo/goalManagementForms/TargetEditForms.ts";
 import type {Objective} from "@/data/user/goalManagement/interface/TargetInterface.ts";
 import {
     completedObjectives,
