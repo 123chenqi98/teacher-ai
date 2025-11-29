@@ -71,11 +71,11 @@
 
 /* 编辑按钮悬浮态：背景加深与放大 */
 .el-button.dashboard-edit-btn:hover {
-    box-shadow: 0 4px 16px 0 rgba(108, 99, 255, 0.7);
+    box-shadow: 0 4px 16px 0 rgba(108, 99, 255, 0.7) !important;
 }
 
 /* 查看消息按钮样式 */
-.el-button.message-btn {
+.dashboard-message-btn {
     font-size: 16px !important;
     padding: 14px 24px !important;
     border-radius: 8px !important;
@@ -83,15 +83,15 @@
     border-color: #4cd263 !important;
     box-shadow: 0 4px 16px 0 rgba(108, 99, 255, 0.3) !important;
 }
-
+.el-button.dashboard-message-btn:hover {
+    box-shadow: 0 4px 16px 0 rgba(108, 99, 255, 0.6) !important;
+}
 /* 统一按钮最小宽度，保证视觉大小一致 */
 .actions-col .el-button {
     min-width: 150px !important;
 }
 
-.message-btn:hover {
-    box-shadow: 0 4px 16px 0 rgba(108, 99, 255, 0.7);
-}
+
 /* 统计数据区域布局样式 */
 .stats-row {
     padding: 0 5px; /* 内边距，控制与上下元素的间距 */

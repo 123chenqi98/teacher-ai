@@ -41,7 +41,7 @@ import {detailItem, detailVisible, openDetail} from "@/entity/auth/teacherInfo/N
 
     <div class="noti-batch-actions">
       <!-- 全选复选框 - 使用 ElCheckbox 组件 -->
-      <el-checkbox v-model="selectAll" @change="toggleSelectAll" class="noti-select-all">
+      <el-checkbox v-model="selectAll" @change="toggleSelectAll" class="notice-select-all">
         全选
       </el-checkbox>
       <el-button link class="noti-secondary-btn noti-mark-read-btn" @click="markSelectedAsRead">

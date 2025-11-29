@@ -40,7 +40,7 @@ import {ElAvatar, ElButton, ElCard, ElCol, ElIcon, ElRow, ElText} from "element-
         <el-button type="primary" size="small" class="dashboard-edit-btn">
           <i class="el-icon-edit mr-1"></i>编辑资料
         </el-button>
-        <el-button type="success" size="small" class="message-btn">
+        <el-button type="success" size="small" class="dashboard-message-btn">
           <i class="el-icon-message mr-1"></i>查看消息
         </el-button>
       </el-col>

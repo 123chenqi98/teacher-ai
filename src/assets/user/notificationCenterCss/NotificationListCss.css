@@ -92,10 +92,12 @@
     align-items: center;
 }
 
-.noti-select-all {
-    margin-right: 12px;
-    font-size: 14px;
-    color: #666;
+.notice-select-all {
+    margin-right: 10px;
+    color: #606266;
+    padding: 0;
+    border: none;
+    background-color: transparent;
 }
 
 .noti-secondary-btn {

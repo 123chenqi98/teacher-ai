@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import LeftNavigationComponents from "@/components/user/LeftNavigationComponents.vue";
 import TopNavigationComponents from "@/components/user/TopNavigationComponents.vue";
 import PersonalInformationComponents from "@/components/user/userProfileComponents/PersonalInformationComponents.vue";

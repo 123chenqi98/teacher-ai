@@ -1,10 +1,4 @@
 export const userCenterRoute = [
-    // 测试页面
-    {
-        path: '/test',
-        name: 'test',
-        component: () => import('@/views/user/oo.vue'),
-    },
     // 个人中心页面路由
     {
         path: '/user',

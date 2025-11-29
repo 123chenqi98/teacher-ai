@@ -6,6 +6,7 @@ import { Search, Bell, Message, Setting, UserFilled } from "@element-plus/icons-
 // 导入 Vue 响应式 API
 import { ref, computed } from "vue";
 import { useRoute } from "vue-router";
+import router from "@/router";
 
 // 搜索框绑定的响应式变量，初始值为空字符串
 const searchText = ref<string>("");
@@ -58,7 +59,7 @@ const displayTitle = computed(() => {
       <div class="user-actions" aria-label="用户功能区">
         <!-- 通知图标（带徽章提示）：补充无障碍标签 -->
         <el-badge :value="3" class="action-badge" type="danger">
-          <el-button text circle class="action-btn" title="通知中心" aria-label="通知中心（3条未读）">
+          <el-button text circle class="action-btn" title="通知中心" aria-label="通知中心（3条未读）" @click="router.push('/user/notifications')">
             <el-icon aria-hidden="true">
               <Bell />
             </el-icon>
@@ -67,7 +68,7 @@ const displayTitle = computed(() => {
 
         <!-- 消息图标：带蓝色未读徽章（5条未读） -->
         <el-badge :value="5" class="action-badge" type="primary">
-          <el-button text circle class="action-btn" title="消息中心" aria-label="消息中心（5条未读）">
+          <el-button text circle class="action-btn" title="消息中心" aria-label="消息中心（5条未读）" @click="router.push('/user/messages')">
             <el-icon aria-hidden="true">
               <Message />
             </el-icon>
@@ -84,11 +85,7 @@ const displayTitle = computed(() => {
         <!-- 个人信息区域：补充加载失败兜底图标 -->
         <div class="user-profile" title="查看个人资料" aria-label="张三老师（数学教师）- 查看个人资料">
           <!-- :fallback="FallBackAvatar": 头像加载失败时显示兜底内容 -->
-          <el-avatar
-              src="https://randomuser.me/api/portraits/men/80.jpg"
-              size="large"
-              :fallback="UserFilled"
-          />
+          <el-avatar src="https://randomuser.me/api/portraits/men/80.jpg" size="large" :fallback="UserFilled"/>
           <!-- 个人信息文本 -->
           <div class="user-info">
             <span class="user-name">内格老师</span>
