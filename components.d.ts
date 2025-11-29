@@ -85,6 +85,8 @@ declare module 'vue' {
     LoginButtonComponent: typeof import('./src/components/auth/loginComponents/LoginButtonComponent.vue')['default']
     LoginLogComponents: typeof import('./src/components/user/userProfileComponents/LoginLogComponents.vue')['default']
     LoginWaysComponent: typeof import('./src/components/auth/loginComponents/LoginWaysComponent.vue')['default']
+    MessageChatComponents: typeof import('./src/components/user/messageCenterComponents/MessageChatComponents.vue')['default']
+    MessageListComponents: typeof import('./src/components/user/messageCenterComponents/MessageListComponents.vue')['default']
     NotificationListComponents: typeof import('./src/components/user/notificationCenterComponents/NotificationListComponents.vue')['default']
     NotificationPermissionComponents: typeof import('./src/components/user/notificationCenterComponents/NotificationPermissionComponents.vue')['default']
     NotificationSettingsComponents: typeof import('./src/components/user/notificationCenterComponents/NotificationSettingsComponents.vue')['default']

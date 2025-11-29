@@ -1,0 +1,210 @@
+/* 页面标题与标签页样式 */
+.mess-page-header {
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+}
+
+/* 头部副标题样式 */
+.mess-header-subtitle {
+    margin: 0;
+    font-size: 16px;
+    color: #909399;
+}
+
+.mess-export-btn {
+    display: flex;
+    padding-right: 32px;
+    height: 38px;
+    font-size: 14px;
+}
+
+/* 数据卡片样式 */
+.mess-stats-cards-grid {
+    margin-bottom: 24px;
+}
+
+.mess-stat-card {
+    background-color: #f0e6ff;
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+}
+
+.mess-stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+}
+
+.mess-stat-value {
+    font-size: 28px;
+    font-weight: bold;
+    color: #5a2ca0;
+    margin-bottom: 6px;
+}
+
+.mess-stat-label {
+    font-size: 16px;
+    color: #666;
+}
+
+/* 标签页与搜索区样式 */
+.mess-tabs-search-container {
+    padding: 20px;
+    margin: 10px 0;
+    box-sizing: border-box;
+}
+
+.mess-category-tabs {
+    margin-bottom: 18px;
+    width: 100%;
+}
+
+.mess-search-action-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.mess-search-input {
+    flex: 1;
+    min-width: 420px;
+    --el-input-height: 42px;
+}
+
+.mess-operation-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.mess-status-filter {
+    min-width: 160px;
+    --el-input-height: 42px;
+}
+
+/* 消息列表和聊天窗口样式 */
+.mess-messages-container {
+    display: flex;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    margin-top: 18px;
+}
+
+.mess-messages-list-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s;
+}
+
+.mess-messages-list {
+    flex: 1;
+    overflow-y: auto;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    min-width: 0;
+}
+
+.el-list-item {
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    padding: 16px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    border-bottom: 1px solid #f0f2f5;
+    background-color: #fff;
+    border-left: 3px solid #5a2ca0;
+}
+
+.el-list-item .el-checkbox {
+    margin-right: 6px;
+}
+
+.el-list-item:hover {
+    background-color: #fafafa;
+}
+
+.mess-message-sender {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.mess-message-time {
+    font-size: 13px;
+    color: #909399;
+    margin-left: 8px;
+}
+
+.mess-message-content-inner {
+    flex: 1;
+    min-width: 0;
+}
+
+.mess-message-text {
+    font-size: 16px;
+    color: #666;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 4px 0 6px;
+    line-height: 1.6;
+}
+
+.mess-message-tag {
+    margin-right: 5px;
+    border: none;
+    background-color: #f0e6ff;
+    color: #5a2ca0;
+}
+
+.mess-unread-dot {
+    width: 10px !important;
+    height: 10px !important;
+    border-radius: 50%;
+    background-color: #5a2ca0 !important;
+    padding: 0 !important;
+    min-width: auto !important;
+    margin-left: auto;
+}
+
+.mess-pagination-container {
+    display: flex;
+    justify-content: center;
+    padding: 8px 0 4px;
+}
+
+.mess-message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+}
+.el-list-item.private {
+    border-left-color: #5a2ca0;
+}
+.el-list-item.comment {
+    border-left-color: #67c23a;
+}
+.el-list-item.mention {
+    border-left-color: #e6a23c;
+    background-color: #fff7e6;
+}
+.mess-message-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+.mess-all-in-one-card {
+    padding: 20px;
+}
