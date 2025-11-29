@@ -3,6 +3,7 @@ import "@/assets/teacher/functionCss/AICreativeTeachingCss.css"
 import SectionHeaderComponent from "@/components/teacher/SectionHeaderComponent.vue";
 import {ElMessage} from "element-plus";
 import {aiCreativeTools} from "@/data/teacher/funtion/AICreativeTeachingData.ts";
+import router from "@/router";
 
 // 定义查看全部AI工具的处理函数
 const ViewAllAITools = () => {
@@ -27,6 +28,7 @@ const ViewAllAITools = () => {
           :key="tool.id"
           class="tool-card"
           :style="{ backgroundColor: tool.backgroundColor }"
+          @click="router.push(tool.routerPath)"
       >
         <!-- 工具图标容器：圆形背景的icon区域 -->
         <div class="icon-wrapper" :style="{ backgroundColor: tool.iconBackgroundColor }">

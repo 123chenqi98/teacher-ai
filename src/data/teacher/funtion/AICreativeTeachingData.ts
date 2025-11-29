@@ -9,7 +9,8 @@ export const aiCreativeTools = ref([
         icon: logoImg,
         backgroundColor: '#f3e5f5',
         iconBackgroundColor: '#e1bee7',
-        actionText: '立即使用'
+        actionText: '立即使用',
+        routerPath: '/teacher/plan/aiplan'
     },
     {
         id: 2,
@@ -18,7 +19,8 @@ export const aiCreativeTools = ref([
         icon: logoImg,
         backgroundColor: '#e3f2fd',
         iconBackgroundColor: '#bbdefb',
-        actionText: '立即使用'
+        actionText: '立即使用',
+        routerPath: '/teacher/plan/aismartquestion'
     },
     {
         id: 3,
@@ -27,7 +29,8 @@ export const aiCreativeTools = ref([
         icon: logoImg,
         backgroundColor: '#e8f5e9',
         iconBackgroundColor: '#c8e6c9',
-        actionText: '立即使用'
+        actionText: '立即使用',
+        routerPath: '/teacher/plan/aivirtual'
     },
     {
         id: 4,
@@ -36,6 +39,7 @@ export const aiCreativeTools = ref([
         icon: logoImg,
         backgroundColor: '#fff3e0',
         iconBackgroundColor: '#ffe0b2',
-        actionText: '立即使用'
+        actionText: '立即使用',
+        routerPath: '/teacher/plan/aidiagnose'
     }
 ])

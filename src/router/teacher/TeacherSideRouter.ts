@@ -1,6 +1,7 @@
 // 教师端路由
 import {teachingPlanChildrenRouters} from "@/router/teacher/function/TeachingPlanChildrenRouter.ts";
 import {homeWorkingChildrenRouter} from "@/router/teacher/function/HomeWorkingChildrenRouter.ts";
+import {aiCreativeTeachingChildrenRouter} from "@/router/teacher/function/AICreativeTeachingChildrenRouter.ts";
 
 export const teacherRouters = [
     {
@@ -23,6 +24,7 @@ export const teacherRouters = [
         children:[
             ...teachingPlanChildrenRouters,
             ...homeWorkingChildrenRouter,
+            ...aiCreativeTeachingChildrenRouter,
         ]
     },
 ]
