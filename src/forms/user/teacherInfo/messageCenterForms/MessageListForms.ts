@@ -39,7 +39,7 @@ const isSelected = (item: MessageItem) => selectedSet.value.has(item)
 const selectedCount = computed(() => selectedSet.value.size)
 const toggleSelect = (item: MessageItem, val?: boolean) => {
   const has = selectedSet.value.has(item)
-  const next = val === undefined ? !has : !!val
+  const next = val === undefined ? !has : val
   if (next) selectedSet.value.add(item)
   else selectedSet.value.delete(item)
 }
