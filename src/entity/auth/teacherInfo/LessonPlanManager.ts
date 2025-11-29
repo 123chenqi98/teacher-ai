@@ -15,7 +15,7 @@ const showMyCollection = ref(false)
 const currentPage = ref(1)
 const pageSize = ref(6)
 
-export { 
+export {
     searchQuery,
     selectedSubject,
     selectedGrade,

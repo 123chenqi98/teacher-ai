@@ -1,0 +1,20 @@
+export const coreModels = [
+    { name: "OpenCV" },
+    { name: "ESRGAN（超分辨率模型）" },
+    { name: "SAM2（语义分割模型）" },
+    { name: "Mathpix" },
+    { name: "PaddleOCR" },
+    { name: "LLaVA-13B（基础多模态大模型）" },
+    { name: "商汤日日新V6.5（替代模型）" },
+    { name: "动态评分规则引擎" },
+    { name: "对比学习模型" },
+    { name: "教育知识图谱" },
+    { name: "豆包1.5・深度思考模型（多模态版）" },
+    { name: "LSTM（时序预测模型）" },
+    { name: "个性化知识图谱" },
+    { name: "INT8量化（模型压缩技术）" },
+    { name: "模型分片与动态加载技术" },
+    { name: "边缘计算+云端协同架构" },
+    { name: "LLaVA-Critic（评测模型）" },
+    { name: "对抗训练模型" }
+];

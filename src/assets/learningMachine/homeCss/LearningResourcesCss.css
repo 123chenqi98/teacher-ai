@@ -1,0 +1,139 @@
+/* 整个教师板块的背景色（核心添加） */
+.teacher-section {
+    background-color: #6a37b3; /* 深紫色背景，可根据需要调整色值 */
+    /* 若需要渐变背景，可替换为： */
+    /* background: linear-gradient(135deg, #6a37b3, #8b5cf6); */
+}
+
+/* 顶部数据标题区样式 */
+.teacher-stats-header {
+    padding: 40px 20px 20px;
+    text-align: center;
+}
+
+/* 大标题 */
+.main-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: rgb(255, 255, 255); /* 深紫色主题色 */
+    margin: 0 0 30px 0;
+    letter-spacing: 0.5px;
+}
+
+/* 数据标签容器 */
+.stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 60px; /* 标签间距 */
+    flex-wrap: wrap; /* 适配小屏幕换行 */
+    margin-bottom: 20px;
+}
+
+/* 单个数据项 */
+.stat-item {
+    min-width: 120px;
+}
+
+/* 数据数字（紫色突出） */
+.stat-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #af0b0b; /* 主题紫色 */
+    margin-bottom: 8px;
+}
+
+/* 数据描述文字 */
+.stat-desc {
+    font-size: 0.9rem;
+    color: #ffffff;
+}
+
+/* 教师卡片网格布局（保留原有） */
+.teachers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 0 20px 40px;
+}
+
+/* 教师卡片样式（保留原有风格） */
+.teacher-card {
+    border-radius: 12px !important;
+    overflow: hidden;
+    border: none !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.teacher-card:hover {
+    transform: translateY(-5px);
+}
+
+/* 教师卡片网格布局 */
+.teachers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 0 20px 40px;
+}
+
+/* 教师卡片整体样式（更紧凑） */
+.teacher-card {
+    border-radius: 12px !important;
+    overflow: hidden;
+    border: none !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+    max-height: 380px; /* 限制最大高度，确保统一 */
+}
+
+/* 图片容器（核心：大幅降低高度） */
+.teacher-img-wrapper {
+    height: 160px; /* 从200px→160px，比上次再降40px */
+    background: linear-gradient(135deg, #9370db, #7b4ed3);
+    padding: 10px; /* 减少内边距 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 教师图片（适配矮容器，比例更紧凑） */
+.teacher-img {
+    width: 120px; /* 从150px→120px */
+    height: 140px; /* 从180px→140px，更矮 */
+    object-fit: cover;
+    border-radius: 6px; /* 略小的圆角 */
+    box-shadow: 0 2px 8px rgba(157, 120, 227, 0.64);
+}
+
+/* 信息区（进一步压缩内边距） */
+.teacher-info {
+    padding: 10px 16px; /* 顶部padding从12px→10px */
+}
+
+/* 教师姓名（略小字号） */
+.teacher-name {
+    font-size: 1rem; /* 从1.1rem→1rem */
+    margin: 0 0 5px 0; /* 减少底部间距 */
+}
+
+/* 学历标签（压缩高度） */
+.teacher-edu {
+    font-size: 0.75rem; /* 从0.8rem→0.75rem */
+    padding: 1px 6px; /* 减少内边距 */
+    margin-bottom: 6px; /* 减少底部间距 */
+}
+
+/* 教师描述（限制为1行，大幅降低高度） */
+.teacher-desc {
+    font-size: 0.85rem; /* 从0.9rem→0.85rem */
+    margin: 0 0 6px 0;
+    -webkit-line-clamp: 1; /* 从2行→1行，关键压缩点 */
+    line-height: 1.3;
+}
+
+/* 资格证编号（更紧凑） */
+.teacher-cert {
+    font-size: 0.7rem; /* 从0.75rem→0.7rem */
+    margin-top: 3px;
+}
