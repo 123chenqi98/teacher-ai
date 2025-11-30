@@ -83,14 +83,21 @@ const displayTitle = computed(() => {
         </el-button>
 
         <!-- 个人信息区域：补充加载失败兜底图标 -->
-        <div class="user-profile" title="查看个人资料" aria-label="张三老师（数学教师）- 查看个人资料">
-          <!-- :fallback="FallBackAvatar": 头像加载失败时显示兜底内容 -->
-          <el-avatar src="https://randomuser.me/api/portraits/men/80.jpg" size="large" :fallback="UserFilled"/>
-          <!-- 个人信息文本 -->
-          <div class="user-info">
-            <span class="user-name">内格老师</span>
+        <el-dropdown trigger="hover">
+          <div class="user-profile" title="查看个人资料" aria-label="张三老师（数学教师）- 查看个人资料">
+            <el-avatar src="https://randomuser.me/api/portraits/men/80.jpg" size="large" :fallback="UserFilled"/>
+            <div class="user-info">
+              <span class="user-name">内格老师</span>
+            </div>
           </div>
-        </div>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item command="profile" @click="router.push('/user/dashboard')">个人中心</el-dropdown-item>
+              <el-dropdown-item command="settings">设置</el-dropdown-item>
+              <el-dropdown-item command="logout" @click="router.push('/')">退出登录</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
       </div>
     </el-header>
 </template>

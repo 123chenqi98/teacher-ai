@@ -10,7 +10,7 @@ import {ElButton, ElCard, ElCheckbox, ElCol} from "element-plus";
     <el-card shadow="hover" :border="false" class="todo-card">
       <div class="card-header">
         <h2 class="top-title">待办任务</h2>
-        <el-button type="primary" size="small" class="add-todo-btn">
+        <el-button disabled type="primary" size="small" class="add-todo-btn">
           <i class="el-icon-plus mr-1"></i>新增任务
         </el-button>
       </div>

@@ -2,6 +2,7 @@
 import "@/assets/user/userDashboardCss/PerformanceDashboardCss.css"
 import { stats } from "@/data/user/userDashboardData/PerformanceDashboardData.ts"
 import {ElAvatar, ElButton, ElCard, ElCol, ElIcon, ElRow, ElText} from "element-plus";
+import router from "@/router";
 </script>
 
 <template>
@@ -37,11 +38,11 @@ import {ElAvatar, ElButton, ElCard, ElCol, ElIcon, ElRow, ElText} from "element-
 
       <!-- 操作按钮 -->
       <el-col :span="8" class="actions-col">
-        <el-button type="primary" size="small" class="dashboard-edit-btn">
+        <el-button disabled type="primary" size="small" class="dashboard-edit-btn">
           <i class="el-icon-edit mr-1"></i>编辑资料
         </el-button>
-        <el-button type="success" size="small" class="dashboard-message-btn">
-          <i class="el-icon-message mr-1"></i>查看消息
+        <el-button type="success" size="small" class="dashboard-message-btn" @click="router.push('/user/profile')">
+          <i class="el-icon-message mr-1"></i>查看信息
         </el-button>
       </el-col>
     </el-row>

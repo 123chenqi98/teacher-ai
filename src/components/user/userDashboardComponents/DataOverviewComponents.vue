@@ -2,6 +2,7 @@
 import "@/assets/user/userDashboardCss/DataOverviewCss.css"
 import { weeklyStats } from "@/data/user/userDashboardData/DataOverviewData.ts";
 import {ElButton, ElCard, ElCol, ElIcon, ElRow} from "element-plus";
+import router from "@/router";
 </script>
 
 <template>
@@ -13,7 +14,7 @@ import {ElButton, ElCard, ElCol, ElIcon, ElRow} from "element-plus";
         <h2 class="top-title">本周数据概览</h2>
       </el-col>
       <el-col :span="4" class="text-right">
-        <el-button type="primary" size="small" class="overview-detail-btn" icon="ArrowRight">
+        <el-button type="primary" size="small" class="overview-detail-btn" icon="ArrowRight" @click="router.push('/user/analytics')">
           查看详情
         </el-button>
       </el-col>
