@@ -1,0 +1,111 @@
+@import '../LearningMachineVipVariables.css';
+
+/* 用户评价 */
+.lm-testimonials {
+  margin-bottom: 40px;
+}
+
+.lm-testimonial-card {
+  background: var(--bg-white-transparent);
+  border-radius: var(--border-radius-large);
+  padding: 30px;
+  box-shadow: var(--shadow-light);
+  transition: var(--transition-hover);
+  margin-bottom: 25px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+
+.lm-testimonial-card:hover::before {
+  opacity: 1;
+}
+
+.lm-testimonial-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-medium);
+}
+
+.lm-testimonial-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.lm-testimonial-avatar {
+  margin-right: 18px;
+  animation: avatarPulse 3s infinite;
+}
+
+.lm-testimonial-info {
+  flex: 1;
+}
+
+.lm-testimonial-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 0 6px;
+  color: #333;
+}
+
+.lm-testimonial-grade {
+  font-size: 1rem;
+  color: #666;
+  margin: 0;
+}
+
+.lm-testimonial-rating {
+  display: flex;
+  align-items: center;
+}
+
+.lm-testimonial-content {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.7;
+  margin: 0;
+  font-style: italic;
+}
+
+/* 动画 */
+.lm-testimonial-card:nth-child(1) {
+  animation: slideInUp 0.5s ease-out 0.1s forwards;
+}
+
+.lm-testimonial-card:nth-child(2) {
+  animation: slideInUp 0.5s ease-out 0.3s forwards;
+}
+
+.lm-testimonial-card:nth-child(3) {
+  animation: slideInUp 0.5s ease-out 0.5s forwards;
+}
+
+/* 动画关键帧 */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes avatarPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

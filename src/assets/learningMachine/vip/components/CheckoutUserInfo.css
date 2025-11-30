@@ -1,0 +1,67 @@
+@import '../LearningMachineVipVariables.css';
+
+/* 用户信息表单 */
+.lm-user-info-form {
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  animation: slideInLeft 0.8s ease-out;
+}
+
+.lm-form-title {
+}
+
+.lm-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.lm-form .el-form-item {
+  margin-bottom: 0;
+}
+
+.lm-form .el-form-item__label {
+  font-weight: 600;
+  color: #555;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.lm-form .el-input__inner {
+  border-radius: 14px;
+  padding: 18px 22px;
+  font-size: 1.1rem;
+  border: 2px solid #e6e9ff;
+  transition: all 0.3s ease;
+  height: auto;
+  background: rgba(248, 249, 255, 0.8);
+}
+
+.lm-form .el-input__inner:focus {
+  border-color: #b4a0e8;
+  box-shadow: 0 0 0 5px rgba(180, 160, 232, 0.2);
+  background: white;
+}
+
+.lm-form .el-form-item.is-error .el-input__inner {
+  border-color: #f56c6c;
+}
+
+.lm-form .el-form-item__error {
+  font-size: 0.95rem;
+  padding-top: 8px;
+}
+
+/* 动画关键帧 */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

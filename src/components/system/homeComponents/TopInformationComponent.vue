@@ -28,7 +28,7 @@ const handleCommand = (command: string) => {
 <!--  顶部信息组件-->
   <div class="homeTopInfoBox">
     <div class="logo-box">
-      <el-image src="src/static/logo.png" class="logo-img"></el-image>
+      <img src="/src/static/logo.png" class="logo-img" alt=""/>
       <el-text class="home-title">智慧科技</el-text>
     </div>
     <div class="navigation-box">

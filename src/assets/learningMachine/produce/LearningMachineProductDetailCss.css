@@ -1,0 +1,753 @@
+/* 学习机产品详情页样式 */
+
+.lm-product-detail-wrapper {
+  margin: 0 auto;
+  padding: 20px;
+  background: linear-gradient(135deg, rgb(177, 150, 226), rgba(93, 132, 157, 0.4));
+}
+
+/* 返回按钮 */
+.lm-product-detail-back {
+  margin-bottom: 20px;
+}
+
+.lm-back-button {
+  color: #4e54c8;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  background: rgba(78, 84, 200, 0.1);
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.lm-back-button:hover {
+  background: rgba(78, 84, 200, 0.2);
+}
+
+/* 产品详情主体 */
+.lm-product-detail-container {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 50px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.lm-product-detail-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(78, 84, 200, 0.05), rgba(143, 148, 251, 0.05));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.lm-product-detail-container:hover::before {
+  opacity: 1;
+}
+
+/* 产品图片展示区 */
+.lm-product-image-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.lm-main-image {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  position: relative;
+}
+
+.lm-main-image::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.lm-main-image:hover::before {
+  opacity: 1;
+}
+
+.lm-product-main-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.lm-main-image:hover .lm-product-main-image {
+  transform: scale(1.05);
+}
+
+.lm-thumbnail-images {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.lm-thumbnail-item {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.lm-thumbnail-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.lm-thumbnail-item:hover::before {
+  opacity: 1;
+}
+
+.lm-thumbnail-item:hover,
+.lm-thumbnail-item.active {
+  border-color: #4e54c8;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.lm-thumbnail-item img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* 产品信息区 */
+.lm-product-info-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+}
+
+.lm-product-detail-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+  color: #333;
+  line-height: 1.3;
+  letter-spacing: 1px;
+}
+
+.lm-product-detail-description {
+  color: #666;
+  line-height: 1.7;
+  margin-bottom: 25px;
+  font-size: 1.1rem;
+  position: relative;
+}
+
+.lm-product-detail-description::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(135deg, #4e54c8, #8f94fb);
+  border-radius: 3px;
+}
+
+.lm-product-price-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.lm-current-price {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #4e54c8;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.lm-original-price {
+  font-size: 1.2rem;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.lm-product-tags {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.lm-tag-new,
+.lm-tag-discount {
+  /* Element Plus 标签样式将覆盖这些 */
+}
+
+.lm-product-actions-detail {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+  align-items: center;
+}
+
+.lm-quantity-selector {
+  display: flex;
+  align-items: center;
+}
+
+/* 覆盖 Element Plus 输入框数字样式 */
+:deep(.lm-quantity-input .el-input-number) {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+:deep(.lm-quantity-input .el-input-number__decrease),
+:deep(.lm-quantity-input .el-input-number__increase) {
+  background: rgba(78, 84, 200, 0.1);
+  color: #4e54c8;
+  border-radius: 0;
+}
+
+:deep(.lm-quantity-input .el-input-number__decrease:hover),
+:deep(.lm-quantity-input .el-input-number__increase:hover) {
+  background: rgba(78, 84, 200, 0.2);
+}
+
+:deep(.lm-quantity-input .el-input__inner) {
+  border: 1px solid rgba(78, 84, 200, 0.3);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.lm-add-to-cart-btn,
+.lm-buy-now-btn {
+  /* Element Plus 按钮样式将覆盖这些 */
+}
+
+.lm-product-guarantee {
+  display: flex;
+  gap: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.lm-guarantee-item {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* 产品详细信息区 */
+.lm-product-details-tabs {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(10px);
+  margin-bottom: 50px;
+  position: relative;
+  overflow: hidden;
+}
+
+.lm-product-details-tabs::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(78, 84, 200, 0.05), rgba(143, 148, 251, 0.05));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.lm-product-details-tabs:hover::before {
+  opacity: 1;
+}
+
+/* 覆盖 Element Plus 标签页样式 */
+:deep(.el-tabs__header) {
+  margin-bottom: 30px;
+}
+
+:deep(.el-tabs__nav-wrap::after) {
+  height: 2px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+:deep(.el-tabs__item) {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #666;
+  padding: 0 30px;
+}
+
+:deep(.el-tabs__item.is-active) {
+  color: #4e54c8;
+  font-weight: 600;
+}
+
+:deep(.el-tabs__active-bar) {
+  background: linear-gradient(135deg, #4e54c8, #8f94fb);
+  border-radius: 3px 3px 0 0;
+}
+
+:deep(.el-tabs__content) {
+  min-height: 300px;
+  position: relative;
+  z-index: 2;
+}
+
+.lm-detail-features h3,
+.lm-detail-description h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.lm-detail-features h3::after,
+.lm-detail-description h3::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(135deg, #4e54c8, #8f94fb);
+  border-radius: 3px;
+}
+
+.lm-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.lm-feature-card {
+  background: rgba(78, 84, 200, 0.05);
+  border-radius: 16px;
+  padding: 25px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(78, 84, 200, 0.1);
+}
+
+.lm-feature-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.lm-feature-card:hover::before {
+  opacity: 1;
+}
+
+.lm-feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.lm-feature-card h4 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #4e54c8;
+  font-weight: 700;
+}
+
+.lm-feature-card p {
+  color: #666;
+  line-height: 1.6;
+}
+
+.lm-detail-description p {
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+/* 用户评价容器 */
+.lm-reviews-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 用户评价卡片 */
+.lm-review-card {
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(78, 84, 200, 0.1);
+}
+
+:deep(.lm-review-card .el-card__header) {
+  background: rgba(78, 84, 200, 0.05);
+  border-bottom: 1px solid rgba(78, 84, 200, 0.1);
+}
+
+.lm-review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.lm-review-user {
+  font-weight: 600;
+  color: #333;
+}
+
+.lm-review-date {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.lm-review-content {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* 规格参数描述列表 */
+:deep(.el-descriptions) {
+  background: rgba(78, 84, 200, 0.05);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(78, 84, 200, 0.1);
+}
+
+:deep(.el-descriptions__header) {
+  margin-bottom: 20px;
+}
+
+:deep(.el-descriptions__title) {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #333;
+}
+
+:deep(.el-descriptions__label) {
+  font-weight: 600;
+  color: #4e54c8;
+  width: 150px;
+}
+
+:deep(.el-descriptions__content) {
+  color: #666;
+}
+
+/* 相关产品推荐 */
+.lm-related-products {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.lm-related-products::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(78, 84, 200, 0.05), rgba(143, 148, 251, 0.05));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.lm-related-products:hover::before {
+  opacity: 1;
+}
+
+.lm-related-products h2 {
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  color: #333;
+  text-align: center;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.lm-related-products h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(135deg, #4e54c8, #8f94fb);
+  border-radius: 3px;
+}
+
+.lm-related-products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 30px;
+  position: relative;
+  z-index: 2;
+}
+
+/* 相关产品卡片 */
+:deep(.lm-related-product-card) {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: white;
+  position: relative;
+  transform-style: preserve-3d;
+  border: none;
+}
+
+:deep(.lm-related-product-card:hover) {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+:deep(.lm-related-product-card .el-card__body) {
+  padding: 0;
+}
+
+.lm-related-product-image {
+  height: 180px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  overflow: hidden;
+  border-radius: 16px 16px 0 0;
+}
+
+.lm-related-product-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+:deep(.lm-related-product-card:hover .lm-related-product-image img) {
+  transform: scale(1.1);
+}
+
+.lm-related-product-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 2;
+}
+
+.lm-related-product-info {
+  padding: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.lm-related-product-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #333;
+  line-height: 1.4;
+}
+
+.lm-related-product-price {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #4e54c8;
+  margin-bottom: 15px;
+}
+
+/* 覆盖 Element Plus 按钮样式 */
+:deep(.lm-related-product-info .el-button) {
+  width: 100%;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #4e54c8, #8f94fb);
+  border: none;
+  box-shadow: 0 4px 15px rgba(78, 84, 200, 0.3);
+}
+
+:deep(.lm-related-product-info .el-button:hover) {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(78, 84, 200, 0.4);
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+  .lm-product-detail-container {
+    flex-direction: column;
+  }
+  
+  .lm-product-detail-title {
+    font-size: 1.8rem;
+  }
+  
+  .lm-main-image {
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .lm-product-detail-wrapper {
+    padding: 15px;
+  }
+  
+  .lm-product-detail-container,
+  .lm-product-details-tabs,
+  .lm-related-products {
+    padding: 20px;
+  }
+  
+  .lm-product-detail-title {
+    font-size: 1.6rem;
+  }
+  
+  .lm-main-image {
+    height: 250px;
+  }
+  
+  .lm-product-actions-detail {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .lm-related-products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+  }
+  
+  .lm-product-detail-description::before {
+    width: 30px;
+  }
+  
+  :deep(.el-tabs__item) {
+    padding: 0 15px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .lm-product-detail-wrapper {
+    padding: 10px;
+  }
+  
+  .lm-product-detail-container,
+  .lm-product-details-tabs,
+  .lm-related-products {
+    padding: 15px;
+  }
+  
+  .lm-product-detail-title {
+    font-size: 1.4rem;
+  }
+  
+  .lm-main-image {
+    height: 200px;
+  }
+  
+  .lm-current-price {
+    font-size: 1.6rem;
+  }
+  
+  .lm-original-price {
+    font-size: 1rem;
+  }
+  
+  .lm-related-products-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .lm-thumbnail-images {
+    gap: 10px;
+  }
+  
+  .lm-thumbnail-item {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .lm-product-detail-description::before {
+    width: 20px;
+  }
+  
+  .lm-related-products h2 {
+    font-size: 1.5rem;
+  }
+  
+  .lm-related-products h2::after {
+    width: 50px;
+  }
+  
+  .lm-review-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  :deep(.el-descriptions__label) {
+    width: 100px;
+  }
+}

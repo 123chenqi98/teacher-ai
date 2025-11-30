@@ -1,0 +1,43 @@
+@import '../LearningMachineVipVariables.css';
+
+/* 产品推荐 */
+.lm-product-recommendation {
+  margin-bottom: 40px;
+}
+
+.lm-product-alert {
+  margin-bottom: 25px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: slideInUp 0.8s ease-out 0.2s forwards;
+}
+
+.lm-product-alert:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.lm-action-button {
+  display: flex;
+  justify-content: center;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: slideInUp 0.8s ease-out 0.4s forwards;
+}
+
+/* 动画关键帧 */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

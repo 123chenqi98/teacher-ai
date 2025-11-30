@@ -1,0 +1,124 @@
+@import './LearningMachineVipVariables.css';
+@import './LearningMachineVipCommonComponents.css';
+@import './components/VipHeader.css';
+@import './components/VipPackages.css';
+@import './components/VipGrowthSystem.css';
+@import './components/VipPrivileges.css';
+@import './components/VipEvents.css';
+@import './components/VipProductRecommendation.css';
+@import './components/VipTestimonials.css';
+@import './components/VipFAQ.css';
+
+/* 学习机VIP页面样式 */
+.lm-vip-container {
+  width: 100%;
+  padding: 5px;
+  background: linear-gradient(135deg, #cad0d9 0%, #e1eecf 100%);
+  border-radius: var(--border-radius-large);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 限时优惠横幅 */
+.lm-promotion-banner {
+  background: linear-gradient(135deg, #ff6b6b, #ffa500);
+  border-radius: 16px;
+  padding: 25px;
+  margin-bottom: 40px;
+  color: white;
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.35);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  animation: pulse 2s infinite;
+}
+
+.lm-promotion-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+  animation: shimmer 2s infinite;
+  z-index: -1;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 8px 25px rgba(255, 107, 107, 0.35); }
+  50% { box-shadow: 0 8px 30px rgba(255, 107, 107, 0.5); }
+  100% { box-shadow: 0 8px 25px rgba(255, 107, 107, 0.35); }
+}
+
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+
+.lm-promotion-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.lm-promotion-text h3 {
+  font-size: 1.7rem;
+  margin: 0 0 12px;
+  font-weight: 700;
+}
+
+.lm-promotion-text p {
+  font-size: 1.2rem;
+  margin: 0;
+  font-weight: 500;
+  opacity: 0.95;
+}
+
+.lm-promotion-countdown {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 15px 25px;
+  border-radius: 12px;
+  backdrop-filter: blur(5px);
+}
+
+.lm-promotion-countdown span {
+  display: block;
+}
+
+.lm-countdown-time {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 8px;
+  letter-spacing: 1px;
+}
+
+/* 区块标题 */
+.lm-section-title-alt {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  margin: 0 0 35px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.lm-section-title-alt::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 70px;
+  height: 5px;
+  background: var(--bg-gradient-main);
+  border-radius: 3px;
+}
+
