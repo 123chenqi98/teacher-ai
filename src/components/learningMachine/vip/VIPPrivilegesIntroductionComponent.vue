@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 import {privileges} from "@/data/learningMachine/VipContentData.ts";
 import {viewPrivilegeDetail} from "@/utils/learningMachine/VipContentUtils.ts";
 import {ArrowRight, StarFilled} from "@element-plus/icons-vue";
@@ -15,13 +14,7 @@ import {ArrowRight, StarFilled} from "@element-plus/icons-vue";
     </h2>
     <div class="lm-vip-privileges">
       <el-row :gutter="20">
-        <el-col
-            v-for="privilege in privileges"
-            :key="privilege.id"
-            :xs="24"
-            :sm="12"
-            :md="8"
-        >
+        <el-col v-for="privilege in privileges" :key="privilege.id" :xs="24" :sm="12" :md="8">
           <div class="lm-privilege-card" @click="viewPrivilegeDetail(privilege)">
             <div class="lm-privilege-icon">{{ privilege.icon }}</div>
             <h3 class="lm-privilege-title">{{ privilege.title }}</h3>

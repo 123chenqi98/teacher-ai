@@ -5,10 +5,10 @@ import qrCode from "/src/static/qr-code.png"
 </script>
 
 <template>
-  <!--  页脚组件-->
-  <!--    页脚-->
+  <!-- 页脚组件 -->
+  <!-- 页脚 -->
   <footer class="footer">
-<!--    二维码-->
+    <!-- 二维码 -->
     <div>
       <div class="qr-code">
         <img :src="qrCode" alt="二维码">
@@ -45,7 +45,7 @@ import qrCode from "/src/static/qr-code.png"
 
       <div >
         <h3>联系方式</h3>
-        <ul>
+        <ul style="list-style-type: none">
           <li>邮箱: contact@example.com</li>
           <li>电话: 400-123-4567</li>
           <li>地址: 玉林市玉州区</li>

@@ -1,26 +1,27 @@
 <script setup lang="ts">
 import "@/assets/learningMachine/homeCss/LearningMachineHomePageCss.css"
-import { HomeFilled,Shop,User} from "@element-plus/icons-vue";
+import { HomeFilled,Shop,UserFilled} from "@element-plus/icons-vue";
 import router from "@/router";
 //导航信息
 const learningMachineNavigation = [
   {
     name: '首页',
-    path: '/',//首页路由
+    path: '/learningMachine/', //首页路由
     icon: HomeFilled
   },
   {
     name: '产品',
     path: '/learningMachine/product', // 产品路由
-    icon: Shop//产品图标
+    icon: Shop //产品图标
   },
   {
     name: '学习机会员',
     path: '/learningMachine/vip', // 会员路由
-    icon: User // 会员图标
+    icon: UserFilled // 会员图标
   },
 ];
 </script>
+
 <template>
   <div class="learning-machine-home-navigation">
     <el-menu class="learning-machine-navigation-items">
@@ -29,7 +30,7 @@ const learningMachineNavigation = [
           @click="router.push(item.path)"
           class="rounded-menu-item"
       >
-        <!-- 使用动态组件渲染对应的图标 -->
+        <!-- 使用动态组件渲染component对应的图标 -->
         <el-icon>
           <component :is="item.icon" />
         </el-icon>

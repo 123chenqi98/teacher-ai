@@ -11,23 +11,23 @@ import TopInformationComponent from "@/components/system/homeComponents/TopInfor
 
 <template>
   <div class="learning-machine-home-box">
-    <!--顶部信息-->
+    <!-- 顶部信息 -->
     <TopInformationComponent/>
-    <!-- 内容框-->
+    <!-- 内容框 -->
     <div class="learning-machine-home-content">
-      <!--侧边栏导航-->
+      <!-- 侧边栏导航 -->
       <learning-machine-side-navigation-component/>
       <!-- 客服悬浮按钮：固定在页面右侧 -->
       <customer-service-component/>
-      <!--内容展示-->
+      <!-- 内容展示 -->
       <div class="learning-machine-home-products-box" >
-        <!--产品概况-->
+        <!-- 产品概况 -->
         <product-overview-component/>
-        <!--产品介绍-->
+        <!-- 产品介绍 -->
         <product-introduction-component/>
-        <!--学习资源-->
+        <!-- 学习资源 -->
         <learning-resources-component/>
-        <!--核心算法模型-->
+        <!-- 核心算法模型 -->
         <core-algorithm-model-Component/>
       </div>
     </div>

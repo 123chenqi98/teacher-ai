@@ -17,12 +17,7 @@ const activeTab = ref('email')
     <div class="system-title-register">小知智能教师系统</div>
     <div class="content-box">
       <!-- 返回首页按钮 -->
-      <el-button
-          type="text"
-          size="large"
-          @click="router.push('/')"
-          class="back-home-btn"
-      >
+      <el-button type="text" size="large" @click="router.push('/')" class="back-home-btn">
         返回首页
       </el-button>
       <div class="register-title">用户注册</div>

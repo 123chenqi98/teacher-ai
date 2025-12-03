@@ -15,13 +15,7 @@ import {Check, Discount, Service, StarFilled} from "@element-plus/icons-vue";
     </h2>
     <div class="lm-vip-packages">
       <el-row :gutter="20">
-        <el-col
-            v-for="pkg in vipPackages"
-            :key="pkg.id"
-            :xs="24"
-            :sm="12"
-            :md="8"
-        >
+        <el-col v-for="pkg in vipPackages" :key="pkg.id" :xs="24" :sm="12" :md="8">
           <div
               :class="['lm-vip-package-card', { 'lm-popular': pkg.popular, 'lm-card-enter': false }]"
               :style="{ background: pkg.backgroundColor }"

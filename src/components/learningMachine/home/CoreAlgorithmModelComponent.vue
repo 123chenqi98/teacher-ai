@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import "@/assets/learningMachine/homeCss/CoreAlgorithmModelCss.css"
-import { coreModels } from "@/data/learningMachine/CoreAlgorithmModel.ts";
+import { coreModels } from "@/data/learningMachine/CoreAlgorithmModelData.ts";
 import { onMounted, ref } from "vue";
 
 // 控制整个区域的可见状态（初始隐藏，滑入后显示）
@@ -48,19 +48,9 @@ onMounted(() => {
     </div>
 
     <!-- 卡片容器：绑定可见状态，控制动画触发 -->
-    <div
-        class="model-grid"
-        :class="{ 'model-grid-visible': containerVisible }"
-    >
+    <div class="model-grid" :class="{ 'model-grid-visible': containerVisible }">
       <el-row :gutter="24">
-        <el-col
-            :xs="12"
-            :sm="8"
-            :md="6"
-            :lg="4"
-            v-for="(model, index) in coreModels"
-            :key="index"
-        >
+        <el-col :xs="12" :sm="8" :md="6" :lg="4" v-for="(model, index) in coreModels" :key="index">
           <el-card class="model-card" shadow="hover">
             <div class="model-number">{{ index + 1 }}</div>
             <h3 class="model-name">{{ model.name }}</h3>

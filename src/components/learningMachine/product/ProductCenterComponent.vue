@@ -4,7 +4,7 @@ import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { ElMessage } from 'element-plus';
 import { Search, Star } from '@element-plus/icons-vue';
-import "@/assets/learningMachine/produce/LearningMachineProductCenterCss.css";
+import "@/assets/learningMachine/product/LearningMachineProductCenterCss.css";
 import { learningMachineProducts as products, learningMachineProductCategories as productCategories } from "@/data/learningMachine/LearningMachineProductData.ts";
 
 // 获取路由实例
@@ -73,12 +73,7 @@ const viewDetails = (productId: number) => {
 
     <!-- 搜索框 -->
     <div class="lm-product-search-box">
-      <el-input
-        size="large"
-        v-model="searchKeyword"
-        placeholder="搜索产品..." 
-        clearable
-      >
+      <el-input size="large" v-model="searchKeyword" placeholder="搜索产品..." clearable>
         <template #prefix>
           <el-icon><Search /></el-icon>
         </template>
@@ -88,12 +83,7 @@ const viewDetails = (productId: number) => {
     <!-- 分类导航 -->
     <div class="lm-product-categories-nav">
       <div class="lm-categories-list">
-        <el-tag
-          style="width: 200px;height: 50px"
-          v-for="category in categories" 
-          :key="category.id"
-          @click="switchCategory(category.id)"
-        >
+        <el-tag style="width: 200px;height: 50px" v-for="category in categories" :key="category.id" @click="switchCategory(category.id)">
           <el-text  style="color: #b196e2">{{ category.name }}</el-text>
         </el-tag>
       </div>
@@ -101,17 +91,9 @@ const viewDetails = (productId: number) => {
 
     <!-- 产品列表 -->
     <div class="lm-products-grid">
-      <el-card
-        class="product-card-center"
-        v-for="product in filteredProducts" 
-        :key="product.id"
-      >
+      <el-card class="product-card-center" v-for="product in filteredProducts" :key="product.id">
         <div class="lm-product-image-wrapper">
-          <img 
-            :src="product.image" 
-            :alt="product.name"
-            class="lm-product-image"
-          >
+          <img :src="product.image" :alt="product.name" class="lm-product-image">
           <div v-if="product.isNew" class="lm-product-badge">
             <el-tag type="danger">NEW</el-tag>
           </div>
@@ -126,18 +108,10 @@ const viewDetails = (productId: number) => {
             <span class="lm-product-price">{{ product.price || '¥0.00' }}</span>
           </div>
           <div class="lm-product-actions">
-            <el-button 
-              type="primary" 
-              class="lm-product-detail-btn"
-              @click="viewDetails(product.id)"
-            >
+            <el-button type="primary" class="lm-product-detail-btn" @click="viewDetails(product.id)">
               查看详情
             </el-button>
-            <el-button 
-              class="lm-product-favorite-btn" 
-              @click="toggleFavorite(product.id)"
-              circle
-            >
+            <el-button class="lm-product-favorite-btn" @click="toggleFavorite(product.id)" circle>
               <el-icon><Star /></el-icon>
             </el-button>
           </div>

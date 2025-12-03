@@ -7,6 +7,7 @@ const props = defineProps<{
   loginButtonClick?: () => void
   termsOfService?: boolean
 }>()
+
 // 定义 emit 事件
 const emit = defineEmits<{
   (e: 'update:termsOfService', value: boolean): void
@@ -26,11 +27,8 @@ const handleTermsChange = (value: boolean) => {
     <el-button @click="loginButtonClick" class="button-login" >
       登录
     </el-button>
-    <el-checkbox
-        :model-value="termsOfService"
-        @update:model-value="handleTermsChange"
-        size="large"
-    >      <el-link type="primary" style="font-size: 1.0rem;color:#d3debf ">
+    <el-checkbox :model-value="termsOfService" @update:model-value="handleTermsChange" size="large">
+      <el-link type="primary" style="font-size: 1.0rem;color:#d3debf ">
         我已阅读并同意
         <el-link type="primary"  @click="" style="font-size: 1.0rem;color:#d3debf ">
           《用户协议》
@@ -41,7 +39,7 @@ const handleTermsChange = (value: boolean) => {
         </el-link>
       </el-link>
     </el-checkbox>
-    <el-link  @click="()=>{router.push('/register')}" style="font-size: 1.0rem;color:#d3debf;margin-top: 50px ">
+    <el-link @click="()=>{router.push('/register')}" style="font-size: 1.0rem;color:#d3debf;margin-top: 50px ">
       没有账号去注册
     </el-link>
   </div>

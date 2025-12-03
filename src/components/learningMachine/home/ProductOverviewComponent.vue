@@ -15,12 +15,7 @@ const handleCarouselChange = (index: number) => {
 <template>
   <div class="carousel-container">
     <!-- 走马灯组件：保持原有配置，仅修改轮播项内容 -->
-    <el-carousel
-        :interval="3000"
-        arrow="always"
-        indicator-position=""
-        @change="handleCarouselChange"
-    >
+    <el-carousel :interval="3000" arrow="always" indicator-position="" @change="handleCarouselChange">
       <el-carousel-item v-for="(item) in carouselItems" :key="item.id">
         <div class="carousel-item">
           <!-- 仅保留图片标签，删除 content-wrapper 及内部文字、按钮 -->

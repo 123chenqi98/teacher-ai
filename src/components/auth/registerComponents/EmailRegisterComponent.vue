@@ -30,30 +30,19 @@ const submitEmailForm = () => {
     }
   })
 }
-
 </script>
 
 <template>
   <el-tab-pane label="邮箱注册" name="email">
     <div class="form-item-style-register">
-      <el-form
-          ref="emailFormRef"
-          :model="emailForm"
-          :rules="emailRules"
-          label-width="auto"
-      >
+      <el-form ref="emailFormRef" :model="emailForm" :rules="emailRules" label-width="auto">
         <el-form-item prop="identity">
           <label>身份</label>
           <register-identity-select-component v-model="emailForm.identity"/>
         </el-form-item>
         <el-form-item prop="email">
           <label>邮箱</label>
-          <el-input
-              v-model="emailForm.email"
-              type="text"
-              placeholder="请输入邮箱"
-              maxlength="50"
-          >
+          <el-input v-model="emailForm.email" type="text" placeholder="请输入邮箱" maxlength="50">
             <template #prefix>
               <el-icon><Message /></el-icon>
             </template>
@@ -63,23 +52,12 @@ const submitEmailForm = () => {
         <el-form-item prop="code">
           <div class="verify-code-group">
             <label>验证码</label>
-            <el-input
-                v-model="emailForm.code"
-                type="text"
-                autocomplete="off"
-                placeholder="请输入验证码"
-                maxlength="6"
-            >
+            <el-input v-model="emailForm.code" type="text" autocomplete="off" placeholder="请输入验证码" maxlength="6">
               <template #prefix>
                 <el-icon><Lock /></el-icon>
               </template>
             </el-input>
-            <el-button
-                class="verify-code-button"
-                type="primary"
-                :disabled="!emailForm.email || sendVerifyCodeTime > 0"
-                @click="getVerifyCode('email')"
-            >
+            <el-button class="verify-code-button" type="primary" :disabled="!emailForm.email || sendVerifyCodeTime > 0" @click="getVerifyCode('email')">
               {{ sendVerifyCodeTime > 0 ? `${sendVerifyCodeTime}s后重新获取` : '获取验证码' }}
             </el-button>
           </div>
@@ -87,14 +65,7 @@ const submitEmailForm = () => {
 
         <el-form-item prop="password">
           <label>密码</label>
-          <el-input
-              v-model="emailForm.password"
-              type="password"
-              autocomplete="off"
-              placeholder="请输入密码"
-              maxlength="18"
-              show-password
-          >
+          <el-input v-model="emailForm.password" type="password" autocomplete="off" placeholder="请输入密码" maxlength="18" show-password>
             <template #prefix>
               <el-icon><Lock /></el-icon>
             </template>
@@ -103,14 +74,7 @@ const submitEmailForm = () => {
 
         <el-form-item prop="confirmPassword">
           <label>确认密码</label>
-          <el-input
-              v-model="emailForm.confirmPassword"
-              type="password"
-              autocomplete="off"
-              placeholder="请再次输入密码"
-              maxlength="18"
-              show-password
-          >
+          <el-input v-model="emailForm.confirmPassword" type="password" autocomplete="off" placeholder="请再次输入密码" maxlength="18" show-password>
             <template #prefix>
               <el-icon><Lock /></el-icon>
             </template>

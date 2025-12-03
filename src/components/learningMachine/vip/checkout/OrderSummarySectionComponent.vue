@@ -56,12 +56,7 @@ const submitOrder = () => {
     </div>
   </div>
   <div class="lm-pay-button-container">
-    <el-button
-        class="lm-pay-button"
-        type="primary"
-        @click="submitOrder"
-        size="large"
-    >
+    <el-button class="lm-pay-button" type="primary" @click="submitOrder" size="large">
       <el-icon><Wallet /></el-icon>
       立即支付 ¥{{ selectedPackage.price }}
     </el-button>

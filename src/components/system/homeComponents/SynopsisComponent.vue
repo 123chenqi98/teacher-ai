@@ -33,7 +33,7 @@ const handleWatchDemo = () => {
 
     <!-- 右侧图片区域 -->
     <div class="content-right">
-      <img src="/src/static/logo.png" alt="小知智能家教平台" class="main-image">
+      <img src="@/static/logo.png" alt="小知智能家教平台" class="main-image">
     </div>
   </div>
 </template>

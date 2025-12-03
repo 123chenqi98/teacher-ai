@@ -1,8 +1,8 @@
 // 热门产品数据
 import { ref } from "vue";
-import learningMachine4 from "@/static/learningMachine4.png";
-import learningMachine5 from "@/static/learningMachine5.png";
-import learningMachine6 from "@/static/learningMachine6.png";
+import learningMachine4 from "@/static/learningMachine/learningMachine4.png";
+import learningMachine5 from "@/static/learningMachine/learningMachine5.png";
+import learningMachine6 from "@/static/learningMachine/learningMachine6.png";
 
 export interface HotProduct {
     id: number;

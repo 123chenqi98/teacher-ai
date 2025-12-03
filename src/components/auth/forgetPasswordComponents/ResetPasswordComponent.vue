@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import {
-  clearResetPasswordForm,
-  passwordForm,
-  passwordFormRef,
-  passwordRules
-} from "@/forms/auth/forgetPassword/ResetPasswordForm.ts";
+import {clearResetPasswordForm, passwordForm, passwordFormRef, passwordRules} from "@/forms/auth/forgetPassword/ResetPasswordForm.ts";
 import {Lock} from "@element-plus/icons-vue";
 import {ElMessage} from "element-plus";
 import {accountForm, resetAccountForm} from "@/forms/auth/forgetPassword/AccountVerificationForm.ts";
@@ -51,21 +46,10 @@ watch(() => accountForm.email, (newValue) => {
 
 <template>
   <div v-if="props.activeStep === 2" class="form-item-style">
-    <el-form
-        ref="passwordFormRef"
-        :model="passwordForm"
-        :rules="passwordRules"
-        label-width="auto"
-    >
+    <el-form ref="passwordFormRef" :model="passwordForm" :rules="passwordRules" label-width="auto">
       <el-form-item prop="password">
         <label>新密码</label>
-        <el-input
-            v-model="passwordForm.password"
-            type="password"
-            placeholder="请输入新密码"
-            show-password
-            maxlength="25"
-        >
+        <el-input v-model="passwordForm.password" type="password" placeholder="请输入新密码" show-password maxlength="25">
           <template #prefix>
             <el-icon><Lock /></el-icon>
           </template>
@@ -74,13 +58,7 @@ watch(() => accountForm.email, (newValue) => {
 
       <el-form-item prop="confirmPassword">
         <label>确认密码</label>
-        <el-input
-            v-model="passwordForm.confirmPassword"
-            type="password"
-            placeholder="请再次输入新密码"
-            show-password
-            maxlength="25"
-        >
+        <el-input v-model="passwordForm.confirmPassword" type="password" placeholder="请再次输入新密码" show-password maxlength="25">
           <template #prefix>
             <el-icon><Lock /></el-icon>
           </template>

@@ -19,11 +19,7 @@ const handleContactService = () => {
       </span>
     </el-button>
 
-    <el-button
-      type="danger"
-      class="contact-service-btn"
-      @click="handleContactService"
-    >
+    <el-button type="danger" class="contact-service-btn" @click="handleContactService">
       <el-icon>
         <ChatDotRound />
       </el-icon>

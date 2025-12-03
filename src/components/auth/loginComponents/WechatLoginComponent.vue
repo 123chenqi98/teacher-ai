@@ -68,11 +68,7 @@ onMounted(() => {
         
         <div v-else class="qr-code-content">
           <div class="qr-code-box">
-            <img 
-              :src="qrCodeUrl" 
-              alt="微信二维码" 
-              class="qr-code-image"
-            />
+            <img :src="qrCodeUrl" alt="微信二维码" class="qr-code-image"/>
           </div>
           
           <div class="status-section">

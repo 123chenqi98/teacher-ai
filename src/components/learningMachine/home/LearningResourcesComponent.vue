@@ -30,12 +30,7 @@ import { teachers } from "@/data/learningMachine/LearningResourcesData.ts";
     <!-- 教师卡片（关联数据） -->
     <div class="teachers-grid">
       <!-- 遍历导入的teachers数据 -->
-      <el-card
-          v-for="(teacher, index) in teachers"
-          :key="index"
-          class="teacher-card"
-          shadow="hover"
-      >
+      <el-card v-for="(teacher, index) in teachers" :key="index" class="teacher-card" shadow="hover">
         <!-- 图片：绑定teacher.image -->
         <div class="teacher-img-wrapper">
           <img :src="teacher.image" :alt="teacher.name" class="teacher-img">

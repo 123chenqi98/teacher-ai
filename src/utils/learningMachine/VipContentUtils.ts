@@ -22,7 +22,7 @@ const purchaseVip = (pkgId: number) => {
 
 // 跳转到产品页面
 const goToProducts = () => {
-    router.push({ name: 'intelligentAssistant' });
+    router.push({name: 'intelligentAssistant'}).then();
 }
 
 // 查看特权详情

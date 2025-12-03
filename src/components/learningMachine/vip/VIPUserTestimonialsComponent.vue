@@ -14,13 +14,7 @@ import {StarFilled} from "@element-plus/icons-vue";
     </h2>
     <div class="lm-testimonials">
       <el-row :gutter="20">
-        <el-col
-            v-for="testimonial in testimonials"
-            :key="testimonial.id"
-            :xs="24"
-            :sm="12"
-            :md="8"
-        >
+        <el-col v-for="testimonial in testimonials" :key="testimonial.id" :xs="24" :sm="12" :md="8">
           <div class="lm-testimonial-card" @click="viewTestimonialDetail(testimonial)">
             <div class="lm-testimonial-header">
               <div class="lm-testimonial-avatar">

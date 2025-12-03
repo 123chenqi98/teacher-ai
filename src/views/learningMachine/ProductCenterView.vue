@@ -1,23 +1,22 @@
 <script setup lang="ts">
 // 产品中心页面组件
-import "@/assets/learningMachine/produce/LearningMachineProductCenterCss.css"
-import ProductCenterMainComponent from "@/components/learningMachine/produce/ProductCenterMainComponent.vue";
-import LearningMachineSideNavigationComponent
-  from "@/components/learningMachine/home/LearningMachineSideNavigationComponent.vue";
+import "@/assets/learningMachine/product/LearningMachineProductCenterCss.css"
+import ProductCenterMainComponent from "@/components/learningMachine/product/ProductCenterMainComponent.vue";
+import LearningMachineSideNavigationComponent from "@/components/learningMachine/home/LearningMachineSideNavigationComponent.vue";
 import TopInformationComponent from "@/components/system/homeComponents/TopInformationComponent.vue";
 </script>
 
 <template>
   <div class="learning-machine-home-box">
-    <!--顶部信息-->
+    <!-- 顶部信息 -->
     <TopInformationComponent/>
-    <!-- 内容框-->
+    <!-- 内容框 -->
     <div class="learning-machine-home-content">
-      <!--侧边栏导航-->
+      <!-- 侧边栏导航 -->
       <learning-machine-side-navigation-component/>
-      <!--内容展示-->
+      <!-- 内容展示 -->
       <div class="learning-machine-home-products-box">
-        <!--产品中心主要内容-->
+        <!-- 产品中心主要内容 -->
         <product-center-main-component/>
       </div>
     </div>

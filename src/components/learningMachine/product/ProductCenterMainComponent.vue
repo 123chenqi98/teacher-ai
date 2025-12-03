@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // 产品中心主体内容组件
-import "@/assets/learningMachine/produce/LearningMachineProductCenterMainCss.css"
+import "@/assets/learningMachine/product/LearningMachineProductCenterMainCss.css"
 import ProductCenterComponent from "./ProductCenterComponent.vue";
 </script>
 

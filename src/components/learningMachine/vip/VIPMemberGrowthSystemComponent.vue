@@ -14,13 +14,7 @@ import {Check, Trophy} from "@element-plus/icons-vue";
     </h2>
     <div class="lm-growth-system">
       <el-row :gutter="20">
-        <el-col
-            v-for="(level, index) in growthSystem"
-            :key="index"
-            :xs="24"
-            :sm="12"
-            :md="6"
-        >
+        <el-col v-for="(level, index) in growthSystem" :key="index" :xs="24" :sm="12" :md="6">
           <div class="lm-growth-level-card">
             <div class="lm-level-header">
               <h3 class="lm-level-name">{{ level.level }}</h3>

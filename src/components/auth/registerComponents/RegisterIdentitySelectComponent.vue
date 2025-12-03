@@ -29,11 +29,7 @@ const options = [
 </script>
 
 <template>
-  <el-select
-      v-bind:value="value"
-      placeholder="请选择身份"
-      style="width: 240px"
-      @update:v-model="handleChange">
+  <el-select v-bind:value="value" placeholder="请选择身份" style="width: 240px" @update:v-model="handleChange">
     <el-option
         v-for="item in options"
         :key="item.value"

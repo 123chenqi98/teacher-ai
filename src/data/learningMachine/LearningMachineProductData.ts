@@ -106,14 +106,5 @@ export const learningMachineProducts: LearningMachineProduct[] = [
     category: 4,
     price: '¥349.00',
     isNew: true
-  },
-  {
-    id: 10,
-    name: '学习机充电底座',
-    description: '无线充电+有线快充二合一设计，智能温控保护，充电更安全高效',
-    image: '/src/static/logo.png',
-    category: 5,
-    price: '¥199.00',
-    isNew: true
-  },
+  }
 ];

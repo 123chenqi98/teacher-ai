@@ -1,5 +1,4 @@
 import { reactive, ref } from 'vue'
-
 import type { FormInstance, FormRules } from 'element-plus'
 
 //校验
@@ -11,7 +10,7 @@ const ruleForm = reactive({
     code: '',
 })
 
-// 校验账号
+// 校验邮箱
 const validateEmail = (rule: any, value: any, callback: any) => {
     // 正则表达式：只允许中文、数字和英文，不允许特殊字符
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;

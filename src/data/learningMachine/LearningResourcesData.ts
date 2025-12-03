@@ -26,5 +26,12 @@ export const teachers = [
         education: "浙江大学毕业",
         description: "小知智能教师系统科学课程开发者",
         certId: "202211240012348"
-    }
+    },
+    {
+        image: 'src/static/img.png',
+        name: "王伟",
+        education: "上海交通大学毕业",
+        description: "小知智能教师系统物理课程负责人",
+        certId: "202211240012349"
+    },
 ]

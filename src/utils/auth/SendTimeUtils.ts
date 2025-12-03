@@ -11,7 +11,7 @@ export function sendVerifyCodeCutTime (time: number) {
             sendVerifyCodeTime.value--;
         }else{
             // 清除记时器
-            clearInterval( timer)
+            clearInterval(timer)
         }
     }, 1000);
 }

@@ -1,11 +1,5 @@
 <script setup lang="ts">
-import {
-  addToCart, buyNow,
-  currentProduct,
-  initRouteWatcher,
-  quantity,
-  selectThumbnail
-} from "@/utils/produce/LearningMachineProductDetailUtils.ts";
+import {addToCart, buyNow, currentProduct, initRouteWatcher, quantity, selectThumbnail} from "@/utils/product/LearningMachineProductDetailUtils.ts";
 
 // 初始化路由监听
 initRouteWatcher();
@@ -48,26 +42,12 @@ initRouteWatcher();
 
       <div class="lm-product-actions-detail">
         <div class="lm-quantity-selector">
-          <el-input-number
-              v-model="quantity"
-              :min="1"
-              :max="99"
-              size="large"
-              class="lm-quantity-input"
-          />
+          <el-input-number v-model="quantity" :min="1" :max="99" size="large" class="lm-quantity-input"/>
         </div>
-        <el-button
-            type="primary"
-            class="lm-add-to-cart-btn"
-            @click="addToCart"
-        >
+        <el-button type="primary" class="lm-add-to-cart-btn" @click="addToCart">
           加入购物车
         </el-button>
-        <el-button
-            type="primary"
-            class="lm-buy-now-btn"
-            @click="buyNow"
-        >
+        <el-button type="primary" class="lm-buy-now-btn" @click="buyNow">
           立即购买
         </el-button>
       </div>

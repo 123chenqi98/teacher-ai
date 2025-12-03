@@ -11,8 +11,9 @@ const isLogin = ref(true)
 // 处理下拉菜单命令
 const handleCommand = (command: string) => {
   switch(command) {
-    case 'profile':
+    case 'userCenter':
       console.log('跳转到个人中心')
+      router.push("/user/dashboard")
       break
     case 'settings':
       console.log('跳转到设置页面')
@@ -26,17 +27,17 @@ const handleCommand = (command: string) => {
 </script>
 
 <template>
-<!--  顶部信息组件-->
+  <!-- 顶部信息组件-->
   <div class="homeTopInfoBox">
     <div class="logo-box">
-      <img src="/src/static/logo.png" class="logo-img" alt=""/>
+      <img src="@/static/logo.png" class="logo-img" alt="智慧科技logo"/>
       <el-text class="home-title">智慧科技</el-text>
     </div>
     <div class="navigation-box">
-<!--      导航栏-->
+      <!-- 导航栏 -->
       <top-navigation-component/>
     </div>
-<!--    登录显示的组件-->
+    <!-- 登录显示的组件 -->
     <div class="auth-box" v-if="!isLogin">
       <el-button type="success" @click="router.push('/login')">
         登录
@@ -45,15 +46,16 @@ const handleCommand = (command: string) => {
         注册
       </el-button>
     </div>
-<!--    未来登录显示的组件-->
+    <!-- 未来登录显示的组件 -->
     <div class="auth-box" v-if="isLogin">
       <el-dropdown @command="handleCommand">
         <span class="el-dropdown-link">
+          <!-- 绑定响应式变量，必须带:   属性值是数字60,Element Plus 会自动解析为60px-->
           <el-avatar :size="60" src="https://empty"></el-avatar>
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item command="profile" @click="router.push('/user/dashboard')">个人中心</el-dropdown-item>
+            <el-dropdown-item command="userCenter">个人中心</el-dropdown-item>
             <el-dropdown-item command="settings">设置</el-dropdown-item>
             <el-dropdown-item command="logout">退出登录</el-dropdown-item>
           </el-dropdown-menu>
@@ -65,7 +67,7 @@ const handleCommand = (command: string) => {
 </template>
 
 <style scoped>
-/*标题样式*/
+/* 标题样式 */
 .home-title{
   font-size: 1.4rem;
   font-weight: 700;

@@ -10,13 +10,13 @@ import FeatureDisplayComponent from "@/components/system/homeComponents/FeatureD
 
 <template>
   <div class="homeBox">
-<!--    顶部信息-->
+    <!-- 顶部信息 -->
     <top-information-component/>
-<!--    简介信息-->
-    <SynopsisComponent></SynopsisComponent>
-<!--    产品展示-->
+    <!-- 简介信息 -->
+    <synopsis-component/>
+    <!-- 产品展示 -->
     <product-display-component/>
-<!--    功能介绍区-->
+    <!-- 功能介绍区 -->
     <feature-display-component/>
   </div>
 

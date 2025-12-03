@@ -12,20 +12,10 @@ const props = defineProps<{
 
 <template>
   <div v-if="props.activeStep === 0" class="form-item-style">
-    <el-form
-        ref="accountFormRef"
-        :model="accountForm"
-        :rules="accountRules"
-        label-width="auto"
-    >
+    <el-form ref="accountFormRef" :model="accountForm" :rules="accountRules" label-width="auto">
       <el-form-item prop="email">
         <label>邮箱</label>
-        <el-input
-            v-model="accountForm.email"
-            type="text"
-            placeholder="请输入注册邮箱"
-            maxlength="25"
-        >
+        <el-input v-model="accountForm.email" type="text" placeholder="请输入注册邮箱" maxlength="25">
           <template #prefix>
             <el-icon><Message /></el-icon>
           </template>

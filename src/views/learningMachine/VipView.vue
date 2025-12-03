@@ -1,21 +1,14 @@
 <script setup lang="ts">
 import "@/assets/learningMachine/vip/LearningMachineVipCss.css"
-import LearningMachineSideNavigationComponent
-  from "@/components/learningMachine/home/LearningMachineSideNavigationComponent.vue"
+import LearningMachineSideNavigationComponent from "@/components/learningMachine/home/LearningMachineSideNavigationComponent.vue"
 import TopInformationComponent from "@/components/system/homeComponents/TopInformationComponent.vue"
 import { onMounted } from "vue"
-import {
-  promotion,
-
-} from "@/data/learningMachine/VipContentData.ts";
-import {
-  updateCountdown,
-} from "@/utils/learningMachine/VipContentUtils.ts";
+import {promotion,} from "@/data/learningMachine/VipContentData.ts";
+import {updateCountdown,} from "@/utils/learningMachine/VipContentUtils.ts";
 import VIPContentHeaderComponent from "@/components/learningMachine/vip/VIPContentHeaderComponent.vue";
 import VIPPackageSelectionComponent from "@/components/learningMachine/vip/VIPPackageSelectionComponent.vue";
 import VIPMemberGrowthSystemComponent from "@/components/learningMachine/vip/VIPMemberGrowthSystemComponent.vue";
-import VIPPrivilegesIntroductionComponent
-  from "@/components/learningMachine/vip/VIPPrivilegesIntroductionComponent.vue";
+import VIPPrivilegesIntroductionComponent from "@/components/learningMachine/vip/VIPPrivilegesIntroductionComponent.vue";
 import VIPExclusiveEventsComponent from "@/components/learningMachine/vip/VIPExclusiveEventsComponent.vue";
 import VIPProductRecommendationComponent from "@/components/learningMachine/vip/VIPProductRecommendationComponent.vue";
 import VIPUserTestimonialsComponent from "@/components/learningMachine/vip/VIPUserTestimonialsComponent.vue";
@@ -40,15 +33,15 @@ onMounted(() => {
 
 <template>
   <div class="learning-machine-home-box">
-    <!--顶部信息-->
+    <!-- 顶部信息 -->
     <TopInformationComponent/>
-    <!-- 内容框-->
+    <!-- 内容框 -->
     <div class="learning-machine-home-content">
-      <!--侧边栏导航-->
+      <!-- 侧边栏导航 -->
       <learning-machine-side-navigation-component/>
-      <!--内容展示-->
+      <!-- 内容展示 -->
       <div class="learning-machine-home-products-box">
-        <!--VIP页面主要内容-->
+        <!-- VIP页面主要内容 -->
         <div class="lm-vip-container">
           <!-- 页面标题 -->
           <VIPContentHeaderComponent/>

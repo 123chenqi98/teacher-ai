@@ -38,24 +38,14 @@ const submitPhoneForm = () => {
 <template>
   <el-tab-pane label="手机号注册" name="phone">
     <div class="form-item-style-register">
-      <el-form
-          ref="phoneFormRef"
-          :model="phoneForm"
-          :rules="phoneRules"
-          label-width="auto"
-      >
+      <el-form ref="phoneFormRef" :model="phoneForm" :rules="phoneRules" label-width="auto">
         <el-form-item prop="identity">
           <label>身份</label>
           <register-identity-select-component v-model="phoneForm.identity"/>
         </el-form-item>
         <el-form-item prop="phone">
           <label>手机号</label>
-          <el-input
-              v-model="phoneForm.phone"
-              type="text"
-              placeholder="请输入手机号"
-              maxlength="11"
-          >
+          <el-input v-model="phoneForm.phone" type="text" placeholder="请输入手机号" maxlength="11">
             <template #prefix>
               <el-icon><Iphone /></el-icon>
             </template>
@@ -65,23 +55,12 @@ const submitPhoneForm = () => {
         <el-form-item prop="code">
           <div class="verify-code-group">
             <label>验证码</label>
-            <el-input
-                v-model="phoneForm.code"
-                type="text"
-                autocomplete="off"
-                placeholder="请输入验证码"
-                maxlength="6"
-            >
+            <el-input v-model="phoneForm.code" type="text" autocomplete="off" placeholder="请输入验证码" maxlength="6">
               <template #prefix>
                 <el-icon><Lock /></el-icon>
               </template>
             </el-input>
-            <el-button
-                class="verify-code-button"
-                type="primary"
-                :disabled="!phoneForm.phone || sendVerifyCodeTime > 0"
-                @click="getVerifyCode('phone')"
-            >
+            <el-button class="verify-code-button" type="primary" :disabled="!phoneForm.phone || sendVerifyCodeTime > 0" @click="getVerifyCode('phone')">
               {{ sendVerifyCodeTime > 0 ? `${sendVerifyCodeTime}s后重新获取` : '获取验证码' }}
             </el-button>
           </div>
@@ -89,14 +68,7 @@ const submitPhoneForm = () => {
 
         <el-form-item prop="password">
           <label>密码</label>
-          <el-input
-              v-model="phoneForm.password"
-              type="password"
-              autocomplete="off"
-              placeholder="请输入密码"
-              maxlength="18"
-              show-password
-          >
+          <el-input v-model="phoneForm.password" type="password" autocomplete="off" placeholder="请输入密码" maxlength="18" show-password>
             <template #prefix>
               <el-icon><Lock /></el-icon>
             </template>
@@ -105,14 +77,7 @@ const submitPhoneForm = () => {
 
         <el-form-item prop="confirmPassword">
           <label>确认密码</label>
-          <el-input
-              v-model="phoneForm.confirmPassword"
-              type="password"
-              autocomplete="off"
-              placeholder="请再次输入密码"
-              maxlength="18"
-              show-password
-          >
+          <el-input v-model="phoneForm.confirmPassword" type="password" autocomplete="off" placeholder="请再次输入密码" maxlength="18" show-password>
             <template #prefix>
               <el-icon><Lock /></el-icon>
             </template>

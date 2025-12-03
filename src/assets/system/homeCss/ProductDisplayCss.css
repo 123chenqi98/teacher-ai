@@ -49,6 +49,7 @@
     object-fit: cover;
 }
 
+/*鼠标在图片上悬浮显示文字*/
 .product-overlay {
     position: absolute;
     top: 0;

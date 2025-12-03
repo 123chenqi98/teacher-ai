@@ -33,19 +33,10 @@ watch(() => accountForm.email, (newValue) => {
 
 <template>
   <div v-if="props.activeStep === 1" class="form-item-style">
-    <el-form
-        ref="verifyFormRef"
-        :model="verifyForm"
-        :rules="verifyRules"
-        label-width="auto"
-    >
+    <el-form ref="verifyFormRef" :model="verifyForm" :rules="verifyRules" label-width="auto">
       <el-form-item prop="email">
         <label>邮箱</label>
-        <el-input
-            v-model="verifyForm.email"
-            type="text"
-            disabled
-        >
+        <el-input v-model="verifyForm.email" type="text" disabled>
           <template #prefix>
             <el-icon><Message /></el-icon>
           </template>
@@ -55,23 +46,12 @@ watch(() => accountForm.email, (newValue) => {
       <el-form-item prop="code">
         <div style="display: flex">
           <label>验证码</label>
-          <el-input
-              v-model="verifyForm.code"
-              type="text"
-              autocomplete="off"
-              placeholder="请输入验证码"
-              maxlength="6"
-          >
+          <el-input v-model="verifyForm.code" type="text" autocomplete="off" placeholder="请输入验证码" maxlength="6">
             <template #prefix>
               <el-icon><Lock /></el-icon>
             </template>
           </el-input>
-          <el-button
-              class="verify-code-button"
-              type="primary"
-              :disabled="sendVerifyCodeTime > 0"
-              @click="sendVerifyCode"
-          >
+          <el-button class="verify-code-button" type="primary" :disabled="sendVerifyCodeTime > 0" @click="sendVerifyCode">
             {{sendVerifyCodeTime > 0 ? `${sendVerifyCodeTime}s后重新获取` : '获取验证码'}}
           </el-button>
         </div>

@@ -9,12 +9,7 @@ import { vipPackages } from "@/data/learningMachine/VipCheckoutData.ts";
     <h2 class="lm-section-title">用户信息</h2>
     <div class="lm-user-info-form">
       <h3 class="lm-form-title">填写信息</h3>
-      <el-form
-          ref="buyVipFormRef"
-          :model="buyVipForm"
-          :rules="buyVipFormRules"
-          label-width="80px"
-      >
+      <el-form ref="buyVipFormRef" :model="buyVipForm" :rules="buyVipFormRules" label-width="80px">
         <div class="lm-user-info-form">
           <el-form-item label="姓名" prop="name">
             <el-input maxlength="10" v-model="buyVipForm.name" placeholder="请输入姓名" size="large" />

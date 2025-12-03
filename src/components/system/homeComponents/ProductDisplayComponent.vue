@@ -18,7 +18,7 @@ const handleViewMore = () => {
     <div class="product-grid">
       <!-- 使用 el-card 组件展示产品 -->
       <el-card v-for="index in 12" :key="index" class="product-card">
-        <img src="/src/static/logo.png" alt="智能学习环境" class="product-image">
+        <img src="@/static/logo.png" alt="智能学习环境" class="product-image">
         <div class="product-overlay">
           <span >智能学习环境</span>
         </div>

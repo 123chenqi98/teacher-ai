@@ -13,8 +13,7 @@ import {ArrowRight, StarFilled} from "@element-plus/icons-vue";
       热门产品推荐
     </h2>
     <div class="lm-product-recommendation">
-      <el-alert
-          title="VIP会员专享更多产品优惠"
+      <el-alert title="VIP会员专享更多产品优惠"
           type="success"
           description="开通VIP会员可享受产品中心所有商品额外9折优惠"
           show-icon

@@ -15,11 +15,7 @@ import {StarFilled, Warning} from "@element-plus/icons-vue";
     </h2>
     <div class="lm-faq">
       <el-collapse v-model="expandedFaq">
-        <el-collapse-item
-            v-for="faq in faqs"
-            :key="faq.id"
-            :name="faq.id"
-        >
+        <el-collapse-item v-for="faq in faqs" :key="faq.id" :name="faq.id">
           <template #title>
             <el-icon>
               <Warning />

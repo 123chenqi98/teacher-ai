@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
-import {activeTab, currentProduct, initRouteWatcher} from "@/utils/produce/LearningMachineProductDetailUtils.ts";
-import {productFeatures, reviews, specifications} from "@/data/learningMachine/LearningMachineProductDetail.ts";
+import {activeTab, currentProduct, initRouteWatcher} from "@/utils/product/LearningMachineProductDetailUtils.ts";
+import {productFeatures, reviews, specifications} from "@/data/learningMachine/LearningMachineProductDetailData.ts";
 
 // 初始化路由监听
 initRouteWatcher();
@@ -15,11 +15,7 @@ initRouteWatcher();
         <div class="lm-detail-features">
           <h3>核心功能特性</h3>
           <div class="lm-features-grid">
-            <div
-                v-for="feature in productFeatures"
-                :key="feature.id"
-                class="lm-feature-card"
-            >
+            <div v-for="feature in productFeatures" :key="feature.id" class="lm-feature-card">
               <h4>{{ feature.title }}</h4>
               <p>{{ feature.description }}</p>
             </div>
@@ -36,11 +32,7 @@ initRouteWatcher();
 
       <el-tab-pane label="规格参数" name="specs">
         <el-descriptions :column="1" border>
-          <el-descriptions-item
-              v-for="spec in specifications"
-              :key="spec.key"
-              :label="spec.key"
-          >
+          <el-descriptions-item v-for="spec in specifications" :key="spec.key" :label="spec.key">
             {{ spec.value }}
           </el-descriptions-item>
         </el-descriptions>
@@ -48,21 +40,11 @@ initRouteWatcher();
 
       <el-tab-pane label="用户评价" name="reviews">
         <div class="lm-reviews-container">
-          <el-card
-              v-for="review in reviews"
-              :key="review.id"
-              class="lm-review-card"
-          >
+          <el-card v-for="review in reviews" :key="review.id" class="lm-review-card">
             <template #header>
               <div class="lm-review-header">
                 <span class="lm-review-user">{{ review.userName }}</span>
-                <el-rate
-                    v-model="review.rating"
-                    disabled
-                    show-score
-                    text-color="#ff9900"
-                    score-template="{value}分"
-                />
+                <el-rate v-model="review.rating" disabled show-score text-color="#ff9900" score-template="{value}分"/>
                 <span class="lm-review-date">{{ review.date }}</span>
               </div>
             </template>

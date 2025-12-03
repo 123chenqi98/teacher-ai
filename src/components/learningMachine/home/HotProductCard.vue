@@ -52,8 +52,7 @@ onBeforeUnmount(() => {
       </div>
 
       <div class="product-image-wrapper">
-        <img
-            :src="props.product.image || defaultProduct"
+        <img :src="props.product.image || defaultProduct"
             :alt="props.product.title || '热门产品图片'"
             class="product-image"
             @error="handleImageError"

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { relatedProducts, initRouteWatcher } from "@/utils/produce/LearningMachineProductDetailUtils.ts";
+import { relatedProducts, initRouteWatcher } from "@/utils/product/LearningMachineProductDetailUtils.ts";
 import router from "@/router";
 import { useRoute } from "vue-router";
 
@@ -14,10 +14,7 @@ const route = useRoute();
   <div class="lm-related-products">
     <h2>相关产品推荐</h2>
     <div class="lm-related-products-grid">
-      <el-card
-          v-for="product in relatedProducts"
-          :key="product.id"
-      >
+      <el-card v-for="product in relatedProducts" :key="product.id">
         <div class="lm-related-product-image">
           <img :src="product.image" :alt="product.name">
           <div v-if="product.isNew" class="lm-related-product-badge">
@@ -27,11 +24,7 @@ const route = useRoute();
         <div class="lm-related-product-info">
           <h4 class="lm-related-product-name">{{ product.name }}</h4>
           <p class="lm-related-product-price">{{ product.price }}</p>
-          <el-button
-              type="primary"
-              size="small"
-              @click="router.push({ name: 'learningMachineProductDetail', params: { id: product.id } })"
-          >
+          <el-button type="primary" size="small" @click="router.push({ name: 'learningMachineProductDetail', params: { id: product.id } })">
             查看详情
           </el-button>
         </div>

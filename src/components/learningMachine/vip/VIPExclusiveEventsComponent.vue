@@ -14,13 +14,7 @@ import {Calendar, Timer} from "@element-plus/icons-vue";
     </h2>
     <div class="lm-vip-events">
       <el-row :gutter="20">
-        <el-col
-            v-for="event in vipEvents"
-            :key="event.id"
-            :xs="24"
-            :sm="12"
-            :md="6"
-        >
+        <el-col v-for="event in vipEvents" :key="event.id" :xs="24" :sm="12" :md="6">
           <div class="lm-event-card">
             <div class="lm-event-icon">{{ event.icon }}</div>
             <h3 class="lm-event-title">{{ event.title }}</h3>
