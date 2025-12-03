@@ -1,0 +1,85 @@
+.contact-us-online-feedback-box {
+    background-color: #5013ba;
+    height: 700px;
+    width: auto;
+}
+
+.FeedBack-container{
+    max-width:800px;
+    margin: 50px auto;
+    padding: 0 20px;        /* 补充：避免卡片贴边 */
+}
+
+.feed-card{
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgb(237, 42, 42);
+}
+
+.feed-card .card-header{
+    text-align:center;
+    font-size: 16px;
+}
+.feed-card .card-header .title{
+    font-size: 24px;
+    color: #e15a5a;
+    font-weight: 600;
+    margin: 0;
+
+}
+/* 表单样式 */
+.feedback-form {
+    padding: 20px 0;
+}
+.feedback-form .el-form-item {
+    margin-bottom: 20px;
+}
+.feedback-form .el-input,
+.feedback-form .el-select,
+.feedback-form .el-textarea {
+    --el-input-border-color: #e6e6e6;
+    --el-input-hover-border-color: #409eff;
+    --el-input-focus-border-color: #409eff;
+    --el-input-focus-box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2);
+}
+/* 附件上传 */
+.feedback-form .upload-demo {
+    margin-top: 5px;
+}
+
+.feedback-form .upload-demo .el-upload__tip {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #666;
+}
+/* 提交按钮 */
+.submit-item {
+    text-align: center;
+    margin-bottom: 0;
+}
+.submit-btn {
+    width: 200px;
+    height: 44px;
+    font-size: 16px;
+}
+/* 成功提示 */
+.success-alert {
+    margin-top: 20px;
+}
+/* 响应式适配 */
+@media (max-width: 768px) {
+    .feedback-container {
+        margin: 20px auto;
+    }
+
+    .submit-btn {
+        width: 100%;
+    }
+
+    .feedback-card {
+        padding: 10px;
+    }
+
+    .feedback-form {
+        padding: 10px 0;
+    }
+}
