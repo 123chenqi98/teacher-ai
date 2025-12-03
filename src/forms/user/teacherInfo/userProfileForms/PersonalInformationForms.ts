@@ -1,5 +1,6 @@
 import {ElMessage, ElNotification, type FormInstance, type UploadFile} from "element-plus";
-import { userInfo, isSubmitting, toggleEditMode } from "@/data/user/userProfileData/PersonalInformationData.ts";
+import { userInfo } from "@/data/user/userProfileData/PersonalInformationData.ts";
+import { isSubmitting, toggleEditMode } from "@/utils/user/teacher/info/userProfile/PersonalInformationUtils.ts";
 import {reactive, ref} from "vue";
 
 const teacherInfoRef = ref<FormInstance | null>(null);

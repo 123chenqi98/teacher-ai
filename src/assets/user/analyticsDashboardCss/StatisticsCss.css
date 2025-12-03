@@ -71,10 +71,10 @@
 
 /* 正向变化样式 */
 .stats-change.positive {
-    color: #b196e2;
+    color: #06af38;
 }
 
 /* 负向变化样式 */
 .stats-change.negative {
-    color: #f56c6c;
+    color: #f62f2f;
 }

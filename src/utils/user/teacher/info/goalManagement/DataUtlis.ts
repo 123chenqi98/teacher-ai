@@ -2,13 +2,7 @@ import {objectives} from "@/data/user/goalManagement/TargetData.ts";
 import {dialogVisible, editMode} from "@/entity/auth/teacherInfo/GoalManagement.ts";
 import {currentObjective} from "@/forms/user/teacherInfo/goalManagementForms/TargetEditForms.ts";
 import type {Objective} from "@/data/user/goalManagement/interface/TargetInterface.ts";
-import {
-    completedObjectives,
-    completionRate,
-    inProgressObjectives,
-    notStartedObjectives,
-    statsData
-} from "@/utils/user/teacher/info/goalManagement/TargetDatautils.ts";
+import {completedObjectives, completionRate, inProgressObjectives, notStartedObjectives, statsData} from "@/utils/user/teacher/info/goalManagement/TargetDatautils.ts";
 
 // 添加新目标
 const addObjective = () => {
@@ -23,10 +17,10 @@ const addObjective = () => {
 }
 
 // 获取目标状态类型
-const getObjectiveStatusType = (progress: number) => {
-    if (progress === 0) return ''
-    if (progress === 100) return 'success'
-    return 'warning'
+const getObjectiveStatusType = (progress: number): 'primary' | 'success' | 'warning' | 'info' | 'danger' => {
+    if (progress >= 100) return 'success';
+    if (progress >= 50) return 'warning';
+    return 'danger';
 }
 
 // 获取目标状态文本

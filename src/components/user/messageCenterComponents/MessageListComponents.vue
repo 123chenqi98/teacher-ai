@@ -20,6 +20,7 @@ import { recipientList } from "@/data/user/messageCenterData/MessageListData";
       </el-button>
     </div>
   </div>
+  <el-divider/>
 
   <!-- 顶部数据概览卡片区：使用 ElCard -->
   <el-row :gutter="15" class="mess-stats-cards-grid">

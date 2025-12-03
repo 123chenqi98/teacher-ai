@@ -14,6 +14,7 @@
     color: #909399;
 }
 
+/* 导出按钮 */
 .mess-export-btn {
     display: flex;
     padding-right: 32px;
@@ -21,11 +22,12 @@
     font-size: 14px;
 }
 
-/* 数据卡片样式 */
+/* 数据卡片容器 */
 .mess-stats-cards-grid {
     margin-bottom: 24px;
 }
 
+/* 单个数据卡片 */
 .mess-stat-card {
     background-color: #f0e6ff;
     border-radius: 10px;
@@ -33,11 +35,13 @@
     padding: 20px;
 }
 
+/* 数据卡片悬浮态 */
 .mess-stat-card:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
 }
 
+/* 数据卡片数值 */
 .mess-stat-value {
     font-size: 28px;
     font-weight: bold;
@@ -45,23 +49,26 @@
     margin-bottom: 6px;
 }
 
+/* 数据卡片标签 */
 .mess-stat-label {
     font-size: 16px;
     color: #666;
 }
 
-/* 标签页与搜索区样式 */
+/* 标签页与搜索区容器 */
 .mess-tabs-search-container {
     padding: 20px;
     margin: 10px 0;
     box-sizing: border-box;
 }
 
+/* 分类标签页 */
 .mess-category-tabs {
     margin-bottom: 18px;
     width: 100%;
 }
 
+/* 搜索与操作组容器 */
 .mess-search-action-group {
     display: flex;
     align-items: center;
@@ -70,24 +77,27 @@
     flex-wrap: wrap;
 }
 
+/* 搜索输入框 */
 .mess-search-input {
     flex: 1;
     min-width: 420px;
     --el-input-height: 42px;
 }
 
+/* 操作控件容器 */
 .mess-operation-controls {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
+/* 状态筛选器 */
 .mess-status-filter {
     min-width: 160px;
     --el-input-height: 42px;
 }
 
-/* 消息列表和聊天窗口样式 */
+/* 消息列表和聊天窗口容器 */
 .mess-messages-container {
     display: flex;
     background-color: white;
@@ -97,6 +107,7 @@
     margin-top: 18px;
 }
 
+/* 消息列表容器 */
 .mess-messages-list-container {
     width: 100%;
     display: flex;
@@ -104,6 +115,7 @@
     transition: width 0.3s;
 }
 
+/* 消息列表区域 */
 .mess-messages-list {
     flex: 1;
     overflow-y: auto;
@@ -112,6 +124,7 @@
     min-width: 0;
 }
 
+/* 消息列表项 */
 .el-list-item {
     width: 100%;
     cursor: pointer;
@@ -125,30 +138,36 @@
     border-left: 3px solid #5a2ca0;
 }
 
+/* 列表项复选框 */
 .el-list-item .el-checkbox {
     margin-right: 6px;
 }
 
+/* 列表项悬浮态 */
 .el-list-item:hover {
     background-color: #fafafa;
 }
 
+/* 消息发送者 */
 .mess-message-sender {
     font-size: 16px;
     font-weight: 600;
 }
 
+/* 消息时间 */
 .mess-message-time {
     font-size: 13px;
     color: #909399;
     margin-left: 8px;
 }
 
+/* 消息内容内层容器 */
 .mess-message-content-inner {
     flex: 1;
     min-width: 0;
 }
 
+/* 消息文本 */
 .mess-message-text {
     font-size: 16px;
     color: #666;
@@ -159,6 +178,7 @@
     line-height: 1.6;
 }
 
+/* 消息标签 */
 .mess-message-tag {
     margin-right: 5px;
     border: none;
@@ -166,6 +186,7 @@
     color: #5a2ca0;
 }
 
+/* 未读红点 */
 .mess-unread-dot {
     width: 10px !important;
     height: 10px !important;
@@ -176,28 +197,38 @@
     margin-left: auto;
 }
 
+/* 分页容器 */
 .mess-pagination-container {
     display: flex;
     justify-content: center;
     padding: 8px 0 4px;
 }
 
+/* 消息头部（发送者+时间） */
 .mess-message-header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
     margin-bottom: 4px;
 }
+
+/* 私人消息列表项 */
 .el-list-item.private {
     border-left-color: #5a2ca0;
 }
+
+/* 评论消息列表项 */
 .el-list-item.comment {
     border-left-color: #67c23a;
 }
+
+/* 提及消息列表项 */
 .el-list-item.mention {
     border-left-color: #e6a23c;
     background-color: #fff7e6;
 }
+
+/* 消息头像 */
 .mess-message-avatar {
     width: 40px;
     height: 40px;
@@ -205,6 +236,8 @@
     object-fit: cover;
     flex-shrink: 0;
 }
+
+/* 一体化卡片容器 */
 .mess-all-in-one-card {
     padding: 20px;
 }

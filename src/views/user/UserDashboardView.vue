@@ -24,26 +24,28 @@ import TopNavigationComponents from "@/components/user/TopNavigationComponents.v
         <performance-dashboard-components/>
         <!-- 本周数据概览组件 -->
         <data-overview-components/>
-        <!-- 第一行：近期操作历史 + 个性化设置 -->
         <el-row :gutter="20" class="dashboard-row">
           <el-col :span="12">
+            <!-- 近期操作历史组件 -->
             <recent-activities-components/>
           </el-col>
           <el-col :span="12">
+            <!-- 个性化设置组件 -->
             <personalized-settings-components/>
           </el-col>
         </el-row>
 
-        <!-- 第二行：收藏概览 + 待办任务 -->
         <el-row :gutter="20" class="dashboard-row mt-4">
           <el-col :span="12">
+          <!-- 收藏概览组件 -->
             <collection-overview-components/>
           </el-col>
           <el-col :span="12">
+            <!-- 待办任务组件 -->
             <todo-list-components/>
           </el-col>
         </el-row>
-        <!-- 本月平台使用趋势组件（顶部导航出现问题的组件） -->
+        <!-- 本月平台使用趋势组件 -->
         <trend-chart-components/>
       </div>
     </main>
@@ -51,5 +53,4 @@ import TopNavigationComponents from "@/components/user/TopNavigationComponents.v
 </template>
 
 <style scoped>
-
 </style>

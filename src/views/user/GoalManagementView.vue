@@ -2,13 +2,11 @@
 import LeftNavigationComponents from "@/components/user/LeftNavigationComponents.vue";
 import TopNavigationComponents from "@/components/user/TopNavigationComponents.vue";
 import "@/assets/user/UserOverallCss.css"
-import "@/assets/user/UserOverallCss.css"
 import HeaderStatComponent from "@/components/user/goalManagementComponents/HeaderStatComponent.vue";
 import DataSheetComponent from "@/components/user/goalManagementComponents/DataSheetComponent.vue";
 import TargetInfoComponent from "@/components/user/goalManagementComponents/TargetInfoComponent.vue";
 import TargetEditDialogComponent from "@/components/user/goalManagementComponents/TargetEditDialogComponent.vue";
 import KeyResultEditDialogComponent from "@/components/user/goalManagementComponents/KeyResultEditDialogComponent.vue";
-
 </script>
 
 <template>

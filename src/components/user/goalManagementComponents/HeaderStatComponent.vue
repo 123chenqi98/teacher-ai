@@ -13,7 +13,7 @@ import { statsData } from "@/utils/user/teacher/info/goalManagement/TargetDataut
         <p class="okr-header-subtitle">通过OKR方法管理您的教学目标和关键结果</p>
       </div>
       <el-button type="primary" @click="addObjective" class="okr-add-goal-btn">
-        <el-icon><Plus /></el-icon> 添加目标
+        <el-icon><Plus/></el-icon> 添加目标
       </el-button>
     </div>
 

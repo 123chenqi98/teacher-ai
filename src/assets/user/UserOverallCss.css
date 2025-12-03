@@ -1,26 +1,26 @@
 /* 全局样式：包裹侧边栏和主内容区，实现Flex横向布局 */
 .teacher-dashboard {
     width: 100%;
-    display: flex; /* 启用Flex布局，使侧边栏（固定宽度）和主内容区（自适应宽度）横向排列 */
-    min-height: 100vh; /* 最小高度占满整个视口，确保页面内容不足时也铺满屏幕 */
-    font-family: 'Inter', 'system-ui', 'sans-serif'; /* 优先使用Inter字体，兼容系统默认字体，提升可读性 */
-    margin: 0; /* 重置默认margin，避免浏览器默认样式导致布局偏移 */
-    padding: 0; /* 重置默认padding */
-    background-color: #844fde; /* 页面整体背景色，与主内容区风格呼应 */
+    display: flex;
+    min-height: 100vh;
+    font-family: 'Inter', 'system-ui', 'sans-serif';
+    margin: 0;
+    padding: 0;
+    background-color: #844fde;
 }
 
 /* 右侧主内容区样式 */
 .main-content-teacher-info {
-    flex: 1; /* 占满剩余宽度 */
-    background-color: #f1f1f1; /* 主内容区背景色 */
+    flex: 1;
+    background-color: #f1f1f1;
     display: flex;
-    flex-direction: column; /* 纵向布局，使子元素垂直排列 */
+    flex-direction: column;
 }
 
 /* 内容区域样式 */
 .content-area {
-    flex: 1; /* 占满主内容区剩余高度 */
-    overflow-y: auto; /* 内容溢出时纵向滚动 */
+    flex: 1;
+    overflow-y: auto;
     padding: 20px;
 
 }

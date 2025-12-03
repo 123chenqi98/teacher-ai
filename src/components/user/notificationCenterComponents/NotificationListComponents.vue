@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import {clearAllNotifications, deleteSelectedNotifications, markSelectedAsRead, exportNotifications } from "@/forms/user/teacherInfo/notificationCenterForms/NotificationListForms";
-import {currentTab, selectAll} from "@/forms/user/teacherInfo/notificationCenterForms/NotificationListForms.ts";
+import {currentTab, selectAll, clearAllNotifications, deleteSelectedNotifications, markSelectedAsRead, exportNotifications } from "@/forms/user/teacherInfo/notificationCenterForms/NotificationListForms";
 import {filteredNotifications, getIconClass, getIconColor, handleSingleSelect, handleTabChange, toggleSelectAll} from "@/utils/user/teacher/info/notificationCenter/NotificationListUtils.ts";
-import "@/assets/user/notificationCenterCss/NotificationListCss.css"
 import {detailItem, detailVisible, openDetail} from "@/entity/auth/teacherInfo/NotificationCenter.ts";
+import "@/assets/user/notificationCenterCss/NotificationListCss.css"
 </script>
 
 <template>
@@ -21,6 +20,7 @@ import {detailItem, detailVisible, openDetail} from "@/entity/auth/teacherInfo/N
       </el-button>
     </div>
   </div>
+  <el-divider/>
 
   <!-- 合并为一个卡片容器：标签栏 + 批量按钮 + 列表 -->
   <el-card class="noti-all-in-one-card" shadow="never">

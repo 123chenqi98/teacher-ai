@@ -1,11 +1,13 @@
 import {reactive, ref} from "vue";
 import { ElMessage, ElNotification } from "element-plus";
-import { userInfo, isSubmitting } from "@/data/user/userProfileData/PersonalInformationData.ts";
+import { userInfo } from "@/data/user/userProfileData/PersonalInformationData.ts";
+import { isSubmitting } from "@/utils/user/teacher/info/userProfile/PersonalInformationUtils.ts";
+
 // 表单 Ref（导出给模板使用）
-export const securityFormRef = ref(null);
+const securityFormRef = ref(null);
 
 // 账号安全表单数据
-export const securityForm = reactive({
+const securityForm = reactive({
     currentPassword: "",
     newPassword: "",
     confirmPassword: "",
@@ -14,7 +16,7 @@ export const securityForm = reactive({
 });
 
 // 二次确认密码
-export const confirmPasswordValidate = (rule: any, value: string, callback: (err?: Error) => void) => {
+const confirmPasswordValidate = (rule: any, value: string, callback: (err?: Error) => void) => {
     if (value !== securityForm.newPassword) {
         callback(new Error("两次输入的新密码不一致"));
     } else {
@@ -23,7 +25,7 @@ export const confirmPasswordValidate = (rule: any, value: string, callback: (err
 }
 
 // 表单校验规则（导出给模板）
-export const securityRules = ref({
+const securityRules = ref({
     currentPassword: [{ required: true, message: "请输入当前密码", trigger:["blur", "change"]}],
     newPassword: [
         { required: true, message: "请输入新密码", trigger:["blur", "change"] },
@@ -45,7 +47,7 @@ export const securityRules = ref({
 
 
 // 提交表单
-export const handleSecuritySubmit = async (formRef: any) => {
+const handleSecuritySubmit = async (formRef: any) => {
     try {
         isSubmitting.value = true;
         // 表单校验
@@ -77,3 +79,12 @@ export const handleSecuritySubmit = async (formRef: any) => {
         isSubmitting.value = false;
     }
 };
+
+export {
+    securityFormRef,
+    securityForm,
+    confirmPasswordValidate,
+    securityRules,
+    handleSecuritySubmit
+
+}

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import "@/assets/user/userDashboardCss/TrendChartCss.css"
 import { trendData, downloadReport } from "@/data/user/userDashboardData/TrendChartData.ts"
-import { chartRef, setupTrendChart } from "@/utils/echarts/teacher/info/TrendChartUtils.ts"
+import { chartRef, setupTrendChart } from "@/utils/echarts/teacher/info/UserDashboardEchartsUtils.ts"
 import { ElButton, ElCard, ElCol, ElIcon, ElRow } from "element-plus";
 import { ArrowDown, ArrowUp, Download } from "@element-plus/icons-vue";
 
@@ -40,7 +40,7 @@ setupTrendChart()
           </el-button>
         </div>
         <!-- 图表容器 -->
-        <div ref="chartRef" class="chart-container" style="width: 100% !important; height: 300px !important; border: 1px solid #f0f2f5; border-radius: 8px; background: white;"></div>
+        <div ref="chartRef" class="chart-container"></div>
       </el-card>
     </el-col>
   </el-row>

@@ -4,11 +4,7 @@ import { lessonPlans } from "@/data/user/lessonPlanManagerData/StatisticsData.ts
 import {currentPage, searchQuery, selectedDifficulty, selectedGrade, selectedStatus, selectedSubject, showMyCollection, sortBy, sortOrder} from "@/entity/auth/teacherInfo/LessonPlanManager.ts";
 import {ElMessage} from "element-plus";
 import type {LessonPlan} from "@/data/user/lessonPlanManagerData/interface/StatisticsInterface.ts";
-import {
-    deleteLesson,
-    openDetailModal,
-    openEditLessonModal
-} from "@/forms/user/teacherInfo/lessonPlanManagerForms/DataStatisticsForms.ts";
+import {deleteLesson, openDetailModal, openEditLessonModal} from "@/forms/user/teacherInfo/lessonPlanManagerForms/DataStatisticsForms.ts";
 
 // 修复后的筛选列表（独立computed，闭合括号，补全类型）
 const filteredList = computed(() => {

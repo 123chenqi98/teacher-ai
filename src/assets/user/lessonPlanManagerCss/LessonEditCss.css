@@ -3,31 +3,35 @@
     margin-top: 8px;
 }
 
+/* 表单提示文本 */
 .form-hint {
     font-size: 12px;
     color: #888;
     margin-top: 8px;
 }
 
+/* 上传提示文本 */
 .upload-hint {
     font-size: 12px;
     color: #888;
     margin-top: 8px;
 }
 
+/* 上传文件信息文本 */
 .upload-file-info {
     font-size: 13px;
     color: #666;
     margin-top: 8px;
 }
 
-/* 详情模态框样式 */
+/* 详情模态框容器 */
 .lesson-detail {
     max-height: 70vh;
     overflow-y: auto;
     padding-right: 16px;
 }
 
+/* 详情头部 */
 .detail-header {
     display: flex;
     justify-content: space-between;
@@ -35,6 +39,7 @@
     margin-bottom: 24px;
 }
 
+/* 详情标题 */
 .detail-title {
     font-size: 20px;
     font-weight: 600;
@@ -43,31 +48,37 @@
     flex: 1;
 }
 
+/* 详情操作按钮组 */
 .detail-actions {
     display: flex;
     gap: 8px;
 }
 
+/* 详情元信息区域 */
 .detail-meta {
     margin-bottom: 24px;
 }
 
+/* 元信息标签 */
 .meta-label {
     font-size: 12px;
     color: #888;
     margin-bottom: 4px;
 }
 
+/* 元信息值 */
 .meta-value {
     font-size: 14px;
     color: #1d2129;
     font-weight: 500;
 }
 
+/* 内容区块容器 */
 .content-section {
     margin-bottom: 24px;
 }
 
+/* 区块标题 */
 .section-title {
     font-size: 16px;
     font-weight: 500;
@@ -77,6 +88,7 @@
     align-items: center;
 }
 
+/* 区块标题左侧强调线 */
 .section-title::before {
     content: '';
     display: inline-block;
@@ -87,12 +99,14 @@
     border-radius: 2px;
 }
 
+/* 区块内容 */
 .section-content {
     font-size: 14px;
     color: #333;
     line-height: 1.8;
 }
 
+/* 文件卡片容器 */
 .file-card {
     display: flex;
     align-items: center;
@@ -101,16 +115,19 @@
     border-radius: 8px;
 }
 
+/* 文件图标 */
 .file-icon {
     font-size: 32px;
     color: #409eff;
     margin-right: 16px;
 }
 
+/* 文件详情区域 */
 .file-details {
     flex: 1;
 }
 
+/* 文件名 */
 .file-name {
     font-size: 14px;
     font-weight: 500;
@@ -118,6 +135,7 @@
     margin-bottom: 4px;
 }
 
+/* 文件元信息 */
 .file-meta {
     font-size: 12px;
     color: #666;
@@ -125,17 +143,19 @@
     gap: 16px;
 }
 
+/* 文件下载按钮容器 */
 .file-download {
     margin-left: 16px;
 }
 
+/* 小型统计卡片 */
 .stat-card-small {
     padding: 12px;
     text-align: center;
     background-color: #f5f7fa;
 }
 
-/* 响应式调整 */
+/* 响应式调整 - 大屏以下 */
 @media (max-width: 1200px) {
     .lesson-grid el-col {
         --el-col-span: 12 !important;
@@ -146,6 +166,7 @@
     }
 }
 
+/* 响应式调整 - 平板以下 */
 @media (max-width: 768px) {
     .lesson-grid el-col {
         --el-col-span: 24 !important;

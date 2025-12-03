@@ -2,7 +2,7 @@
 import "@/assets/user/userDashboardCss/PersonalizedSettingCss.css"
 import { settingsForm } from "@/data/user/userDashboardData/PersonalizedSettingsData.ts"
 import { CircleCheckFilled, Refresh } from "@element-plus/icons-vue";
-import { syncDialogVisible, handleSync, closeDialog } from "@/utils/user/PersonalizedSettingsUtils.ts"
+import { syncDialogVisible, handleSync, closeDialog } from "@/forms/user/teacherInfo/userDashboardForms/PersonalizedSettingsForms.ts"
 </script>
 
 <template>
@@ -83,13 +83,7 @@ import { syncDialogVisible, handleSync, closeDialog } from "@/utils/user/Persona
         </el-form-item>
 
         <!-- 同步成功弹窗 -->
-        <el-dialog
-            v-model="syncDialogVisible"
-            title="同步结果"
-            width="300px"
-            :close-on-click-modal="false"
-            :show-close="false"
-        >
+        <el-dialog v-model="syncDialogVisible" title="同步结果" width="300px" :show-close="false">
           <div class="sync-success-content">
             <el-icon class="success-icon"><CircleCheckFilled /></el-icon>
             <p class="success-text">同步成功！</p>
@@ -104,5 +98,8 @@ import { syncDialogVisible, handleSync, closeDialog } from "@/utils/user/Persona
 </template>
 
 <style scoped>
-
+.success-icon {
+  font-size: 20px;
+  color: #67c23a;
+}
 </style>

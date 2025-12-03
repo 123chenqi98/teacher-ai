@@ -1,4 +1,6 @@
 import { ref, computed } from "vue";
+import { activeTab } from "@/utils/user/teacher/info/userProfile/PersonalInformationUtils.ts";
+
 const headerTitle = computed(() => {
     switch (activeTab.value) {
         case "security":
@@ -23,7 +25,7 @@ const headerSubtitle = computed(() => {
     }
 });
 // 定义用户信息接口（规范数据类型）
-interface UserInfo {
+export interface UserInfo {
     avatar: string;
     intro: string;
     realName: string;
@@ -59,18 +61,10 @@ const userInfo = ref<UserInfo>({
 });
 
 
-// 提交加载态
-const isSubmitting = ref(false);
 
-// 标签页激活状态（默认选中个人资料）
-const activeTab = ref("profile");
 
-// 编辑模式开关
-const isEditing = ref(false);
-
-// 切换编辑模式
-const toggleEditMode = () => {
-    isEditing.value = !isEditing.value;
+export {
+    headerTitle,
+    headerSubtitle,
+    userInfo
 };
-
-export { headerTitle, headerSubtitle, userInfo, isSubmitting, activeTab, isEditing, toggleEditMode, type UserInfo };

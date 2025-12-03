@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import {
-  efficiencyRankingData,
-  personalEfficiencyData
-} from "@/data/user/analyticsDashboardData/AnalyticsDashboardData.ts";
+import { efficiencyRankingData, personalEfficiencyData } from "@/data/user/analyticsDashboardData/AnalyticsDashboardData.ts";
 import "@/assets/user/analyticsDashboardCss/RankingCss.css"
 </script>
 

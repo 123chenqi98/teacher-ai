@@ -1,21 +1,11 @@
-/*
- * 卡片容器：定义整个趋势图表卡片的外观
- * - border-radius: 设置卡片的圆角
- * - margin-top: 与上方元素保持距离
- * - box-shadow: 添加轻微阴影，增强层次感
- */
+/* 卡片容器 */
 .trend-chart-card {
     border-radius: 12px;
     margin-top: 20px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
 }
 
-/*
- * 图表标题：设置卡片内主标题的样式
- * - font-size/font-weight: 定义字体大小和粗细
- * - color: 标题文字颜色
- * - margin: 底部外边距，与下方内容拉开距离
- */
+/* 图表标题 */
 .chart-title {
     font-size: 18px;
     font-weight: 600;
@@ -23,15 +13,7 @@
     margin: 0 0 15px 0;
 }
 
-/*
- * 统计项容器：控制多个增长/下降统计项的布局
- * - display: flex 使子项横向排列
- * - gap: 子项之间的间距
- * - flex-wrap: 当空间不足时自动换行
- * - margin-bottom: 清除底部外边距
- * - flex: 1 让该容器占据父容器的剩余空间
- * - justify-content: center 子项在容器内水平居中
- */
+/* 统计项容器 */
 .growth-stats {
     display: flex;
     gap: 12px;
@@ -41,15 +23,7 @@
     justify-content: center;
 }
 
-/*
- * 单个统计项：定义每个增长/下降指标的外观
- * - display: flex 让内部文字和图标对齐
- * - align-items: center 垂直居中
- * - padding: 内部边距，让元素更舒展
- * - border-radius: 大圆角设计，呈现胶囊状
- * - font-size: 统计项内文字大小
- * - transition: 背景色变化时添加平滑过渡效果
- */
+/* 单个统计项 */
 .growth-item {
     display: flex;
     align-items: center;
@@ -59,66 +33,49 @@
     transition: background-color 0.3s;
 }
 
-/*
- * 增长状态：为增长的统计项设置特定样式
- * - background-color: 浅绿色背景
- * - color: 深绿色文字，用于表示正向增长
- */
+/* 增长状态 */
 .growth-up {
     background-color: #f0f9eb;
     color: #67c23a;
 }
 
-/*
- * 下降状态：为下降的统计项设置特定样式
- * - background-color: 浅红色背景
- * - color: 深红色文字，用于表示负向增长
- */
+/* 下降状态 */
 .growth-down {
     background-color: #fef0f0;
     color: #f56c6c;
 }
 
-/*
- * 统计项标签：定义"教案操作"等文本的样式
- * - margin-right: 与后续数值部分保持距离
- * - color: 灰色文字，作为辅助信息
- */
+/* 统计项标签 */
 .growth-label {
     margin-right: 5px;
     color: #606266;
 }
 
-/*
- * 数值容器：控制数值和趋势图标的整体布局
- * - display: flex 使其内部元素横向排列
- * - align-items: center 确保数值和图标垂直居中
- * - gap: 图标和数值之间的微小间距
- */
+/* 数值容器 */
 .growth-value-wrapper {
     display: flex;
     align-items: center;
     gap: 3px;
 }
 
-/*
- * 趋势图标：微调箭头图标的垂直对齐方式
- * - vertical-align: middle 确保图标与相邻文字完美居中
- */
+/* 趋势图标 */
 .trend-icon {
     vertical-align: middle;
 }
 
-/*
- * 头部容器：控制标题、统计项和下载按钮的整体布局
- * - display: flex 实现三者横向排列
- * - align-items: center 垂直方向居中对齐
- * - justify-content: space-between 使标题居左，按钮居右，中间区域自动填充
- * - gap: 元素之间的最小间距，防止拥挤
- */
+/* 头部容器 */
 .chart-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
+}
+
+/* 图表容器 */
+.chart-container {
+    width: 100% !important;
+    height: 300px !important;
+    border: 1px solid #f0f2f5;
+    border-radius: 8px;
+    background: white;
 }

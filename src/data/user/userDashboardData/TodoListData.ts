@@ -48,11 +48,12 @@ export const todoList = ref([
         priority: 'high',
         deadline: '明天 16:00',
         completed: true
-    }
+    },
+    {
+        id: 8,
+        title: '编写教材阅读笔记',
+        priority: 'low',
+        deadline: '3天后',
+        completed: false
+    },
 ]);
-
-// 切换任务完成状态
-export const toggleTodoStatus = (id: number) => {
-    const todo = todoList.value.find(item => item.id === id);
-    if (todo) todo.completed = !todo.completed;
-};

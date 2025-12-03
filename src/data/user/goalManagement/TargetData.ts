@@ -71,6 +71,29 @@ const objectives = ref<Objective[]>([
                 currentValue: 10
             }
         ]
+    },
+    {
+        id: 4,
+        title: '提升学生能力',
+        description: '通过提高学生能力，提高学生能力',
+        progress: 100,
+        deadline: '2025-12-31',
+        keyResults: [
+            {
+                id: 401,
+                title: '学生能力提升到80%以上',
+                progress: 25,
+                targetValue: 80,
+                currentValue: 60
+            },
+            {
+                id: 402,
+                title: '学生能力提升到90%以上',
+                progress: 15,
+                targetValue: 90,
+                currentValue: 75
+            }
+        ]
     }
 ])
 

@@ -21,7 +21,7 @@ import {statsData} from "@/data/user/analyticsDashboardData/AnalyticsDashboardDa
       <div class="stats-content">
         <div class="stats-value">{{ stat.value }}</div>
         <div class="stats-label">{{ stat.label }}</div>
-        <div class="stats-change" :class="{ positive: stat.change.startsWith('+') }">
+        <div class="stats-change" :class="{ positive: stat.change.startsWith('+'), negative: stat.change.startsWith('-')}">
           {{ stat.change }}
         </div>
       </div>

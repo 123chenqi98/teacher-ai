@@ -1,16 +1,14 @@
-/* 个性化设置卡片：字体与排版优化 */
-/* 个性化设置卡片容器：统一外观与填充宽度 */
+/* 个性化设置卡片 */
 .settings-card {
     border-radius: 12px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
     padding: 20px;
-    max-width: 810px; /* 限制容器宽度，便于居中 */
+    max-width: 810px;
     height: 460px;
     margin-bottom: 30px;
 }
 
-/* 表单项整体居中布局 */
-/* 表单容器：垂直堆叠与项间距 */
+/* 表单容器 */
 .settings-form {
     padding-top: 15px;
     padding-left: 10px;
@@ -28,8 +26,8 @@
 .settings-form .el-form-item__label {
     font-size: 17px;
     font-weight: 700;
-    width: 180px; /* 固定标签宽度，保证对齐 */
-    white-space: nowrap; /* 强制不换行 */
+    width: 180px;=
+    white-space: nowrap;=
     text-align: right;
     margin-right: 16px;
 }
@@ -43,9 +41,9 @@
 .permission-group,
 .layout-group {
     font-size: 25px;
-    width: 400px; /* 统一组件宽度，视觉更整齐 */
-    height: 25px !important; /* 放大下拉框高度（原20px太小，改为60px） */
-    margin: 0; /* 取消居中margin，配合表单项向左靠近 */
+    width: 400px;=
+    height: 25px !important;=
+    margin: 0;=
 }
 
 /* 仅在个性化设置卡片内放大单选/复选框，避免影响全局 */
@@ -59,8 +57,6 @@
     margin-left: 5px;
 }
 
-/* 移除错误的全局块，防止污染其他页面 */
-
 /* 通知权限组 & 界面布局组内部对齐 */
 .permission-group, .layout-group {
     display: flex;
@@ -68,12 +64,11 @@
     gap: 20px;
 }
 
-/* 数据同步按钮样式放大 & 居中 */
-/* 同步按钮：主题色、阴影与悬浮放大 */
+/* 同步按钮 */
 .sync-btn {
     font-size: 20px;
     padding: 10px 20px;
-    margin-left: 125px; /* 按钮水平居中 */
+    margin-left: 125px;
 }
 
 /* 同步按钮图标：右侧偏移与旋转动画 */

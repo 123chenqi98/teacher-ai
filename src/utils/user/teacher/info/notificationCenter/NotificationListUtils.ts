@@ -128,10 +128,8 @@ function handleSingleSelect(): void {
     }
 }
 
-// 导出类型（可选，供外部使用）
+// 导出类型
 export type { NotificationType };
-// 导出方法和计算属性
-
 export {
     filteredNotifications,
     getIconClass,

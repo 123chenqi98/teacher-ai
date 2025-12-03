@@ -14,23 +14,29 @@
     color: #909399;
 }
 
+/* 标签页导航容器 */
 .noti-tab-navigation {
     width: auto;
     margin-bottom: 8px;
+    margin: 0;
 }
 
+/* 标签页导航栏下划线去除 */
 :deep(.noti-tab-navigation .el-tabs__nav) {
     border-bottom: none;
 }
 
+/* 单个标签项 */
 .noti-tab-item {
     margin-left: 16px;
 }
 
+/* 第一个标签项取消左侧间距 */
 .noti-tab-item:first-child {
     margin-left: 0;
 }
 
+/* 标签项基础样式 */
 :deep(.noti-tab-navigation .el-tabs__item) {
     font-size: 14px;
     color: #666;
@@ -38,11 +44,13 @@
     position: relative;
 }
 
+/* 激活的标签项 */
 :deep(.noti-tab-navigation .el-tabs__item.is-active) {
     color: #5a2ca0;
     font-weight: bold;
 }
 
+/* 激活标签项底部下划线 */
 :deep(.noti-tab-navigation .el-tabs__item.is-active::after) {
     content: '';
     position: absolute;
@@ -53,6 +61,7 @@
     background-color: #5a2ca0;
 }
 
+/* 通知图标基础样式 */
 .noti-notification-icon {
     color: white;
     border-radius: 50%;
@@ -61,16 +70,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
+
+/* 成功状态图标 */
 .noti-notification-icon.noti-icon-success {
     background-color: #67c23a;
 }
+
+/* 错误状态图标 */
 .noti-notification-icon.noti-icon-error {
     background-color: #f56c6c;
 }
+
+/* 警告状态图标 */
 .noti-notification-icon.noti-icon-warning {
     background-color: #e6a23c;
 }
+
+/* 信息状态图标 */
 .noti-notification-icon.noti-icon-info {
     background-color: #909399;
 }
@@ -87,11 +105,13 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
+/* 批量操作容器 */
 .noti-batch-actions {
     display: flex;
     align-items: center;
 }
 
+/* 全选按钮 */
 .notice-select-all {
     margin-right: 10px;
     color: #606266;
@@ -100,6 +120,7 @@
     background-color: transparent;
 }
 
+/* 次要操作按钮 */
 .noti-secondary-btn {
     margin-right: 10px;
     color: #606266;
@@ -108,15 +129,18 @@
     background-color: transparent;
 }
 
+/* 次要按钮悬浮态 */
 :deep(.noti-secondary-btn:hover) {
     color: #5a2ca0;
 }
 
+/* 导出操作容器 */
 .noti-export-actions {
     display: flex;
     align-items: center;
 }
 
+/* 头部操作容器 */
 .noti-header-actions {
     display: flex;
     align-items: center;
@@ -124,22 +148,20 @@
     margin-left: auto;
 }
 
-.noti-tab-navigation {
-    margin: 0;
-}
-
+/* 导出按钮 */
 .noti-export-btn {
     display: flex;
     padding-right: 30px;
     height: 32px;
 }
 
-/* 通知列表区域样式 */
+/* 通知列表容器 */
 .noti-notifications-list {
     border-radius: 12px;
     margin-bottom: 20px;
 }
 
+/* 单个通知项 */
 .noti-notification-item {
     display: flex;
     align-items: flex-start;
@@ -149,23 +171,23 @@
     transition: background-color 0.2s;
 }
 
+/* 通知项悬浮态 */
 .noti-notification-item:hover {
     background-color: #fafafa;
 }
 
+/* 未读通知项 */
 .noti-unread {
     background-color: #fffef5;
 }
 
-.noti-notification-icon {
-    flex-shrink: 0;
-}
-
+/* 通知内容容器 */
 .noti-notification-content {
     flex: 1;
     min-width: 0;
 }
 
+/* 通知头部（标题+元信息） */
 .noti-notification-header {
     display: flex;
     justify-content: space-between;
@@ -173,6 +195,7 @@
     margin-bottom: 4px;
 }
 
+/* 通知标题 */
 .noti-notification-title {
     font-size: 15px;
     font-weight: 600;
@@ -180,6 +203,7 @@
     margin-right: 10px;
 }
 
+/* 通知元信息（发送者/时间） */
 .noti-notification-meta {
     display: flex;
     gap: 12px;
@@ -187,14 +211,17 @@
     color: #909399;
 }
 
+/* 通知发送者 */
 .noti-notification-sender {
     font-size: 12px;
 }
 
+/* 通知时间 */
 .noti-notification-time {
     font-size: 12px;
 }
 
+/* 通知正文 */
 .noti-notification-text {
     margin-top: 6px;
     font-size: 14px;
@@ -202,6 +229,7 @@
     line-height: 1.6;
 }
 
+/* 通知复选框 */
 .noti-notification-checkbox {
     margin-left: 4px;
 }

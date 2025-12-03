@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { isSubmitting, activeTab } from "@/data/user/userProfileData/PersonalInformationData.ts"
+import { isSubmitting } from "@/utils/user/teacher/info/userProfile/PersonalInformationUtils.ts"
 import { securityForm, securityRules, securityFormRef, handleSecuritySubmit } from "@/forms/user/teacherInfo/userProfileForms/AccountSecurityForms.ts";
 import { Check } from "@element-plus/icons-vue";
 import "@/assets/user/userProfileCss/AccountSecurityCss.css"
 </script>
 
 <template>
-  <!-- 账号安全标签页内容（交由父级卡片承载容器） -->
-  <div class="profile-tab" v-if="activeTab === 'security'">
+  <!-- 账号安全标签页内容（由父级统一控制 activeTab ） -->
+  <div class="profile-card">
       <el-form :model="securityForm" :rules="securityRules" ref="securityFormRef" label-width="120px">
         <el-divider content-position="left">修改密码</el-divider>
         <el-row :gutter="16">

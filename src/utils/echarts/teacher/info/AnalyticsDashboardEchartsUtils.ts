@@ -1,10 +1,6 @@
 import {nextTick} from "vue";
 import * as echarts from "echarts";
-import {
-    activityData, comprehensiveTrendData, resourceDistributionData,
-    taskCompletionData,
-    usageTrendData
-} from "@/data/user/analyticsDashboardData/AnalyticsDashboardData.ts";
+import {activityData, comprehensiveTrendData, resourceDistributionData, taskCompletionData, usageTrendData} from "@/data/user/analyticsDashboardData/AnalyticsDashboardData.ts";
 
 const initCharts = () => {
     // 确保DOM已经渲染后再初始化图表

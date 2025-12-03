@@ -1,12 +1,8 @@
 <script setup lang="ts">
 import "@/assets/user/goalManagementCss/okr-management.css"
 import {ElCard, ElCol, ElProgress, ElRow} from "element-plus";
-import {
-  completedObjectives,
-  completionRate,
-  inProgressObjectives, notStartedObjectives
-} from "@/utils/user/teacher/info/goalManagement/TargetDatautils.ts";
 import {onMounted} from "vue";
+import {completedObjectives, completionRate, inProgressObjectives, notStartedObjectives} from "@/utils/user/teacher/info/goalManagement/TargetDatautils.ts";
 import {updateStats} from "@/utils/user/teacher/info/goalManagement/DataUtlis.ts";
 import {initCharts, resizeCharts} from "@/utils/echarts/teacher/info/GoalManagementEchartsUtils.ts";
 
