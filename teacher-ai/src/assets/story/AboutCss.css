@@ -1,0 +1,65 @@
+/* 关于我们容器 */
+.about-intention {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 0;
+  background-color: #f6f6f6;
+  width: 100%;
+}
+
+/* 主标题样式 */
+.about-intention_title {
+  color: #6200ea;
+  font-size: 50px;
+  margin: 0;
+}
+
+/* 内容容器样式 */
+.about-intention_content {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  max-width: 1200px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* 文字内容区域 */
+.about-intention_text {
+  max-width: 600px;
+  text-align: left;
+}
+
+/* 图片区域样式 */
+.about-intention_image {
+  flex-shrink: 0;
+  width: 400px;
+  height: auto;
+}
+
+/* 图片样式 */
+.about-intention_image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 副标题样式 */
+.about-intention_p1 {
+  font-size: 28px;
+  color: #6200ea;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* 段落文字样式 */
+.about-intention_p {
+  font-size: 1.5rem;
+  color: #493c3c;
+  line-height: 1.6;
+  margin: 10px 0 0 0;
+  text-align: left;
+}

@@ -1,0 +1,152 @@
+/* 团队发展历程样式文件 */
+
+/* 时间线整体区域 */
+.timeline-section {
+  padding: 50px 20px; /* 上下50px，左右20px内边距 */
+  text-align: center; /* 内容居中对齐 */
+  max-width: 1200px; /* 最大宽度限制 */
+  margin: 0 auto; /* 水平居中 */
+}
+
+/* 时间线主标题 */
+.timeline-title {
+  font-size: 50px;
+  color: #6200ea;
+  margin-bottom: 15px; /* 标题与副标题之间的间距*/
+  font-weight: bold;
+}
+
+/* 时间线副标题 */
+.timeline-subtitle {
+  color: #666; /* 灰色文字 */
+  font-size: 16px; /* 字体大小 */
+  margin-bottom: 40px; /* 底部外边距，与时间线主体保持距离 */
+}
+
+/* 时间线容器 */
+.timeline-container {
+  position: relative; /* 相对定位，作为绝对定位子元素的参考 */
+  max-width: 1000px; /* 最大宽度限制 */
+  margin: 0 auto; /* 水平居中 */
+}
+
+/* 时间线垂直线 */
+.timeline-container::before {
+  content: ''; /* 空内容，用于生成线条 */
+  position: absolute; /* 绝对定位 */
+  width: 2px; /* 线条宽度 */
+  background-color: #e0e0e0; /* 浅灰色线条 */
+  top: 0; /* 顶部对齐 */
+  bottom: 0; /* 底部对齐 */
+  left: 50%; /* 水平居中 */
+  margin-left: -1px; /* 微调居中 */
+  transform: translateX(-50%); /* 确保完全居中 */
+}
+
+/* 时间线事件项 */
+.timeline-item {
+  position: relative; /* 相对定位 */
+  width: 50%; /* 占据容器一半宽度 */
+  padding: 0 40px; /* 左右内边距 */
+  box-sizing: border-box; /* 盒模型，内边距包含在宽度内 */
+  margin-bottom: 40px; /* 事件项间距 */
+}
+
+/* 左侧时间线事件 */
+.timeline-item.left {
+  left: 0; /* 左对齐 */
+  text-align: right; /* 文字右对齐 */
+}
+
+/* 右侧时间线事件 */
+.timeline-item.right {
+  left: 50%; /* 右对齐，从中间开始 */
+  text-align: left; /* 文字左对齐 */
+}
+
+/* 时间线事件内容卡片 */
+.timeline-content {
+  padding: 20px; /* 内边距 */
+  background-color: white; /* 白色背景 */
+  border-radius: 8px; /* 圆角边框 */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 轻微阴影效果 */
+  position: relative; /* 相对定位 */
+  z-index: 1; /* 确保卡片显示在线条上方 */
+}
+
+/* 事件日期 */
+.timeline-date {
+  color: #6200ea; /* 紫色主题色 */
+  font-weight: bold; /* 粗体 */
+  font-size: 14px; /* 字体大小 */
+  display: block; /* 块级元素 */
+  margin-bottom: 8px; /* 底部间距 */
+}
+
+/* 事件标题 */
+.timeline-event-title {
+  color: #6200ea; /* 紫色主题色 */
+  font-size: 20px; /* 字体大小 */
+  margin: 8px 0; /* 上下外边距 */
+}
+
+/* 事件描述 */
+.timeline-description {
+  color: #666; /* 灰色文字 */
+  font-size: 16px; /* 字体大小 */
+  line-height: 1.6; /* 行高，提高可读性 */
+}
+
+/* 圆形时间点 */
+.timeline-dot {
+  position: absolute; /* 绝对定位 */
+  width: 20px; /* 直径 */
+  height: 20px; /* 直径 */
+  background-color: #6200ea; /* 紫色主题色 */
+  border-radius: 50%; /* 圆形 */
+  top: 30px; /* 位置调整 */
+  transform: translateY(-50%); /* 垂直居中 */
+}
+
+/* 左侧事件的时间点位置 */
+.timeline-item.left .timeline-dot {
+  right: 10px; /* 右侧对齐，靠近时间线 */
+}
+
+/* 右侧事件的时间点位置 */
+.timeline-item.right .timeline-dot {
+  left: 10px; /* 左侧对齐，靠近时间线 */
+}
+
+/* 响应式设计 - 平板和移动设备 */
+@media (max-width: 768px) {
+  /* 调整垂直线位置到左侧 */
+  .timeline-container::before {
+    left: 40px; /* 从中间移到左侧固定位置 */
+  }
+  
+  /* 调整事件项宽度为100% */
+  .timeline-item {
+    width: 100%; /* 占据整行宽度 */
+    padding-left: 80px; /* 左侧内边距留出时间线位置 */
+    padding-right: 20px; /* 右侧内边距 */
+    text-align: left; /* 文字左对齐 */
+  }
+  
+  /* 取消左右区分，统一左对齐 */
+  .timeline-item.left,
+  .timeline-item.right {
+    left: 0; /* 都从左侧开始 */
+  }
+  
+  /* 统一时间点位置在左侧 */
+  .timeline-dot {
+    left: 30px !important; /* 固定在左侧，重要性标记确保覆盖之前样式 */
+    right: auto !important; /* 取消右侧定位 */
+  }
+  
+  /* 调整标题大小适配小屏幕 */
+  .timeline-title {
+    font-size: 28px; /* 减小字体大小 */
+  }
+}
