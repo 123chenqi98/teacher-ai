@@ -46,10 +46,20 @@
 
 /*圆角菜单项样式*/
 .rounded-menu-item {
-    border-radius: 8px; /* 设置圆角大小 */
-    transition: background-color 0.3s; /* 添加过渡效果 */
+    border-radius: 8px ; /* 设置圆角大小 */
+    transition: background-color 0.3s ; /* 添加过渡效果 */
 }
 
 .rounded-menu-item:hover {
-    background-color: #b196e2; /* 悬停时的背景色 */
+    background-color: #b196e2 ; /* 悬停时的背景色 */
+}
+
+
+/* ==================== 子菜单样式 ==================== */
+/* 子菜单展开后的背景 - 匹配主菜单背景 */
+.teacher-navigation-items .el-menu  {
+    background-color: #b196e2 ;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 8px 8px 8px !important;
+
 }
