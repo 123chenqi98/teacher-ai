@@ -30,7 +30,7 @@
           <div class="contact-content">
             <p class="contact-title">电话</p>
             <!-- Element Plus链接：替代原生a标签 -->
-            <el-link :href="`tel:${phone}`" type="default" underline="false">
+            <el-link :href="`tel:${phone}`" type="default" >
               {{ phone }}
             </el-link>
           </div>
@@ -54,7 +54,7 @@
           </div>
           <div class="contact-content">
             <p class="contact-title">邮箱</p>
-            <el-link :href="`mailto:${email}`" type="default" underline="false">
+            <el-link :href="`mailto:${email}`" type="default" >
               {{ email }}
             </el-link>
           </div>
