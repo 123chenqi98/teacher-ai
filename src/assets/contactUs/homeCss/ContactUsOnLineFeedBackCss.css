@@ -6,8 +6,8 @@
 
 .FeedBack-container{
     max-width:800px;
-    margin: 50px auto;
-    padding: 0 20px;        /* 补充：避免卡片贴边 */
+    margin: auto;
+    padding: 50px 20px;        /* 补充：避免卡片贴边 */
 }
 
 .feed-card{
