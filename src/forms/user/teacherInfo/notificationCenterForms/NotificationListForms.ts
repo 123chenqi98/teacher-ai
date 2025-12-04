@@ -1,9 +1,8 @@
-// types/notification.ts (建议拆分类型文件，更规范)
 import {type Ref, ref} from "vue";
 import { ElMessage, ElMessageBox } from "element-plus";
 import {filteredNotifications} from "@/utils/user/teacher/info/notificationCenter/NotificationListUtils.ts";
 import {rawNotifications} from "@/data/user/notificationCenterData/NotificationListData.ts";
-// 1. 严格定义通知类型（匹配业务标签页，移除多余的 other）
+// 严格定义通知类型
 export type NotificationType = 'system' | 'important' | 'success' | 'error';
 
 // 2. 通知项接口（精简且匹配业务）

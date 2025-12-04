@@ -5,7 +5,7 @@ type Grade = "grade1" | "grade2" | "grade3" |"grade4" |"grade5" |"grade6" |"grad
 type Difficulty = "easy" | "medium" | "hard"
 type TagType = 'success' | 'info' | 'warning' | 'danger' | 'default'
 
-// 2. 定义核心教案接口
+// 定义核心教案接口
 export interface LessonPlan {
     id: number
     title: string

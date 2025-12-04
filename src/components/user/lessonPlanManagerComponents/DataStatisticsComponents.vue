@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import {Check, Clock, Plus, Star, Collection, Document, FolderDelete} from "@element-plus/icons-vue";
 import { stats } from "@/utils/user/teacher/info/lessonPlanManager/StatisticsDataUtils.ts";
-import { openNewLessonModal } from "@/forms/user/teacherInfo/lessonPlanManagerForms/DataStatisticsForms.ts";
 import "@/assets/user/lessonPlanManagerCss/DataStatisticsCss.css"
+import {openNewLessonModal} from "@/utils/user/teacher/info/lessonPlanManager/DialogUtils.ts";
 </script>
 
 <template>

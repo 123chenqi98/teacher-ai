@@ -1,16 +1,43 @@
 <script setup lang="ts">
-import {lessonModalOpen, isEditMode, lessonFormRef, currentLesson, formRules, saveLesson, detailModalOpen, openEditLessonModal, toggleCollection} from "@/forms/user/teacherInfo/lessonPlanManagerForms/DataStatisticsForms.ts";
-import {downloadLesson, shareLesson} from "@/utils/user/teacher/info/lessonPlanManager/StatisticsDataUtils.ts";
+import {
+  lessonFormRef,
+  currentLesson,
+  formRules,
+} from "@/forms/user/teacherInfo/lessonPlanManagerForms/DataStatisticsForms.ts";
+import {
+  downloadLesson,
+  shareLesson
+} from "@/utils/user/teacher/info/lessonPlanManager/StatisticsDataUtils.ts";
 import {Download, Edit, Share, Star, StarFilled, Document} from "@element-plus/icons-vue";
-import {getDifficultyTagProps, getGradeName, getStatusTagProps, getSubjectName} from "@/utils/user/teacher/info/lessonPlanManager/AuxiliaryFunctionUtils.ts";
-import type {Difficulty, LessonPlan, Status} from "@/data/user/lessonPlanManagerData/interface/StatisticsInterface.ts";
+import {
+  getDifficultyTagProps,
+  getGradeName,
+  getStatusTagProps,
+  getSubjectName
+} from "@/utils/user/teacher/info/lessonPlanManager/AuxiliaryFunctionUtils.ts";
+import type {
+  Difficulty,
+  LessonPlan,
+  Status
+} from "@/data/user/lessonPlanManagerData/interface/StatisticsInterface.ts";
 import "@/assets/user/lessonPlanManagerCss/LessonEditCss.css"
+import {
+  lessonModalOpen,
+  openEditLessonModal
+} from "@/utils/user/teacher/info/lessonPlanManager/DialogUtils.ts";
+import {detailModalOpen, isEditMode} from "@/entity/user/LessonPlanManager/DialogEntity.ts";
+import {saveLesson, toggleCollection} from "@/utils/user/teacher/info/lessonPlanManager/TeacherPlanUtils.ts";
 </script>
 
 <template>
   <!-- 教案编辑/新增通用模态框 -->
   <el-dialog v-model="lessonModalOpen" :title="isEditMode ? '编辑教案' : '新增教案'" width="800px" :close-on-click-modal="false" draggable>
-    <el-form :model="currentLesson" label-width="100px" :rules="formRules" ref="lessonFormRef" class="lesson-form">
+    <el-form
+        :model="currentLesson"
+        label-width="100px"
+        :rules="formRules"
+        ref="lessonFormRef"
+        class="lesson-form">
       <el-row :gutter="20">
         <el-col :span="12">
           <el-form-item label="教案标题" prop="title">
@@ -126,7 +153,7 @@ import "@/assets/user/lessonPlanManagerCss/LessonEditCss.css"
     </template>
   </el-dialog>
 
-  <!-- 教案详情模态框（与编辑弹窗并列，避免嵌套导致卡顿） -->
+  <!-- 教案详情模态框 -->
   <el-dialog v-model="detailModalOpen" title="教案详情" width="900px" :close-on-click-modal="false" draggable>
       <div class="lesson-detail">
         <div class="detail-header">
@@ -141,7 +168,12 @@ import "@/assets/user/lessonPlanManagerCss/LessonEditCss.css"
             <el-button size="small" type="primary" :icon="Share" @click="shareLesson(<LessonPlan>currentLesson, $event)">
               分享
             </el-button>
-            <el-button size="small" :type="currentLesson.isCollected ? 'warning' : 'default'" :icon="currentLesson.isCollected ? StarFilled : Star" @click="toggleCollection(<LessonPlan>currentLesson, $event)">
+            <el-button
+                size="small"
+                :type="currentLesson.isCollected ? 'warning' : 'default'"
+                :icon="currentLesson.isCollected ? StarFilled : Star"
+                @click="toggleCollection(<LessonPlan>currentLesson, $event)"
+            >
               {{ currentLesson.isCollected ? '已收藏' : '收藏' }}
             </el-button>
           </div>

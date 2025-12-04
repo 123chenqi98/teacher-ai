@@ -1,11 +1,33 @@
 <script setup lang="ts">
-import {Calendar, Delete, Download, Edit, Filter, Histogram, Notebook, Refresh, Share, Star, StarFilled, View, Document} from "@element-plus/icons-vue";
+import {Calendar, Delete, Download, Edit,
+  Filter, Histogram, Notebook, Refresh,
+  Share, Star, StarFilled, View, Document
+} from "@element-plus/icons-vue";
 import "@/assets/user/lessonPlanManagerCss/LessonListCss.css"
-import {deleteLesson, openDetailModal, openNewLessonModal, paginatedList, toggleCollection} from "@/forms/user/teacherInfo/lessonPlanManagerForms/DataStatisticsForms.ts";
-import {getDifficultyTagProps, getGradeName, getStatusTagProps, getSubjectName} from "@/utils/user/teacher/info/lessonPlanManager/AuxiliaryFunctionUtils.ts";
-import {filteredList, handleAction, resetFilters, stats, toggleSort} from "@/utils/user/teacher/info/lessonPlanManager/StatisticsDataUtils.ts";
-import {currentPage, pageSize, searchQuery, selectedDifficulty, selectedGrade, selectedStatus, selectedSubject, showMyCollection, sortBy, sortOrder} from "@/entity/auth/teacherInfo/LessonPlanManager.ts";
+import {
+  getDifficultyTagProps,
+  getGradeName,
+  getStatusTagProps,
+  getSubjectName
+} from "@/utils/user/teacher/info/lessonPlanManager/AuxiliaryFunctionUtils.ts";
+import {
+  filteredList,
+  handleAction,
+  resetFilters,
+  stats,
+  toggleSort
+} from "@/utils/user/teacher/info/lessonPlanManager/StatisticsDataUtils.ts";
+import {currentPage, pageSize, searchQuery, selectedDifficulty,
+  selectedGrade, selectedStatus, selectedSubject,
+  showMyCollection, sortBy, sortOrder
+} from "@/entity/auth/teacherInfo/LessonPlanManager.ts";
 import LessonEditComponents from "./LessonEditComponents.vue";
+import {paginatedListUtils} from "@/utils/user/teacher/info/lessonPlanManager/PaginatedListUtils.ts";
+import {
+  openDetailModal,
+  openNewLessonModal
+} from "@/utils/user/teacher/info/lessonPlanManager/DialogUtils.ts";
+import {deleteLesson, toggleCollection} from "@/utils/user/teacher/info/lessonPlanManager/TeacherPlanUtils.ts";
 </script>
 
 <template>
@@ -104,7 +126,7 @@ import LessonEditComponents from "./LessonEditComponents.vue";
   </div>
 
   <el-row :gutter="24" class="lesson-grid">
-    <el-col :span="8" v-for="item in paginatedList" :key="item.id">
+    <el-col :span="8" v-for="item in paginatedListUtils" :key="item.id">
       <el-card shadow="hover" :border="false" class="lesson-card" @click="openDetailModal(item)">
         <!-- 收藏按钮 -->
         <el-button class="collect-btn" :class="{ collected: item.isCollected }" @click="toggleCollection(item, $event)" circle size="default">

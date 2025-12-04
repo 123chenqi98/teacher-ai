@@ -4,9 +4,10 @@ import { lessonPlans } from "@/data/user/lessonPlanManagerData/StatisticsData.ts
 import {currentPage, searchQuery, selectedDifficulty, selectedGrade, selectedStatus, selectedSubject, showMyCollection, sortBy, sortOrder} from "@/entity/auth/teacherInfo/LessonPlanManager.ts";
 import {ElMessage} from "element-plus";
 import type {LessonPlan} from "@/data/user/lessonPlanManagerData/interface/StatisticsInterface.ts";
-import {deleteLesson, openDetailModal, openEditLessonModal} from "@/forms/user/teacherInfo/lessonPlanManagerForms/DataStatisticsForms.ts";
+import {openDetailModal, openEditLessonModal} from "@/utils/user/teacher/info/lessonPlanManager/DialogUtils.ts";
+import {deleteLesson} from "@/utils/user/teacher/info/lessonPlanManager/TeacherPlanUtils.ts";
 
-// 修复后的筛选列表（独立computed，闭合括号，补全类型）
+// 修复后的筛选列表
 const filteredList = computed(() => {
     // 非空校验：避免lessonPlans.value为undefined
     if (!lessonPlans.value) return [];
@@ -65,7 +66,7 @@ const filteredList = computed(() => {
     });
 });
 
-// 修复后的统计信息（独立computed，不再嵌套）
+// 修复后的统计信息
 const stats = computed(() => {
     const total = lessonPlans.value?.length || 0;
     return {
@@ -79,7 +80,7 @@ const stats = computed(() => {
     };
 });
 
-// 16. 重置筛选条件（保持原逻辑）
+// 重置筛选条件
 const resetFilters = () => {
     searchQuery.value = ""
     selectedSubject.value = ""
@@ -92,7 +93,7 @@ const resetFilters = () => {
     currentPage.value = 1
 }
 
-// 17. 切换排序方式（修复参数类型）
+// 切换排序方式
 const toggleSort = (key: keyof LessonPlan) => {
     if (sortBy.value === key) {
         sortOrder.value = sortOrder.value === "asc" ? "desc" : "asc"
@@ -102,7 +103,7 @@ const toggleSort = (key: keyof LessonPlan) => {
     }
 }
 
-// 18. 下载教案（生成临时文件并触发浏览器下载）
+//下载教案
 const downloadLesson = (lesson: LessonPlan, e?: Event) => {
     e?.stopPropagation()
     const content = [
@@ -134,7 +135,7 @@ const downloadLesson = (lesson: LessonPlan, e?: Event) => {
     ElMessage.success(`已开始下载：${lesson.title}.txt`)
 }
 
-// 19. 分享教案（使用 Web Share API，降级为复制到剪贴板）
+// 分享教案
 const shareLesson = async (lesson: LessonPlan, e?: Event) => {
     e?.stopPropagation()
     const shareText = `【教案分享】\n标题：${lesson.title}\n版本：${lesson.version}\n简介：${lesson.description}\n标签：${lesson.tags.join(', ')}`
@@ -159,7 +160,6 @@ const shareLesson = async (lesson: LessonPlan, e?: Event) => {
             textarea.style.opacity = '0'
             document.body.appendChild(textarea)
             textarea.select()
-            document.execCommand('copy')
             document.body.removeChild(textarea)
             ElMessage.success('已复制分享内容到剪贴板')
         }
@@ -190,7 +190,7 @@ const handleAction = (action: string, lesson: LessonPlan) => {
     }
 }
 
-// 20. 初始化页面加载动画（保持原逻辑）
+// 初始化页面加载动画
 onMounted(() => {
     // 模拟加载效果
     setTimeout(() => {
