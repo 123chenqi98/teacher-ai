@@ -1,33 +1,12 @@
 import {type Ref, ref} from "vue";
 import { ElMessage, ElMessageBox } from "element-plus";
 import {filteredNotifications} from "@/utils/user/teacher/info/notificationCenter/NotificationListUtils.ts";
+import type {NotificationSettings} from "@/data/user/notificationCenterData/NotifficationInterface.ts";
 import {rawNotifications} from "@/data/user/notificationCenterData/NotificationListData.ts";
 // 严格定义通知类型
 export type NotificationType = 'system' | 'important' | 'success' | 'error';
 
-// 2. 通知项接口（精简且匹配业务）
-export interface NotificationItem {
-    id: string | number;
-    title: string;
-    sender: string;
-    time: string;
-    content: string;
-    type: NotificationType; // 复用类型，避免硬编码
-    read: boolean;
-    selected: boolean;
-}
-
-// 3. 通知设置接口（移除冗余的索引签名，保持严谨）
-export interface NotificationSettings {
-    systemNotice: boolean;       // 系统通知
-    importantReminder: boolean;  // 重要提醒
-    successNotice: boolean;      // 成功通知
-    errorReminder: boolean;      // 错误提醒
-    emailNotification: boolean;  // 邮件通知
-    smsNotification: boolean;    // 短信通知
-}
-
-// 4. 导出响应式对象 + 明确类型（分离类型和值）
+//  导出响应式对象 + 明确类型（分离类型和值）
 // 当前选中的标签页（限定可选值，避免非法标签）
 const currentTab: Ref<'all' | 'unread' | NotificationType> = ref('all');
 
@@ -79,8 +58,7 @@ function deleteSelectedNotifications(): void {
         }
     ).then(() => {
         // 过滤掉选中的通知
-        rawNotifications.value = rawNotifications.value.filter(
-            item => !selectedItems.some(selected => selected.id === item.id)
+        rawNotifications.value = rawNotifications.value.filter(item => !selectedItems.some(selected => selected.id === item.id)
         );
         ElMessage.success(`已删除 ${selectedItems.length} 条通知`);
         selectAll.value = false;

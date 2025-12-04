@@ -1,19 +1,19 @@
-// 先修复导入：分离类型和值的导入
 import { computed } from "vue";
-// 1. 类型导入（仅接口/类型）
-import type { NotificationItem, NotificationType } from "@/forms/user/teacherInfo/notificationCenterForms/NotificationListForms";
-// 2. 值导入（响应式对象）
-import { currentTab, selectAll } from "@/forms/user/teacherInfo/notificationCenterForms/NotificationListForms";
-// 3. 数据导入（移除 .ts 后缀）
+//  类型导入
+import type {  NotificationType } from "@/utils/user/teacher/info/notificationCenter/NotificationEditUtils.ts";
+//  值导入
+import { currentTab, selectAll } from "@/utils/user/teacher/info/notificationCenter/NotificationEditUtils.ts";
+//  数据导入
 import { rawNotifications } from "@/data/user/notificationCenterData/NotificationListData";
+import type {NotificationItem} from "@/data/user/notificationCenterData/NotifficationInterface.ts";
 
-// 校验原始数据类型（避免空值/类型错误）
+// 校验原始数据类型
 if (!rawNotifications.value) {
     rawNotifications.value = [];
     console.warn("原始通知数据为空，已初始化为空数组");
 }
 
-// 根据当前标签筛选通知（严格类型限定）
+// 根据当前标签筛选通知
 const filteredNotifications = computed<NotificationItem[]>(() => {
     // 提前获取值，减少重复访问 .value
     const tab = currentTab.value;

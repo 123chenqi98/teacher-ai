@@ -1,5 +1,5 @@
 import {ref} from "vue";
-import type {NotificationItem} from "@/forms/user/teacherInfo/notificationCenterForms/NotificationListForms.ts";
+import type {NotificationItem} from "@/data/user/notificationCenterData/NotifficationInterface.ts";
 
 const detailVisible = ref(false)
 const detailItem = ref<NotificationItem | null>(null)

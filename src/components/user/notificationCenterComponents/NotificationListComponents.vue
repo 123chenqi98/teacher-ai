@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import {currentTab, selectAll, clearAllNotifications, deleteSelectedNotifications, markSelectedAsRead, exportNotifications } from "@/forms/user/teacherInfo/notificationCenterForms/NotificationListForms";
-import {filteredNotifications, getIconClass, getIconColor, handleSingleSelect, handleTabChange, toggleSelectAll} from "@/utils/user/teacher/info/notificationCenter/NotificationListUtils.ts";
+import {currentTab, selectAll, clearAllNotifications, deleteSelectedNotifications, markSelectedAsRead, exportNotifications } from "@/utils/user/teacher/info/notificationCenter/NotificationEditUtils.ts";
+import {filteredNotifications, getIconClass, getIconColor, handleSingleSelect, handleTabChange,toggleSelectAll} from "@/utils/user/teacher/info/notificationCenter/NotificationListUtils.ts";
 import {detailItem, detailVisible, openDetail} from "@/entity/auth/teacherInfo/NotificationCenter.ts";
 import "@/assets/user/notificationCenterCss/NotificationListCss.css"
 </script>
@@ -13,9 +13,9 @@ import "@/assets/user/notificationCenterCss/NotificationListCss.css"
       <p class="noti-header-subtitle">查看和管理您的系统通知</p>
     </div>
 
-    <div class="noti-header-actions">
+<div class="noti-header-actions">
       <el-button type="primary" class="noti-export-btn" :style="{ backgroundColor: '#5a2ca0', borderColor: '#5a2ca0' }" @click="exportNotifications" >
-        <template #icon><i class="fa fa-download"></i></template>
+        <template #icon><i class="fafa-download"></i></template>
         导出通知记录
       </el-button>
     </div>
@@ -46,21 +46,25 @@ import "@/assets/user/notificationCenterCss/NotificationListCss.css"
       </el-checkbox>
       <el-button link class="noti-secondary-btn noti-mark-read-btn" @click="markSelectedAsRead">
         <template #icon><i class="fa fa-check"></i></template>
-        标记为已读
+标记为已读
       </el-button>
       <el-button link class="noti-secondary-btn noti-delete-selected-btn" @click="deleteSelectedNotifications">
         <template #icon><i class="fa fa-trash"></i></template>
         删除选中
       </el-button>
-      <el-button link class="noti-secondary-btn noti-clear-all-btn" @click="clearAllNotifications">
+     <el-button link class="noti-secondary-btn noti-clear-all-btn" @click="clearAllNotifications">
         <template #icon><i class="fa fa-trash-o"></i></template>
         清空全部
       </el-button>
     </div>
 
     <div class="noti-list-container">
-      <div v-for="(item, index) in filteredNotifications" :key="item.id" class="noti-notification-item" :class="{ 'noti-unread': !item.read }" @click="openDetail(item)">
-        <!-- 通知图标 - 使用 ElTag 组件模拟圆形图标 -->
+      <div v-for="(item) in filteredNotifications"
+           :key="item.id"
+           class="noti-notification-item"
+           :class="{ 'noti-unread': !item.read }"
+           @click="openDetail(item)">
+        <!-- 通知图标 - 使用 ElTag 组件模拟圆形图标-->
         <el-tag class="noti-notification-icon" :class="item.type" :style="{ backgroundColor: getIconColor(item.type) }">
           <i :class="getIconClass(item.type)"></i>
         </el-tag>
@@ -101,10 +105,21 @@ import "@/assets/user/notificationCenterCss/NotificationListCss.css"
       <el-descriptions-item label="内容">
         {{ detailItem?.content }}
       </el-descriptions-item>
-    </el-descriptions>
+   </el-descriptions>
     <template #footer>
       <el-button link @click="detailVisible = false">关闭</el-button>
-      <el-button type="primary" @click="(detailItem && (detailItem.read = true), detailVisible = false)" :style="{ backgroundColor: '#5a2ca0', borderColor: '#5a2ca0' }">标记为已读</el-button>
+      <el-button
+          type="primary"
+          @click="() => {
+            if (detailItem) {
+              detailItem.read = true;
+            }
+            detailVisible= false;
+          }"
+          :style="{ backgroundColor: '#5a2ca0', borderColor: '#5a2ca0' }"
+      >
+        标记为已读
+      </el-button>
     </template>
   </el-dialog>
 </template>
