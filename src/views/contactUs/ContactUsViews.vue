@@ -3,8 +3,9 @@
 import ContactUsPageTop from "@/components/contactUs/home/ContactUsPageTop.vue"
 import TopInformationComponent from "@/components/system/homeComponents/TopInformationComponent.vue";
 import ContactUsInformation from "@/components/contactUs/home/ContactUsInformation.vue"
-import Try from "@/components/contactUs/home/Try.vue"
+// import Try from "@/components/contactUs/home/Try.vue"
 import ContactUsOnLineFeedBack from "@/components/contactUs/home/ContactUsOnLineFeedBack.vue";
+import ContactUsFQAModal   from "@/components/contactUs/home/ContactUs-FQA-Modal.vue";
 </script>
 
 
@@ -17,9 +18,10 @@ import ContactUsOnLineFeedBack from "@/components/contactUs/home/ContactUsOnLine
       <ContactUsPageTop/>
       <!--      联系方式-->
       <ContactUsInformation/>
-      <Try/>
+<!--      <Try/>-->
         <!--在线反馈表单-->
        <ContactUsOnLineFeedBack/>
+        <ContactUsFQAModal/>
 
 
 </div>
