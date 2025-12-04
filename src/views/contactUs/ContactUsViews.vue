@@ -5,7 +5,6 @@ import TopInformationComponent from "@/components/system/homeComponents/TopInfor
 import ContactUsInformation from "@/components/contactUs/home/ContactUsInformation.vue"
 import ContactUsOnLineFeedBack from "@/components/contactUs/home/ContactUsOnLineFeedBack.vue";
 import ContactUsFQAModal   from "@/components/contactUs/home/ContactUs-FQA-Modal.vue";
-import Try from "@/components/contactUs/home/try.vue"
 </script>
 
 
@@ -27,7 +26,6 @@ import Try from "@/components/contactUs/home/try.vue"
        <ContactUsOnLineFeedBack/>
         <!--  常见问题FAQ-->
         <ContactUsFQAModal/>
-          <Try/>
 
 </div>
 </template>
