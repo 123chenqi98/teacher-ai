@@ -2,6 +2,7 @@
 import {teachingPlanChildrenRouters} from "@/router/teacher/function/TeachingPlanChildrenRouter.ts";
 import {homeWorkingChildrenRouter} from "@/router/teacher/function/HomeWorkingChildrenRouter.ts";
 import {aiCreativeTeachingChildrenRouter} from "@/router/teacher/function/AICreativeTeachingChildrenRouter.ts";
+import {classManagementChildrenRouters} from "@/router/teacher/classmanagement/ClassManagementChildrenRoute.ts";
 
 export const teacherRouters = [
     {
@@ -27,4 +28,13 @@ export const teacherRouters = [
             ...aiCreativeTeachingChildrenRouter,
         ]
     },
+    {
+        // 班级管理路由
+        path: '/teacher/class',
+        name: 'class',
+        component:() =>import("@/views/teacher/classmanagement/ClassManagementView.vue"),
+        children: [
+            ...classManagementChildrenRouters
+        ]
+    }
 ]

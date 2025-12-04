@@ -4,7 +4,10 @@ import {
   Platform, Menu, HomeFilled, Grid, Avatar,List,DocumentChecked ,User,Calendar ,Notification
 } from "@element-plus/icons-vue"
 import router from "@/router"
+import { computed } from "vue"
+import { useRoute } from "vue-router"
 
+const route = useRoute()
 
 const teacherNavigation = [
   {
@@ -40,11 +43,14 @@ const teacherNavigation = [
     icon: Avatar
   },
 ]
+
+// 计算当前活跃菜单项
+const activeMenu = computed(() => route.path)
 </script>
 
 <template>
   <div class="teacher-home-navigation">
-    <el-menu class="teacher-navigation-items">
+    <el-menu class="teacher-navigation-items" :default-active="activeMenu">
       <template v-for="item in teacherNavigation" :key="item.path">
         <!-- 有子菜单的项 -->
         <el-sub-menu
@@ -58,6 +64,7 @@ const teacherNavigation = [
           <el-menu-item
               v-for="child in item.children"
               :key="child.path"
+              :index="child.path"
               @click="router.push(child.path)"
           >
             <el-icon>
