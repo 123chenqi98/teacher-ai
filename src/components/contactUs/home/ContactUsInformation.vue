@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import '@/assets/contactUs/homeCss/ContactUsInformationCss.css'
 // 1. 补充Props定义（解决v-bind样式变量失效）
-import { defineProps } from 'vue'
+import { ref,defineProps } from 'vue'
 
 // 定义组件接收的样式属性（可外部传值，也可使用默认值）
 const props = defineProps({

@@ -1,0 +1,136 @@
+/* contact-info.css - 联系信息组件样式 */
+.contact-info {
+    --theme-color: #42b983;    /* 默认主题色（可通过内联样式覆盖） */
+    --card-bg: #ffffff;        /* 默认卡片背景 */
+    --text-color: #333333;     /* 默认文字颜色 */
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* 默认卡片阴影 */
+}
+
+/* 栅格容器（替代原生flex） */
+.contact-info .el-row {
+    justify-content: center;
+    padding: 1rem;
+}
+
+/* 卡片列间距 */
+.contact-info .el-col {
+    margin-bottom: 1.5rem;
+}
+
+/* Element Plus卡片样式重写 */
+.contact-info .el-card {
+    display: flex;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    border-radius: 12px;
+    background-color: var(--card-bg);
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+}
+
+.contact-info .el-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* 图标容器 */
+.contact-info .contact-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    transition: all 0.3s ease;
+    background-color: var(--theme-color);
+}
+
+.contact-info .contact-icon-wrapper.email {
+    opacity: 0.9;
+}
+
+.contact-info .contact-icon-wrapper.address {
+    opacity: 0.8;
+}
+
+.contact-info .contact-icon-wrapper:hover {
+    background-color: var(--theme-color);
+    opacity: 1;
+}
+
+/* Element Plus图标样式 */
+.contact-info .el-icon {
+    font-size: 1.5rem;
+    color: #ffffff;
+}
+
+/* 内容容器 */
+.contact-info .contact-content {
+    flex: 1;
+}
+
+.contact-info .contact-title {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-color);
+    opacity: 0.7;
+    margin: 0 0 0.25rem 0;
+}
+
+/* Element Plus链接样式重写 */
+.contact-info .el-link {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-info .el-link:hover {
+    color: var(--theme-color) !important;
+}
+
+/* 流光动画（卡片伪元素） */
+.contact-info .el-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(0, 0, 0, 0.03),
+            transparent
+    );
+    transition: left 0.6s ease;
+}
+
+.contact-info .el-card:hover::after {
+    left: 100%;
+}
+
+/* 响应式适配（覆盖Element Plus默认栅格） */
+@media (max-width: 768px) {
+    .contact-info .el-card {
+        padding: 1rem 1.25rem;
+    }
+
+    .contact-info .contact-icon-wrapper {
+        width: 40px;
+        height: 40px;
+    }
+
+    .contact-info .el-icon {
+        font-size: 1.25rem;
+    }
+
+    .contact-info .el-link {
+        font-size: 1rem;
+    }
+}
