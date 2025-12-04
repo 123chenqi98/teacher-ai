@@ -42,6 +42,7 @@ function markSelectedAsRead(): void {
 
 // 删除选中的通知
 function deleteSelectedNotifications(): void {
+    // selected控制是否选中
     const selectedItems = filteredNotifications.value.filter(item => item.selected);
     if (selectedItems.length === 0) {
         ElMessage.warning('请先选择要删除的通知');

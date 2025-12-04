@@ -12,7 +12,7 @@ export interface NotificationItem {
     selected: boolean;
 }
 
-// 通知设置接口（移除冗余的索引签名，保持严谨）
+// 通知设置接口
 export interface NotificationSettings {
     systemNotice: boolean;       // 系统通知
     importantReminder: boolean;  // 重要提醒

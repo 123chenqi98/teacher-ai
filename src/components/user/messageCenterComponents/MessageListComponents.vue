@@ -1,9 +1,29 @@
 <script setup lang="ts">
-import {exportMessages, activeMessageTab, handleMessageTabChange, messageSearchKeyword, messageStatusFilter, handleDeleteSelectedMessages, openNewMessageModal, handleStatusFilterChange, handleMessageSearch, selectedMessage, filteredMessageList, filteredTotalCount, selectMessage, handleSizeChange, handleCurrentChange, currentPage, pageSize, isSelected, toggleSelect, selectedCount, chatMessages, newMessageContent, closeChat, sendMessage, showNewMessageModal, newMessageForm, selectRecipient, sendNewMessage} from "@/forms/user/teacherInfo/messageCenterForms/MessageListForms"
+import {
+  exportMessages, handleMessageTabChange,
+  handleDeleteSelectedMessages, openNewMessageModal,
+  handleStatusFilterChange, handleMessageSearch,
+  filteredMessageList, filteredTotalCount,
+  selectMessage, handleSizeChange,
+  handleCurrentChange, isSelected,
+  toggleSelect, selectedCount,
+  closeChat, sendMessage,
+  selectRecipient, sendNewMessage
+} from "@/utils/user/teacher/info/messageCenter/MessageContentUtils.ts"
 import "@/assets/user/messageCenterCss/MessageListCss.css"
 import "@/assets/user/messageCenterCss/MessageChatCss.css"
-import {getTagText, getTagType} from "@/utils/user/teacher/info/messageCenter/MessageListUtils.ts";
+import {
+  getTagText,
+  getTagType
+} from "@/utils/user/teacher/info/messageCenter/MessageListUtils.ts";
 import { recipientList } from "@/data/user/messageCenterData/MessageListData";
+import {
+  activeMessageTab, chatMessages, currentPage,
+  messageSearchKeyword,
+  messageStatusFilter, newMessageContent,
+  newMessageForm, pageSize,
+  selectedMessage, showNewMessageModal
+} from "@/entity/user/messageCenter/MessageListEntity.ts";
 </script>
 
 <template>
@@ -53,7 +73,12 @@ import { recipientList } from "@/data/user/messageCenterData/MessageListData";
   <!-- 消息中心 - 标签页与搜索操作区 -->
   <el-card class="mess-all-in-one-card" shadow="hover" aria-label="消息中心">
     <!-- 消息分类标签页 -->
-    <el-tabs v-model="activeMessageTab" class="mess-category-tabs" @tab-click="handleMessageTabChange" type="card" :key="activeMessageTab">
+    <el-tabs
+        v-model="activeMessageTab"
+        class="mess-category-tabs"
+        @tab-click="handleMessageTabChange"
+        type="card" :key="activeMessageTab"
+    >
       <el-tab-pane label="全部消息" name="all"></el-tab-pane>
       <el-tab-pane label="私信对话" name="private"></el-tab-pane>
       <el-tab-pane label="评论回复" name="comment"></el-tab-pane>
@@ -63,12 +88,28 @@ import { recipientList } from "@/data/user/messageCenterData/MessageListData";
     <!-- 搜索与操作按钮区域 -->
     <div class="mess-search-action-group">
       <!-- 消息搜索输入框 -->
-      <el-input v-model="messageSearchKeyword" placeholder="搜索消息内容或联系人..." prefix-icon="Search" class="mess-search-input" size="default" clearable @keyup.enter="handleMessageSearch" aria-label="消息搜索框"></el-input>
+      <el-input
+          v-model="messageSearchKeyword"
+          placeholder="搜索消息内容或联系人..."
+          prefix-icon="Search"
+          class="mess-search-input"
+          size="default"
+          clearable
+          @keyup.enter="handleMessageSearch"
+          aria-label="消息搜索框"
+      ></el-input>
 
       <!-- 操作控制区 -->
       <div class="mess-operation-controls">
         <!-- 消息状态筛选下拉框 -->
-        <el-select v-model="messageStatusFilter" placeholder="全部状态" size="default" class="mess-status-filter" @change="handleStatusFilterChange" aria-label="消息状态筛选">
+        <el-select
+            v-model="messageStatusFilter"
+            placeholder="全部状态"
+            size="default"
+            class="mess-status-filter"
+            @change="handleStatusFilterChange"
+            aria-label="消息状态筛选"
+        >
           <el-option label="全部状态" value="all"></el-option>
           <el-option label="未读" value="unread"></el-option>
           <el-option label="已读" value="read"></el-option>
@@ -85,7 +126,10 @@ import { recipientList } from "@/data/user/messageCenterData/MessageListData";
         </el-button>
       </div>
     </div>
-    <div class="mess-messages-container" :class="{ 'mess-chat-open': selectedMessage }">
+    <div
+        class="mess-messages-container"
+        :class="{ 'mess-chat-open': selectedMessage }"
+    >
       <div class="mess-messages-list-container">
         <div class="mess-messages-list">
           <div
@@ -142,7 +186,11 @@ import { recipientList } from "@/data/user/messageCenterData/MessageListData";
         </div>
 
         <div class="mess-chat-input-bar">
-          <el-input v-model="newMessageContent" placeholder="输入消息..." @keyup.enter="sendMessage" />
+          <el-input
+              v-model="newMessageContent"
+              placeholder="输入消息..."
+              @keyup.enter="sendMessage"
+          />
           <el-button type="primary" @click="sendMessage">发送</el-button>
         </div>
       </div>

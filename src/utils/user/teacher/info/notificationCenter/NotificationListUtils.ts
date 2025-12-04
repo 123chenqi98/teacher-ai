@@ -93,7 +93,7 @@ function handleTabChange(tabName: "all" | "unread" | NotificationType): boolean 
     return true;
 }
 
-// 切换全选状态（增加空值保护）
+// 切换全选状态
 function toggleSelectAll(): void {
     const filteredList = filteredNotifications.value;
     if (!filteredList.length) return;
@@ -103,7 +103,7 @@ function toggleSelectAll(): void {
     });
 }
 
-// 单个通知选中状态变化处理（优化逻辑 + 空值保护）
+// 单个通知选中状态变化处理
 function handleSingleSelect(): void {
     const filteredList = filteredNotifications.value;
     if (!filteredList.length) {

@@ -1,18 +1,19 @@
-import { ref, computed } from 'vue'
+import {  computed } from 'vue'
 import { ElMessage } from 'element-plus'
-import { messageList, type MessageItem } from '@/data/user/messageCenterData/MessageListData'
+import {
+    messageList,
+    type MessageItem
+} from '@/data/user/messageCenterData/MessageListData.ts'
+import {
+    activeMessageTab, chatMessages,
+    currentPage, currentTab,
+    filterStatus, messageSearchKeyword,
+    messageStatusFilter, newMessageContent,
+    newMessageForm, pageSize,
+    selectedMessage, selectedSet,
+    showNewMessageModal
+} from "@/entity/user/messageCenter/MessageListEntity.ts";
 
-// 响应式数据
-const activeMessageTab = ref('all') // 当前激活的标签页
-const messageSearchKeyword = ref('') // 消息搜索关键词
-const messageStatusFilter = ref('all') // 消息状态筛选值
-const showNewMessageModal = ref(false) // 新建消息弹窗显示状态
-
-// 事件处理函数
-/**
- * 标签页切换处理
- * @param {Object} tab - 选中的标签页对象
- */
 const handleMessageTabChange = (tab: any) => {
     const name = typeof tab === 'string'
       ? tab
@@ -33,8 +34,7 @@ const handleStatusFilterChange = () => {
     currentPage.value = 1
 }
 
-// 选择与批量删除
-const selectedSet = ref<Set<MessageItem>>(new Set())
+
 const isSelected = (item: MessageItem) => selectedSet.value.has(item)
 const selectedCount = computed(() => selectedSet.value.size)
 const toggleSelect = (item: MessageItem, val?: boolean) => {
@@ -66,18 +66,9 @@ const openNewMessageModal = () => {
     showNewMessageModal.value = true
     console.log('打开新建消息弹窗')
 }
-const currentTab = ref<'all' | 'private' | 'comment' | 'mention'>('all')
-const filterStatus = ref<'all' | 'unread' | 'read'>('all')
-const currentPage = ref(1)
-const pageSize = ref(7)
 
-const selectedMessage = ref<any | null>(null)
-const chatMessages = ref<Array<{ content: string | string[]; time: string; isSelf?: boolean }>>([])
-const newMessageContent = ref('')
-
-const newMessageForm = ref<{ recipient: string; content: string }>({ recipient: '', content: '' })
-
-const filteredMessageList = computed(() => {
+// 提取公共过滤逻辑到一个函数中
+const getFilteredList = () => {
   let list = messageList.value
   if (currentTab.value !== 'all') {
     list = list.filter(i => i.type === currentTab.value)
@@ -89,29 +80,21 @@ const filteredMessageList = computed(() => {
   if (kw) {
     list = list.filter(i => String(i.sender).toLowerCase().includes(kw) || String(i.content).toLowerCase().includes(kw))
   }
+  return list
+}
+
+const filteredMessageList = computed(() => {
+  const list = getFilteredList()
   const start = (currentPage.value - 1) * pageSize.value
   const end = start + pageSize.value
   return list.slice(start, end)
 })
 
 const filteredTotalCount = computed(() => {
-  let list = messageList.value
-  if (currentTab.value !== 'all') {
-    list = list.filter(i => i.type === currentTab.value)
-  }
-  if (filterStatus.value !== 'all') {
-    list = list.filter(i => i.status === filterStatus.value)
-  }
-  const kw = messageSearchKeyword.value.trim().toLowerCase()
-  if (kw) {
-    list = list.filter(i => String(i.sender).toLowerCase().includes(kw) || String(i.content).toLowerCase().includes(kw))
-  }
+  const list = getFilteredList()
   return list.length
 })
 
-const handleTabClick = (pane: any) => {
-  currentTab.value = (pane.props?.name || 'all') as any
-}
 
 const handleSizeChange = (size: number) => {
   pageSize.value = size
@@ -179,26 +162,13 @@ const exportMessages = () => {
 }
 
 export {
-    activeMessageTab,
-    messageSearchKeyword,
-    messageStatusFilter,
-    showNewMessageModal,
     handleMessageTabChange,
     handleMessageSearch,
     handleStatusFilterChange,
     handleDeleteSelectedMessages,
     openNewMessageModal,
-    currentTab,
-    filterStatus,
-    currentPage,
-    pageSize,
-    selectedMessage,
-    chatMessages,
-    newMessageContent,
-    newMessageForm,
     filteredMessageList,
     filteredTotalCount,
-    handleTabClick,
     handleSizeChange,
     handleCurrentChange,
     selectMessage,
