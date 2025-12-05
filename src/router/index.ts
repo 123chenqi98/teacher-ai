@@ -3,6 +3,7 @@ import {systemRouters} from "@/router/system/SystemRouters.ts";
 import {userInfoRouters} from "@/router/auth/AuthRouters.ts";
 import {teacherRouters} from "@/router/teacher/TeacherSideRouter.ts";
 import {contactUsRouter} from "@/router/contactUs/ContactUsRouter.ts";
+import {settingsRouter} from "@/router/Settings/SettingsRouter.ts";
 
 // 页面路由合并
 const routes = [
@@ -10,6 +11,7 @@ const routes = [
     ...userInfoRouters,
     ...teacherRouters,
     ...contactUsRouter,
+    ...settingsRouter,
 ]
 
 const router = createRouter({

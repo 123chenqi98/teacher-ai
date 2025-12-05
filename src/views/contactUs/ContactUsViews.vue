@@ -1,7 +1,7 @@
 <!-- 导包处-->
 <script setup lang="ts">
-import ContactUsPageTop from "@/components/contactUs/home/ContactUsPageTop.vue"
 import TopInformationComponent from "@/components/system/homeComponents/TopInformationComponent.vue";
+import ContactUsPageTop from "@/components/contactUs/home/ContactUsPageTop.vue"
 import ContactUsInformation from "@/components/contactUs/home/ContactUsInformation.vue"
 import ContactUsOnLineFeedBack from "@/components/contactUs/home/ContactUsOnLineFeedBack.vue";
 import ContactUsFQAModal   from "@/components/contactUs/home/ContactUs-FQA-Modal.vue";
