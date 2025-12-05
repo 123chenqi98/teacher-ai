@@ -6,8 +6,8 @@ import {gradeRouters} from "@/router/admin/GradeRouters.ts";
 import {semesterRouters} from "@/router/admin/SemesterRouters.ts";
 import {syllabasRouters} from "@/router/admin/SyllabasRouters";
 import {subjectRouters} from "@/router/admin/SubjectRouters.ts";
-
-// 页面路由合并
+import {AiDialogRouters} from "@/router/AiDialog/AiDialogRouters.ts";
+import {StoryRoutes} from "@/router/story/StoryRoutes.ts";
 const routes = [
     ...systemRouters,
     ...userInfoRouters,
@@ -16,7 +16,9 @@ const routes = [
     ...semesterRouters,
     ...syllabasRouters,
     ...subjectRouters,
-]
+    ...AiDialogRouters,
+    ...StoryRoutes
+];
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,3 +26,6 @@ const router = createRouter({
 })
 
 export default router
+
+
+

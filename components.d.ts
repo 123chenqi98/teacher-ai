@@ -11,8 +11,12 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AboutComponent: typeof import('./src/components/story/AboutComponent.vue')['default']
     AccountIdentityComponent: typeof import('./src/components/auth/forgetPasswordComponents/AccountIdentityComponent.vue')['default']
     ActivitiesSynopsisComponent: typeof import('./src/components/teacher/home/ActivitiesSynopsisComponent.vue')['default']
+    CommonSideComponent: typeof import('./src/components/AiDialog/CommonSideComponent.vue')['default']
+    ContactComponent: typeof import('./src/components/story/ContactComponent.vue')['default']
+    CourseComponent: typeof import('./src/components/story/CourseComponent.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAutoResizer: typeof import('element-plus/es')['ElAutoResizer']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
@@ -42,9 +46,14 @@ declare module 'vue' {
     GeadeListTableComponents: typeof import('./src/components/admin/GradeListComponents/GeadeListTableComponents.vue')['default']
     GradeHeader: typeof import('./src/components/admin/GradeListComponents/GradeHeader.vue')['default']
     GradeListComponents: typeof import('./src/components/admin/GradeList/GradeListComponents.vue')['default']
+    HeroComponent: typeof import('./src/components/story/HeroComponent.vue')['default']
     HomeComponents: typeof import('./src/components/admin/HomeComponents.vue')['default']
+    IntroductionComponent: typeof import('./src/components/story/IntroductionComponent.vue')['default']
     LoginButtonComponent: typeof import('./src/components/auth/loginComponents/LoginButtonComponent.vue')['default']
     LoginWaysComponent: typeof import('./src/components/auth/loginComponents/LoginWaysComponent.vue')['default']
+    MainComponent: typeof import('./src/components/AiDialog/CodeComponent/MainComponent.vue')['default']
+    NavigationComponent: typeof import('./src/components/story/NavigationComponent.vue')['default']
+    OriginalIntentionComponent: typeof import('./src/components/story/OriginalIntentionComponent.vue')['default']
     PageFooterComponent: typeof import('./src/components/system/PageFooterComponent.vue')['default']
     PasswordLoginComponent: typeof import('./src/components/auth/loginComponents/PasswordLoginComponent.vue')['default']
     PhoneRegisterComponent: typeof import('./src/components/auth/registerComponents/PhoneRegisterComponent.vue')['default']
