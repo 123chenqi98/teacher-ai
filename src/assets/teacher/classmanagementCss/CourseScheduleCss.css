@@ -1,0 +1,92 @@
+.course-schedule-container {
+    padding: 20px;
+    background-color: #fafbfc;
+    min-height: 100vh;
+    background: linear-gradient(135deg, rgb(180, 140, 229), rgb(219, 172, 255));
+}
+
+.schedule-card {
+    margin-bottom: 30px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+:deep(.el-table) {
+    background-color: white;
+}
+
+:deep(.el-table__header th) {
+    background-color: #f5f7fa;
+    font-weight: 600;
+}
+
+:deep(.el-table__body td) {
+    padding: 12px 0;
+}
+
+.course-cell {
+    padding: 8px;
+    background-color: #fafbfc;
+    border-radius: 4px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #606266;
+}
+
+.notice-card {
+    margin-top: 30px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.notice-content {
+    background-color: #f9fafc;
+    padding: 15px;
+    border-radius: 4px;
+    border-left: 3px solid #409eff;
+}
+
+.notice-content h4 {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.notice-content p {
+    margin: 8px 0;
+    font-size: 13px;
+    color: #606266;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.notice-content strong {
+    color: #333;
+    min-width: 80px;
+}
+
+:deep(.el-tag) {
+    background-color: #fef3c7;
+    border-color: #fcd34d;
+    color: #92400e;
+}
+
+.empty-state {
+    padding: 40px;
+    text-align: center;
+}
