@@ -1,0 +1,166 @@
+/* ============================================
+   ClassList Common Styles (公共样式)
+   所有 classList 组件共用的样式
+   ============================================ */
+
+/* 所有卡片/组件容器通用样式 */
+.score-summary,
+.quick-actions{
+  width: 100%;
+  margin-bottom: 20px;
+  height: 730px;
+}
+
+.class-stats-overview,
+.teacher-role-indicator{
+    width: 100%;
+    margin-bottom: 20px;
+}
+.score-trend-chart,
+.attendance-summary ,
+.attendance-trend-chart{
+    height: 590px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* 卡片头部通用样式（summary-header 和 chart-header）*/
+.score-header,
+.summary-header,
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+/* 图表容器通用样式 */
+.chart-container {
+  width: 100%;
+  height: 400px;
+  background: white;
+  border-radius: 4px;
+}
+
+/* ============================================
+   ClassList Main Container
+   ============================================ */
+
+.class-list-container {
+    padding: 20px;
+    background-color: #fafbfc;
+    min-height: 100vh;
+    background: linear-gradient(135deg, rgb(180, 140, 229), rgb(219, 172, 255));
+}
+
+:deep(.el-table) {
+    background-color: white;
+}
+
+:deep(.el-table__header th) {
+    background-color: #f5f7fa;
+    font-weight: 600;
+}
+
+/* ============================================
+   AttendanceSummaryComponent (出勤概览)
+   特有样式 - 不与其他组件共用
+   ============================================ */
+
+/* 选项卡样式 */
+.summary-tabs {
+  margin-bottom: 16px;
+}
+
+/* 统计项图标 */
+.stat-item-icon {
+  font-size: 20px;
+  margin-right: 8px;
+}
+
+/* 未打卡学生列表 */
+.unpunch-list {
+  margin-top: 16px;
+}
+
+.unpunch-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #EBEEF5;
+}
+
+.unpunch-item:last-child {
+  border-bottom: none;
+}
+
+/* ============================================
+   ClassStatsOverviewComponent (班级统计)
+   特有样式 - 不与其他组件共用
+   ============================================ */
+
+/* 统计项网格容器 */
+.stats-grid {
+  width: 100%;
+}
+
+/* 统计卡片图标 */
+.stat-card-icon {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+/* ============================================
+   QuickActionsComponent (快速操作)
+   特有样式 - 不与其他组件共用
+   ============================================ */
+
+/* 快速操作容器 - flexbox 布局 */
+.quick-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* 操作按钮 */
+.action-btn {
+  flex-shrink: 0;
+}
+
+/* ============================================
+   ScoreSummaryComponent (成绩概览)
+   特有样式 - 不与其他组件共用
+   ============================================ */
+
+/* 统计指标行容器 */
+.score-stats {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+/* 单个统计项 */
+.score-item {
+  text-align: center;
+}
+
+/* 统计项标签 */
+.score-item-label {
+  font-size: 14px;
+  color: #909399;
+}
+
+/* 统计项数值 */
+.score-item-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #303133;
+}
+
+/* ============================================
+   TeacherRoleIndicatorComponent (教师身份)
+   特有样式 - 不与其他组件共用
+   ============================================ */
+
+/* 教师身份标签 */
+.role-tag {
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
