@@ -1,0 +1,61 @@
+/* ClassSelectionHeaderCss.css */
+
+.class-header-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.05);
+  padding: 16px 24px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center; /* 居中布局 */
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.class-header-card:hover {
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.08);
+}
+
+/* 容器样式 */
+.class-info-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  position: relative;
+}
+
+/* 班级名称样式 - 使用更高级的字体 */
+.current-class-name {
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #303133;
+  letter-spacing: 1px;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* 切换器触发样式 */
+.class-select-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  border-radius: 50%;
+  color: #909399;
+  transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.class-select-trigger:hover {
+  background-color: #f0f2f5;
+  color: #409eff;
+  transform: scale(1.1);
+}
+
+/* 下拉图标微调 */
+.class-select-trigger .el-icon {
+  font-size: 14px;
+}
