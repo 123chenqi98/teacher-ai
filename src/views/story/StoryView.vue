@@ -6,7 +6,6 @@ import OriginalIntentionComponent from "@/components/story/OriginalIntentionComp
 import AboutComponent from "@/components/story/AboutComponent.vue";
 import IntroductionComponent from "@/components/story/IntroductionComponent.vue";
 import CourseComponent from "@/components/story/CourseComponent.vue";
-import ContactComponent from "@/components/story/ContactComponent.vue"
 
 </script>
 
@@ -19,6 +18,5 @@ import ContactComponent from "@/components/story/ContactComponent.vue"
         <AboutComponent />
         <IntroductionComponent />
         <CourseComponent />
-        <ContactComponent />
     </div>
 </template>

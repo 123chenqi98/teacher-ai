@@ -1,4 +1,4 @@
-// 发展历程数据接口定义
+// 数据接口定义
 export interface TimelineEvent {
   id: string;
   date: string;
@@ -6,14 +6,14 @@ export interface TimelineEvent {
   description: string;
 }
 
-// 发展历程数据类型定义
+// 数据类型定义
 interface CourseDataType {
   title: string;
   subtitle: string;
   events: TimelineEvent[];
 }
 
-// 发展历程数据
+// 数据导出
 export const CourseData: CourseDataType = {
   title: "发展历程",
   subtitle: "从构想到产品落地，我们一直在前进",

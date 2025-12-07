@@ -1,4 +1,4 @@
-// 团队成员数据定义
+// 数据接口定义
 export interface TeamMember {
   id: string;
   name: string;
@@ -6,14 +6,14 @@ export interface TeamMember {
   avatar: string;
 }
 
-// 团队介绍数据
+// 数据类型定义
 export interface TeamIntroduction {
   title: string;
   subtitle: string;
   members: TeamMember[];
 }
 
-// 团队数据导出
+// 数据导出
 export const teamData: TeamIntroduction = {
   title: "我们的团队",
   subtitle: "由教育、技术和人工智能领域的专业人士组成，共同致力于改变教育的未来",
