@@ -1,13 +1,7 @@
 // 额外封装：弹窗开关、编辑模式、统一表单引用
 import {computed} from "vue";
-import {
-    currentLesson,
-} from "@/forms/user/teacherInfo/lessonPlanManagerForms/DataStatisticsForms.ts";
-import {
-    detailModalOpen,
-    editLessonModalOpen,
-    newLessonModalOpen
-} from "@/entity/user/LessonPlanManager/DialogEntity.ts";
+import {currentLesson,} from "@/forms/user/teacherInfo/lessonPlanManagerForms/DataStatisticsForms.ts";
+import {detailModalOpen, editLessonModalOpen, newLessonModalOpen} from "@/entity/user/LessonPlanManager/DialogEntity.ts";
 import type {LessonPlan} from "@/data/user/lessonPlanManagerData/interface/StatisticsInterface.ts";
 
 const lessonModalOpen = computed({

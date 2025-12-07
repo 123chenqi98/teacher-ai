@@ -154,7 +154,12 @@
     padding-right: 30px;
     height: 32px;
 }
-
+/*编辑通知*/
+.noti-edit-btn {
+    display: flex;
+    padding-right: 13px;
+    height: 32px;
+}
 /* 通知列表容器 */
 .noti-notifications-list {
     border-radius: 12px;

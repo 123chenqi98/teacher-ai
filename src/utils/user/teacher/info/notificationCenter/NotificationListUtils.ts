@@ -5,7 +5,7 @@ import type {  NotificationType } from "@/utils/user/teacher/info/notificationCe
 import { currentTab, selectAll } from "@/utils/user/teacher/info/notificationCenter/NotificationEditUtils.ts";
 //  数据导入
 import { rawNotifications } from "@/data/user/notificationCenterData/NotificationListData";
-import type {NotificationItem} from "@/data/user/notificationCenterData/NotifficationInterface.ts";
+import type {NotificationItem} from "@/data/user/notificationCenterData/NotificationInterface.ts";
 
 // 校验原始数据类型
 if (!rawNotifications.value) {

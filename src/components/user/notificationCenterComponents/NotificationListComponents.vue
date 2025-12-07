@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {currentTab, selectAll, clearAllNotifications, deleteSelectedNotifications, markSelectedAsRead, exportNotifications } from "@/utils/user/teacher/info/notificationCenter/NotificationEditUtils.ts";
+import {currentTab, selectAll, clearAllNotifications, deleteSelectedNotifications, markSelectedAsRead, exportNotifications, markDetailAsRead, showNewNotificationModal, newNotificationForm, openNewNotificationModal, submitNewNotification } from "@/utils/user/teacher/info/notificationCenter/NotificationEditUtils.ts";
 import {filteredNotifications, getIconClass, getIconColor, handleSingleSelect, handleTabChange,toggleSelectAll} from "@/utils/user/teacher/info/notificationCenter/NotificationListUtils.ts";
 import {detailItem, detailVisible, openDetail} from "@/entity/auth/teacherInfo/NotificationCenter.ts";
 import "@/assets/user/notificationCenterCss/NotificationListCss.css"
@@ -17,6 +17,9 @@ import "@/assets/user/notificationCenterCss/NotificationListCss.css"
       <el-button type="primary" class="noti-export-btn" :style="{ backgroundColor: '#5a2ca0', borderColor: '#5a2ca0' }" @click="exportNotifications" >
         <template #icon><i class="fafa-download"></i></template>
         导出通知记录
+      </el-button>
+      <el-button type="primary" class="noti-edit-btn" :style="{ backgroundColor: '#2691ee', borderColor: '#239cf1' }" @click="openNewNotificationModal">
+        编辑通知
       </el-button>
     </div>
   </div>
@@ -110,16 +113,41 @@ import "@/assets/user/notificationCenterCss/NotificationListCss.css"
       <el-button link @click="detailVisible = false">关闭</el-button>
       <el-button
           type="primary"
-          @click="() => {
-            if (detailItem) {
-              detailItem.read = true;
-            }
-            detailVisible= false;
-          }"
+          @click="markDetailAsRead"
           :style="{ backgroundColor: '#5a2ca0', borderColor: '#5a2ca0' }"
       >
         标记为已读
       </el-button>
+    </template>
+  </el-dialog>
+
+  <el-dialog v-model="showNewNotificationModal" title="新通知" width="600px">
+    <div style="display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; align-items: center; gap: 12px">
+        <span style="min-width: 64px; color: #666">标题</span>
+        <el-input v-model="newNotificationForm.title" placeholder="请输入标题" />
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px">
+        <span style="min-width: 64px; color: #666">类型</span>
+        <el-select v-model="newNotificationForm.type" placeholder="选择类型" style="flex: 1">
+          <el-option label="系统通知" value="system" />
+          <el-option label="重要提醒" value="important" />
+          <el-option label="成功通知" value="success" />
+          <el-option label="错误提醒" value="error" />
+        </el-select>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px">
+        <span style="min-width: 64px; color: #666">发送者</span>
+        <el-input v-model="newNotificationForm.sender" placeholder="请输入发送者" />
+      </div>
+      <div>
+        <span style="display:block; margin-bottom:8px; color:#666">内容</span>
+        <el-input v-model="newNotificationForm.content" type="textarea" :rows="6" placeholder="请输入通知内容" />
+      </div>
+    </div>
+    <template #footer>
+      <el-button @click="showNewNotificationModal=false">取消</el-button>
+      <el-button type="primary" @click="submitNewNotification">提交</el-button>
     </template>
   </el-dialog>
 </template>

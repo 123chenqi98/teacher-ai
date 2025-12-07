@@ -1,8 +1,9 @@
 import {type Ref, ref} from "vue";
 import { ElMessage, ElMessageBox } from "element-plus";
 import {filteredNotifications} from "@/utils/user/teacher/info/notificationCenter/NotificationListUtils.ts";
-import type {NotificationSettings} from "@/data/user/notificationCenterData/NotifficationInterface.ts";
+import type {NotificationSettings} from "@/data/user/notificationCenterData/NotificationInterface.ts";
 import {rawNotifications} from "@/data/user/notificationCenterData/NotificationListData.ts";
+import { detailItem, detailVisible } from "@/entity/auth/teacherInfo/NotificationCenter.ts";
 // 严格定义通知类型
 export type NotificationType = 'system' | 'important' | 'success' | 'error';
 
@@ -22,6 +23,42 @@ const settings: Ref<NotificationSettings> = ref({
     emailNotification: true,
     smsNotification: false
 });
+
+const showNewNotificationModal = ref(false)
+const newNotificationForm = ref<{ title: string; sender: string; content: string; type: NotificationType }>({
+    title: '',
+    sender: '',
+    content: '',
+    type: 'system'
+})
+
+function openNewNotificationModal(): void {
+    showNewNotificationModal.value = true
+}
+
+function submitNewNotification(): void {
+    const { title, sender, content, type } = newNotificationForm.value
+    if (!title.trim() || !sender.trim() || !content.trim()) {
+        ElMessage.warning('请填写完整的通知信息')
+        return
+    }
+    const maxId = rawNotifications.value.length
+        ? Math.max(...rawNotifications.value.map(i => Number(i.id)))
+        : 0
+    rawNotifications.value.unshift({
+        id: maxId + 1,
+        title,
+        sender,
+        time: new Date().toLocaleString(),
+        content,
+        type,
+        read: false,
+        selected: false
+    })
+    showNewNotificationModal.value = false
+    newNotificationForm.value = { title: '', sender: '', content: '', type: 'system' }
+    ElMessage.success('通知已创建')
+}
 
 function markSelectedAsRead(): void {
     const selectedItems = filteredNotifications.value.filter(item => item.selected);
@@ -119,12 +156,26 @@ function exportNotifications(): void {
     ElMessage.success(`已导出 ${data.length} 条通知记录`);
 }
 
+// 详情对话框提交：标记当前通知为已读并关闭
+function markDetailAsRead(): void {
+    if (detailItem.value) {
+        detailItem.value.read = true;
+        ElMessage.success('已标记为已读');
+    }
+    detailVisible.value = false;
+}
+
 export {
     currentTab,
     selectAll,
     settings,
+    showNewNotificationModal,
+    newNotificationForm,
+    openNewNotificationModal,
+    submitNewNotification,
     markSelectedAsRead,
     deleteSelectedNotifications,
     clearAllNotifications,
-    exportNotifications
+    exportNotifications,
+    markDetailAsRead
 }

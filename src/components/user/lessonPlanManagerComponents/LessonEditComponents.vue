@@ -1,30 +1,11 @@
 <script setup lang="ts">
-import {
-  lessonFormRef,
-  currentLesson,
-  formRules,
-} from "@/forms/user/teacherInfo/lessonPlanManagerForms/DataStatisticsForms.ts";
-import {
-  downloadLesson,
-  shareLesson
-} from "@/utils/user/teacher/info/lessonPlanManager/StatisticsDataUtils.ts";
+import {lessonFormRef, currentLesson, formRules,} from "@/forms/user/teacherInfo/lessonPlanManagerForms/DataStatisticsForms.ts";
+import {downloadLesson, shareLesson} from "@/utils/user/teacher/info/lessonPlanManager/StatisticsDataUtils.ts";
 import {Download, Edit, Share, Star, StarFilled, Document} from "@element-plus/icons-vue";
-import {
-  getDifficultyTagProps,
-  getGradeName,
-  getStatusTagProps,
-  getSubjectName
-} from "@/utils/user/teacher/info/lessonPlanManager/AuxiliaryFunctionUtils.ts";
-import type {
-  Difficulty,
-  LessonPlan,
-  Status
-} from "@/data/user/lessonPlanManagerData/interface/StatisticsInterface.ts";
+import {getDifficultyTagProps, getGradeName, getStatusTagProps, getSubjectName} from "@/utils/user/teacher/info/lessonPlanManager/AuxiliaryFunctionUtils.ts";
+import type {Difficulty, LessonPlan, Status} from "@/data/user/lessonPlanManagerData/interface/StatisticsInterface.ts";
 import "@/assets/user/lessonPlanManagerCss/LessonEditCss.css"
-import {
-  lessonModalOpen,
-  openEditLessonModal
-} from "@/utils/user/teacher/info/lessonPlanManager/DialogUtils.ts";
+import {lessonModalOpen, openEditLessonModal} from "@/utils/user/teacher/info/lessonPlanManager/DialogUtils.ts";
 import {detailModalOpen, isEditMode} from "@/entity/user/LessonPlanManager/DialogEntity.ts";
 import {saveLesson, toggleCollection} from "@/utils/user/teacher/info/lessonPlanManager/TeacherPlanUtils.ts";
 </script>

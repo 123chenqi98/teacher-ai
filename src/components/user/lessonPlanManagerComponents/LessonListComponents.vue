@@ -1,32 +1,12 @@
 <script setup lang="ts">
-import {Calendar, Delete, Download, Edit,
-  Filter, Histogram, Notebook, Refresh,
-  Share, Star, StarFilled, View, Document
-} from "@element-plus/icons-vue";
+import {Calendar, Delete, Download, Edit, Filter, Histogram, Notebook, Refresh, Share, Star, StarFilled, View, Document} from "@element-plus/icons-vue";
 import "@/assets/user/lessonPlanManagerCss/LessonListCss.css"
-import {
-  getDifficultyTagProps,
-  getGradeName,
-  getStatusTagProps,
-  getSubjectName
-} from "@/utils/user/teacher/info/lessonPlanManager/AuxiliaryFunctionUtils.ts";
-import {
-  filteredList,
-  handleAction,
-  resetFilters,
-  stats,
-  toggleSort
-} from "@/utils/user/teacher/info/lessonPlanManager/StatisticsDataUtils.ts";
-import {currentPage, pageSize, searchQuery, selectedDifficulty,
-  selectedGrade, selectedStatus, selectedSubject,
-  showMyCollection, sortBy, sortOrder
-} from "@/entity/auth/teacherInfo/LessonPlanManager.ts";
+import {getDifficultyTagProps, getGradeName, getStatusTagProps, getSubjectName} from "@/utils/user/teacher/info/lessonPlanManager/AuxiliaryFunctionUtils.ts";
+import {filteredList, handleAction, resetFilters, stats, toggleSort} from "@/utils/user/teacher/info/lessonPlanManager/StatisticsDataUtils.ts";
+import {currentPage, pageSize, searchQuery, selectedDifficulty, selectedGrade, selectedStatus, selectedSubject, showMyCollection, sortBy, sortOrder} from "@/entity/auth/teacherInfo/LessonPlanManager.ts";
 import LessonEditComponents from "./LessonEditComponents.vue";
 import {paginatedListUtils} from "@/utils/user/teacher/info/lessonPlanManager/PaginatedListUtils.ts";
-import {
-  openDetailModal,
-  openNewLessonModal
-} from "@/utils/user/teacher/info/lessonPlanManager/DialogUtils.ts";
+import {openDetailModal, openNewLessonModal} from "@/utils/user/teacher/info/lessonPlanManager/DialogUtils.ts";
 import {deleteLesson, toggleCollection} from "@/utils/user/teacher/info/lessonPlanManager/TeacherPlanUtils.ts";
 </script>
 

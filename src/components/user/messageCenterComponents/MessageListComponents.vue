@@ -12,10 +12,7 @@ import {
 } from "@/utils/user/teacher/info/messageCenter/MessageContentUtils.ts"
 import "@/assets/user/messageCenterCss/MessageListCss.css"
 import "@/assets/user/messageCenterCss/MessageChatCss.css"
-import {
-  getTagText,
-  getTagType
-} from "@/utils/user/teacher/info/messageCenter/MessageListUtils.ts";
+import {getTagText, getTagType} from "@/utils/user/teacher/info/messageCenter/MessageListUtils.ts";
 import { recipientList } from "@/data/user/messageCenterData/MessageListData";
 import {
   activeMessageTab, chatMessages, currentPage,

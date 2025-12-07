@@ -1,6 +1,6 @@
 // 模拟原始通知数据（实际项目中可替换为接口请求）
 import {ref} from "vue";
-import type {NotificationItem} from "@/data/user/notificationCenterData/NotifficationInterface.ts";
+import type {NotificationItem} from "@/data/user/notificationCenterData/NotificationInterface.ts";
 
 const rawNotifications = ref<NotificationItem[]>([
     {
