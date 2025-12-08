@@ -28,7 +28,7 @@ const teacherNavigation = [
   },
     {
     name: '我的',
-    path: '/teacher/me',
+    path: '/user/dashboard',
     icon: Avatar
   },
 ]

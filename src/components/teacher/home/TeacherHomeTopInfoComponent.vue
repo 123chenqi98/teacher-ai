@@ -28,7 +28,7 @@ const handleCommand = (command: string) => {
   <div class="teacher-home-top-Box">
 <!--    logo-->
     <div class="teacher-side-logo-box">
-      <el-image src="src/static/logo.png" class="logo-img"></el-image>
+      <img src="/src/static/logo.png" class="logo-img" alt="">
       <el-text class="logo-title">小知教师端</el-text>
     </div>
 <!--    标题-->

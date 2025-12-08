@@ -1,6 +1,16 @@
 <script setup lang="ts">
 import "@/assets/user/LeftNavigationCss.css"
-import { Avatar, User, UserFilled, DataAnalysis, Aim, Notebook, Bell, Message } from '@element-plus/icons-vue';
+import {
+  Avatar,
+  User,
+  UserFilled,
+  DataAnalysis,
+  Aim,
+  Notebook,
+  Bell,
+  Message,
+  HomeFilled
+} from '@element-plus/icons-vue';
 import router from "@/router";
 </script>
 
@@ -15,6 +25,10 @@ import router from "@/router";
 
     <!-- 核心功能菜单：路由联动 + 当前项高亮 + 仅展开一个子菜单 -->
     <el-menu router :default-active="$route.path" class="nav-menu" :unique-opened="true">
+      <el-menu-item index="/teacher">
+        <el-icon><HomeFilled /></el-icon>
+        <span>返回首页</span>
+      </el-menu-item>
       <el-menu-item index="/user/dashboard">
         <el-icon><User /></el-icon>
         <span>个人概览</span>
