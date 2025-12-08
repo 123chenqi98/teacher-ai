@@ -6,10 +6,6 @@ import { userCenterRoute } from "@/router/user/UserCenterRoute.ts";
 import { learningMachineRouters} from "@/router/learningMachine/LearningMachineRouter.ts";
 import {contactUsRouter} from "@/router/contactUs/ContactUsRouter.ts";
 import {settingsRouter} from "@/router/Settings/SettingsRouter.ts";
-import {gradeRouters} from "@/router/admin/GradeRouters.ts";
-import {semesterRouters} from "@/router/admin/SemesterRouters.ts";
-import {syllabasRouters} from "@/router/admin/SyllabasRouters";
-import {subjectRouters} from "@/router/admin/SubjectRouters.ts";
 import {AiDialogRouters} from "@/router/AiDialog/AiDialogRouters.ts";
 import {StoryRoutes} from "@/router/story/StoryRoutes.ts";
 const routes = [
@@ -20,10 +16,6 @@ const routes = [
     ...learningMachineRouters,
     ...contactUsRouter,
     ...settingsRouter,
-    ...gradeRouters,
-    ...semesterRouters,
-    ...syllabasRouters,
-    ...subjectRouters,
     ...AiDialogRouters,
     ...StoryRoutes
 ];

@@ -18,7 +18,7 @@ const teacherNavigation = [
   },
   {
     name: '小知',
-    path: '/teacher/ai',
+    path: '/ai-dialog',
     icon: Platform
   },
   {

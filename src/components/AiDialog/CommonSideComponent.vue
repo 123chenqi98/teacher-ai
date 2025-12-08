@@ -3,7 +3,16 @@
 import { ref } from 'vue';
 import { useRouter} from 'vue-router';
 import "../../assets/AiDialog/SideCss.css"
-import {ChatDotRound, ChatDotSquare, Document, Monitor, MoreFilled, Picture, Star} from "@element-plus/icons-vue";
+import {
+  ChatDotRound,
+  ChatDotSquare,
+  Document,
+  HomeFilled,
+  Monitor,
+  MoreFilled,
+  Picture,
+  Star
+} from "@element-plus/icons-vue";
 
 // 路由实例
 const router = useRouter();
@@ -57,6 +66,17 @@ const handleHistoryClick = (index: number) => {
     <div class="side-section">
       <!-- 通用功能 -->
       <div class="side-section-title">通用功能</div>
+      <!-- 返回首页 -->
+      <div class="side-menu-item" :class="{ active: activeMenuItem === 'document' }" @click="()=>{
+        router.push('/teacher')
+      }">
+        <div class="side-menu-item-content">
+          <div class="side-menu-icon">
+            <el-icon><HomeFilled /></el-icon>
+          </div>
+          <div class="side-menu-text">返回首页</div>
+        </div>
+      </div>
       
       <!-- AI对话 -->
       <div class="side-menu-item" :class="{ active: activeMenuItem === 'ai-dialog' }" @click="handleAIDialogClick">
@@ -77,6 +97,7 @@ const handleHistoryClick = (index: number) => {
           <div class="side-menu-text">AI文档生成</div>
         </div>
       </div>
+
 
       <!-- AI生成图片 -->
       <div class="side-menu-item" :class="{ active: activeMenuItem === 'picture' }" @click="handleImageGenerationClick">

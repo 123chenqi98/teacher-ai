@@ -9,7 +9,6 @@ const isLogin = ref(true)
 const handleCommand = (command: string) => {
   switch(command) {
     case 'userCenter':
-      console.log('跳转到个人中心')
       router.push("/user/dashboard")
       break
     case 'settings':

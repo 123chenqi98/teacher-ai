@@ -17,7 +17,7 @@ import router from "@/router";
     <el-button text size="large" class="nav-button" @click="router.push('/contactUs')">
         <el-text class="navigation-font">联系我们</el-text>
     </el-button>
-    <el-button class="nav-button button-hove" text size="large">
+    <el-button text size="large" class="nav-button" @click="router.push('/story')">
         <el-text class="navigation-font">我们的故事</el-text>
     </el-button>
   </div>
