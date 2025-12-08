@@ -8,11 +8,12 @@ const isLogin = ref(true)
 // 处理下拉菜单命令
 const handleCommand = (command: string) => {
   switch(command) {
-    case 'profile':
+    case 'userCenter':
       console.log('跳转到个人中心')
+      router.push("/user/dashboard")
       break
     case 'settings':
-      console.log('跳转到设置页面')
+      router.push("/settings")
       break
     case 'logout':
       console.log('执行退出登录')
@@ -52,7 +53,7 @@ const handleCommand = (command: string) => {
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item command="profile">个人中心</el-dropdown-item>
+            <el-dropdown-item command="userCenter">个人中心</el-dropdown-item>
             <el-dropdown-item command="settings">设置</el-dropdown-item>
             <el-dropdown-item command="logout">退出登录</el-dropdown-item>
           </el-dropdown-menu>
