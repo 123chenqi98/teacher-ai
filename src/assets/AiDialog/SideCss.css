@@ -1,0 +1,465 @@
+
+.side-component {
+    /* 侧边栏宽度 */
+    width: 280px;
+    /* 高度占满整个视口 */
+    height: 100vh;
+    /* 背景颜色 */
+    background-color: #ffffff;
+    /* 内边距 */
+    padding: 20px;
+    /* 盒模型设置 */
+    box-sizing: border-box;
+    /* 使用Flex布局 */
+    display: flex;
+    /* 垂直排列子元素 */
+    flex-direction: column;
+    /* 右侧边框 */
+    border-right: 1px solid #e8e8e8;
+    /* 字体设置 */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* 头部样式 */
+.side-header {
+    /* Flex布局，水平排列 */
+    display: flex;
+    /* 垂直居中对齐 */
+    align-items: center;
+    /* 两端对齐，Logo在左，图标在右 */
+    justify-content: space-between;
+    /* 底部内边距 */
+    padding-bottom: 20px;
+    /* 底部边框 */
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.side-logo {
+    /* Flex布局，水平排列 */
+    display: flex;
+    /* 垂直居中对齐 */
+    align-items: center;
+    /* 子元素间距 */
+    gap: 30px;
+}
+
+.side-logo img {
+    /* Logo宽度 */
+    width: 50px;
+    /* Logo高度 */
+    height: 50px;
+    /* 圆角 */
+    border-radius: 8px;
+}
+
+.side-title {
+    /* 字体大小 */
+    font-size: 18px;
+    /* 字体粗细 */
+    font-weight: 600;
+    /* 字体颜色 */
+    color: #333333;
+}
+
+.side-header-icon {
+    /* 图标按钮宽度 */
+    width: 32px;
+    /* 图标按钮高度 */
+    height: 32px;
+    /* 圆形边框 */
+    border-radius: 50%;
+    /* 背景颜色 */
+    background-color: #f0f0f0;
+    /* Flex布局，居中图标 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 鼠标指针 */
+    cursor: pointer;
+}
+
+/* 功能区域样式 */
+.side-section {
+    /* 顶部外边距 */
+    margin-top: 24px;
+    /* 占据剩余空间 */
+    flex: 1;
+    /* 垂直滚动 */
+    overflow-y: auto;
+}
+
+.side-section-title {
+    /* 字体大小 */
+    font-size: 12px;
+    /* 字体粗细 */
+    font-weight: 500;
+    /* 字体颜色 */
+    color: #999999;
+    /* 文本大写 */
+    text-transform: uppercase;
+    /* 底部外边距 */
+    margin-bottom: 12px;
+    /* 左侧内边距 */
+    padding-left: 4px;
+}
+
+/* 菜单项样式 */
+.side-menu-item {
+    /* Flex布局，水平排列 */
+    display: flex;
+    /* 垂直居中对齐 */
+    align-items: center;
+    /* 两端对齐 */
+    justify-content: space-between;
+    /* 内边距 */
+    padding: 10px 12px;
+    /* 圆角 */
+    border-radius: 8px;
+    /* 鼠标指针 */
+    cursor: pointer;
+    /* 底部外边距 */
+    margin-bottom: 4px;
+    /* 过渡效果 */
+    transition: all 0.2s ease;
+    /* 字体颜色 */
+    color: #555555;
+}
+
+.side-menu-item:hover {
+    /* 悬停背景色 */
+    background-color: #f5f5f5;
+}
+
+.side-menu-item-content {
+    /* Flex布局，水平排列 */
+    display: flex;
+    /* 垂直居中对齐 */
+    align-items: center;
+    /* 子元素间距 */
+    gap: 12px;
+}
+
+.side-menu-icon {
+    /* 图标宽度 */
+    width: 20px;
+    /* 图标高度 */
+    height: 20px;
+    /* Flex布局，居中图标 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 图标字体大小 */
+    font-size: 16px;
+}
+
+.side-menu-text {
+    /* 字体大小 */
+    font-size: 14px;
+    /* 字体粗细 */
+    font-weight: 400;
+}
+
+.side-menu-arrow {
+    /* 箭头字体大小 */
+    font-size: 12px;
+    /* 箭头颜色 */
+    color: #999999;
+}
+
+.side-menu-status {
+    /* 状态指示灯宽度 */
+    width: 8px;
+    /* 状态指示灯高度 */
+    height: 8px;
+    /* 圆形指示灯 */
+    border-radius: 50%;
+    /* 在线状态颜色 */
+    background-color: #52c41a;
+}
+
+/* 历史对话样式 */
+.side-history-item {
+    /* Flex布局，水平排列 */
+    display: flex;
+    /* 垂直居中对齐 */
+    align-items: center;
+    /* 两端对齐 */
+    justify-content: space-between;
+    /* 内边距 */
+    padding: 10px 12px;
+    /* 圆角 */
+    border-radius: 8px;
+    /* 鼠标指针 */
+    cursor: pointer;
+    /* 底部外边距 */
+    margin-bottom: 4px;
+    /* 过渡效果 */
+    transition: all 0.2s ease;
+    /* 字体颜色 */
+    color: #555555;
+    /* 边框 */
+    border: 1px solid transparent;
+}
+
+.side-history-item:hover {
+    /* 悬停背景色 */
+    background-color: #f5f5f5;
+    /* 悬停边框颜色 */
+    border-color: #e8e8e8;
+}
+
+.side-history-content {
+    /* Flex布局，水平排列 */
+    display: flex;
+    /* 垂直居中对齐 */
+    align-items: center;
+    /* 子元素间距 */
+    gap: 12px;
+    /* 占据剩余空间 */
+    flex: 1;
+    /* 超出隐藏 */
+    overflow: hidden;
+}
+
+.side-history-icon {
+    /* 图标宽度 */
+    width: 20px;
+    /* 图标高度 */
+    height: 20px;
+    /* Flex布局，居中图标 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 图标字体大小 */
+    font-size: 14px;
+    /* 图标颜色 */
+    color: #999999;
+}
+
+.side-history-text {
+    /* 字体大小 */
+    font-size: 14px;
+    /* 字体粗细 */
+    font-weight: 400;
+    /* 不换行 */
+    white-space: nowrap;
+    /* 超出隐藏 */
+    overflow: hidden;
+    /* 省略号显示 */
+    text-overflow: ellipsis;
+}
+
+/* 会员升级区域样式 */
+.side-vip-section {
+    /* 渐变背景色 */
+    background: linear-gradient(135deg, #fff7e6 0%, #bccbfb 100%);
+    /* 圆角 */
+    border-radius: 12px;
+    /* 内边距 */
+    padding: 16px;
+    /* 上下外边距 */
+    margin: 24px 0;
+    /* 边框 */
+    border: 1px solid #ffd591;
+}
+
+.side-vip-header {
+    /* Flex布局，水平排列 */
+    display: flex;
+    /* 垂直居中对齐 */
+    align-items: center;
+    /* 子元素间距 */
+    gap: 8px;
+    /* 底部外边距 */
+    margin-bottom: 8px;
+}
+
+.side-vip-icon {
+    /* 图标宽度 */
+    width: 20px;
+    /* 图标高度 */
+    height: 20px;
+    /* 图标背景色 */
+    background-color: #6283e6;
+    /* 圆形图标 */
+    border-radius: 50%;
+    /* Flex布局，居中内容 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 图标颜色 */
+    color: #ffffff;
+    /* 图标字体大小 */
+    font-size: 12px;
+    /* 图标字体粗细 */
+    font-weight: bold;
+}
+
+.side-vip-title {
+    /* 字体大小 */
+    font-size: 14px;
+    /* 字体粗细 */
+    font-weight: 600;
+    /* 字体颜色 */
+    color: #000000;
+}
+
+.side-vip-desc {
+    /* 字体大小 */
+    font-size: 12px;
+    /* 字体颜色 */
+    color: #000000;
+    /* 底部外边距 */
+    margin-bottom: 12px;
+    /* 行高 */
+    line-height: 1.4;
+}
+
+.side-vip-button {
+    /* 按钮宽度 */
+    width: 100%;
+    /* 按钮内边距 */
+    padding: 8px 16px;
+    /* 按钮背景色 */
+    background-color: #ffffff;
+    /* 按钮字体颜色 */
+    color: #5950a9;
+    /* 无边框 */
+    border: none;
+    /* 按钮圆角 */
+    border-radius: 6px;
+    /* 按钮字体大小 */
+    font-size: 14px;
+    /* 按钮字体粗细 */
+    font-weight: 500;
+    /* 鼠标指针 */
+    cursor: pointer;
+    /* 过渡效果 */
+    transition: background-color 0.2s ease;
+}
+
+.side-vip-button:hover {
+    /* 悬停背景色 */
+    background-color: #8fb3f2;
+}
+
+/* 用户信息区域样式 */
+.side-user-section {
+    /* Flex布局，水平排列 */
+    display: flex;
+    /* 垂直居中对齐 */
+    align-items: center;
+    /* 两端对齐 */
+    justify-content: space-between;
+    /* 内边距 */
+    padding: 12px;
+    /* 顶部边框 */
+    border-top: 1px solid #f0f0f0;
+    /* 自动 margin 底部，将区域推到下方 */
+    margin-top: auto;
+}
+
+.side-user-info {
+    /* Flex布局，水平排列 */
+    display: flex;
+    /* 垂直居中对齐 */
+    align-items: center;
+    /* 子元素间距 */
+    gap: 12px;
+    /* 鼠标指针 */
+    cursor: pointer;
+}
+
+.side-user-avatar {
+    /* 头像宽度 */
+    width: 36px;
+    /* 头像高度 */
+    height: 36px;
+    /* 圆形头像 */
+    border-radius: 50%;
+    /* 超出隐藏 */
+    overflow: hidden;
+    /* 边框 */
+    border: 2px solid #f0f0f0;
+}
+
+.side-user-avatar img {
+    /* 图片宽度 */
+    width: 100%;
+    /* 图片高度 */
+    height: 100%;
+    /* 图片填充方式 */
+    object-fit: cover;
+}
+
+.side-user-details {
+    /* Flex布局，垂直排列 */
+    display: flex;
+    /* 主轴方向垂直 */
+    flex-direction: column;
+    /* 子元素间距 */
+    gap: 2px;
+}
+
+.side-user-name {
+    /* 字体大小 */
+    font-size: 14px;
+    /* 字体粗细 */
+    font-weight: 500;
+    /* 字体颜色 */
+    color: #333333;
+}
+
+.side-user-email {
+    /* 字体大小 */
+    font-size: 12px;
+    /* 字体颜色 */
+    color: #999999;
+}
+
+.side-user-more {
+    /* 更多按钮宽度 */
+    width: 32px;
+    /* 更多按钮高度 */
+    height: 32px;
+    /* 圆形按钮 */
+    border-radius: 50%;
+    /* 按钮背景色 */
+    background-color: #ffffff;
+    /* Flex布局，居中内容 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 鼠标指针 */
+    cursor: pointer;
+    /* 图标颜色 */
+    color: #666666;
+}
+
+.side-user-more:hover {
+    /* 悬停背景色 */
+    background-color: #b8d2ff;
+}
+
+/* 滚动条样式 */
+.side-section::-webkit-scrollbar {
+    /* 滚动条宽度 */
+    width: 4px;
+}
+
+.side-section::-webkit-scrollbar-track {
+    /* 滚动条轨道背景色 */
+    background: #f1f1f1;
+}
+
+.side-section::-webkit-scrollbar-thumb {
+    /* 滚动条滑块背景色 */
+    background: #c1c1c1;
+    /* 滑块圆角 */
+    border-radius: 2px;
+}
+
+.side-section::-webkit-scrollbar-thumb:hover {
+    /* 滑块悬停背景色 */
+    background: #a8a8a8;
+}

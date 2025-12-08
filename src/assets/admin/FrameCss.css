@@ -1,0 +1,62 @@
+/* 侧边栏样式 */
+
+/* 侧边栏容器样式 */
+.sidebar {
+  background-color: #6a11cb;
+  color: white;
+  height: 100%;
+}
+.sidebar-item{
+  height: 10px;
+}
+/* 垂直菜单容器样式 */
+.el-menu-vertical {
+  flex: 1;
+  background-color: transparent;
+  border-right: none;
+}
+/* 菜单项基础样式 */
+.el-menu-item {
+  color: rgba(255, 255, 255, 0.8);
+  height: 193px;
+  line-height: 20px;
+  padding: 10px 20px;
+}
+/* 菜单项悬停和激活状态样式 */
+.el-menu-item:hover,
+.el-menu-item.is-active {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+/* 页头样式 */
+/* 父容器：横向 Flex 布局 */
+.header-content {
+  display: flex;        /* 开启横向排列 */
+  align-items: center;  /* 垂直居中 */
+  gap: 20px;            /* 元素之间的间距 */
+  padding: 0 20px;      /* 左右内边距 */
+  height: 80px;         /* 导航栏高度 */
+}
+
+/* 标题样式：清除默认边距 */
+.header-title h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+/* 让搜索图标及右侧元素居右 */
+.search-icon {
+  margin-left: auto;    /* 填充左侧剩余空间，把元素推到右边 */
+    font-size: 25px;
+    color: #666;
+    cursor: pointer;
+}
+
+/* 图标通用样式 */
+.user-icon {
+    font-size: 20px;
+    color: #666;
+    cursor: pointer;
+}
+

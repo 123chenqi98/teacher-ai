@@ -1,0 +1,84 @@
+/* 联系我们页面样式 */
+/* 主容器样式 */
+.contact-container {
+  max-width: 1750px; /* 最大宽度限制 */
+  margin: 0 auto; /* 水平居中 */
+  padding: 60px 20px; /* 上下60px，左右20px内边距 */
+  text-align: center; /* 内容居中对齐 */
+  background-color: #ffffff; /* 浅灰色背景 */
+}
+
+/* 标题样式 */
+.contact-title {
+  font-size: 2.5rem; /* 标题字体大小 */
+  font-weight: bold; /* 粗体 */
+  color: #6200ea; /* 紫色主题色 */
+  margin-bottom: 20px; /* 底部外边距 */
+  letter-spacing: 1px; /* 字母间距 */
+}
+
+/* 描述文本样式 */
+.contact-description {
+  font-size: 1.1rem; /* 描述文字大小 */
+  color: #666; /* 灰色文字 */
+  margin-bottom: 40px; /* 底部外边距 */
+  line-height: 1.6; /* 行高 */
+  max-width: 800px; /* 最大宽度 */
+  margin-left: auto; /* 水平居中 */
+  margin-right: auto;
+}
+
+/* 联系信息容器 */
+.contact-info {
+  display: flex; /* 使用flex布局 */
+  flex-direction: column; /* 垂直排列 */
+  align-items: center; /* 居中对齐 */
+  gap: 20px; /* 子元素间距 */
+  margin-bottom: 50px; /* 底部外边距 */
+}
+
+/* 单个联系信息项 */
+.contact-item {
+  display: flex; /* flex布局 */
+  align-items: center; /* 垂直居中 */
+  gap: 15px; /* 图标与文字间距 */
+  font-size: 1.1rem; /* 文字大小 */
+  color: #333; /* 文字颜色 */
+}
+
+/* 联系文字悬停效果 */
+.contact-text:hover {
+  color: #6200ea; /* 悬停时变为紫色 */
+}
+
+/* 社交媒体图标容器 */
+.social-media {
+  display: flex; /* flex布局 */
+  justify-content: center; /* 水平居中 */
+  gap: 25px; /* 图标间距 */
+  margin-top: 30px; /* 顶部外边距 */
+}
+
+/* 社交媒体图标样式 */
+.social-icon {
+  width: 40px; /* 图标宽度 */
+  height: 40px; /* 图标高度 */
+  border-radius: 50%; /* 圆形背景 */
+  background-color: #f3e8ff; /* 浅紫色背景 */
+  display: flex; /* flex布局 */
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
+  color: #6200ea; /* 图标颜色 */
+  font-size: 1.2rem; /* 图标大小 */
+  transition: all 0.3s ease; /* 所有属性过渡效果 */
+  cursor: pointer; /* 鼠标指针变为手型 */
+}
+
+/* 社交媒体图标悬停效果 */
+.social-icon:hover {
+  background-color: #6200ea; /* 背景色变为深紫色 */
+  color: white; /* 图标变为白色 */
+  transform: translateY(-3px); /* 向上移动3px */
+  box-shadow: 0 5px 15px rgba(98, 0, 234, 0.3); /* 添加阴影效果 */
+}
+

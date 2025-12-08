@@ -1,0 +1,72 @@
+/* 年级列表页面表格样式 */
+.el-table {
+  font-size: 14px;
+}
+
+.el-table th {
+  font-weight: bold;
+  border-right: 1px solid #dcdfe6 !important;
+}
+
+.el-table td {
+  border-right: 1px solid #dcdfe6 !important;
+  border-bottom: 1px solid #dcdfe6 !important;
+}
+
+.el-table__body {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.el-table--border {
+  border: 1px solid #dcdfe6;
+  border-right: none;
+  border-bottom: none;
+}
+
+.el-table--border::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background-color: #dcdfe6;
+  z-index: 3;
+}
+.delete-button{
+  background-color: #f56c6c;
+  color: #fff;
+}
+.edit-button{
+  background-color: #409eff;
+  color: #fff;
+}
+
+/* 表格翻页标签 */
+.pagination-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  background-color: #f5f7fa;
+  border-radius: 4px;
+  margin-top: 20px;
+}
+.el-pagination {
+  text-align: center;
+}
+.edit-button {
+  margin-right: 8px;
+}
+
+/* 搜索输入框 */
+.search-input {
+  display:flex;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  width: 350px;
+}
+/* 搜索按钮 */
+.search-button {
+  margin-left: 20px;
+}
