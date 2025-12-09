@@ -1,0 +1,26 @@
+/* =======================================================
+   ClassListTableComponent 专用样式
+   ======================================================= */
+
+/* 班级列表表格卡片 */
+.class-list-table-card {
+  margin-bottom: 20px;
+}
+
+/* 表格头部 */
+.class-list-table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.class-list-table-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #303133;
+}
+
+.class-list-table-actions {
+  display: flex;
+  gap: 12px;
+}

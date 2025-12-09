@@ -1,0 +1,26 @@
+/* =======================================================
+   ScoreItemComponent 专用样式
+   ======================================================= */
+
+/* 成绩项 */
+.score-item {
+  text-align: center;
+  padding: 12px 0;
+}
+
+.score-item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.score-item-label {
+  font-size: 14px;
+  color: #606266;
+}
+
+.score-item-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #303133;
+}

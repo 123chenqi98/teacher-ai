@@ -1,0 +1,86 @@
+/* =======================================================
+   ScoreSummaryComponent 专用样式
+   ======================================================= */
+
+/* 卡片头部 */
+.score-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* 统计区域 */
+.score-stats {
+  margin-bottom: 20px;
+}
+
+/* 标题 */
+.score-summary-title {
+  font-size: 15px;
+  font-weight: bold;
+  color: #303133;
+  margin-bottom: 16px;
+}
+
+/* 作业统计头部 */
+.homework-stats-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.homework-stats-title {
+  font-size: 15px;
+  font-weight: bold;
+  color: #303133;
+}
+
+/* 完成率项 */
+.homework-completion-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background: #f5f7fa;
+  border-radius: 8px;
+}
+
+.homework-completion-label {
+  font-size: 14px;
+  color: #606266;
+}
+
+.homework-completion-value {
+  font-size: 28px;
+  font-weight: bold;
+  color: #67c23a;
+}
+
+/* 未提交TOP3 */
+.unsubmitted-top3-container {
+  margin-top: 20px;
+}
+
+.unsubmitted-top3-title {
+  font-size: 14px;
+  color: #606266;
+  margin-bottom: 12px;
+}
+
+.unsubmitted-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: #fef0f0;
+  border-radius: 6px;
+}
+
+.unsubmitted-subject {
+  font-size: 14px;
+  color: #303133;
+  font-weight: 500;
+}

@@ -1,0 +1,38 @@
+/* =======================================================
+   RoleSectionComponent 专用样式
+   ======================================================= */
+
+/* 角色区域 */
+.role-section {
+  margin-bottom: 16px;
+}
+
+.role-section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.role-section-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #606266;
+}
+
+/* 标签容器 */
+.role-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.role-tag {
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.role-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}

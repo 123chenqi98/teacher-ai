@@ -1,0 +1,22 @@
+.student-management-container {
+    padding: 20px;
+    background-color: #fafbfc;
+    min-height: 100vh;
+    background: linear-gradient(135deg, rgb(180, 140, 229), rgb(219, 172, 255));
+}
+
+.action-bar {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+:deep(.el-table) {
+    background-color: white;
+}
+
+:deep(.el-table__header th) {
+    background-color: #f5f7fa;
+    font-weight: 600;
+}

@@ -1,0 +1,29 @@
+/* 外层容器样式 */
+.section-header {
+    display: flex;                  /* 启用 Flexbox 弹性布局 */
+    justify-content: space-between; /* 左右两端对齐，中间有间隔 */
+    align-items: center;            /* 竖直方向居中对齐 */
+    margin-bottom: 16px;            /* 下方外边距，与下面内容留出空间 */
+}
+
+/* 标题样式 */
+.title {
+    margin: 0;                      /* 去掉 h2 默认的上下外边距 */
+    font-weight: 600;               /* 字体加粗，权重 600，使标题更突出 */
+}
+
+/* 查看全部按钮样式 */
+.view-all-btn {
+    font-size: 14px;                /* 字体大小 14px，小于标题，表示次要信息 */
+    color: #40389e;                 /* 紫色文字 */
+    padding: 0;                     /* 移除按钮内部的内边距，使按钮更紧凑 */
+    border: none;                   /* 移除边框 */
+    cursor: pointer;                /* 鼠标悬停时显示手形指针 */
+    transition: all 0.3s ease;      /* 0.3 秒过渡动画，所有属性平滑变化 */
+}
+
+/* 查看全部按钮悬停效果 */
+.view-all-btn:hover {
+    color: #6a5acd;                 /* 悬停时颜色变浅紫色 */
+    text-decoration: underline;     /* 悬停时显示下划线 */
+}

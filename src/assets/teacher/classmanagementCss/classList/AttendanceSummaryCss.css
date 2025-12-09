@@ -1,0 +1,99 @@
+/* =======================================================
+   AttendanceSummaryComponent 专用样式
+   ======================================================= */
+
+
+
+/* 卡片头部 */
+.summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.attendance-summary-header-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.attendance-summary-header-icon {
+  font-size: 18px;
+  color: #909399;
+  cursor: pointer;
+}
+
+.attendance-summary-header-icon:hover {
+  color: #409eff;
+}
+
+/* 选项卡 */
+.summary-tabs {
+  margin-top: 16px;
+}
+
+/* 今日未打卡学生区域 */
+.attendance-summary-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  margin-top: 16px;
+}
+
+.attendance-summary-header .icon {
+  font-size: 18px;
+  color: #e6a23c;
+}
+
+.attendance-summary-header .title {
+  font-size: 15px;
+  font-weight: bold;
+  color: #303133;
+}
+
+/* 未打卡学生列表 */
+.unpunch-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.unpunch-item {
+  padding: 12px;
+  background: #f5f7fa;
+  border-radius: 6px;
+  transition: all 0.3s;
+}
+
+.unpunch-item:hover {
+  background: #ecf5ff;
+}
+
+.unpunch-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.unpunch-item-info {
+  flex: 1;
+}
+
+.unpunch-student-name {
+  font-weight: bold;
+  color: #303133;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.unpunch-student-courses {
+  font-size: 13px;
+  color: #909399;
+}
+
+.unpunch-contact-btn {
+  flex-shrink: 0;
+}

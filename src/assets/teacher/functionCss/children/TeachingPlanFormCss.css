@@ -1,0 +1,105 @@
+/* 教学计划表单容器 */
+.tp-form-container {
+    width: 100%;
+    padding: 20px;
+    min-height: 800px;
+    background-color: rgba(245, 245, 245, 0.61);
+    border-radius: 30px;
+}
+
+/* 表单卡片样式 */
+.tp-form-card {
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgb(177, 150, 226), rgb(255, 255, 255, 0.5));
+}
+
+/* 卡片头部样式 */
+.tp-card-header {
+    font-size: 20px;
+    font-weight: 600;
+    color: #303133;
+    text-align: center;
+    padding: 20px 0;
+    background-color: #9676bb;
+    border-bottom: 1px solid #e4e7ed;
+    border-radius: 10px;
+}
+
+/* 教学计划表单主体 */
+.tp-teaching-plan-form {
+    width: 100%;
+    margin-top: 20px;
+    padding: 20px;
+    min-height: 750px;
+    background-color: rgba(162, 206, 183, 0.53);
+    border-radius: 30px;
+}
+
+/* 表单操作按钮区域 */
+.tp-form-actions {
+    text-align: center;
+    margin-top: 60px;
+    margin-left: 25%;
+}
+
+/* 按钮基础样式 */
+.tp-form-actions .el-button {
+    min-width: 100px;
+    margin: 0 10px;
+    padding: 10px 50px;
+    border-radius: 4px;
+}
+
+
+
+/* 上传组件容器 */
+.tp-upload-demo {
+    width: 91%;
+}
+
+/* 上传提示文本 */
+.tp-upload-tip {
+    font-size: 12px;
+    color: #131319;
+    margin-top: 7px;
+    text-align: center;
+}
+
+/* 表单项标签样式 */
+:deep(.el-form-item__label) {
+    font-weight: 500;
+}
+
+/* 输入框样式 */
+:deep(.el-input__inner) {
+    border-radius: 4px;
+    border: 1px solid #dce6e6;
+    transition: border-color 0.2s ease;
+}
+
+/* 输入框聚焦状态 */
+:deep(.el-input__inner:focus) {
+    border-color: #409eff;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2);
+}
+
+/* 下拉选择器样式 */
+:deep(.el-select) {
+    width: 100%;
+}
+
+/* 下拉选择器输入框样式 */
+:deep(.el-select .el-input__inner) {
+    border-radius: 4px;
+    border: 1px solid #dcdfe6;
+}
+
+/* 下拉选择器输入框聚焦状态 */
+:deep(.el-select .el-input__inner:focus) {
+    border-color: #409eff;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2);
+}

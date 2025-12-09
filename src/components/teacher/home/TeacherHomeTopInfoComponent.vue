@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import "@/assets/teacher/homeCss/HomeTopCss.css"
+import "@/assets/system/homeCss/TopInfoCss.css"
 import router from "@/router";
 import {ref} from "vue";
 
@@ -48,7 +49,7 @@ const handleCommand = (command: string) => {
     <div class="auth-box-teacher" v-if="isLogin">
       <el-dropdown @command="handleCommand">
         <span class="dropdown-menu-teacher">
-          <el-avatar :size="60" src="https://empty"></el-avatar>
+          <el-avatar :size="60" src=""></el-avatar>
         </span>
         <template #dropdown>
           <el-dropdown-menu>

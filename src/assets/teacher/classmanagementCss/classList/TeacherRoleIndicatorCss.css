@@ -1,0 +1,21 @@
+/* =======================================================
+   TeacherRoleIndicatorComponent 专用样式
+   ======================================================= */
+
+/* 根容器 */
+.teacher-role-indicator {
+  margin-bottom: 20px;
+}
+
+/* 卡片头部 */
+.teacher-role-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.teacher-role-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #303133;
+}

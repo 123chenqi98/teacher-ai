@@ -1,0 +1,87 @@
+/* 热门应用容器 */
+.popular-course-container {
+    margin-top: 30px;        /* 上方外边距：与前面内容的距离 */
+    padding: 25px;           /* 容器内部的填充 */
+    background-color: #b196e2; /* 背景颜色：紫色背景 */
+}
+
+/* 卡片网格布局 */
+.applications-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);    /* 四列等宽布局 */
+    gap: 10px;                                 /* 卡片间距：相邻卡片之间的距离 */
+}
+
+/* 单个应用卡片 */
+.application-card {
+    border-radius: 12px;     /* 圆角 */
+    overflow: hidden;        /* 超出隐藏：确保圆角内容不超出 */
+    transition: transform 0.3s ease; /* 过渡效果：transform属性在0.3秒内平滑变化 */
+}
+
+/* 应用卡片悬停效果：鼠标悬停时的交互效果 */
+.application-card:hover {
+    transform: translateY(-5px);  /* 向上移动5像素 */
+}
+
+/* 应用图标包装器 */
+.app-icon-wrapper {
+    width: 100%;
+    height: 120px;
+    overflow: hidden;        /* 超出隐藏：确保内容不超出 */
+    background-color: #f5f5f5; /* 背景颜色：浅灰色 */
+}
+
+/* 应用图标样式 */
+.app-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;       /* 填充方式：保持宽高比并填充容器 */
+    border-radius: 12px;     /* 圆角 */
+}
+
+/* 应用内容区域样式：包含标题、描述和底部信息的区域 */
+.app-content {
+    padding: 15px;
+}
+
+/* 应用标题样式 */
+.app-title {
+    font-size: 16px;         /* 字体大小 */
+    font-weight: bold;       /* 字体加粗 */
+    color: #40389e;          /* 深紫色 */
+    margin: 0 0 8px 0;       /* 距下方8像素，其他为0 */
+}
+
+/* 应用描述样式：应用功能描述文本 */
+.app-description {
+    font-size: 13px;         /* 字体大小 */
+    color: #666;             /* 深灰色 */
+    line-height: 1.4;        /* 1.4倍的字体大小 */
+    margin: 0 0 15px 0;      /* 距下方15像素，其他为0 */
+    display: -webkit-box;    /* 用于WebKit浏览器的多行文本省略 */
+    -webkit-line-clamp: 2;   /* 限制文本显示行数：最多显示2行 */
+    -webkit-box-orient: vertical; /* 纵向排列 */
+    overflow: hidden;        /* 超出部分隐藏 */
+}
+
+/* 应用底部信息区域 */
+.app-footer {
+    display: flex;
+    justify-content: space-between; /* 两端对齐 */
+    align-items: center;     /* 垂直居中 */
+    font-size: 12px;         /* 字体大小 */
+    color: #999;             /* 浅灰色 */
+}
+
+/* 应用使用数样式 */
+.app-usage {
+    color: #999;             /* 颜色：浅灰色 */
+}
+
+/* 应用评分样式 */
+.app-rating {
+    color: #ffb800;          /* 金色 */
+    font-weight: bold;       /* 字体加粗 */
+    font-size: 14px;
+}
