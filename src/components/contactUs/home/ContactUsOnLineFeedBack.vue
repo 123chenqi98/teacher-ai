@@ -21,20 +21,20 @@ const feedbackForm = reactive({
 // 4. 表单验证规则
 const FormRules = reactive({
   name:[
-    {required:true, message:"请输入名字，行吗！！",trigger:"blur"},    //blur：输入框 / 文本域失去焦点时触发（适合输入类字段）；
-    {max:20,message:"姓名最大长度不能超过20字，懂吗！！！",trigger:"blur"}      //required是否为必填项
+    {required:true, message:"请输入名字",trigger:"blur"},    //blur：输入框 / 文本域失去焦点时触发（适合输入类字段）；
+    {max:20,message:"姓名最大长度不能超过20字",trigger:"blur"}      //required是否为必填项
   ],
   phone:[
-    {required:true,message:"请输入你的手机号码懂吗",trigger:"blur"},
-    {pattern:/^1[3-9]\d{9}$/,message:"请输入正确的手机号码，别随便那些数字来蒙我"}
+    {required:true,message:"请输入你的手机号码",trigger:"blur"},
+    {pattern:/^1[3-9]\d{9}$/,message:"请输入正确的11位手机号码"}
   ],
   type:[
-    {required: true, message: "请选择反馈类型，选一个吧求你了", trigger: "change"}   // change：下拉框 / 单选框值变化时触发（适合选择类字段）；
+    {required: true, message: "请选择反馈类型", trigger: "change"}   // change：下拉框 / 单选框值变化时触发（适合选择类字段）；
   ],
   content:[
-    {required:true,message:"靓仔给我们点意见好吗谢谢你",trigger:"blur"},
-    {min:10,massage:"多说点话吧，多给一点意见，不少于10个字哦",trigger:"blur"},
-    {max:300,massage:"你的话太多了666，超过300字了，我服了",trigger:"change"}
+    {required:true,message:"请输入你的反馈意见",trigger:"blur"},
+    {min:10,massage:"反馈意见不少于10个字",trigger:"blur"},
+    {max:300,massage:"反馈意见不能超过300字",trigger:"change"}
   ],
 });
 

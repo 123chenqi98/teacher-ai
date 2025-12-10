@@ -127,8 +127,10 @@ const activeMenu = ref(0)
 // 设置菜单列表
 const settingMenus = ref([
   { name: '账号设置' },
+  { name: '课程管理' },
   { name: '个人信息' },
   { name: '通知设置' },
+  { name: '隐私权限' },
   { name: '系统设置' }
 ])
 </script>
