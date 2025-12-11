@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import "@/assets/contactUs/homeCss/ContactUsTopCss.css"
+import {scrollToTarget,} from "@/utils/contactUs/ContactUsTopUtils.ts"
 </script>
 
 <template>
@@ -20,8 +21,8 @@ import "@/assets/contactUs/homeCss/ContactUsTopCss.css"
   </div>
   <!-- 底部导航栏：在图片下方，随图片宽度对齐 -->
   <div class="nav-links">
-    <span class="nav-item active">购买与咨询</span>
-    <span class="nav-item">联系方式</span>
+   <span class="nav-item active" >购买与咨询</span>
+    <span class="nav-item" @click="scrollToTarget">联系方式</span>
     <span class="nav-item">在线反馈</span>
     <span class="nav-item">常见问题 FAQ 模块</span>
     <span class="nav-item">其它</span>

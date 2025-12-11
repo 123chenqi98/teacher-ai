@@ -64,3 +64,14 @@
 .nav-item:hover:not(.active) {
     color: #00fd6c;
 }
+.scroll-btn {
+    padding: 10px 20px;
+    background: #409eff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    position: fixed; /* 固定按钮在页面顶部，方便测试 */
+    top: 20px;
+    left: 20px;
+}
