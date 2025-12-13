@@ -22,10 +22,10 @@ import {scrollToTarget,} from "@/utils/contactUs/ContactUsTopUtils.ts"
   <!-- 底部导航栏：在图片下方，随图片宽度对齐 -->
   <div class="nav-links">
    <span class="nav-item active" >购买与咨询</span>
-    <span class="nav-item" @click="scrollToTarget">联系方式</span>
-    <span class="nav-item">在线反馈</span>
-    <span class="nav-item">常见问题 FAQ 模块</span>
-    <span class="nav-item">其它</span>
+    <span class="nav-item" @click="scrollToTarget('section1')">联系方式</span>
+    <span class="nav-item" @click="scrollToTarget('section2')">在线反馈</span>
+    <span class="nav-item" @click="scrollToTarget('section3')">常见问题 FAQ 模块</span>
+    <span class="nav-item" >其它</span>
 
   </div>
 

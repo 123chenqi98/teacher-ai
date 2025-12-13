@@ -1,11 +1,16 @@
 // 核心滚动方法
-export const scrollToTarget = () => {
+export const scrollToTarget = (targetId: string) => {
+    // 1. 补充参数校验
+    if (!targetId) {
+        console.warn('请传入有效的目标区域ID');
+        return;
+    }
     // 1. 通过 ID 获取目标 DOM 节点（必须确保 ID 全局唯一）
-    const targetEl = document.querySelector('#section1');
+    const targetEl = document.querySelector(`#${targetId}`);
 
     // 容错：如果目标元素未找到，提示并退出
     if (!targetEl) {
-        console.warn('未找到目标区域（ID: section1）');
+        console.warn(`未找到目标区域（ID: ${targetId}）`);
         return;
     }
 

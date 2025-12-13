@@ -1,13 +1,20 @@
 <script setup lang="ts">
+import {ref} from 'vue'
 import "@/assets/contactUs/homeCss/ConatctUs-FQA-ModalCss.css"
 import {tabs,goToContact,toggleFaq,activeTab,searchQuery,filteredFaqs} from "@/utils/contactUs/ContactUs-FQA-ModalUtils.ts"
 import {StarFilled, Warning} from "@element-plus/icons-vue";
 
+// 声明 ref 变量，匹配模板中的 ref="section3"
+const section3 = ref<HTMLElement | null>(null);
 </script>
 
 
 <template>
-  <div class="faq-container">
+  <div
+      ref="section3"
+      id="section3"
+      class="faq-container"
+  >
     <!-- 标题区域 -->
     <div class="faq-header">
       <h2>

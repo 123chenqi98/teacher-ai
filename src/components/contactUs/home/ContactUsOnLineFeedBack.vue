@@ -82,10 +82,17 @@ const submitForm = async () => {
     isSubmitting.value = false;
   }
 };
+
+// 声明 ref 变量，匹配模板中的 ref="section2"
+const section2 = ref<HTMLElement | null>(null);
 </script>
 
 <template>
-  <div class="contact-us-online-feedback-box">
+  <div
+      ref="section2"
+      id="section2"
+      class="contact-us-online-feedback-box"
+  >
     <div class="FeedBack-container">
       <!-- Element Plus卡片容器 -->
       <el-card shadow="hover" class="feed-card">
