@@ -1,5 +1,5 @@
 // 核心滚动方法
-export const scrollToTarget = (targetId: string) => {
+ const scrollToTarget = (targetId: string) => {
     // 1. 补充参数校验
     if (!targetId) {
         console.warn('请传入有效的目标区域ID');
@@ -20,8 +20,7 @@ export const scrollToTarget = (targetId: string) => {
         block: 'start'      // 滚动到元素顶部（可选：center/end）
     });
 
-    // 【可选】如果有固定导航栏，添加偏移量（比如导航栏高 80px）
-    // const navHeight = 80;
-    // const top = targetEl.getBoundingClientRect().top + window.scrollY - navHeight;
-    // window.scrollTo({ top, behavior: 'smooth' });
 };
+export{
+    scrollToTarget
+}
