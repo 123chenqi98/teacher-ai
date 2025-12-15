@@ -51,6 +51,9 @@ const goToContact = (): void => {
     // router.push('/contact')
     alert('跳转到联系我们页面')
 }
+// 声明 ref 变量，匹配模板中的 ref="section3"
+const section3 = ref<HTMLElement | null>(null);
+
 export{
     searchQuery,
     activeTab,
@@ -58,6 +61,7 @@ export{
     filteredFaqs,
     toggleFaq,
     goToContact,
+    section3,
 
 
 }

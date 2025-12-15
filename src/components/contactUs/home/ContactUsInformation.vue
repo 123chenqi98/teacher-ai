@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { ref, defineProps, withDefaults } from 'vue';
+import { defineProps, withDefaults } from 'vue';
 import '@/assets/contactUs/homeCss/ContactUsInformationCss.css';
 
 // 导入类型和默认值（注意：导入类型时加 type 关键字）
 import type { ContactInfoProps } from "@/data/contactUs/ContactUsInformationData.ts";
 import { contactInfoDefaultProps } from "@/data/contactUs/ContactUsInformationData.ts";
-import { getMapLink } from "@/utils/contactUs/ContactUsInformationUtils.ts";
-
+import { getMapLink ,section1} from "@/utils/contactUs/ContactUsInformationUtils.ts";
 // 导入 Element Plus 组件和图标
 import { Location, Message, Phone } from "@element-plus/icons-vue";
 import { ElIcon, ElLink, ElCard } from "element-plus";
@@ -17,8 +16,6 @@ const props = withDefaults(
     contactInfoDefaultProps
 );
 
-// 声明 ref 变量，匹配模板中的 ref="section1"
-const section1 = ref<HTMLElement | null>(null);
 </script>
 
 
