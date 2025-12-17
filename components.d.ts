@@ -83,6 +83,7 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Settings: typeof import('./src/components/settings/home/Settings.vue')['default']
+    SettingsLeftSideBar: typeof import('./src/components/settings/home/SettingsLeftSideBar.vue')['default']
     StepsComponent: typeof import('./src/components/auth/forgetPasswordComponents/StepsComponent.vue')['default']
     SynopsisClassComponent: typeof import('./src/components/teacher/home/SynopsisClassComponent.vue')['default']
     SynopsisComponent: typeof import('./src/components/system/homeComponents/SynopsisComponent.vue')['default']

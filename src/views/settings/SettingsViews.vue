@@ -1,17 +1,27 @@
 <!-- 导包处-->
 <script setup lang="ts">
-import Setting from "@/components/settings/home/Settings.vue";
+import "@/assets/settings/homeCss/SettingsLeftSideBarCss.css"
+import SettingsLeftSideBar from "@/components/settings/home/SettingsLeftSideBar.vue";
 </script>
 
 
 
 <!--组件要显示的主要东西放置板块-->
 <template>
-  <div class="Contact-Us-Page-Box">
+  <div class="Settings-home-box">
+<!--    顶部信息-->
 
-  <Setting/>
 
-  </div>
+  <div class="Settings-home-content">
+<!--    侧边导航栏-->
+    <SettingsLeftSideBar/>
+
+
+
+
+
+      </div>
+    </div>
 </template>
 
 
