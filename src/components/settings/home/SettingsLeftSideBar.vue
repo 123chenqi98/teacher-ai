@@ -7,7 +7,7 @@ import router from "@/router";
 const SettingsLeftSideBar = [
       {
         name:"个人资料",
-        path:"/contactUs",
+        path:"/settings",
         icon:User
       },
       {
@@ -17,19 +17,19 @@ const SettingsLeftSideBar = [
       },
       {
         name:"外观",
-        path:"/teacher",
+        path:"/",
         icon:BrushFilled
       },      {
         name:"语言",
-        path:"/login",
+        path:"/",
         icon:EditPen
       },      {
         name:"下载",
-        path:"/register",
+        path:"/",
         icon:Bottom
       },      {
         name:"辅助功能",
-        path:"/forgetPassword",
+        path:"/",
         icon:Menu
       },
 
@@ -38,6 +38,18 @@ const SettingsLeftSideBar = [
 
 <template>
   <div class="Settings-navigation-box">
+    <!-- 1. 添加“设置”大字标题 -->
+    <div class="settings-title">
+      设置
+    </div>
+
+    <!-- 2. 添加搜索框 -->
+    <el-input
+        class="settings-search"
+        placeholder="搜索设置"
+        prefix-icon="Search"
+    />
+
     <el-menu class="Settings-navigation-item">
       <el-menu-item
           v-for=" (item) in SettingsLeftSideBar" :key="item.path"

@@ -2,6 +2,7 @@
 <script setup lang="ts">
 import "@/assets/settings/homeCss/SettingsLeftSideBarCss.css"
 import SettingsLeftSideBar from "@/components/settings/home/SettingsLeftSideBar.vue";
+import SettingsProFile from "@/components/settings/home/SettingsProFile.vue";
 </script>
 
 
@@ -17,6 +18,9 @@ import SettingsLeftSideBar from "@/components/settings/home/SettingsLeftSideBar.
     <SettingsLeftSideBar/>
 
 
+
+
+        <SettingsProFile/>
 
 
 

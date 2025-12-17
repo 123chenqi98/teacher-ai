@@ -14,7 +14,7 @@
     "@element-plus/icons-vue": "^2.3.2",
     "@fortawesome/fontawesome-free": "^7.1.0",
     "axios": "^1.12.2",
-    "element-plus": "^2.11.5",
+    "element-plus": "^2.12.0",
     "font-awesome": "^4.7.0",
     "pinia": "^3.0.1",
     "vue": "^3.5.13",
