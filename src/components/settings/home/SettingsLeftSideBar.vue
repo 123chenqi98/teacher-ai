@@ -7,17 +7,17 @@ import router from "@/router";
 const SettingsLeftSideBar = [
       {
         name:"个人资料",
-        path:"/settings",
+        path:"/settings/profile",
         icon:User
       },
       {
         name:"安全与隐私",
-        path:"/",
+        path:"/settings/safety",
         icon:Lock
       },
       {
         name:"外观",
-        path:"/",
+        path:"/settings/appearance",
         icon:BrushFilled
       },      {
         name:"语言",

@@ -2,7 +2,8 @@
 <script setup lang="ts">
 import "@/assets/settings/homeCss/SettingsLeftSideBarCss.css"
 import SettingsLeftSideBar from "@/components/settings/home/SettingsLeftSideBar.vue";
-import SettingsProFile from "@/components/settings/home/SettingsProFile.vue";
+// import SettingsProFile from "@/components/settings/home/SettingsProFile.vue";
+// import SettingsSafetyPrivacy from "@/components/settings/home/SettingsSafetyPrivacy.vue";
 </script>
 
 
@@ -12,15 +13,13 @@ import SettingsProFile from "@/components/settings/home/SettingsProFile.vue";
   <div class="Settings-home-box">
 <!--    顶部信息-->
 
-
   <div class="Settings-home-content">
 <!--    侧边导航栏-->
     <SettingsLeftSideBar/>
 
 
-
-
-        <SettingsProFile/>
+    <router-view />
+    <!--右侧的页面容器-->
 
 
 
