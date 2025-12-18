@@ -1,7 +1,8 @@
 /* 个人资料页面容器 */
 .profile-setting-container {
+    width: 1000px;
     padding: 100px;
-    background-color: #fff;
+    background-color: #ffffff;
     border-radius: 16px;
     margin: 20px;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.05);
