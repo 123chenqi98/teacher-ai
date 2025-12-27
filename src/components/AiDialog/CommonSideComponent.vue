@@ -2,7 +2,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRouter} from 'vue-router';
-import "../../assets/AiDialog/SideCss.css"
+import "@/assets/AiDialog/SideCss.css"
 import {
   ChatDotRound,
   ChatDotSquare,

@@ -6,7 +6,7 @@ const  requestsToken= axios.create({
     // 设置基础请求地址
     baseURL:'/api',
     //设置超时响应
-    timeout: 2000,
+    timeout: 30000, // 增加到30秒
 });
 
 // 创建携带token请求实例
@@ -14,11 +14,11 @@ const requests = axios.create({
     // 设置基础请求地址
     baseURL:'/api',
     //设置超时响应
-    timeout: 2000,
+    timeout: 30000, // 增加到30秒
 })
 // 设置请求的格式类型
-requestsToken.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-requests.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+requestsToken.defaults.headers.post['Content-Type'] = 'application/json';
+requests.defaults.headers.post['Content-Type'] = 'application/json';
 
 // 设置请求头携带cookie
 requestsToken.defaults.headers.withCredentials = true;
