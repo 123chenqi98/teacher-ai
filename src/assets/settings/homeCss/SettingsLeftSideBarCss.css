@@ -1,0 +1,62 @@
+/*设置端首页的样式*/
+.Settings-home-box{
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, rgb(180, 140, 229), rgb(219, 172, 255));
+}
+
+
+
+
+
+
+
+
+/* 标题样式 */
+.settings-title {
+    font-size: 40px;
+    font-weight: 700;
+    color: #122a51;
+    margin-bottom: 20px;
+}
+/* 搜索框样式 */
+.settings-search {
+    width: 250px !important;
+    margin-bottom: 20px;
+    --el-input-bg-color: #ffffff !important; /* 搜索框背景色（与示例风格匹配） */
+    --el-input-border-radius: 8px;
+}
+/*内容框样式*/
+.Settings-home-content{
+    display: flex;
+    flex-direction:row;
+}
+/*导航栏容器*/
+.Settings-navigation-box{
+    width: 300px;
+    height: auto;
+    min-height: 1080px;
+    padding: 30px;
+    display: flex;
+    box-sizing: border-box; /* 关键：让padding不额外增加宽度 */
+    flex-direction: column;
+    background: linear-gradient(135deg, rgb(180, 140, 229), rgb(219, 172, 255));
+
+}
+
+.Settings-navigation-item {
+    width: 100%;
+    border-radius: 20px;
+    background: #b196e2 !important;
+
+}
+.Settings-rounded-menu-item{
+    border-radius: 8px; /* 设置圆角大小 */
+    transition: background-color 0.3s; /* 添加过渡效果 */
+}
+/* 正确写法：单个半角冒号 */
+.Settings-rounded-menu-item:hover{
+    background-color: #c3d0f3 !important; /* 悬停时的背景色 */
+}

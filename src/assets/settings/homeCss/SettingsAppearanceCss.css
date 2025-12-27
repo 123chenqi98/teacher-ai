@@ -1,0 +1,92 @@
+
+
+/* 外观设置页面整体样式 */
+.appearance-page {
+    width:1000px;
+    border-radius: 16px;
+    padding: 100px;
+    margin: 20px;
+    background-color: #f5f7fa;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* 页面标题 */
+.page-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #303133;
+    margin-bottom: 20px;
+}
+
+/* 设置卡片样式（和其他设置页统一） */
+.setting-card {
+    margin-bottom: 20px;
+    border: 1px solid #ebeef5;
+}
+
+/* 卡片标题 */
+.card-header {
+    font-size: 16px;
+    font-weight: 500;
+    color: #303133;
+}
+
+/* 表单样式 */
+.setting-form {
+    padding: 10px 0;
+}
+
+.setting-form .el-form-item {
+    margin-bottom: 20px;
+}
+
+/* 字体预览 */
+.font-preview {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    font-size: inherit;
+}
+
+/* 背景上传样式 */
+.bg-upload {
+    margin-left: 10px;
+}
+
+/* 重置按钮容器 */
+.reset-btn-wrap {
+    margin-top: 30px;
+    text-align: center;
+}
+
+/* 适配暗黑模式（模拟） */
+html[data-theme="dark"] .appearance-page {
+    background-color: #1e1e1e;
+    color: #e5e5e5;
+}
+
+html[data-theme="dark"] .setting-card {
+    background-color: #272727;
+    border-color: #333;
+}
+
+html[data-theme="dark"] .font-preview {
+    background-color: #333;
+    color: #e5e5e5;
+}
+
+/* 适配移动端 */
+@media (max-width: 768px) {
+    .appearance-page {
+        padding: 10px;
+    }
+
+    .setting-form .el-form-item {
+        margin-bottom: 15px;
+    }
+
+    .el-form-item__label {
+        font-size: 14px;
+    }
+}

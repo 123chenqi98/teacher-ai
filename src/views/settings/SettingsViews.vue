@@ -1,26 +1,35 @@
 <!-- 导包处-->
 <script setup lang="ts">
-import Settings from '@/components/settings/home/Settings.vue';
-import TopInformationComponent from "@/components/system/homeComponents/TopInformationComponent.vue";
+import "@/assets/settings/homeCss/SettingsLeftSideBarCss.css"
+import SettingsLeftSideBar from "@/components/settings/home/SettingsLeftSideBar.vue";
+// import SettingsProFile from "@/components/settings/home/SettingsProFile.vue";
+// import SettingsSafetyPrivacy from "@/components/settings/home/SettingsSafetyPrivacy.vue";
 </script>
 
 
 
+<!--组件要显示的主要东西放置板块-->
 <template>
+  <div class="Settings-home-box">
+<!--    顶部信息-->
 
-  <div class="Settings-Page-Box">
-<!--    头部导航栏-->
-    <TopInformationComponent/>
-    <!--设置界面-->
-    <Settings/>
+  <div class="Settings-home-content">
+<!--    侧边导航栏-->
+    <SettingsLeftSideBar/>
 
 
-  </div>
+    <router-view />
+    <!--右侧的页面容器-->
 
+
+
+      </div>
+    </div>
 </template>
 
 
 
+<!--存放Css样式的区域-->
 <style scoped>
-</style>
 
+</style>
