@@ -1,0 +1,305 @@
+
+/* 对话框主容器 - 整个对话框的外框 */
+.main-component {
+  width: 100%;              /* 宽度占满父容器 */
+  height: 100%;             /* 高度占满父容器 */
+  display: flex;            /* 使用Flex布局 */
+  flex-direction: column;   /* 垂直方向排列子元素 */
+  background: linear-gradient(135deg, #e3bae4 0%, #95a9c9 100%);  /* 渐变背景色 */
+  border-radius: 16px;      /* 圆角边框 */
+  overflow: hidden;         /* 隐藏溢出内容 */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);  /* 阴影效果增强立体感 */
+}
+
+/* 对话框内容区域 - 显示消息列表 */
+.main-content {
+  flex: 1;                  /* 占据剩余空间 */
+  padding: 20px;            /* 内边距 */
+  overflow-y: auto;         /* 垂直方向溢出时显示滚动条 */
+  display: flex;            /* 使用Flex布局 */
+  flex-direction: column;   /* 垂直方向排列 */
+  gap: 16px;                /* 元素间间距 */
+}
+
+
+/* 消息列表容器 - 包含所有消息项 */
+.message-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+/* 欢迎图片容器样式 */
+.welcome-image-container {
+  text-align: center;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+  max-width: 400px;
+  transition: transform 0.3s ease;
+}
+
+.welcome-image-container:hover {
+  transform: translateY(-5px);
+}
+
+/* 欢迎图片样式 */
+.welcome-image {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  padding: 10px;
+}
+
+/* 消息项 - 单个消息的容器 */
+.message-item {
+  display: flex;            /* 使用Flex布局 */
+  gap: 12px;                /* 头像与消息内容的间距 */
+  max-width: 80%;           /* 最大宽度为80%，避免消息过宽 */
+  align-items: flex-start;  /* 顶部对齐 */
+  animation: fadeIn 0.3s ease;  /* 淡入动画效果 */
+}
+
+/* 用户消息项 - 向右对齐 */
+.message-item.user {
+  align-self: flex-end;     /* 自身靠右对齐 */
+  flex-direction: row-reverse;  /* 反转布局顺序，头像在右 */
+}
+
+/* 消息头像容器 - 圆形显示用户/AI头像 */
+.message-avatar {
+  width: 40px;              /* 头像宽度 */
+  height: 40px;             /* 头像高度 */
+  border-radius: 50%;       /* 圆形边框 */
+  overflow: hidden;         /* 隐藏溢出内容 */
+  flex-shrink: 0;           /* 不收缩 */
+  border: 2px solid rgba(255, 255, 255, 0.8);  /* 白色边框 */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);  /* 阴影效果 */
+}
+
+/* 头像图片 - 填充头像容器 */
+.message-avatar img {
+  width: 100%;              /* 宽度100% */
+  height: 100%;             /* 高度100% */
+  object-fit: cover;        /* 保持比例填充 */
+}
+/* 消息内容容器 - 包含消息文本和时间 */
+.message-content {
+  display: flex;            /* 使用Flex布局 */
+  flex-direction: column;   /* 垂直方向排列 */
+  gap: 4px;                 /* 文本与时间的间距 */
+  max-width: calc(100% - 52px);  /* 最大宽度，减去头像和间距 */
+}
+
+/* 消息文本 - 消息的实际内容 */
+.message-text {
+  padding: 12px 16px;       /* 内边距 */
+  border-radius: 18px;      /* 圆角边框 */
+  font-size: 14px;          /* 字体大小 */
+  line-height: 1.4;         /* 行高 */
+  word-wrap: break-word;    /* 自动换行 */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);  /* 阴影效果 */
+  position: relative;       /* 相对定位 */
+}
+
+/* 用户消息文本样式 - 紫色背景，白色文字 */
+.message-item.user .message-text {
+  background: #6283e6;      /* 紫色背景 */
+  color: white;             /* 白色文字 */
+  border-bottom-right-radius: 4px;  /* 右下角小角度 */
+}
+
+/* AI消息文本样式 - 白色背景，黑色文字 */
+.message-item.ai .message-text {
+  background: rgba(255, 255, 255, 0.9);  /* 半透明白色背景 */
+  color: #333;              /* 深色文字 */
+  border-bottom-left-radius: 4px;  /* 左下角小角度 */
+}
+
+/* 消息时间 - 显示消息发送时间 */
+.message-time {
+  font-size: 12px;          /* 小字体 */
+  color: #999;              /* 灰色文字 */
+  align-self: flex-end;     /* 靠右对齐 */
+  padding: 0 8px;           /* 左右内边距 */
+}
+
+/* 消息输入区域 - 包含输入框和发送按钮 */
+.message-input-section {
+  display: flex;            /* 使用Flex布局 */
+  flex-direction: column;   /* 垂直方向排列 */
+  align-items: flex-start;  /* 左侧对齐 */
+  padding: 100px;           /* 内边距 */
+}
+
+/* 输入框和发送按钮的容器 */
+.input-send-container {
+  display: flex;            /* 使用Flex布局 */
+  align-items: center;      /* 垂直居中 */
+  width: 100%;              /* 宽度100% */
+}
+
+/* 输入框上方的图标组 */
+.input-icons-container {
+  display: flex;            /* 使用Flex布局实现并排 */
+  align-items: center;      /* 垂直居中 */
+  margin-bottom: 8px;       /* 与输入框的间距 */
+  margin-left: 18px;        /* 与左侧的间距 */
+}
+
+/* 单个图标样式 */
+.input-icon {
+  font-size: 25px;          /* 图标大小 */
+  color: #676767;           /* 图标颜色 */
+  cursor: pointer;          /* 指针样式 */
+  transition: color 0.3s ease;  /* 颜色过渡效果 */
+  margin-right: 12px;       /* 图标之间的间距 */
+}
+
+/* 图标悬停效果 */
+.input-icon:hover {
+  color: #506fd9;           /* 深紫色 */
+}
+
+/* 输入框容器 - 包含图标和输入框 */
+.input-container {
+  flex: 1;                  /* 占据剩余空间 */
+  display: flex;            /* 使用Flex布局 */
+  align-items: center;      /* 垂直居中 */
+  background: rgba(240, 242, 245, 0.8);  /* 浅色背景 */
+  border-radius: 24px;      /* 圆角边框 */
+  padding: 0 16px;          /* 左右内边距 */
+  margin-right: 10px;       /* 与发送按钮的间距 */
+  border: 1px solid rgba(0, 0, 0, 0.1);  /* 边框 */
+  transition: all 0.3s ease;  /* 过渡动画 */
+}
+
+/* 输入框前缀图标 - 显示输入图标 */
+.input-prefix-icon {
+  font-size: 16px;          /* 图标大小 */
+  color: #999;              /* 灰色图标 */
+  margin-right: 8px;        /* 与输入框的间距 */
+}
+
+/* 输入框 - 文本输入区域 */
+.dialog-input {
+  flex: 1;                  /* 占据剩余空间 */
+  border: none;             /* 无边框 */
+  background: transparent;  /* 透明背景 */
+  padding: 20px 0;          /* 上下内边距 */
+  font-size: 14px;          /* 字体大小 */
+  color: #333;              /* 深色文字 */
+  outline: none;            /* 无外框 */
+}
+
+/* 输入框占位符样式 */
+.dialog-input::placeholder {
+  color: #999;              /* 灰色占位符文字 */
+}
+
+/* 发送按钮 - 圆形紫色按钮 */
+.send-btn {
+  width: 48px;              /* 按钮宽度 */
+  height: 48px;             /* 按钮高度 */
+  border: none;             /* 无边框 */
+  background: #6283e6;      /* 紫色背景 */
+  border-radius: 50%;       /* 圆形按钮 */
+  color: white;             /* 白色文字 */
+  cursor: pointer;          /* 指针样式 */
+  transition: all 0.3s ease;  /* 过渡动画 */
+  display: flex;            /* 使用Flex布局 */
+  align-items: center;      /* 垂直居中 */
+  justify-content: center;  /* 水平居中 */
+  box-shadow: 0 4px 12px rgba(98, 131, 230, 0.3);  /* 阴影效果 */
+}
+
+/* 发送按钮悬停效果 */
+.send-btn:hover {
+  background: #506fd9;      /* 深紫色背景 */
+  transform: scale(1.05);   /* 轻微放大 */
+  box-shadow: 0 6px 16px rgba(98, 131, 230, 0.4);  /* 增强阴影 */
+}
+
+/* 发送按钮图标 - 显示发送图标 */
+.send-btn-icon {
+  font-size: 18px;          /* 图标大小 */
+}
+
+/* 加载动画容器 - 显示AI回复加载状态 */
+.loading-animation {
+  display: flex;            /* 使用Flex布局 */
+  align-items: center;      /* 垂直居中 */
+  gap: 8px;                 /* 加载点间距 */
+  padding: 12px 16px;       /* 内边距 */
+}
+
+/* 加载点 - 跳动的小圆点 */
+.loading-dot {
+  width: 8px;              /* 点的宽度 */
+  height: 8px;             /* 点的高度 */
+  border-radius: 50%;       /* 圆形 */
+  background: #6283e6;      /* 紫色 */
+  animation: bounce 1.4s infinite ease-in-out both;  /* 弹跳动画 */
+}
+
+/* 加载点1 - 动画延迟 */
+.loading-dot:nth-child(1) {
+  animation-delay: -0.32s;  /* 第一个点延迟 */
+}
+
+/* 加载点2 - 动画延迟 */
+.loading-dot:nth-child(2) {
+  animation-delay: -0.16s;  /* 第二个点延迟 */
+}
+/* 淡入动画 - 消息出现时的过渡效果 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;            /* 初始透明度为0 */
+    transform: translateY(10px);  /* 初始位置向下偏移 */
+  }
+  to {
+    opacity: 1;            /* 结束透明度为1 */
+    transform: translateY(0);  /* 结束位置恢复 */
+  }
+}
+
+/* 弹跳动画 - 加载点的跳动效果 */
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: scale(0);   /* 开始、80%和结束时缩小为0 */
+  }
+  40% {
+    transform: scale(1);   /* 40%时放大到1倍 */
+  }
+}
+
+/* 滚动条宽度 */
+.main-content::-webkit-scrollbar {
+  width: 6px;              /* 滚动条宽度 */
+}
+
+/* 滚动条轨道 */
+.main-content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);  /* 轨道背景色 */
+  border-radius: 3px;       /* 轨道圆角 */
+}
+
+/* 滚动条滑块 */
+.main-content::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);  /* 滑块背景色 */
+  border-radius: 3px;       /* 滑块圆角 */
+}
+
+/* 滚动条滑块悬停效果 */
+.main-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);  /* 悬停时滑块颜色加深 */
+}
+
