@@ -6,15 +6,15 @@ import TeacherSideNavigationComponent from "@/components/teacher/home/TeacherSid
 
 <template>
   <div class="teacher-home-box">
-    <!--    顶部信息-->
+    <!-- 顶部信息 -->
     <teacher-home-top-info-component/>
-    <!--    内容框-->
+    <!-- 内容框 -->
     <div class="teacher-home-content">
-      <!--    侧边栏导航-->
+      <!-- 侧边栏导航 -->
       <teacher-side-navigation-component/>
-      <!--    内容展示-->
+      <!-- 内容展示 -->
       <div class="teacher-home-products-box" >
-<!--         上传页面-->
+        <!-- 上传页面 -->
         <router-view />
       </div>
     </div>

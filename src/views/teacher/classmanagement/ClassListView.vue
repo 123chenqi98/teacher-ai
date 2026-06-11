@@ -47,14 +47,9 @@ const handleAddClass = () => {
     <teacher-role-indicator-component />
 
     <!-- 班级列表表格组件 -->
-    <class-list-table-component
-        @add-click="handleAddClass"
-    />
+    <class-list-table-component @add-click="handleAddClass"/>
     <!-- 新增班级对话框组件 -->
-    <class-list-add-dialog-component
-      :visible="dialogVisible"
-      @update:visible="dialogVisible = $event"
-    />
+    <class-list-add-dialog-component :visible="dialogVisible" @update:visible="dialogVisible = $event"/>
   </div>
 </template>
 

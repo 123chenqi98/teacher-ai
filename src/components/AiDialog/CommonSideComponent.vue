@@ -1,18 +1,9 @@
 <!-- 统一侧边栏组件 -->
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useRouter} from 'vue-router';
+import { useRouter } from 'vue-router';
 import "@/assets/AiDialog/SideCss.css"
-import {
-  ChatDotRound,
-  ChatDotSquare,
-  Document,
-  HomeFilled,
-  Monitor,
-  MoreFilled,
-  Picture,
-  Star
-} from "@element-plus/icons-vue";
+import {ChatDotRound, ChatDotSquare, Document, HomeFilled, Monitor, MoreFilled, Picture, Star} from "@element-plus/icons-vue";
 
 // 路由实例
 const router = useRouter();
@@ -67,9 +58,7 @@ const handleHistoryClick = (index: number) => {
       <!-- 通用功能 -->
       <div class="side-section-title">通用功能</div>
       <!-- 返回首页 -->
-      <div class="side-menu-item" :class="{ active: activeMenuItem === 'document' }" @click="()=>{
-        router.push('/teacher')
-      }">
+      <div class="side-menu-item" :class="{ active: activeMenuItem === 'document' }" @click="()=>{router.push('/teacher')}">
         <div class="side-menu-item-content">
           <div class="side-menu-icon">
             <el-icon><HomeFilled /></el-icon>

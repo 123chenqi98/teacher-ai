@@ -11,10 +11,9 @@ import TeacherSideNavigationComponent from "@/components/teacher/home/TeacherSid
        <teacher-side-navigation-component />
        <div class="teacher-home-products-box">
          <router-view />
+       </div>
      </div>
-    </div>
   </div>
-
 </template>
 
 <style scoped></style>
