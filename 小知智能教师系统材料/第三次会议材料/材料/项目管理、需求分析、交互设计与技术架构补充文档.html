@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目管理、需求分析、交互设计与技术架构补充文档</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    <script>
+        // Tailwind配置
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#93c5fd',
+                        neutral: {
+                            50: '#f9fafb',
+                            100: '#f3f4f6',
+                            200: '#e5e7eb',
+                            300: '#d1d5db',
+                            600: '#4b5563',
+                            700: '#374151',
+                            800: '#1f2937',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                },
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-balance {
+                text-wrap: balance;
+            }
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .nav-active {
+                @apply bg-primary/10 text-primary border-l-4 border-primary;
+            }
+            .toc-item {
+                @apply py-1 px-2 rounded hover:bg-neutral-100 cursor-pointer transition-colors duration-150;
+            }
+            .toc-item.active {
+                @apply bg-primary/10 text-primary font-medium;
+            }
+            .card {
+                @apply bg-white rounded-lg border border-neutral-200 p-4 shadow-sm hover:shadow-md transition-shadow duration-200;
+            }
+            .section-card {
+                @apply mb-6 card;
+            }
+            .code-block {
+                @apply bg-neutral-800 text-white p-4 rounded-md overflow-x-auto text-sm font-mono;
+            }
+        }
+    </style>
+</head>
+<body class="bg-neutral-50 font-sans text-neutral-800">
+    <!-- 移动端顶部导航 -->
+    <header class="lg:hidden fixed top-0 left-0 right-0 bg-white border-b border-neutral-200 z-30">
+        <div class="flex items-center justify-between px-4 py-3">
+            <button id="mobile-menu-btn" class="p-2 rounded-md hover:bg-neutral-100">
+                <i class="fa fa-bars text-neutral-700"></i>
+            </button>
+            <h1 class="text-lg font-semibold truncate">项目管理与技术架构文档</h1>
+            <button id="search-btn" class="p-2 rounded-md hover:bg-neutral-100">
+                <i class="fa fa-search text-neutral-700"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- 主容器 -->
+    <div class="flex h-screen pt-12 lg:pt-0">
+        <!-- 侧边导航 -->
+        <aside id="sidebar" class="fixed lg:relative top-0 left-0 bottom-0 w-64 bg-white border-r border-neutral-200 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out z-20 overflow-y-auto scrollbar-hide">
+            <div class="p-4 border-b border-neutral-200">
+                <h1 class="text-xl font-bold text-neutral-800">项目管理与技术架构文档</h1>
+            </div>
+            
+            <!-- 导航菜单 -->
+            <nav class="p-2">
+                <ul class="space-y-1">
+                    <li>
+                        <a href="#section-1" class="nav-item flex items-center py-2 px-3 rounded-md hover:bg-neutral-100 transition-colors duration-150">
+                            <i class="fa fa-tasks w-5 text-center mr-2 text-neutral-600"></i>
+                            <span>一、项目管理体系框架</span>
+                        </a>
+                        <ul class="pl-7 mt-1 space-y-1 hidden submenu">
+                            <li><a href="#section-1-1" class="toc-item block text-sm">1.1 项目管理方法论与流程</a></li>
+                            <li><a href="#section-1-2" class="toc-item block text-sm">1.2 项目规划与进度安排</a></li>
+                            <li><a href="#section-1-3" class="toc-item block text-sm">1.3 团队组织架构与职责分工</a></li>
+                            <li><a href="#section-1-4" class="toc-item block text-sm">1.4 风险管理与质量控制体系</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#section-2" class="nav-item flex items-center py-2 px-3 rounded-md hover:bg-neutral-100 transition-colors duration-150">
+                            <i class="fa fa-question-circle w-5 text-center mr-2 text-neutral-600"></i>
+                            <span>二、需求分析方法论与实践</span>
+                        </a>
+                        <ul class="pl-7 mt-1 space-y-1 hidden submenu">
+                            <li><a href="#section-2-1" class="toc-item block text-sm">2.1 需求分析框架与流程</a></li>
+                            <li><a href="#section-2-2" class="toc-item block text-sm">2.2 业务需求、用户需求与功能需求分析</a></li>
+                            <li><a href="#section-2-3" class="toc-item block text-sm">2.3 需求规格说明书（SRS）撰写规范</a></li>
+                            <li><a href="#section-2-4" class="toc-item block text-sm">2.4 功能性与非功能性需求分析</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#section-3" class="nav-item flex items-center py-2 px-3 rounded-md hover:bg-neutral-100 transition-colors duration-150">
+                            <i class="fa fa-paint-brush w-5 text-center mr-2 text-neutral-600"></i>
+                            <span>三、交互设计原则与规范</span>
+                        </a>
+                        <ul class="pl-7 mt-1 space-y-1 hidden submenu">
+                            <li><a href="#section-3-1" class="toc-item block text-sm">3.1 交互设计原则与方法</a></li>
+                            <li><a href="#section-3-2" class="toc-item block text-sm">3.2 界面交互流程设计</a></li>
+                            <li><a href="#section-3-3" class="toc-item block text-sm">3.3 操作逻辑与用户体验设计</a></li>
+                            <li><a href="#section-3-4" class="toc-item block text-sm">3.4 可用性测试方法</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#section-4" class="nav-item flex items-center py-2 px-3 rounded-md hover:bg-neutral-100 transition-colors duration-150">
+                            <i class="fa fa-cogs w-5 text-center mr-2 text-neutral-600"></i>
+                            <span>四、技术架构设计与选型</span>
+                        </a>
+                        <ul class="pl-7 mt-1 space-y-1 hidden submenu">
+                            <li><a href="#section-4-1" class="toc-item block text-sm">4.1 技术选型决策方法与评估标准</a></li>
+                            <li><a href="#section-4-2" class="toc-item block text-sm">4.2 系统架构分层设计</a></li>
+                            <li><a href="#section-4-3" class="toc-item block text-sm">4.3 微服务架构设计模式</a></li>
+                            <li><a href="#section-4-4" class="toc-item block text-sm">4.4 云原生架构设计与技术栈选型</a></li>
+                            <li><a href="#section-4-5" class="toc-item block text-sm">4.5 本项目技术架构设计说明</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#section-5" class="nav-item flex items-center py-2 px-3 rounded-md hover:bg-neutral-100 transition-colors duration-150">
+                            <i class="fa fa-file-text w-5 text-center mr-2 text-neutral-600"></i>
+                            <span>五、文档体系与规范要求</span>
+                        </a>
+                        <ul class="pl-7 mt-1 space-y-1 hidden submenu">
+                            <li><a href="#section-5-1" class="toc-item block text-sm">5.1 技术文档分类与撰写标准</a></li>
+                            <li><a href="#section-5-2" class="toc-item block text-sm">5.2 项目里程碑与交付物规划</a></li>
+                            <li><a href="#section-5-3" class="toc-item block text-sm">5.3 团队协作与文档管理工具</a></li>
+                            <li><a href="#section-5-4" class="toc-item block text-sm">5.4 质量控制与审核机制</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 遮罩层 -->
+        <div id="overlay" class="fixed inset-0 bg-black/50 z-10 lg:hidden hidden"></div>
+
+        <!-- 主内容区域 -->
+        <main class="flex-1 ml-0 lg:ml-64 overflow-y-auto h-screen scrollbar-hide pb-20">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <!-- 文档标题 -->
+                <div class="mb-12 text-center">
+                    <h1 class="text-3xl font-bold text-neutral-800 mb-4">项目管理、需求分析、交互设计与技术架构补充文档</h1>
+                    <div class="flex items-center justify-center text-neutral-600 text-sm">
+                        <span class="flex items-center mr-4">
+                            <i class="fa fa-calendar-o mr-1"></i>
+                            <span>2025年10月20日</span>
+                        </span>
+                        <span class="flex items-center">
+                            <i class="fa fa-clock-o mr-1"></i>
+                            <span>文档版本: 1.0</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- 目录卡片 -->
+                <div class="card mb-10">
+                    <h2 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fa fa-list-ul text-primary mr-2"></i>
+                        文档目录
+                    </h2>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <ul class="space-y-2">
+                                <li>
+                                    <a href="#section-1" class="flex items-center hover:text-primary transition-colors">
+                                        <i class="fa fa-angle-right text-neutral-400 mr-2"></i>
+                                        一、项目管理体系框架
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#section-2" class="flex items-center hover:text-primary transition-colors">
+                                        <i class="fa fa-angle-right text-neutral-400 mr-2"></i>
+                                        二、需求分析方法论与实践
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#section-3" class="flex items-center hover:text-primary transition-colors">
+                                        <i class="fa fa-angle-right text-neutral-400 mr-2"></i>
+                                        三、交互设计原则与规范
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="space-y-2">
+                                <li>
+                                    <a href="#section-4" class="flex items-center hover:text-primary transition-colors">
+                                        <i class="fa fa-angle-right text-neutral-400 mr-2"></i>
+                                        四、技术架构设计与选型
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#section-5" class="flex items-center hover:text-primary transition-colors">
+                                        <i class="fa fa-angle-right text-neutral-400 mr-2"></i>
+                                        五、文档体系与规范要求
+                                    </a>
+                                </li>
+                                <li>
+                                    <button id="scroll-top-btn" class="flex items-center text-primary hover:underline">
+                                        <i class="fa fa-arrow-up mr-2"></i>
+                                        返回顶部
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第一部分：项目管理体系框架 -->
+                <section id="section-1" class="mb-16">
+                    <div class="flex items-center mb-6">
+                        <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3">
+                            <i class="fa fa-tasks"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-neutral-800">一、项目管理体系框架</h2>
+                    </div>
+
+                    <!-- 1.1 项目管理方法论与流程 -->
+                    <div id="section-1-1" class="section-card">
+                        <h3 class="text-xl font-semibold mb-4 text-neutral-800">1.1 项目管理方法论与流程</h3>
+                        <p class="text-neutral-700 mb-4">
+                            项目管理方法论是一套系统化的理论体系，用于指导项目从启动、规划、执行、监控到收尾的整个生命周期。在本项目中，我们采用敏捷开发与传统项目管理相结合的混合方法论，以适应教育系统开发的复杂性和需求变化性。
+                        </p>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-neutral-800 mb-2">敏捷开发方法论特点：</h4>
+                            <ul class="list-disc pl-6 text-neutral-700 space-y-1 mb-4">
+                                <li>以用户需求为核心，采用迭代和循序渐进的开发方法</li>
+                                <li>软件项目分成多个子项目，每个子项目成果需严格检测</li>
+                                <li>成果具有可视化、集成性的特点</li>
+                                <li>Scrum作为具体方法学，Sprint周期一般为1-2周，不超过一个月</li>
+                            </ul>
+                        </div>
+
+                        <div class="mb-6">
+                            <h4 class="font-medium text-neutral-800 mb-2">PMBOK五大过程组：</h4>
+                            <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 mb-4">
+                                <div class="bg-neutral-50 p-3 rounded text-center text-sm">启动过程</div>
+                                <div class="bg-neutral-50 p-3 rounded text-center text-sm">计划过程</div>
+                                <div class="bg-neutral-50 p-3 rounded text-center text-sm">实施过程</div>
+                                <div class="bg-neutral-50 p-3 rounded text-center text-sm">控制过程</div>
+                                <div class="bg-neutral-50 p-3 rounded text-center text-sm">收尾过程</div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <h4 class="font-medium text-neutral-800 mb-2">PMBOK九大知识领域：</h4>
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+                                <div class="flex items-center bg-neutral-50 p-2 rounded text-sm">
+                                    <i class="fa fa-check-circle text-primary mr-2"></i>
+                                    <span>范围管理</span>
+                                </div>
+                                <div class="flex items-center bg-neutral-50 p-2 rounded text-sm">
+                                    <i class="fa fa-check-circle text-primary mr-2"></i>
+                                    <span>时间管理</span>
+                                </div>
+                                <div class="flex items-center bg-neutral-50 p-2 rounded text-sm">
+                                    <i class="fa fa-check-circle text-primary mr-2"></i>
+                                    <span>成本管理</span>
+                                </div>
+                                <div class="flex items-center bg-neutral-50 p-2 rounded text-sm">
+                                    <i class="fa fa-check-circle text-primary mr-2"></i>
+                                    <span>质量管理</span>
+                                </div>
+                                <div class="flex items-center bg-neutral-50 p-2 rounded text-sm">
+                                    <i class="fa fa-check-circle text-primary mr-2"></i>
+                                    <span>风险管理</span>
+                                </div>
+                                <div class="flex items-center bg-neutral-50 p-2 rounded text-sm">
+                                    <i class="fa fa-check-circle text-primary mr-2"></i>
+                                    <span>人力资源管理</span>
+                                </div>
+                                <div class="flex items-center bg-neutral-50 p-2 rounded text-sm">
+                                    <i class="fa fa-check-circle text-primary mr-2"></i>
+                                    <span>沟通管理</span>
+                                </div>
+                                <div class="flex items-center bg-neutral-50 p-2 rounded text-sm">
+                                    <i class="fa fa-check-circle text-primary mr-2"></i>
+                                    <span>采购管理</span>
+                                </div>
+                                <div class="flex items-center bg-neutral-50 p-2 rounded text-sm">
+                                    <i class="fa fa-check-circle text-primary mr-2"></i>
+                                    <span>综合管理</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="font-medium text-neutral-800 mb-2">项目管理方法论选择因素：</h4>
+                            <ul class="list-disc pl-6 text-neutral-700 space-y-1">
+                                <li>评估组织在项目管理方面的资源投入（人力、物力、财力）</li>
+                                <li>评估项目风险，选择能够有效控制风险的方法论</li>
+                                <li>对项目实施过程进行评估，总结经验教训，持续改进</li>
+                            </ul>
+                        </div>
+
+                        <!-- 项目管理方法论对比图表 -->
+                        <div class="mt-6">
+                            <h4 class="font-medium text-neutral-800 mb-3">项目管理方法论对比</h4>
+                            <div class="bg-white p-2 rounded border border-neutral-200">
+                                <canvas id="methodologyChart" height="250"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 1.2 项目规划与进度安排 -->
+                    <div id="section-1-2" class="section-card">
+                        <h3 class="text-xl font-semibold mb-4 text-neutral-800">1.2 项目规划与进度安排</h3>
+                        <p class="text-neutral-700 mb-4">
+                            项目规划是项目成功的基础，需要制定详细的项目管理计划，包括范围管理、时间管理、成本管理、质量管理、风险管理等各个方面。
+                        </p>
+
+                        <div class="mb-6">
+                            <h4 class="font-medium text-neutral-800 mb-3">工作分解结构（WBS）</h4>
+                            <p class="text-neutral-700 mb-3">
+                                WBS以可交付成果为导向对项目要素进行分组，归纳和定义了项目的整个工作范围，每下降一层代表对项目工作的更详细定义。
+                            </p>
+                            <div class="bg-neutral-50 p-4 rounded border border-neutral-200 mb-3">
+                                <h5 class="font-medium text-neutral-800 mb-2">WBS分解原理：</h5>
+                                <p class="text-neutral-700 text-sm">
+                                    类似于因数分解，将项目按一定原则分解，项目分解成任务，任务再分解成一项项工作，再把一项项工作分配到每个人的日常活动中，直到分解不下去为止。
+                                </p>
+                            </div>
+                            <div class="bg-neutral-50 p-4 rounded border border-neutral-200">
+                                <h5 class="font-medium text-neutral-800 mb-2">本项目WBS结构（阶段导向）：</h5>
+                                <ul class="list-disc pl-6 text-neutral-700 space-y-2 text-sm">
+                                    <li>项目启动阶段
+                                        <ul class="list-circle pl-6 mt-1 space-y-1">
+                                            <li>项目立项</li>
+                                            <li>团队组建</li>
+                                            <li>需求调研准备</li>
+                                        </ul>
+                                    </li>
+                                    <li>需求分析阶段
+                                        <ul class="list-circle pl-6 mt-1 space-y-1">
+                                            <li>用户需求收集</li>
+                                            <li>需求分析</li>
+                                            <li>需求规格说明书编写</li>
+                                            <li>需求评审</li>
+                                        </ul>
+                                    </li>
+                                    <li>设计阶段
+                                        <ul class="list-circle pl-6 mt-1 space-y-1">
+                                            <li>系统架构设计</li>
+                                            <li>数据库设计</li>
+                                            <li>界面设计</li>
+                                            <li>设计评审</li>
+                                        </ul>
+                                    </li>
+                                    <li>开发阶段
+                                        <ul class="list-circle pl-6 mt-1 space-y-1">
+                                            <li>前端开发</li>
+                                            <li>后端开发</li>
+                                            <li>接口开发</li>
+                                            <li>单元测试</li>
+                                        </ul>
+                                    </li>
+                                    <li>测试阶段
+                                        <ul class="list-circle pl-6 mt-1 space-y-1">
+                                            <li>集成测试</li>
+                                            <li>功能测试</li>
+                                            <li>性能测试</li>
+                                            <li>安全测试</li>
+                                        </ul>
+                                    </li>
+                                    <li>部署上线阶段
+                                        <ul class="list-circle pl-6 mt-1 space-y-1">
+                                            <li>生产环境部署</li>
+                                            <li>用户培训</li>
+                                            <li>系统上线</li>
+                                            <li>运维支持</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <h4 class="font-medium text-neutral-800 mb-3">进度安排方法：关键路径法（CPM）</h4>
+                            <p class="text-neutral-700 mb-3">
+                                关键路径是项目中最长的任务序列，决定了项目的最短完成时间。关键路径法通过分析任务之间的依赖关系和持续时间，找出决定项目总工期的关键任务序列。
+                            </p>
+                            
+                            <div class="bg-neutral-50 p-4 rounded border border-neutral-200 mb-4">
+                                <h5 class="font-medium text-neutral-800 mb-2">进度安排步骤：</h5>
+                                <ol class="list-decimal pl-6 text-neutral-700 space-y-2">
+                                    <li>使用顺推方法计算出所有活动的最早开始、最早结束时间</li>
+                                    <li>使用逆推方法计算出所有活动的最晚开始、最晚结束时间</li>
+                                    <li>用两者的差值计算出每个活动可以推迟或拖延的浮动时间</li>
+                                    <li>识别关键路径上的任务（浮动时间为零的任务）</li>
+                                </ol>
+                            </div>
+                            
+                            <div class="bg-primary/5 p-4 rounded border border-primary/20">
+                                <div class="flex items-start">
+                                    <i class="fa fa-info-circle text-primary mt-1 mr-2"></i>
+                                    <div>
+                                        <h5 class="font-medium text-primary mb-1">关键任务特点：</h5>
+                                        <p class="text-neutral-700 text-sm">
+                                            关键路径上的任务被称为"关键任务"，它们的浮动时间为零，无法延误，否则会影响项目总工期。项目管理的重点应放在关键任务的监控和管理上。
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="font-medium text-neutral-800 mb-3">敏捷进度管理</h4>
+                            <p class="text-neutral-700 mb-3">
+                                采用迭代规划方式，将长期目标分解为短期迭代，通常为1-4周的可交付成果。团队速率校准通过历史数据（如过去3个Sprint的平均完成故事点数）预测当前迭代容量。
+                            </p>
+                            
+                            <div class="overflow-x-auto mb-4">
+                                <table class="min-w-full border border-neutral-200 rounded-md">
+                                    <thead>
+                                        <tr class="bg-neutral-50">
+                                            <th class="py-2 px-3 border-b text-left text-sm font-medium text-neutral-700">Sprint阶段</th>
+                                            <th class="py-2 px-3 border-b text-left text-sm font-medium text-neutral-700">周期</th>
+                                            <th class="py-2 px-3 border-b text-left text-sm font-medium text-neutral-700">主要活动</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-neutral-200">
+                                        <tr>
+                                            <td class="py-2 px-3 text-sm text-neutral-700">Sprint 0</td>
+                                            <td class="py-2 px-3 text-sm text-neutral-700">1周</td>
+                                            <td class="py-2 px-3 text-sm text-neutral-700">项目启动，制定产品待办列表（Product Backlog）</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-2 px-3 text-sm text-neutral-700">Sprint 1-6</td>
+                                            <td class="py-2 px-3 text-sm text-neutral-700">每个2周</td>
+                                            <td class="py-2 px-3 text-sm text-neutral-700">Sprint规划会议（4小时）、开发和测试（9天）、Sprint评审会（2小时）、Sprint回顾会（1.5小时）</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-2 px-3 text-sm text-neutral-700">产品发布</td>
+                                            <td class="py-2 px-3 text-sm text-neutral-700">1周</td>
+                                            <td class="py-2 px-3 text-sm text-neutral-700">产品上线准备和市场推广</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 1.3 团队组织架构与职责分工 -->
+                    <div id="section-1-3" class="section-card">
+                        <h3 class="text-xl font-semibold mb-4 text-neutral-800">1.3 团队组织架构与职责分工</h3>
+                        <p class="text-neutral-700 mb-4">
+                            项目团队采用矩阵式组织结构，团队成员既向职能经理汇报（基于专业领域），也向项目经理汇报，这种结构在资源分配和专业知识利用方面具有更大的灵活性。
+                        </p>
+
+                        <div class="mb-6">
+                            <h4 class="font-medium text-neutral-800 mb-3">项目管理办公室（PMO）</h4>
+                            <p class="text-neutral-700 mb-3">
+                                作为专门的职能组织，负责项目的整体管理和协调工作。
+                            </p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <div class="bg-neutral-50 p-4 rounded border border-neutral-200">
+                                    <h5 class="font-medium text-neutral-800 mb-2">PMO团队成员及职责：</h5>
+                                    <ul class="space-y-2 text-neutral-700 text-sm">
+                                        <li class="flex items-start">
+                                            <span class="font-medium min-w-[100px]">项目经理：</span>
+                                            <span>负责日常的项目管理工作，包括项目的规划、执行、监控和收尾</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="font-medium min-w-[100px]">项目协调员：</span>
+                                            <span>帮助项目经理进行日常的项目协调和沟通工作</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="font-medium min-w-[100px]">财务分析师：</span>
+                                            <span>负责项目的预算编制、成本控制和财务报告</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="font-medium min-w-[100px]">行政支持：</span>
+                                            <span>处理日常行政事务，为PMO团队提供支持</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="font-medium min-w-[100px]">数据分析师：</span>
+                                            <span>负责收集和分析项目数据，制作项目报告</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-neutral-50 p-4 rounded border border-neutral-200">
+                                    <h5 class="font-medium text-neutral-800 mb-2">技术团队组织架构：</h5>
+                                    <ul class="space-y-2 text-neutral-700 text-sm">
+                                        <li class="flex items-start">
+                                            <span class="font-medium min-w-[100px]">架构师：</span>
+                                            <span>负责系统技术架构设计和技术选型决策</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="font-medium min-w-[100px]">前端开发组：</span>
+                                            <span>使用Vue3 + Element Plus + Vite + Pinia + TypeScript + Vue Router技术栈</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="font-medium min-w-[100px]">后端开发组：</span>
+                                            <span>使用Spring Cloud + Spring Boot + FastAPI混合架构</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="font-medium min-w-[100px]">测试组：</span>
+                                            <span>负责质量保证和测试计划执行</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="font-medium min-w-[100px]">运维组：</span>
+                                            <span>负责系统部署、监控和维护</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="font-medium text-neutral-800 mb-3">职责分工矩阵（RACI）</h4>
+                            <p class="text-neutral-700 mb-3">
+                                明确了项目中每个角色在各项任务中的职责。
+                            </p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <div class="bg-neutral-50 p-4 rounded border border-neutral-200">
+                                    <h5 class="font-medium text-neutral-800 mb-2">RACI定义：</h5>
+                                    <ul class="space-y-2 text-neutral-700 text-sm">
+                                        <li class="flex items-start">
+                                            <span class="font-bold text-primary mr-2">R</span>
+                                            <span><strong>Responsible（执行）：</strong>具体执行任务的角色</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="font-bold text-primary mr-2">A</span>
+                                            <span><strong>Accountable（负责）：</strong>对任务结果负责的角色</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="font-bold text-primary mr-2">C</span>
+                                            <span><strong>Consulted（咨询）：</strong>提供建议和专业知识的角色</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="font-bold text-primary mr-2">I</span>
+                                            <span><strong>Informed（知情）：</strong>需要了解任务进展的角色</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-neutral-50 p-4 rounded border border-neutral-200">
+                                    <h5 class="font-medium text-neutral-800 mb-2">RACI应用示例：</h5>
+                                    <div class="overflow-x-auto">
+                                        <table class="min-w-full border border-neutral-200 rounded text-sm">
+                                            <thead>
+                                                <tr class="bg-neutral-100">
+                                                    <th class="py-1 px-2 border-b text-left">任务</th>
+                                                    <th class="py-1 px-2 border-b text-center">项目经理</th>
+                                                    <th class="py-1 px-2 border-b text-center">架构师</th>
+                                                    <th class="py-1 px-2 border-b text-center">开发工程师</th>
+                                                    <th class="py-1 px-2 border-b text-center">测试工程师</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="py-1 px-2 border-b">需求评审</td>
+                                                    <td class="py-1 px-2 border-b text-center">A</td>
+                                                    <td class="py-1 px-2 border-b text-center">C</td>
+                                                    <td class="py-1 px-2 border-b text-center">C</td>
+                                                    <td class="py-1 px-2 border-b text-center">C</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="py-1 px-2 border-b">架构设计</td>
+                                                    <td class="py-1 px-2 border-b text-center">I</td>
+                                                    <td class="py-1 px-2 border-b text-center">A/R</td>
+                                                    <td class="py-1 px-2 border-b text-center">C</td>
+                                                    <td class="py-1 px-2 border-b text-center">C</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="py-1 px-2 border-b">编码实现</td>
+                                                    <td class="py-1 px-2 border-b text-center">I</td>
+                                                    <td class="py-1 px-2 border-b text-center">C</td>
+                                                    <td class="py-1 px-2 border-b text-center">A/R</td>
+                                                    <td class="py-1 px-2 border-b text-center">I</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="py-1 px-2 border-b">测试执行</td>
+                                                    <td class="py-1 px-2 border-b text-center">I</td>
+                                                    <td class="py-1 px-2 border-b text-center">I</td>
+                                                    <td class="py-1 px-2 border-b text-center">C</td>
+                                                    <td class="py-1 px-2 border-b text-center">A/R</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 1.4 风险管理与质量控制体系 -->
+                    <div id="section-1-4" class="section-card">
+                        <h3 class="text-xl font-semibold mb-4 text-neutral-800">1.4 风险管理与质量控制体系</h3>
+
+                        <div class="mb-6">
+                            <h4 class="font-medium text-neutral-800 mb-3">风险管理体系</h4>
+                            <p class="text-neutral-700 mb-3">
+                                采用风险矩阵方法，通过评估风险发生的可能性和影响程度来识别、评估和优先级排序风险。
+                            </p>
+                            
+                            <div class="mb-4">
+                                <h5 class="font-medium text-neutral-800 mb-2">风险矩阵原理：</h5>
+                                <p class="text-neutral-700 text-sm mb-3">
+                                    风险矩阵的底层逻辑是一个二维表格：横轴为可能性（从"极低"到"极高"），纵轴为影响程度（从"极小"到"极大"），每个格子对应一个风险等级（高/中/低）。
+                                </p>
+                                <div class="bg-neutral-50 p-3 rounded border border-neutral-200 mb-3">
+                                    <p class="text-sm font-medium text-neutral-800 mb-1">风险评估核心公式：</p>
+                                    <p class="text-sm text-neutral-700 font-mono">风险等级 = 风险概率 × 影响程度</p>
+                                </div>
+                            </div>
+                            
+                            <!-- 风险矩阵图表 -->
+                            <div class="mb-4">
+                                <h5 class="font-medium text-neutral-800 mb-3">风险矩阵四象限划分</h5>
+                                <div class="bg-white p-2 rounded border border-neutral-200">
+                                    <canvas id="riskMatrixChart" height="300"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <h4 class="font-medium text-neutral-800 mb-3">质量控制体系：PDCA循环</h4>
+                            <p class="text-neutral-700 mb-3">
+                                PDCA循环（Plan-Do-Check-Act）是管理学中的通用模型，最早由休哈特于1930年构想，后被戴明博士在1950年再度挖掘出来，广泛应用于持续改善产品质量的过程。
+                            </p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <div class="bg-neutral-50 p-4 rounded border border>API接口</li>
+                                        <li>数据交换接口</li>
+                                        <li>第三方集成接口</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2.3 需求规格说明书（SRS）撰写规范 -->
+                    <div id="req-srs" class="mb-8">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fa fa-file-text text-secondary mr-2"></i>2.3 需求规格说明书（SRS）撰写规范
+                        </h3>
+                        <p class="text-gray-700 mb-4">
+                            软件需求规格说明书（SRS）是需求分析阶段的核心交付物，必须描述一定的功能、性能；要求最终产品的每一个特性用某一术语描述；对所有可能出现的输入数据的响应予以定义。
+                        </p>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-800 mb-3">SRS标准结构（参考GB/T8567-2006）</h4>
+                            <div class="space-y-2">
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mr-3 mt-0.5">
+                                        <span class="text-primary text-sm font-medium">1</span>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-gray-800">引言</div>
+                                        <p class="text-sm text-gray-700">目的、范围、定义、参考资料</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mr-3 mt-0.5">
+                                        <span class="text-primary text-sm font-medium">2</span>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-gray-800">总体描述</div>
+                                        <p class="text-sm text-gray-700">产品功能、用户特征、约束条件、假设与依赖</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mr-3 mt-0.5">
+                                        <span class="text-primary text-sm font-medium">3</span>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-gray-800">功能需求</div>
+                                        <p class="text-sm text-gray-700">功能点列表、详细描述（输入/输出/业务规则）</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mr-3 mt-0.5">
+                                        <span class="text-primary text-sm font-medium">4</span>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-gray-800">非功能需求</div>
+                                        <p class="text-sm text-gray-700">性能、安全、易用性、可靠性等指标</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mr-3 mt-0.5">
+                                        <span class="text-primary text-sm font-medium">5</span>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-gray-800">验收标准</div>
+                                        <p class="text-sm text-gray-700">每个需求的可测试验收条件</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mr-3 mt-0.5">
+                                        <span class="text-primary text-sm font-medium">6</span>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-gray-800">附录</div>
+                                        <p class="text-sm text-gray-700">术语表、流程图、原型图等</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-800 mb-3">撰写规范技巧</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="bg-gray-50 p-3 rounded-lg">
+                                    <div class="font-medium text-gray-800 mb-1">避免歧义</div>
+                                    <p class="text-sm text-gray-700">使用"shall"（必须）、"should"（建议）、"may"（可选）等明确性词汇，避免使用"大概""可能"等模糊表述</p>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg">
+                                    <div class="font-medium text-gray-800 mb-1">量化指标</div>
+                                    <p class="text-sm text-gray-700">将抽象需求转化为可量化指标（如"系统响应快"改为"普通请求响应时间≤1秒"）</p>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg">
+                                    <div class="font-medium text-gray-800 mb-1">图文结合</div>
+                                    <p class="text-sm text-gray-700">复杂流程或界面设计需配合流程图、原型图说明，避免纯文字描述</p>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg">
+                                    <div class="font-medium text-gray-800 mb-1">版本控制</div>
+                                    <p class="text-sm text-gray-700">每次修订需记录修订日期、修订人、修订内容，保证版本可追溯</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2.4 功能性与非功能性需求分析 -->
+                    <div id="req-functional-nonfunctional">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fa fa-balance-scale text-secondary mr-2"></i>2.4 功能性与非功能性需求分析
+                        </h3>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-800 mb-3">功能性需求（本项目示例）</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                                <div class="border border-gray-200 p-3 rounded-lg">
+                                    <div class="font-medium text-gray-800 mb-1">用户管理功能</div>
+                                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                        <li>用户注册</li>
+                                        <li>用户登录</li>
+                                        <li>权限管理</li>
+                                        <li>角色管理</li>
+                                    </ul>
+                                </div>
+                                <div class="border border-gray-200 p-3 rounded-lg">
+                                    <div class="font-medium text-gray-800 mb-1">教学管理功能</div>
+                                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                        <li>课程管理</li>
+                                        <li>作业布置</li>
+                                        <li>作业批改</li>
+                                        <li>成绩统计</li>
+                                    </ul>
+                                </div>
+                                <div class="border border-gray-200 p-3 rounded-lg">
+                                    <div class="font-medium text-gray-800 mb-1">学习管理功能</div>
+                                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                        <li>学习计划制定</li>
+                                        <li>学习进度跟踪</li>
+                                        <li>在线学习</li>
+                                    </ul>
+                                </div>
+                                <div class="border border-gray-200 p-3 rounded-lg">
+                                    <div class="font-medium text-gray-800 mb-1">数据分析功能</div>
+                                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                        <li>学情分析</li>
+                                        <li>学习报告生成</li>
+                                        <li>数据可视化</li>
+                                    </ul>
+                                </div>
+                                <div class="border border-gray-200 p-3 rounded-lg">
+                                    <div class="font-medium text-gray-800 mb-1">家校互动功能</div>
+                                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                        <li>消息通知</li>
+                                        <li>在线沟通</li>
+                                        <li>学习报告分享</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-medium text-gray-800 mb-3">非功能性需求</h4>
+                            <div class="space-y-4">
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <div class="font-medium text-gray-800 mb-2 flex items-center">
+                                        <i class="fa fa-tachometer text-primary mr-2"></i>性能需求
+                                    </div>
+                                    <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
+                                        <li>系统响应时间：普通请求≤1秒，复杂请求≤3秒</li>
+                                        <li>并发用户数：支持至少1000个用户同时在线</li>
+                                        <li>数据处理能力：每日处理10万条以上数据</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <div class="font-medium text-gray-800 mb-2 flex items-center">
+                                        <i class="fa fa-shield text-primary mr-2"></i>可靠性需求
+                                    </div>
+                                    <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
+                                        <li>系统可用性：99.9%以上（年度停机时间≤8.76小时）</li>
+                                        <li>数据可靠性：数据丢失率为零</li>
+                                        <li>故障恢复时间：一般故障在30分钟内恢复</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <div class="font-medium text-gray-800 mb-2 flex items-center">
+                                        <i class="fa fa-lock text-primary mr-2"></i>安全性需求
+                                    </div>
+                                    <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
+                                        <li>用户认证：支持多因素认证</li>
+                                        <li>数据加密：敏感数据采用加密存储</li>
+                                        <li>访问控制：基于角色的访问控制（RBAC）</li>
+                                        <li>审计日志：所有关键操作都需要记录日志</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div class="bg-gray-50 p-4 rounded-lg">
+                                        <div class="font-medium text-gray-800 mb-2 flex items-center">
+                                            <i class="fa fa-wrench text-primary mr-2"></i>可维护性需求
+                                        </div>
+                                        <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
+                                            <li>代码可维护性：遵循统一编码规范</li>
+                                            <li>系统可扩展性：支持功能模块灵活扩展</li>
+                                            <li>文档完整性：所有功能有详细技术文档</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-gray-50 p-4 rounded-lg">
+                                        <div class="font-medium text-gray-800 mb-2 flex items-center">
+                                            <i class="fa fa-desktop text-primary mr-2"></i>兼容性需求
+                                        </div>
+                                        <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
+                                            <li>浏览器兼容性：支持主流浏览器</li>
+                                            <li>操作系统兼容性：支持Windows、macOS、Linux</li>
+                                            <li>移动设备支持：支持iOS和Android系统</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 三、交互设计原则与规范 -->
+            <section id="interaction-design" class="bg-white rounded-lg shadow-sm p-6 mb-8 section-card">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-gray-900 flex items-center">
+                        <i class="fa fa-mouse-pointer text-primary mr-2"></i>三、交互设计原则与规范
+                    </h2>
+                    <button class="collapsible-toggle text-gray-500 hover:text-primary transition-colors">
+                        <i class="fa fa-chevron-down"></i>
+                    </button>
+                </div>
+                
+                <div class="collapsible-content open">
+                    <!-- 3.1 交互设计原则与方法 -->
+                    <div id="id-principles" class="mb-8">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fa fa-compass text-secondary mr-2"></i>3.1 交互设计原则与方法
+                        </h3>
+                        <p class="text-gray-700 mb-4">
+                            交互设计的核心目标是确保用户能够无缝地与系统进行互动，最终实现其期望的任务。交互设计关注用户与产品之间的互动方式，致力于提升用户体验。
+                        </p>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-800 mb-3">交互设计核心原则</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                                <div class="bg-blue-50 p-3 rounded-lg text-center">
+                                    <div class="text-primary text-2xl mb-2">
+                                        <i class="fa fa-balance-scale"></i>
+                                    </div>
+                                    <div class="font-medium text-gray-800 mb-1">一致性</div>
+                                    <p class="text-xs text-gray-700">设计应保持一致的逻辑和风格</p>
+                                </div>
+                                <div class="bg-blue-50 p-3 rounded-lg text-center">
+                                    <div class="text-primary text-2xl mb-2">
+                                        <i class="fa fa-comment"></i>
+                                    </div>
+                                    <div class="font-medium text-gray-800 mb-1">反馈</div>
+                                    <p class="text-xs text-gray-700">及时提供操作结果反馈</p>
+                                </div>
+                                <div class="bg-blue-50 p-3 rounded-lg text-center">
+                                    <div class="text-primary text-2xl mb-2">
+                                        <i class="fa fa-eye"></i>
+                                    </div>
+                                    <div class="font-medium text-gray-800 mb-1">可预测性</div>
+                                    <p class="text-xs text-gray-700">操作结果应该可预见</p>
+                                </div>
+                                <div class="bg-blue-50 p-3 rounded-lg text-center">
+                                    <div class="text-primary text-2xl mb-2">
+                                        <i class="fa fa-smile-o"></i>
+                                    </div>
+                                    <div class="font-medium text-gray-800 mb-1">易用性</div>
+                                    <p class="text-xs text-gray-700">降低用户认知负担</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-800 mb-3">界面设计三大黄金原则</h4>
+                            <div class="space-y-4">
+                                <div class="border border-gray-200 rounded-lg p-4">
+                                    <div class="font-medium text-gray-800 mb-2">1. 简洁性原则</div>
+                                    <p class="text-sm text-gray-700 mb-3">
+                                        简洁性是UI交互设计的基石，在界面设计中，简洁性意味着去除一切不必要的元素和复杂的操作流程。
+                                    </p>
+                                    <div class="bg-gray-50 p-3 rounded text-sm text-gray-700">
+                                        <strong>核心要求：</strong> 界面元素应尽可能简洁，以确保用户可以轻松理解每个功能和操作。
+                                    </div>
+                                </div>
+                                
+                                <div class="border border-gray-200 rounded-lg p-4">
+                                    <div class="font-medium text-gray-800 mb-2">2. 一致性原则</div>
+                                    <p class="text-sm text-gray-700 mb-3">
+                                        一致性原则贯穿于UI交互设计的各个层面，包括界面元素的样式、操作流程以及功能逻辑等。
+                                    </p>
+                                    <div class="bg-gray-50 p-3 rounded text-sm text-gray-700">
+                                        <strong>核心要求：</strong> 如果在某个地方点击按钮可以触发某项功能，那么在其他地方也应该遵循同样的交互模式。
+                                    </div>
+                                </div>
+                                
+                                <div class="border border-gray-200 rounded-lg p-4">
+                                    <div class="font-medium text-gray-800 mb-2">3. 用户控制原则</div>
+                                    <p class="text-sm text-gray-700 mb-3">
+                                        用户控制原则强调在UI交互设计中给予用户足够的自主控制权，让用户能够自由地决定如何与产品进行交互。
+                                    </p>
+                                    <div class="bg-gray-50 p-3 rounded text-sm text-gray-700">
+                                        <strong>核心要求：</strong> 支持多模态交互，保持界面一致性，同类操作采用相同流程。
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-medium text-gray-800 mb-3">反馈机制设计</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                <div class="bg-gray-50 p-3 rounded-lg">
+                                    <div class="font-medium text-gray-800 mb-1">操作反馈</div>
+                                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                        <li>按钮点击反馈</li>
+                                        <li>表单提交成功提示</li>
+                                        <li>操作确认提示</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg">
+                                    <div class="font-medium text-gray-800 mb-1">状态反馈</div>
+                                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                        <li>加载进度指示</li>
+                                        <li>操作结果提示</li>
+                                        <li>系统状态显示</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg">
+                                    <div class="font-medium text-gray-800 mb-1">错误反馈</div>
+                                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                        <li>输入格式错误提示</li>
+                                        <li>网络连接失败提示</li>
+                                        <li>权限不足提示</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 3.2 界面交互流程设计 -->
+                    <div id="id-process" class="mb-8">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fa fa-random text-secondary mr-2"></i>3.2 界面交互流程设计
+                        </h3>
+                        <p class="text-gray-700 mb-4">
+                            界面交互流程设计需要遵循清晰的目标导向、任务分解和最小化操作原则，确保用户能够高效完成预期任务。
+                        </p>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-800 mb-3">界面交互流程设计原则</h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start">
+                                    <div class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mr-3 mt-0.5">
+                                        <i class="fa fa-check text-green-600 text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-gray-800">清晰的目标导向</div>
+                                        <p class="text-sm text-gray-700">通过界面布局、导航和标识，使用户能够清晰地识别和使用产品，完成目标</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mr-3 mt-0.5">
+                                        <i class="fa fa-check text-green-600 text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-gray-800">任务分解</div>
+                                        <p class="text-sm text-gray-700">将复杂操作拆解为原子级步骤，定义界面元素在不同操作下的表现</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mr-3 mt-0.5">
+                                        <i class="fa fa-check text-green-600 text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-gray-800">最小化操作</div>
+                                        <p class="text-sm text-gray-700">在满足功能需求的前提下，尽量减少用户操作步骤，提供清晰的界面布局</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-medium text-gray-800 mb-3">典型交互流程设计</h4>
+                            <div class="space-y-6">
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-gray-50 py-2 px-4 border-b border-gray-200">
+                                        <h5 class="font-medium text-gray-800">用户登录流程</h5>
+                                    </div>
+                                    <div class="p-4">
+                                        <ol class="list-decimal list-inside text-gray-700 space-y-2">
+                                            <li>用户访问登录页面</li>
+                                            <li>输入用户名和密码</li>
+                                            <li>系统验证用户身份</li>
+                                            <li>验证成功跳转至主界面，失败显示错误信息</li>
+                                            <li>支持记住密码和自动登录功能</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                                
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-gray-50 py-2 px-4 border-b border-gray-200">
+                                        <h5 class="font-medium text-gray-800">课程学习流程</h5>
+                                    </div>
+                                    <div class="p-4">
+                                        <ol class="list-decimal list-inside text-gray-700 space-y-2">
+                                            <li>用户选择课程</li>
+                                            <li>进入课程学习界面</li>
+                                            <li>查看课程内容（视频、文档、作业等）</li>
+                                            <li>完成学习任务</li>
+                                            <li>查看学习进度和成绩</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                                
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-gray-50 py-2 px-4 border-b border-gray-200">
+                                        <h5 class="font-medium text-gray-800">作业提交流程</h5>
+                                    </div>
+                                    <div class="p-4">
+                                        <ol class="list-decimal list-inside text-gray-700 space-y-2">
+                                            <li>教师布置作业</li>
+                                            <li>学生查看作业详情</li>
+                                            <li>在线完成作业或上传文件</li>
+                                            <li>提交作业</li>
+                                            <li>教师批改作业并反馈</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 3.3 操作逻辑与用户体验设计 -->
+                    <div id="id-logic-ux" class="mb-8">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fa fa-cogs text-secondary mr-2"></i>3.3 操作逻辑与用户体验设计
+                        </h3>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-800 mb-3">操作逻辑设计</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <div class="font-medium text-gray-800 mb-2">导航设计</div>
+                                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                        <li>顶部导航：主要功能模块</li>
+                                        <li>侧边导航：详细功能分类</li>
+                                        <li>面包屑导航：当前位置指示</li>
+                                        <li>快速导航：常用功能快捷方式</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <div class="font-medium text-gray-800 mb-2">表单设计</div>
+                                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                        <li>字段排列符合用户阅读习惯</li>
+                                        <li>提供清晰的输入提示和格式要求</li>
+                                        <li>实时验证输入内容的合法性</li>
+                                        <li>错误提示信息明确易懂</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <div class="font-medium text-gray-800 mb-2">按钮设计</div>
+                                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                        <li>主要操作按钮使用醒目的颜色</li>
+                                        <li>按钮文字简洁明确（保存/提交/取消）</li>
+                                        <li>按钮状态：正常/悬停/按下/禁用</li>
+                                        <li>重要操作需要二次确认</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <div class="font-medium text-gray-800 mb-2">列表和表格设计</div>
+                                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                        <li>支持多列排序和筛选功能</li>
+                                        <li>提供批量操作功能</li>
+                                        <li>列表项可展开查看详细信息</li>
+                                        <li>支持分页和批量导出功能</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-medium text-gray-800 mb-3">用户体验设计要素</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="border border-gray-200 rounded-lg p-4">
+                                    <div class="flex items-center mb-2">
+                                        <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center mr-2">
+                                            <i class="fa fa-check-circle text-purple-600"></i>
+                                        </div>
+                                        <h5 class="font-medium text-gray-800">可用性设计</h5>
+                                    </div>
+                                    <p class="text-sm text-gray-700">
+                                        确保产品设计可以带给用户好的体验，通常在低保真设计和高保真设计阶段进行测试，评估便利性、效率和满意度。
+                                    </p>
+                                </div>
+                                
+                                <div class="border border-gray-200 rounded-lg p-4">
+                                    <div class="flex items-center mb-2">
+                                        <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mr-2">
+                                            <i class="fa fa-mobile text-green-600 text-lg"></i>
+                                        </div>
+                                        <h5 class="font-medium text-gray-800">响应式设计</h5>
+                                    </div>
+                                    <p class="text-sm text-gray-700">
+                                        根据不同设备的屏幕尺寸和分辨率，自动调整界面布局和元素大小，确保在PC、平板、手机等设备上都能提供良好体验。
+                                    </p>
+                                </div>
+                                
+                                <div class="border border-gray-200 rounded-lg p-4">
+                                    <div class="flex items-center mb-2">
+                                        <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center mr-2">
+                                            <i class="fa fa-paint-brush text-blue-600"></i>
+                                        </div>
+                                        <h5 class="font-medium text-gray-800">视觉设计</h5>
+                                    </div>
+                                    <p class="text-sm text-gray-700">
+                                        色彩搭配协调，字体选择合适，图标设计简洁明了，留白适度，避免信息过载，符合教育行业特点。
+                                    </p>
+                                </div>
+                                
+                                <div class="border border-gray-200 rounded-lg p-4">
+                                    <div class="flex items-center mb-2">
+                                        <div class="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center mr-2">
+                                            <i class="fa fa-film text-orange-600"></i>
+                                        </div>
+                                        <h5 class="font-medium text-gray-800">动效设计</h5>
+                                    </div>
+                                    <p class="text-sm text-gray-700">
+                                        页面切换动画流畅自然，按钮点击反馈及时，加载动画简洁不干扰，微交互提升操作体验。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 3.4 可用性测试方法 -->
+                    <div id="id-testing">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fa fa-flask text-secondary mr-2"></i>3.4 可用性测试方法
+                        </h3>
+                        <p class="text-gray-700 mb-4">
+                            可用性测试是用户体验设计（UX Design）中的一个重要环节，旨在通过对用户在使用产品过程中的行为进行观察和分析，评估产品的易用性和用户满意度。
+                        </p>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-800 mb-3">可用性测试流程</h4>
+                            <div class="relative">
+                                <!-- 连接线 -->
+                                <div class="absolute left-3 top-0 bottom-0 w-0.5 bg-gray-200 hidden sm:block"></div>
+                                
+                                <div class="relative pl-10 pb-4 sm:pb-0">
+                                    <div class="absolute left-0 top-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center z-10">
+                                        <span class="text-white text-xs font-bold">1</span>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-gray-800 mb-1">测试前思考</div>
+                                        <p class="text-sm text-gray-700">确定测试目标和评估指标</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="relative pl-10 pb-4 sm:pb-0">
+                                    <div class="absolute left-0 top-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center z-10">
+                                        <span class="text-white text-xs font-bold">2</span>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-gray-800 mb-1">制作测试原型</div>
+                                        <p class="text-sm text-gray-700">准备测试使用的原型或产品</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="relative pl-10 pb-4 sm:pb-0">
+                                    <div class="absolute left-0 top-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center z-10">
+                                        <span class="text-white text-xs font-bold">3</span>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-gray-800 mb-1">撰写测试脚本</div>
+                                        <p class="text-sm text-gray-700">设计测试任务和问题</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="relative pl-10 pb-4 sm:pb-0">
+                                    <div class="absolute left-0 top-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center z-10">
+                                        <span class="text-white text-xs font-bold">4</span>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-gray-800 mb-1">招募测试者</div>
+                                        <p class="text-sm text-gray-700">选择合适的测试用户</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="relative pl-10 pb-4 sm:pb-0">
+                                    <div class="absolute left-0 top-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center z-10">
+                                        <span class="text-white text-xs font-bold">5</span>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-gray-800 mb-1">设置测试环境</div>
+                                        <p class="text-sm text-gray-700">搭建测试所需的软硬件环境</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="relative pl-10 pb-4 sm:pb-0">
+                                    <div class="absolute left-0 top-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center z-10">
+                                        <span class="text-white text-xs font-bold">6</span>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-gray-800 mb-1">正式测试</div>
+                                        <p class="text-sm text-gray-700">观察和记录用户行为</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="relative pl-10">
+                                    <div class="absolute left-0 top-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center z-10">
+                                        <span class="text-white text-xs font-bold">7</span>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-gray-800 mb-1">测试结果统计分析</div>
+                                        <p class="text-sm text-gray-700">分析测试数据，总结发现</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-3">测试方法类型</h4>
+                                <div class="space-y-3">
+                                    <div class="bg-gray-50 p-3 rounded-lg">
+                                        <div class="font-medium text-gray-800 mb-1">一对一测试</div>
+                                        <p class="text-sm text-gray-700">
+                                            让一个用户在观察者的监督下完成一系列任务，观察者记录用户的行为和反馈。
+                                        </p>
+                                    </div>
+                                    <div class="bg-gray-50 p-3 rounded-lg">
+                                        <div class="font-medium text-gray-800 mb-1">逐步测试</div>
+                                        <p class="text-sm text-gray-700">
+                                            在设计过程的不同阶段进行测试，以逐步改进产品。
+                                        </p>
+                                    </div>
+                                    <div class="bg-gray-50 p-3 rounded-lg">
+                                        <div class="font-medium text-gray-800 mb-1">远程测试</div>
+                                        <p class="text-sm text-gray-700">
+                                            通过在线工具进行远程可用性测试，扩大测试范围。
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-3">测试结果分析重点</h4>
+                                <div class="space-y-2">
+                                    <div class="flex items-center p-2 bg-gray-50 rounded">
+                                        <i class="fa fa-bar-chart text-primary mr-2"></i>
+                                        <span class="text-sm">用户完成任务的成功率</span>
+                                    </div>
+                                    <div class="flex items-center p-2 bg-gray-50 rounded">
+                                        <i class="fa fa-clock-o text-primary mr-2"></i>
+                                        <span class="text-sm">用户完成任务的时间</span>
+                                    </div>
+                                    <div class="flex items-center p-2 bg-gray-50 rounded">
+                                        <i class="fa fa-exclamation-triangle text-primary mr-2"></i>
+                                        <span class="text-sm">用户操作过程中的错误和困难</span>
+                                    </div>
+                                    <div class="flex items-center p-2 bg-gray-50 rounded">
+                                        <i class="fa fa-smile-o text-primary mr-2"></i>
+                                        <span class="text-sm">用户对产品的满意度评价</span>
+                                    </div>
+                                    <div class="flex items-center p-2 bg-gray-50 rounded">
+                                        <i class="fa fa-lightbulb-o text-primary mr-2"></i>
+                                        <span class="text-sm">改进建议和优化方向</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 四、技术架构设计与选型 -->
+            <section id="technical-architecture" class="bg-white rounded-lg shadow-sm p-6 mb-8 section-card">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-gray-900 flex items-center">
+                        <i class="fa fa-server text-primary mr-2"></i>四、技术架构设计与选型
+                    </h2>
+                    <button class="collapsible-toggle text-gray-500 hover:text-primary transition-colors">
+                        <i class="fa fa-chevron-down"></i>
+                    </button>
+                </div>
+                
+                <div class="collapsible-content open">
+                    <!-- 4.1 技术选型决策方法与评估标准 -->
+                    <div id="tech-selection" class="mb-8">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fa fa-balance-scale text-secondary mr-2"></i>4.1 技术选型决策方法与评估标准
+                        </h3>
+                        <p class="text-gray-700 mb-4">
+                            技术选型决策需要遵循科学的评估方法和标准，以确保所选技术能够满足项目需求并具备长期可持续性。
+                        </p>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-800 mb-3">技术选型决策框架（十大原则）</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                                <div class="flex items-start p-2 bg-gray-50 rounded">
+                                    <div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mr-2 mt-0.5">
+                                        <span class="text-primary text-xs font-medium">1</span>
+                                    </div>
+                                    <span class="text-sm">评估团队技术能力，拒绝盲目追赶</span>
+                                </div>
+                                <div class="flex items-start p-2 bg-gray-50 rounded">
+                                    <div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mr-2 mt-0.5">
+                                        <span class="text-primary text-xs font-medium">2</span>
+                                    </div>
+                                    <span class="text-sm">考虑技术成熟度与稳定性，拒绝尝鲜冒险</span>
+                                </div>
+                                <div class="flex items-start p-2 bg-gray-50 rounded">
+                                    <div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mr-2 mt-0.5">
+                                        <span class="text-primary text-xs font-medium">3</span>
+                                    </div>
+                                    <span class="text-sm">关注技术生态系统，拒绝孤立选型</span>
+                                </div>
+                                <div class="flex items-start p-2 bg-gray-50 rounded">
+                                    <div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mr-2 mt-0.5">
+                                        <span class="text-primary text-xs font-medium">4</span>
+                                    </div>
+                                    <span class="text-sm">权衡成本与收益，拒绝不计代价</span>
+                                </div>
+                                <div class="flex items-start p-2 bg-gray-50 rounded">
+                                    <div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mr-2 mt-0.5">
+                                        <span class="text-primary text-xs font-medium">5</span>
+                                    </div>
+                                    <span class="text-sm">预留技术扩展空间，拒绝短期思维</span>
+                                </div>
+                                <div class="flex items-start p-2 bg-gray-50 rounded">
+                                    <div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mr-2 mt-0.5">
+                                        <span class="text-primary text-xs font-medium">6</span>
+                                    </div>
+                                    <span class="text-sm">重视技术文档与支持，拒绝信息闭塞</span>
+                                </div>
+                                <div class="flex items-start p-2 bg-gray-50 rounded">
+                                    <div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mr-2 mt-0.5">
+                                        <span class="text-primary text-xs font-medium">7</span>
+                                    </div>
+                                    <span class="text-sm">进行小范围试点验证，拒绝盲目推广</span>
+                                </div>
+                                <div class="flex items-start p-2 bg-gray-50 rounded">
+                                    <div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mr-2 mt-0.5">
+                                        <span class="text-primary text-xs font-medium">8</span>
+                                    </div>
+                                    <span class="text-sm">避免技术栈过于复杂，拒绝堆砌技术</span>
+                                </div>
+                                <div class="flex items-start p-2 bg-gray-50 rounded">
+                                    <div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mr-2 mt-0.5">
+                                        <span class="text-primary text-xs font-medium">9</span>
+                                    </div>
+                                    <span class="text-sm">定期复盘与调整，拒绝一成不变</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <div class="font-medium text-gray-800 mb-2">技术适配性</div>
+                                <p class="text-sm text-gray-700">
+                                    技术适配性是框架选型的首要考量因素，它直接关系到框架能否与项目的核心需求相匹配，开发团队的技术能力也是重要组成部分。
+                                </p>
+                            </div>
+                            
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <div class="font-medium text-gray-800 mb-2">性能表现</div>
+                                <p class="text-sm text-gray-700">
+                                    通过性能测试评估技术方案的处理能力、响应时间、并发支持等关键指标，确保满足业务性能需求。
+                                </p>
+                            </div>
+                            
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <div class="font-medium text-gray-800 mb-2">成本控制</div>
+                                <p class="text-sm text-gray-700">
+                                    包括直接成本和间接成本，如开发成本、维护成本、培训成本等，选择性价比最高的技术方案。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 4.2 系统架构分层设计 -->
+                    <div id="tech-layering" class="mb-8">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fa fa-layer-group text-secondary mr-2"></i>4.2 系统架构分层设计
+                        </h3>
+                        <p class="text-gray-700 mb-4">
+                            系统架构采用分层设计理念，将系统纵向切割为垂直层级，每层各司其职，形成"单向依赖链"，提高系统的可维护性和可扩展性。
+                        </p>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-800 mb-3">典型四层结构</h4>
+                            <div class="relative py-4">
+                                <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-200"></div>
+                                
+                                <div class="relative z-10 flex flex-col items-center mb-8">
+                                    <div class="w-3 h-3 rounded-full bg-primary mb-2"></div>
+                                    <div class="bg-white border border-gray-200 rounded-lg p-4 w-full max-w-md text-center shadow-sm">
+                                        <div class="font-medium text-primary mb-1">表现层（UI/API）</div>
+                                        <p class="text-sm text-gray-700">承接用户交互，处理用户界面和API请求</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="relative z-10 flex flex-col items-center mb-8">
+                                    <div class="w-3 h-3 rounded-full bg-primary mb-2"></div>
+                                    <div class="bg-white border border-gray-200 rounded-lg p-4 w-full max-w-md text-center shadow-sm">
+                                        <div class="font-medium text-primary mb-1">业务层（Service）</div>
+                                        <p class="text-sm text-gray-700">处理核心业务逻辑，实现业务规则</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="relative z-10 flex flex-col items-center mb-8">
+                                    <div class="w-3 h-3 rounded-full bg-primary mb-2"></div>
+                                    <div class="bg-white border border-gray-200 rounded-lg p-4 w-full max-w-md text-center shadow-sm">
+                                        <div class="font-medium text-primary mb-1">数据层（DAO）</div>
+                                        <p class="text-sm text-gray-700">负责数据持久化操作，与数据库交互</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="relative z-10 flex flex-col items-center">
+                                    <div class="w-3 h-3 rounded-full bg-primary mb-2"></div>
+                                    <div class="bg-white border border-gray-200 rounded-lg p-4 w-full max-w-md text-center shadow-sm">
+                                        <div class="font-medium text-primary mb-1">数据库层</div>
+                                        <p class="text-sm text-gray-700">负责数据的存储和管理</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="microservice-arch" class="mb-6">
+                            <h4 class="font-medium text-gray-800 mb-3">微服务分层架构</h4>
+                            <div class="chart-container">
+                                <canvas id="microserviceChart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-medium text-gray-800 mb-3">分层架构的优势</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div class="flex items-center p-2 bg-gray-50 rounded">
+                                    <i class="fa fa-check-circle text-primary mr-2"></i>
+                                    <span class="text-sm">通过职责分离降低模块耦合</span>
+                                </div>
+                                <div class="flex items-center p-2 bg-gray-50 rounded">
+                                    <i class="fa fa-check-circle text-primary mr-2"></i>
+                                    <span class="text-sm">便于各层独立开发、测试和维护</span>
+                                </div>
+                                <div class="flex items-center p-2 bg-gray-50 rounded">
+                                    <i class="fa fa-check-circle text-primary mr-2"></i>
+                                    <span class="text-sm">支持不同层次的技术选型和优化</span>
+                                </div>
+                                <div class="flex items-center p-2 bg-gray-50 rounded">
+                                    <i class="fa fa-check-circle text-primary mr-2"></i>
+                                    <span class="text-sm">提高系统的可扩展性和可维护性</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 4.3 微服务架构设计模式 -->
+                    <div id="tech-microservice" class="mb-8">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fa fa-sitemap text-secondary mr-2"></i>4.3 微服务架构设计模式
+                        </h3>
+                        <p class="text-gray-700 mb-4">
+                            微服务架构是指将单一应用拆分成一组小型、自治的服务，每个服务围绕业务功能构建，拥有独立的开发、部署、运维周期。
+                        </p>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-800 mb-3">微服务架构的核心特征</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                                <div class="bg-blue-50 p-3 rounded-lg">
+                                    <div class="font-medium text-primary mb-1">服务自治</div>
+                                    <p class="text-xs text-gray-700">每个微服务拥有独立的代码库、数据库和部署流程</p>
+                                </div>
+                                <div class="bg-blue-50 p-3 rounded-lg">
+                                    <div class="font-medium text-primary mb-1">轻量级通信</div>
+                                    <p class="text-xs text-gray-700">服务间通过RESTful API或消息队列进行通信</p>
+                                </div>
+                                <div class="bg-blue-50 p-3 rounded-lg">
+                                    <div class="font-medium text-primary mb-1">独立部署</div>
+                                    <p class="text-xs text-gray-700">每个服务可以独立开发、测试和部署</p>
+                                </div>
+                                <div class="bg-blue-50 p-3 rounded-lg">
+                                    <div class="font-medium text-primary mb-1">技术多样性</div>
+                                    <p class="text-xs text-gray-700">不同服务可以采用不同的技术栈</p>
+                                </div>
+                                <div class="bg-blue-50 p-3 rounded-lg">
+                                    <div class="font-medium text-primary mb-1">去中心化</div>
+                                    <p class="text-xs text-gray-700">没有统一的服务管理中心，服务间平等协作</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-3">服务拆分原则</h4>
+                                <div class="space-y-3">
+                                    <div class="border border-gray-200 p-3 rounded-lg">
+                                        <div class="font-medium text-gray-800 mb-1">业务相关性拆分</div>
+                                        <p class="text-sm text-gray-700">
+                                            根据业务功能将服务进行拆分，确保每个服务都有明确的业务边界
+                                        </p>
+                                    </div>
+                                    <div class="border border-gray-200 p-3 rounded-lg">
+                                        <div class="font-medium text-gray-800 mb-1">数据一致性拆分</div>
+                                        <p class="text-sm text-gray-700">
+                                            根据数据访问模式拆分服务，降低数据一致性的复杂度
+                                        </p>
+                                    </div>
+                                    <div class="border border-gray-200 p-3 rounded-lg">
+                                        <div class="font-medium text-gray-800 mb-1">单一职责原则</div>
+                                        <p class="text-sm text-gray-700">
+                                            每个服务应专注于单一功能，减少模块间的相互依赖
+                                        </p>
+                                    </div>
+                                    <div class="border border-gray-200 p-3 rounded-lg">
+                                        <div class="font-medium text-gray-800 mb-1">高内聚低耦合</div>
+                                        <p class="text-sm text-gray-700">
+                                            模块内部应保持高度内聚，模块之间应保持低耦合
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-3">微服务通信模式</h4>
+                                <div class="space-y-3">
+                                    <div class="border border-gray-200 p-3 rounded-lg">
+                                        <div class="font-medium text-gray-800 mb-1">同步通信</div>
+                                        <p class="text-sm text-gray-700">
+                                            使用RESTful API进行同步调用，适用于需要立即得到响应的场景
+                                        </p>
+                                    </div>
+                                    <div class="border border-gray-200 p-3 rounded-lg">
+                                        <div class="font-medium text-gray-800 mb-1">异步通信</div>
+                                        <p class="text-sm text-gray-700">
+                                            使用消息队列进行异步处理，适用于不需要立即响应的场景
+                                        </p>
+                                    </div>
+                                    <div class="border border-gray-200 p-3 rounded-lg">
+                                        <div class="font-medium text-gray-800 mb-1">事件驱动</div>
+                                        <p class="text-sm text-gray-700">
+                                            通过发布-订阅模式实现服务间的松耦合通信，提高系统弹性
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 4.4 云原生架构设计与技术栈选型 -->
+                    <div id="tech-cloudnative" class="mb-8">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fa fa-cloud text-secondary mr-2"></i>4.4 云原生架构设计与技术栈选型
+                        </h3>
+                        <p class="text-gray-700 mb-4">
+                            云原生架构是指基于云环境设计和开发现代应用的一种方法论和架构风格，利用云平台实现可扩展性和灵活性。
+                        </p>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-800 mb-3">云原生架构的核心要素</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+                                <div class="bg-gray-50 p-3 rounded-lg text-center">
+                                    <div class="text-primary text-2xl mb-2">
+                                        <i class="fa fa-cube"></i>
+                                    </div>
+                                    <div class="font-medium text-gray-800 mb-1">容器化</div>
+                                    <p class="text-xs text-gray-700">Docker等容器技术实现应用封装和隔离</p>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg text-center">
+                                    <div class="text-primary text-2xl mb-2">
+                                        <i class="fa fa-puzzle-piece"></i>
+                                    </div>
+                                    <div class="font-medium text-gray-800 mb-1">微服务</div>
+                                    <p class="text-xs text-gray-700">基于微服务的分布式架构设计</p>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg text-center">
+                                    <div class="text-primary text-2xl mb-2">
+                                        <i class="fa fa-refresh"></i>
+                                    </div>
+                                    <div class="font-medium text-gray-800 mb-1">动态编排</div>
+                                    <p class="text-xs text-gray-700">Kubernetes实现容器自动化管理</p>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg text-center">
+                                    <div class="text-primary text-2xl mb-2">
+                                        <i class="fa fa-refresh fa-spin"></i>
+                                    </div>
+                                    <div class="font-medium text-gray-800 mb-1">持续交付</div>
+                                    <p class="text-xs text-gray-700">CI/CD实现快速可靠的软件交付</p>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg text-center">
+                                    <div class="text-primary text-2xl mb-2">
+                                        <i class="fa fa-share-alt"></i>
+                                    </div>
+                                    <div class="font-medium text-gray-800 mb-1">服务网格</div>
+                                    <p class="text-xs text-gray-700">Istio等实现服务间流量管理和监控</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-800 mb-3">云原生技术选型建议</h4>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+                                    <thead>
+                                        <tr class="bg-gray-50">
+                                            <th class="py-2 px-4 border-b text-left">技术类别</th>
+                                            <th class="py-2 px-4 border-b text-left">推荐选型</th>
+                                            <th class="py-2 px-4 border-b text-left">选型理由</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="py-2 px-4 border-b font-medium">容器平台</td>
+                                            <td class="py-2 px-4 border-b">K3s 

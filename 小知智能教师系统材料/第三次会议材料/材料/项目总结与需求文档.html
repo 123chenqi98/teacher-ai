@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能教育平台 - 项目总结与需求文档</title>
+    <!-- 引入外部资源 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    
+    <!-- Tailwind 配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1890ff',
+                        secondary: '#f0f2f5',
+                        accent: '#38c172',
+                        danger: '#ff4d4f',
+                        dark: '#1f2d3d',
+                        medium: '#434f5e',
+                        light: '#86909c'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- 自定义工具类 -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .transition-all-300 {
+                transition: all 300ms ease-in-out;
+            }
+            .nav-active {
+                @apply bg-primary/10 text-primary border-l-4 border-primary;
+            }
+        }
+    </style>
+    
+    <style>
+        /* 基础样式 */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+        
+        /* 代码块样式 */
+        .code-block {
+            background-color: #f5f7fa;
+            border-radius: 0.375rem;
+            padding: 1rem;
+            overflow-x: auto;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            color: #333;
+        }
+        
+        /* 表格样式 */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .data-table th,
+        .data-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .data-table th {
+            background-color: #f9fafb;
+            font-weight: 600;
+        }
+        
+        .data-table tr:hover {
+            background-color: #f9fafb;
+        }
+        
+        /* 流程图样式 */
+        .flowchart {
+            position: relative;
+            padding: 1.5rem;
+            background-color: #f9fafb;
+            border-radius: 0.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .flowchart-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .flowchart-step:last-child {
+            margin-bottom: 0;
+        }
+        
+        .flowchart-node {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            background-color: #1890ff;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .flowchart-connector {
+            position: absolute;
+            left: 1rem;
+            width: 2px;
+            background-color: #e5e7eb;
+            z-index: 0;
+        }
+        
+        /* 导航栏滚动监听 */
+        .nav-link.active {
+            @apply bg-primary/10 text-primary border-l-4 border-primary;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-dark">
+    <!-- 顶部导航栏 - 移动端 -->
+    <header class="lg:hidden fixed top-0 left-0 right-0 bg-white shadow-md z-40">
+        <div class="flex items-center justify-between px-4 py-3">
+            <h1 class="text-lg font-bold text-primary">
+                <i class="fa fa-graduation-cap mr-2"></i>智能教育平台
+            </h1>
+            <button id="mobile-menu-btn" class="p-2 rounded-md text-gray-500 hover:bg-gray-100">
+                <i class="fa fa-bars text-xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- 侧边导航栏 -->
+    <aside id="sidebar" class="fixed top-0 left-0 bottom-0 w-64 bg-white shadow-lg transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out z-50 overflow-y-auto pt-16 lg:pt-0">
+        <div class="p-4">
+            <h1 class="text-xl font-bold text-primary mb-6 hidden lg:block">
+                <i class="fa fa-graduation-cap mr-2"></i>智能教育平台
+            </h1>
+            <nav>
+                <ul class="space-y-1">
+                    <!-- 项目概况 -->
+                    <li>
+                        <a href="#project-overview" class="nav-link block px-4 py-2 rounded-md hover:bg-gray-100 transition-all-300">
+                            <i class="fa fa-info-circle w-6"></i>项目概况
+                        </a>
+                    </li>
+                    
+                    <!-- 项目总结 -->
+                    <li>
+                        <a href="#project-summary" class="nav-link block px-4 py-2 rounded-md hover:bg-gray-100 transition-all-300">
+                            <i class="fa fa-check-square-o w-6"></i>项目总结
+                        </a>
+                        <ul class="pl-6 mt-1 space-y-1 hidden" id="summary-submenu">
+                            <li>
+                                <a href="#execution-results" class="nav-link block px-4 py-2 rounded-md hover:bg-gray-100 text-sm transition-all-300">
+                                    1.1 项目执行成果
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#technical-highlights" class="nav-link block px-4 py-2 rounded-md hover:bg-gray-100 text-sm transition-all-300">
+                                    1.2 技术实现亮点
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#challenges" class="nav-link block px-4 py-2 rounded-md hover:bg-gray-100 text-sm transition-all-300">
+                                    1.3 项目挑战与解决方案
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#team-collaboration" class="nav-link block px-4 py-2 rounded-md hover:bg-gray-100 text-sm transition-all-300">
+                                    1.4 团队协作经验
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#lessons-learned" class="nav-link block px-4 py-2 rounded-md hover:bg-gray-100 text-sm transition-all-300">
+                                    1.5 经验教训与改进建议
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <!-- 需求文档 -->
+                    <li>
+                        <a href="#requirements-doc" class="nav-link block px-4 py-2 rounded-md hover:bg-gray-100 transition-all-300">
+                            <i class="fa fa-file-text-o w-6"></i>需求文档
+                        </a>
+                        <ul class="pl-6 mt-1 space-y-1 hidden" id="requirements-submenu">
+                            <li>
+                                <a href="#system-overview" class="nav-link block px-4 py-2 rounded-md hover:bg-gray-100 text-sm transition-all-300">
+                                    2.1 系统概述
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#functional-requirements" class="nav-link block px-4 py-2 rounded-md hover:bg-gray-100 text-sm transition-all-300">
+                                    2.2 功能需求
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#non-functional-requirements" class="nav-link block px-4 py-2 rounded-md hover:bg-gray-100 text-sm transition-all-300">
+                                    2.3 非功能需求
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#data-model" class="nav-link block px-4 py-2 rounded-md hover:bg-gray-100 text-sm transition-all-300">
+                                    2.4 数据模型设计
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#api-design" class="nav-link block px-4 py-2 rounded-md hover:bg-gray-100 text-sm transition-all-300">
+                                    2.5 API接口设计
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <!-- 交互设计说明 -->
+                    <li>
+                        <a href="#interaction-design" class="nav-link block px-4 py-2 rounded-md hover:bg-gray-100 transition-all-300">
+                            <i class="fa fa-mouse-pointer w-6"></i>交互设计说明
+                        </a>
+                    </li>
+                    
+                    <!-- 技术架构设计 -->
+                    <li>
+                        <a href="#technical-architecture" class="nav-link block px-4 py-2 rounded-md hover:bg-gray-100 transition-all-300">
+                            <i class="fa fa-sitemap w-6"></i>技术架构设计
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </aside>
+
+    <!-- 主内容区 -->
+    <main class="lg:ml-64 pt-16 lg:pt-0 pb-16">
+        <div class="container mx-auto px-4 py-8 max-w-5xl">
+            <!-- 页面标题 -->
+            <div class="mb-12 text-center">
+                <h1 class="text-3xl md:text-4xl font-bold text-dark mb-4 text-shadow">项目总结与需求文档</h1>
+                <p class="text-medium text-lg">智能教育平台 - 全流程教育服务体系</p>
+                <div class="mt-6 inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm">
+                    <i class="fa fa-calendar mr-2"></i>上线日期: 2024年11月
+                </div>
+            </div>
+            
+            <!-- 项目概况 -->
+            <section id="project-overview" class="mb-16 scroll-mt-20">
+                <div class="bg-white rounded-xl shadow-sm p-6 md:p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-4">
+                            <i class="fa fa-info-circle text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-dark">项目概况</h2>
+                    </div>
+                    
+                    <p class="text-medium mb-6 leading-relaxed">
+                        本项目基于Vue3 + Element Plus + Vite + Pinia + TypeScript + Vue Router前端技术栈，结合Spring Cloud + Spring Boot + FastAPI混合后端架构，构建了一个综合性的智能教育平台。项目涵盖教师端、学生端、家长端和系统管理端四大核心模块，实现了从智能备课、作业管理、学情分析到个性化学习、家校互动的全流程教育服务体系。
+                    </p>
+                    
+                    <p class="text-medium mb-8 leading-relaxed">
+                        项目于2024年3月启动，历时8个月完成核心功能开发，于2024年11月正式上线。项目团队由产品、设计、开发、测试等25名成员组成，采用敏捷开发模式，经历了6个迭代周期。
+                    </p>
+                    
+                    <!-- 项目基本信息卡片 -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                        <div class="bg-secondary rounded-lg p-4 border border-gray-100">
+                            <div class="text-primary text-3xl font-bold mb-2">8个月</div>
+                            <div class="text-medium text-sm">开发周期</div>
+                        </div>
+                        <div class="bg-secondary rounded-lg p-4 border border-gray-100">
+                            <div class="text-primary text-3xl font-bold mb-2">25人</div>
+                            <div class="text-medium text-sm">项目团队</div>
+                        </div>
+                        <div class="bg-secondary rounded-lg p-4 border border-gray-100">
+                            <div class="text-primary text-3xl font-bold mb-2">6个</div>
+                            <div class="text-medium text-sm">迭代周期</div>
+                        </div>
+                        <div class="bg-secondary rounded-lg p-4 border border-gray-100">
+                            <div class="text-primary text-3xl font-bold mb-2">4大模块</div>
+                            <div class="text-medium text-sm">核心功能</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 技术栈图表 -->
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-4">技术栈分布</h3>
+                        <div class="h-64">
+                            <canvas id="techStackChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 项目总结 -->
+            <section id="project-summary" class="mb-16 scroll-mt-20">
+                <div class="bg-white rounded-xl shadow-sm p-6 md:p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-4">
+                            <i class="fa fa-check-square-o text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-dark">一、项目总结</h2>
+                    </div>
+                    
+                    <!-- 1.1 项目执行成果 -->
+                    <div id="execution-results" class="mb-10 scroll-mt-20">
+                        <h3 class="text-xl font-semibold mb-4 text-primary">1.1 项目执行成果</h3>
+                        
+                        <!-- 功能完成情况 -->
+                        <div class="mb-6">
+                            <h4 class="font-medium text-lg mb-3">功能完成情况</h4>
+                            <ul class="list-disc pl-6 space-y-2 text-medium mb-4">
+                                <li>共完成15个核心功能模块，87个具体功能点</li>
+                                <li>前端页面总数：126个，其中教师端48个，学生端35个，家长端22个，管理端21个</li>
+                                <li>API接口总数：289个，涵盖RESTful和RPC两种调用方式</li>
+                                <li>数据库表结构：47张核心业务表，15张基础字典表</li>
+                            </ul>
+                            
+                            <!-- 功能完成情况图表 -->
+                            <div class="h-64 mb-6">
+                                <canvas id="functionCompletionChart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <!-- 技术指标达成 -->
+                        <div class="mb-6">
+                            <h4 class="font-medium text-lg mb-3">技术指标达成</h4>
+                            <ul class="list-disc pl-6 space-y-2 text-medium mb-4">
+                                <li>系统并发能力：支持5000+用户同时在线</li>
+                                <li>核心接口响应时间：99%的请求在2秒内完成</li>
+                                <li>系统可用性：达到99.9%（年度停机时间小于8.76小时）</li>
+                                <li>数据存储容量：支持10TB历史数据存储</li>
+                            </ul>
+                            
+                            <!-- 性能指标图表 -->
+                            <div class="h-64 mb-6">
+                                <canvas id="performanceMetricsChart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <!-- 用户体验提升 -->
+                        <div>
+                            <h4 class="font-medium text-lg mb-3">用户体验提升</h4>
+                            <ul class="list-disc pl-6 space-y-2 text-medium">
+                                <li>界面响应速度提升60%（相比传统教育系统）</li>
+                                <li>操作流程简化30%，核心功能操作不超过3步</li>
+                                <li>支持多端同步，数据一致性达到99.99%</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- 1.2 技术实现亮点 -->
+                    <div id="technical-highlights" class="mb-10 scroll-mt-20">
+                        <h3 class="text-xl font-semibold mb-4 text-primary">1.2 技术实现亮点</h3>
+                        
+                        <!-- 混合架构创新 -->
+                        <div class="mb-6">
+                            <h4 class="font-medium text-lg mb-3">混合架构创新</h4>
+                            <p class="text-medium mb-4 leading-relaxed">
+                                采用Spring Cloud与FastAPI混合部署模式，充分发挥了Java生态的稳定性和Python生态的高性能优势。核心业务逻辑使用Spring Boot实现，确保事务处理的可靠性；高并发API服务使用FastAPI构建，提升系统整体性能。通过Nacos实现服务注册与发现的统一管理，服务间通过RESTful API进行通信。
+                            </p>
+                        </div>
+                        
+                        <!-- 微服务架构设计 -->
+                        <div class="mb-6">
+                            <h4 class="font-medium text-lg mb-3">微服务架构设计</h4>
+                            <p class="text-medium mb-3 leading-relaxed">
+                                基于领域驱动设计（DDD）理念，将系统拆分为12个核心微服务：
+                            </p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+                                <div class="bg-secondary p-3 rounded-lg border border-gray-100">
+                                    <span class="font-medium">用户服务（User Service）：</span>
+                                    <span class="text-medium">负责用户认证、权限管理</span>
+                                </div>
+                                <div class="bg-secondary p-3 rounded-lg border border-gray-100">
+                                    <span class="font-medium">课程服务（Course Service）：</span>
+                                    <span class="text-medium">管理教学大纲、课程资源</span>
+                                </div>
+                                <div class="bg-secondary p-3 rounded-lg border border-gray-100">
+                                    <span class="font-medium">备课服务（LessonPlan Service）：</span>
+                                    <span class="text-medium">提供智能备课功能</span>
+                                </div>
+                                <div class="bg-secondary p-3 rounded-lg border border-gray-100">
+                                    <span class="font-medium">作业服务（Homework Service）：</span>
+                                    <span class="text-medium">处理作业生成、批改、分析</span>
+                                </div>
+                                <div class="bg-secondary p-3 rounded-lg border border-gray-100">
+                                    <span class="font-medium">学情服务（LearningAnalysis Service）：</span>
+                                    <span class="text-medium">提供学习行为分析</span>
+                                </div>
+                                <div class="bg-secondary p-3 rounded-lg border border-gray-100">
+                                    <span class="font-medium">互动服务（Interaction Service）：</span>
+                                    <span class="text-medium">支持课堂互动功能</span>
+                                </div>
+                                <div class="bg-secondary p-3 rounded-lg border border-gray-100">
+                                    <span class="font-medium">答疑服务（QAService）：</span>
+                                    <span class="text-medium">提供智能答疑功能</span>
+                                </div>
+                                <div class="bg-secondary p-3 rounded-lg border border-gray-100">
+                                    <span class="font-medium">报告服务（Report Service）：</span>
+                                    <span class="text-medium">生成各类学习报告</span>
+                                </div>
+                                <div class="bg-secondary p-3 rounded-lg border border-gray-100">
+                                    <span class="font-medium">消息服务（Message Service）：</span>
+                                    <span class="text-medium">处理系统通知和家校沟通</span>
+                                </div>
+                                <div class="bg-secondary p-3 rounded-lg border border-gray-100">
+                                    <span class="font-medium">配置服务（Config Service）：</span>
+                                    <span class="text-medium">统一管理系统配置</span>
+                                </div>
+                                <div class="bg-secondary p-3 rounded-lg border border-gray-100">
+                                    <span class="font-medium">监控服务（Monitor Service）：</span>
+                                    <span class="text-medium">提供系统运行监控</span>
+                                </div>
+                                <div class="bg-secondary p-3 rounded-lg border border-gray-100">
+                                    <span class="font-medium">网关服务（Gateway Service）：</span>
+                                    <span class="text-medium">统一API入口</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 技术栈协同优化 -->
+                        <div>
+                            <h4 class="font-medium text-lg mb-3">技术栈协同优化</h4>
+                            <p class="text-medium mb-3 leading-relaxed">
+                                前端采用Vue3的组合式API配合TypeScript，提升了代码的可维护性和类型安全性。使用Element Plus组件库确保了界面风格的一致性和开发效率。通过Pinia实现状态管理，解决了跨组件通信的复杂性问题。Vue Router配合路由懒加载，优化了页面加载性能。
+                            </p>
+                            <p class="text-medium leading-relaxed">
+                                后端采用Spring Cloud Alibaba技术栈，集成了Nacos作为服务注册中心和配置中心，实现了服务治理的一体化。使用Sentinel实现流量控制和熔断降级，确保了系统在高并发场景下的稳定性。通过Spring Cloud Gateway构建API网关，实现了统一的路由管理和安全控制。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- 1.3 项目挑战与解决方案 -->
+                    <div id="challenges" class="mb-10 scroll-mt-20">
+                        <h3 class="text-xl font-semibold mb-4 text-primary">1.3 项目挑战与解决方案</h3>
+                        
+                        <!-- 挑战卡片 -->
+                        <div class="space-y-6">
+                            <!-- 跨技术栈集成挑战 -->
+                            <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                <div class="bg-primary/5 px-4 py-3 border-b border-gray-200">
+                                    <h4 class="font-medium text-lg">跨技术栈集成挑战</h4>
+                                </div>
+                                <div class="p-4">
+                                    <p class="text-medium mb-3 leading-relaxed">
+                                        Spring Boot与FastAPI的集成初期遇到了服务间通信和数据格式兼容问题。
+                                    </p>
+                                    <div class="bg-secondary p-3 rounded-md">
+                                        <h5 class="font-medium mb-2 text-primary">解决方案：</h5>
+                                        <p class="text-medium text-sm leading-relaxed">
+                                            通过制定统一的RESTful API规范，使用JSON作为数据交换格式，解决了不同技术栈间的通信问题。建立了API契约优先的开发模式，使用OpenAPI规范定义接口，确保了前后端协作的清晰性。
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 性能优化难题 -->
+                            <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                <div class="bg-primary/5 px-4 py-3 border-b border-gray-200">
+                                    <h4 class="font-medium text-lg">性能优化难题</h4>
+                                </div>
+                                <div class="p-4">
+                                    <p class="text-medium mb-3 leading-relaxed">
+                                        在系统压力测试中发现，当并发用户超过3000时，部分接口响应时间出现明显延迟。
+                                    </p>
+                                    <div class="bg-secondary p-3 rounded-md">
+                                        <h5 class="font-medium mb-2 text-primary">解决方案：</h5>
+                                        <ul class="list-disc pl-5 text-medium text-sm space-y-1 leading-relaxed">
+                                            <li>使用Redis作为缓存层，将高频访问的数据（如用户信息、课程资源）缓存到内存中，减少数据库查询压力</li>
+                                            <li>对数据库进行主从架构部署，读操作分摊到从库，写操作集中在主库，提升了数据库的并发处理能力</li>
+                                            <li>采用RabbitMQ实现异步消息处理，将耗时的业务逻辑（如作业批改、学情分析）异步化处理，提升了系统的响应速度</li>
+                                            <li>使用Sentinel实现流量控制，设置了合理的限流规则，防止系统被突发流量冲垮</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 数据一致性保障 -->
+                            <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                <div class="bg-primary/5 px-4 py-3 border-b border-gray-200">
+                                    <h4 class="font-medium text-lg">数据一致性保障</h4>
+                                </div>
+                                <div class="p-4">
+                                    <p class="text-medium mb-3 leading-relaxed">
+                                        在分布式架构下，如何保证数据的最终一致性是一个重要挑战。
+                                    </p>
+                                    <div class="bg-secondary p-3 rounded-md">
+                                        <h5 class="font-medium mb-2 text-primary">解决方案：</h5>
+                                        <p class="text-medium text-sm leading-relaxed">
+                                            采用Seata框架实现分布式事务管理，支持AT、TCC、SAGA等多种事务模式。对于跨服务的数据操作，使用消息队列实现最终一致性，通过补偿机制处理失败的事务。
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 团队协作效率问题 -->
+                            <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                <div class="bg-primary/5 px-4 py-3 border-b border-gray-200">
+                                    <h4 class="font-medium text-lg">团队协作效率问题</h4>
+                                </div>
+                                <div class="p-4">
+                                    <p class="text-medium mb-3 leading-relaxed">
+                                        由于团队成员来自不同的技术背景（Java、Python、前端），在协作初期出现了沟通成本高、代码风格不统一等问题。
+                                    </p>
+                                    <div class="bg-secondary p-3 rounded-md">
+                                        <h5 class="font-medium mb-2 text-primary">解决方案：</h5>
+                                        <p class="text-medium text-sm leading-relaxed">
+                                            通过建立统一的技术规范和代码审查机制，定期开展技术分享和培训，提升了团队的技术一致性。使用Git进行版本控制，通过分支管理策略确保了代码的有序集成。
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 1.4 团队协作经验 -->
+                    <div id="team-collaboration" class="mb-10 scroll-mt-20">
+                        <h3 class="text-xl font-semibold mb-4 text-primary">1.4 团队协作经验</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                            <!-- 敏捷开发实践 -->
+                            <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm hover:shadow-md transition-all-300">
+                                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-4">
+                                    <i class="fa fa-refresh text-xl"></i>
+                                </div>
+                                <h4 class="font-medium text-lg mb-3">敏捷开发实践</h4>
+                                <p class="text-medium text-sm leading-relaxed">
+                                    采用Scrum敏捷开发模式，每两周进行一次迭代，每个迭代包含需求梳理、开发、测试和回顾四个阶段。通过每日站会同步进度，及时发现和解决问题。
+                                </p>
+                            </div>
+                            
+                            <!-- 跨职能团队协作 -->
+                            <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm hover:shadow-md transition-all-300">
+                                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-4">
+                                    <i class="fa fa-users text-xl"></i>
+                                </div>
+                                <h4 class="font-medium text-lg mb-3">跨职能团队协作</h4>
+                                <p class="text-medium text-sm leading-relaxed">
+                                    项目团队包含产品经理、UI设计师、前端开发、后端开发、测试工程师、运维工程师等多个角色。通过建立清晰的职责分工和协作流程，确保了各角色间的有效配合。
+                                </p>
+                            </div>
+                            
+                            <!-- 持续集成与部署 -->
+                            <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm hover:shadow-md transition-all-300">
+                                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-4">
+                                    <i class="fa fa-cogs text-xl"></i>
+                                </div>
+                                <h4 class="font-medium text-lg mb-3">持续集成与部署</h4>
+                                <p class="text-medium text-sm leading-relaxed">
+                                    建立了完整的CI/CD流程，使用Jenkins实现自动化构建和部署。前端项目通过NPM脚本实现自动化打包，后端项目通过Maven进行构建。使用Docker容器化部署，确保了环境的一致性。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 1.5 经验教训与改进建议 -->
+                    <div id="lessons-learned" class="scroll-mt-20">
+                        <h3 class="text-xl font-semibold mb-4 text-primary">1.5 经验教训与改进建议</h3>
+                        
+                        <div class="space-y-4">
+                            <!-- 需求管理改进 -->
+                            <div class="flex">
+                                <div class="flex-shrink-0 mt-1">
+                                    <div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-white text-xs">1</div>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="font-medium text-lg mb-2">需求管理改进</h4>
+                                    <p class="text-medium mb-2 leading-relaxed">
+                                        项目初期由于需求调研不充分，导致开发过程中出现了多次需求变更，影响了项目进度。
+                                    </p>
+                                    <p class="text-primary text-sm font-medium">
+                                        改进建议：加强需求调研，通过用户访谈、竞品分析、原型演示等方式充分理解用户需求。建立需求变更评估机制，对每个变更进行影响分析。
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <!-- 技术选型策略优化 -->
+                            <div class="flex">
+                                <div class="flex-shrink-0 mt-1">
+                                    <div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-white text-xs">2</div>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="font-medium text-lg mb-2">技术选型策略优化</h4>
+                                    <p class="text-medium mb-2 leading-relaxed">
+                                        在技术栈选择上，虽然混合架构带来了性能优势，但也增加了系统的复杂性和维护成本。
+                                    </p>
+                                    <p class="text-primary text-sm font-medium">
+                                        改进建议：优先考虑技术栈的统一性，避免过度追求技术的先进性而忽视了团队的技术储备。对于必须使用混合技术栈的场景，要提前做好技术培训和人才储备。
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <!-- 性能测试与优化提前 -->
+                            <div class="flex">
+                                <div class="flex-shrink-0 mt-1">
+                                    <div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-white text-xs">3</div>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="font-medium text-lg mb-2">性能测试与优化提前</h4>
+                                    <p class="text-medium mb-2 leading-relaxed">
+                                        性能问题在项目后期才暴露出来，导致了额外的优化成本。
+                                    </p>
+                                    <p class="text-primary text-sm font-medium">
+                                        改进建议：在项目初期就制定性能测试计划，在每个迭代中都进行性能验证，及时发现和解决性能瓶颈。建立性能基准测试，通过数据对比评估优化效果。
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <!-- 文档规范与知识沉淀 -->
+                            <div class="flex">
+                                <div class="flex-shrink-0 mt-1">
+                                    <div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-white text-xs">4</div>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="font-medium text-lg mb-2">文档规范与知识沉淀</h4>
+                                    <p class="text-medium mb-2 leading-relaxed">
+                                        项目过程中文档更新不及时，导致部分技术决策和实现细节缺乏记录。
+                                    </p>
+                                    <p class="text-primary text-sm font-medium">
+                                        改进建议：建立文档版本管理机制，确保文档与代码的同步更新。定期进行知识分享，将项目中的经验教训形成可复用的最佳实践，建立团队知识库。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 需求文档 -->
+            <section id="requirements-doc" class="mb-16 scroll-mt-20">
+                <div class="bg-white rounded-xl shadow-sm p-6 md:p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-4">
+                            <i class="fa fa-file-text-o text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-dark">二、需求文档</h2>
+                    </div>
+                    
+                    <!-- 2.1 系统概述 -->
+                    <div id="system-overview" class="mb-10 scroll-mt-20">
+                        <h3 class="text-xl font-semibold mb-4 text-primary">2.1 系统概述</h3>
+                        
+                        <!-- 产品定位 -->
+                        <div class="mb-6">
+                            <h4 class="font-medium text-lg mb-3">产品定位</h4>
+                            <p class="text-medium leading-relaxed">
+                                本系统定位于K12教育阶段的智能教学辅助平台，通过AI技术赋能传统教育，为教师、学生、家长提供全方位的教学服务。系统以提升教学效率和学习效果为核心目标，通过智能化的工具和数据分析，实现个性化教学和精准化辅导。
+                            </p>
+                        </div>
+                        
+                        <!-- 用户角色与权限 -->
+                        <div class="mb-6">
+                            <h4 class="font-medium text-lg mb-3">用户角色与权限</h4>
+                            <p class="text-medium mb-4 leading-relaxed">
+                                系统包含四大核心用户角色，每个角色具有不同的功能权限：
+                            </p>
+                            
+                            <!-- 用户角色表格 -->
+                            <div class="overflow-x-auto mb-6">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>用户角色</th>
+                                            <th>主要职责</th>
+                                            <th>核心权限</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="font-medium">教师</td>
+                                            <td>课程管理、作业布置、学情分析、课堂互动</td>
+                                            <td>教学相关功能的全权限访问</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-medium">学生</td>
+                                            <td>学习计划制定、作业完成、在线答疑、成绩查询</td>
+                                            <td>个人学习相关功能的访问权限</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-medium">家长</td>
+                                            <td>孩子学习监控、家校沟通、学习报告查看</td>
+                                            <td>子女相关信息的查询和沟通权限</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-medium">管理员</td>
+                                            <td>系统配置、用户管理、数据监控、权限分配</td>
+                                            <td>系统级管理功能的全权限</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <!-- 用户角色分布图表 -->
+                            <div class="h-64">
+                                <canvas id="userRolesChart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <!-- 系统架构图 -->
+                        <div>
+                            <h4 class="font-medium text-lg mb-3">系统架构图</h4>
+                            <div class="code-block bg-gray-50">
+<pre>
++-------------------+
+|      前端层       |
+|   Vue3 + Element  |
+|    Plus + Vite    |
++-------------------+
+         ↓
++-------------------+
+|      网关层       |
+| Spring Cloud      |
+|    Gateway        |
++-------------------+
+         ↓
++-------------------+
+|      服务层       |
+|  Spring Boot +    |
+|    FastAPI        |
++-------------------+
+         ↓
++-------------------+
+|      数据层       |
+|  MySQL + Redis    |
+|  + RabbitMQ       |
++-------------------+
+</pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2.2 功能需求 -->
+                    <div id="functional-requirements" class="mb-10 scroll-mt-20">
+                        <h3 class="text-xl font-semibold mb-4 text-primary">2.2 功能需求</h3>
+                        
+                        <!-- 2.2.1 教师端模块 -->
+                        <div class="mb-8">
+                            <h4 class="font-medium text-lg mb-4 flex items-center">
+                                <span class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm mr-2">1</span>
+                                教师端模块
+                            </h4>
+                            
+                            <!-- 功能卡片 -->
+                            <div class="space-y-4">
+                                <!-- 智能备课功能 -->
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-primary/5 px-4 py-3 border-b border-gray-200 flex justify-between items-center cursor-pointer functional-card-header">
+                                        <h5 class="font-medium">智能备课功能</h5>
+                                        <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                                    </div>
+                                    <div class="p-4 functional-card-content hidden">
+                                        <p class="text-medium mb-3 leading-relaxed">
+                                            教师可以通过系统提供的智能备课工具，快速生成高质量的教案和课件。系统基于教学大纲和知识点分析，提供智能化的备课建议和资源推荐。
+                                        </p>
+                                        
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                            <div>
+                                                <h6 class="font-medium text-sm mb-2 text-primary">输入参数：</h6>
+                                                <ul class="list-disc pl-5 text-medium text-sm space-y-1">
+                                                    <li>年级信息（小学、初中、高中）</li>
+                                                    <li>学科类型（语文、数学、英语等）</li>
+                                                    <li>章节信息（单元、课时）</li>
+                                                    <li>教学目标描述</li>
+                                                    <li>教学重难点说明</li>
+                                                </ul>
+                                            </div>
+                                            <div>
+                                                <h6 class="font-medium text-sm mb-2 text-primary">输出结果：</h6>
+                                                <ul class="list-disc pl-5 text-medium text-sm space-y-1">
+                                                    <li>结构化教案文档</li>
+                                                    <li>配套课件（PPT格式）</li>
+                                                    <li>教学资源推荐列表</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        
+                                        <div>
+                                            <h6 class="font-medium text-sm mb-2 text-primary">业务规则：</h6>
+                                            <ul class="list-disc pl-5 text-medium text-sm space-y-1">
+                                                <li>教案生成基于预设的教学模板，支持自定义模板管理</li>
+                                                <li>课件内容自动匹配教学进度，包含动画效果和互动元素</li>
+                                                <li>资源推荐基于知识点关联算法，推荐相关度≥80%的资源</li>
+                                                <li>支持教案和课件的在线编辑和版本管理</li>
+                                                <li>提供教案和课件的导出功能，支持doc、docx、PDF、PPT等格式</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 作业管理功能 -->
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-primary/5 px-4 py-3 border-b border-gray-200 flex justify-between items-center cursor-pointer functional-card-header">
+                                        <h5 class="font-medium">作业管理功能</h5>
+                                        <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                                    </div>
+                                    <div class="p-4 functional-card-content hidden">
+                                        <p class="text-medium mb-3 leading-relaxed">
+                                            教师可以通过系统布置作业、批改作业、分析作业完成情况，实现作业全流程的数字化管理。
+                                        </p>
+                                        
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                            <div>
+                                                <h6 class="font-medium text-sm mb-2 text-primary">输入参数：</h6>
+                                                <ul class="list-disc pl-5 text-medium text-sm space-y-1">
+                                                    <li>作业基本信息（作业名称、截止时间、适用班级）</li>
+                                                    <li>题目信息（题目类型、题目内容、分值、答案）</li>
+                                                    <li>批改方式（自动批改、手动批改、混合批改）</li>
+                                                    <li>作业发布范围（全班级、部分学生、指定学生）</li>
+                                                </ul>
+                                            </div>
+                                            <div>
+                                                <h6 class="font-medium text-sm mb-2 text-primary">输出结果：</h6>
+                                                <ul class="list-disc pl-5 text-medium text-sm space-y-1">
+                                                    <li>作业发布成功通知</li>
+                                                    <li>作业批改结果汇总</li>
+                                                    <li>学生作业完成情况统计</li>
+                                                    <li>错题分析报告</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        
+                                        <div>
+                                            <h6 class="font-medium text-sm mb-2 text-primary">业务规则：</h6>
+                                            <ul class="list-disc pl-5 text-medium text-sm space-y-1">
+                                                <li>作业题目支持多种类型：选择题、填空题、解答题、作文题等</li>
+                                                <li>客观题支持自动批改，主观题支持在线批注和评分</li>
+                                                <li>作业发布后自动推送至学生端和家长端</li>
+                                                <li>支持作业的批量导入和导出功能</li>
+                                                <li>提供作业完成提醒机制，支持定时提醒和延迟提醒</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 学情分析功能 -->
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-primary/5 px-4 py-3 border-b border-gray-200 flex justify-between items-center cursor-pointer functional-card-header">
+                                        <h5 class="font-medium">学情分析功能</h5>
+                                        <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                                    </div>
+                                    <div class="p-4 functional-card-content hidden">
+                                        <p class="text-medium mb-3 leading-relaxed">
+                                            系统通过多维度数据分析，为教师提供学生学习情况的全面洞察，包括学习进度、知识点掌握、学习行为等方面的分析。
+                                        </p>
+                                        
+                                        <!-- 内容省略，保持与上面结构一致 -->
+                                    </div>
+                                </div>
+                                
+                                <!-- 课堂互动功能 -->
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-primary/5 px-4 py-3 border-b border-gray-200 flex justify-between items-center cursor-pointer functional-card-header">
+                                        <h5 class="font-medium">课堂互动功能</h5>
+                                        <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                                    </div>
+                                    <div class="p-4 functional-card-content hidden">
+                                        <p class="text-medium mb-3 leading-relaxed">
+                                            支持教师在课堂教学中与学生进行实时互动，包括点名、答题、实验演示等功能，提升课堂教学效果。
+                                        </p>
+                                        
+                                        <!-- 内容省略，保持与上面结构一致 -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 2.2.2 学生端模块 -->
+                        <div class="mb-8">
+                            <h4 class="font-medium text-lg mb-4 flex items-center">
+                                <span class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm mr-2">2</span>
+                                学生端模块
+                            </h4>
+                            
+                            <!-- 功能卡片（结构同上，内容省略） -->
+                            <div class="space-y-4">
+                                <!-- 个性化学习功能 -->
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-primary/5 px-4 py-3 border-b border-gray-200 flex justify-between items-center cursor-pointer functional-card-header">
+                                        <h5 class="font-medium">个性化学习功能</h5>
+                                        <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                                    </div>
+                                    <div class="p-4 functional-card-content hidden">
+                                        <p class="text-medium mb-3 leading-relaxed">
+                                            系统基于学生的学习情况和特点，为每个学生制定个性化的学习计划和推荐学习资源，实现精准化学习。
+                                        </p>
+                                        <!-- 内容省略 -->
+                                    </div>
+                                </div>
+                                
+                                <!-- 智能答疑功能 -->
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-primary/5 px-4 py-3 border-b border-gray-200 flex justify-between items-center cursor-pointer functional-card-header">
+                                        <h5 class="font-medium">智能答疑功能</h5>
+                                        <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                                    </div>
+                                    <div class="p-4 functional-card-content hidden">
+                                        <!-- 内容省略 -->
+                                    </div>
+                                </div>
+                                
+                                <!-- 作业练习功能 -->
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-primary/5 px-4 py-3 border-b border-gray-200 flex justify-between items-center cursor-pointer functional-card-header">
+                                        <h5 class="font-medium">作业练习功能</h5>
+                                        <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                                    </div>
+                                    <div class="p-4 functional-card-content hidden">
+                                        <!-- 内容省略 -->
+                                    </div>
+                                </div>
+                                
+                                <!-- 学习报告功能 -->
+                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                    <div class="bg-primary/5 px-4 py-3 border-b border-gray-200 flex justify-between items-center cursor-pointer functional-card-header">
+                                        <h5 class="font-medium">学习报告功能</h5>
+                                        <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                                    </div>
+                                    <div class="p-4 functional-card-content hidden">
+                                        <!-- 内容省略 -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 2.2.3 家长端模块 和 2.2.4 系统管理模块 结构类似，此处省略部分代码以避免冗余 -->
+                    </div>
+                    
+                    <!-- 2.3 非功能需求 -->
+                    <div id="non-functional-requirements" class="mb-10 scroll-mt-20">
+                        <h3 class="text-xl font-semibold mb-4 text-primary">2.3 非功能需求</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- 性能需求 -->
+                            <div class="bg-secondary rounded-lg p-5">
+                                <h4 class="font-medium text-lg mb-3 flex items-center">
+                                    <i class="fa fa-tachometer text-primary mr-2"></i>
+                                    性能需求
+                                </h4>
+                                <ul class="list-disc pl-5 text-medium space-y-2">
+                                    <li>系统并发能力：支持5000+用户同时在线</li>
+                                    <li>核心接口响应时间：99%的请求在2秒内完成</li>
+                                    <li>页面加载时间：首页加载时间≤2秒</li>
+                                    <li>数据处理能力：作业批改处理能力≥1000份/分钟</li>
+                                    <li>系统吞吐量：峰值请求处理能力≥5000次/秒</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- 安全需求 -->
+                            <div class="bg-secondary rounded-lg p-5">
+                                <h4 class="font-medium text-lg mb-3 flex items-center">
+                                    <i class="fa fa-shield text-primary mr-2"></i>
+                                    安全需求
+                                </h4>
+                                <ul class="list-disc pl-5 text-medium space-y-2">
+                                    <li>用户认证：采用OAuth2.0协议，支持多因素认证</li>
+                                    <li>数据加密：用户密码采用bcrypt加密</li>
+                                    <li>访问控制：采用基于角色的访问控制（RBAC）模型</li>
+                                    <li>安全审计：所有关键操作都需要记录日志</li>
+                                    <li>防SQL注入：所有数据库操作都使用预编译语句</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- 可用性需求 -->
+                            <div class="bg-secondary rounded-lg p-5">
+                                <h4 class="font-medium text-lg mb-3 flex items-center">
+                                    <i class="fa fa-check-circle text-primary mr-2"></i>
+                                    可用性需求
+                                </h4>
+                                <ul class="list-disc pl-5 text-medium space-y-2">
+                                    <li>系统可用性：≥99.9%（年度停机时间≤8.76小时）</li>
+                                    <li>故障恢复时间：单点故障恢复时间≤30分钟</li>
+                                    <li>数据备份策略：每天进行全量备份</li>
+                                    <li>灾难恢复：支持异地容灾，RTO≤2小时</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- 兼容性需求 -->
+                            <div class="bg-secondary rounded-lg p-5">
+                                <h4 class="font-medium text-lg mb-3 flex items-center">
+                                    <i class="fa fa-desktop text-primary mr-2"></i>
+                                    兼容性需求
+                                </h4>
+                                <ul class="list-disc pl-5 text-medium space-y-2">
+                                    <li>浏览器支持：Chrome、Firefox、Edge、Safari最新版</li>
+                                    <li>操作系统支持：Windows 7+、macOS 10.12+</li>
+                                    <li>移动设备支持：iOS 11+、Android 7.0+</li>
+                                    <li>分辨率支持：1024×768及以上，响应式设计</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2.4 数据模型设计 和 2.5 API接口设计 部分代码省略，保持结构一致性 -->
+                </div>
+            </section>
+            
+            <!-- 交互设计说明 和 技术架构设计 部分代码省略，保持结构一致性 -->
+            
+            <!-- 返回顶部按钮 -->
+            <div id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-primary/90">
+                <i class="fa fa-chevron-up"></i>
+            </div>
+        </div>
+    </main>
+
+    <!-- JavaScript -->
+    <script>
+        // 侧边栏菜单切换
+        document.addEventListener('DOMContentLoaded', function() {
+            // 移动端菜单切换
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const sidebar = document.getElementById('sidebar');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                sidebar.classList.toggle('-translate-x-full');
+            });
+            
+            // 子菜单展开/折叠
+            const summaryLink = document.querySelector('a[href="#project-summary"]');
+            const requirementsLink = document.querySelector('a[href="#requirements-doc"]');
+            const summarySubmenu = document.getElementById('summary-submenu');
+            const requirementsSubmenu = document.getElementById('requirements-submenu');
+            
+            summaryLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                summarySubmenu.classList.toggle('hidden');
+                requirementsSubmenu.classList.add('hidden');
+                document.querySelector('a[href="#project-summary"] + i')?.classList.toggle('rotate-180');
+            });
+            
+            requirementsLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                requirementsSubmenu.classList.toggle('hidden');
+                summarySubmenu.classList.add('hidden');
+                document.querySelector('a[href="#requirements-doc"] + i')?.classList.toggle('rotate-180');
+            });
+            
+            // 功能卡片展开/折叠
+            const functionalCardHeaders = document.querySelectorAll('.functional-card-header');
+            
+            functionalCardHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    content.classList.toggle('hidden');
+                    icon.classList.toggle('rotate-180');
+                });
+            });
+            
+            // 导航栏滚动高亮
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            window.addEventListener('scroll', function() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (pageYOffset >= (sectionTop - 150)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                        
+                        // 展开对应的子菜单
+                        if (current.includes('execution-results') || 
+                            current.includes('technical-highlights') ||
+                            current.includes('challenges') ||
+                            current.includes('team-collaboration') ||
+                            current.includes('lessons-learned')) {
+                            summarySubmenu.classList.remove('hidden');
+                        } else if (current.includes('system-overview') ||
+                                   current.includes('functional-requirements') ||
+                                   current.includes('non-functional-requirements') ||
+                                   current.includes('data-model') ||
+                                   current.includes('api-design')) {
+                            requirementsSubmenu.classList.remove('hidden');
+                        }
+                    }
+                });
+                
+                // 返回顶部按钮显示/隐藏
+                const backToTopBtn = document.getElementById('back-to-top');
+                if (pageYOffset > 300) {
+                    backToTopBtn.classList.remove('opacity-0', 'invisible');
+                    backToTopBtn.classList.add('opacity-100', 'visible');
+                } else {
+                    backToTopBtn.classList.add('opacity-0', 'invisible');
+                    backToTopBtn.classList.remove('opacity-100', 'visible');
+                }
+            });
+            
+            // 返回顶部功能
+            document.getElementById('back-to-top').addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // 初始化图表
+            initCharts();
+        });
+        
+        // 初始化所有图表
+        function initCharts() {
+            // 技术栈分布图表
+            const techStackCtx = document.getElementById('techStackChart').getContext('2d');
+            new Chart(techStackCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['Vue3', 'Element Plus', 'Spring Boot', 'Spring Cloud', 'FastAPI', 'Pinia', 'TypeScript', 'MySQL', 'Redis'],
+                    datasets: [{
+                        label: '技术栈使用程度',
+                        data: [95, 90, 85, 80, 75, 88, 92, 94, 86],
+                        backgroundColor: 'rgba(24, 144, 255, 0.2)',
+                        borderColor: 'rgba(24, 144, 255, 1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(24, 144, 255, 1)'
+                    }]
+                },
+                options: {
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                stepSize: 20
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // 功能完成情况图表
+            const functionCompletionCtx = document.getElementById('functionCompletionChart').getContext('2d');
+            new Chart(functionCompletionCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['教师端', '学生端', '家长端', '管理端'],
+                    datasets: [{
+                        label: '页面数量',
+                        data: [48, 35, 22, 21],
+                        backgroundColor: 'rgba(24, 144, 255, 0.7)',
+                        borderColor: 'rgba(24, 144, 255, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: '功能点数量',
+                        data: [32, 25, 15, 15],
+                        backgroundColor: 'rgba(56, 193, 114, 0.7)',
+                        borderColor: 'rgba(56, 193, 114, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            // 性能指标图表
+            const performanceMetricsCtx = document.getElementById('performanceMetricsChart').getContext('2d');
+            new Chart(performanceMetricsCtx, {
+                type: 'line',
+                data: {
+                    labels: ['1000用户', '2000用户', '3000用户', '4000用户', '5000用户'],
+                    datasets: [{
+                        label: '平均响应时间(秒)',
+                        data: [0.5, 0.8, 1.2, 1.5, 1.8],
+                        fill: false,
+                        borderColor: 'rgba(24, 144, 255, 1)',
+                        tension: 0.1
+                    }, {
+                        label: '系统可用性(%)',
+                        data: [99.95, 99.93, 99.91, 99.90, 99.90],
+                        fill: false,
+                        borderColor: 'rgba(56, 193, 114, 1)',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            // 用户角色分布图表
+            const userRolesCtx = document.getElementById('userRolesChart').getContext('2d');
+            new Chart(userRolesCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['教师', '学生', '家长', '管理员'],
+                    datasets: [{
+                        data: [15, 60, 23, 2],
+                        backgroundColor: [
+                            'rgba(24, 144, 255, 0.7)',
+                            'rgba(56, 193, 114, 0.7)',
+                            'rgba(255, 159, 64, 0.7)',
+                            'rgba(153, 102, 255, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(24, 144, 255, 1)',
+                            'rgba(56, 193, 114, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(153, 102, 255, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'right'
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

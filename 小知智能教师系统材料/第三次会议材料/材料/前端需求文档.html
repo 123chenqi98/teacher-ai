@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>前端开发任务页面功能模块文档</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#6B7280',
+                        accent: '#36CFC9',
+                        light: '#F9FAFB',
+                        dark: '#1F2937'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+    <!-- 顶部导航 -->
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-primary flex items-center">
+                <i class="fa fa-code mr-2"></i>前端开发任务文档
+            </h1>
+            <div class="flex items-center space-x-4">
+                <button id="scrollTopBtn" class="bg-primary/10 hover:bg-primary/20 text-primary p-2 rounded-full transition-colors">
+                    <i class="fa fa-arrow-up"></i>
+                </button>
+                <button id="toggleTheme" class="bg-gray-100 hover:bg-gray-200 p-2 rounded-full transition-colors">
+                    <i class="fa fa-moon-o"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- 技术栈信息 -->
+        <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
+            <h2 class="text-lg md:text-xl font-semibold mb-4 flex items-center text-primary">
+                <i class="fa fa-cogs mr-2"></i>技术栈信息
+            </h2>
+            <div class="flex flex-wrap gap-3">
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Vue3</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Element Plus</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Vite</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Pinia</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">TypeScript</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Vue Router</span>
+            </div>
+        </div>
+
+        <!-- 侧边导航 + 内容区 -->
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- 侧边导航 -->
+            <aside class="lg:w-1/4">
+                <div class="bg-white rounded-xl shadow-sm p-4 sticky top-24">
+                    <h3 class="font-semibold text-lg mb-4 text-gray-700 border-b pb-2">目录导航</h3>
+                    <nav>
+                        <ul class="space-y-2">
+                            <li>
+                                <a href="#common" class="flex items-center text-gray-600 hover:text-primary transition-colors py-1">
+                                    <i class="fa fa-globe w-6"></i>系统通用模块
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#teacher" class="flex items-center text-gray-600 hover:text-primary transition-colors py-1">
+                                    <i class="fa fa-chalkboard-teacher w-6"></i>教师端模块
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#student" class="flex items-center text-gray-600 hover:text-primary transition-colors py-1">
+                                    <i class="fa fa-graduation-cap w-6"></i>学生端模块
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#parent" class="flex items-center text-gray-600 hover:text-primary transition-colors py-1">
+                                    <i class="fa fa-user-friends w-6"></i>家长端模块
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#admin" class="flex items-center text-gray-600 hover:text-primary transition-colors py-1">
+                                    <i class="fa fa-cog w-6"></i>系统管理模块
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- 内容区 -->
+            <div class="lg:w-3/4 space-y-8">
+                <!-- 系统通用模块 -->
+                <section id="common" class="bg-white rounded-xl shadow-sm p-6 card-hover">
+                    <h2 class="text-xl md:text-2xl font-bold mb-6 text-primary flex items-center">
+                        <i class="fa fa-globe mr-3"></i>系统通用模块（全端共用）
+                    </h2>
+
+                    <!-- 登录/注册页面 -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-700 flex items-center">
+                            <i class="fa fa-sign-in text-primary mr-2"></i>1. 登录 / 注册页面
+                        </h3>
+                        <ul class="pl-6 space-y-2 list-disc text-gray-600">
+                            <li>账号密码登录（支持手机号 / 用户名）</li>
+                            <li>验证码登录（短信验证码获取与验证）</li>
+                            <li>第三方登录（微信、QQ 快捷登录）</li>
+                            <li>忘记密码（手机号验证 + 密码重置流程）</li>
+                            <li>注册功能（教师 / 学生 / 家长角色选择，信息完善）</li>
+                            <li>记住密码勾选框 + 自动登录选项</li>
+                            <li>登录状态保存与过期自动退出</li>
+                            <li>表单验证（格式校验、必填项提示、错误反馈）</li>
+                        </ul>
+                    </div>
+
+                    <!-- 全局通用组件 -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-700 flex items-center">
+                            <i class="fa fa-puzzle-piece text-primary mr-2"></i>2. 全局通用组件
+                        </h3>
+                        <ul class="pl-6 space-y-2 list-disc text-gray-600">
+                            <li>顶部导航栏（logo、用户信息、消息通知、退出登录）</li>
+                            <li>侧边菜单栏（可折叠、角色权限差异化显示）</li>
+                            <li>面包屑导航（当前位置定位与返回）</li>
+                            <li>全局搜索框（支持跨模块关键词搜索）</li>
+                            <li>分页组件（统一分页样式，支持页码切换、每页条数选择）</li>
+                            <li>导出 / 导入组件（支持 Excel、PDF 格式，导出进度提示）</li>
+                            <li>消息通知中心（系统公告、业务提醒、未读红点提示）</li>
+                            <li>加载状态组件（按钮加载、页面加载、数据加载动画）</li>
+                            <li>错误处理组件（404 页面、500 页面、无数据空页面）</li>
+                            <li>弹窗组件（确认弹窗、提示弹窗、表单弹窗统一样式）</li>
+                        </ul>
+                    </div>
+
+                    <!-- 个人中心页面 -->
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4 text-gray-700 flex items-center">
+                            <i class="fa fa-user text-primary mr-2"></i>3. 个人中心页面
+                        </h3>
+                        <ul class="pl-6 space-y-2 list-disc text-gray-600">
+                            <li>基本信息展示（姓名、角色、手机号、头像等）</li>
+                            <li>信息编辑功能（修改昵称、手机号、密码、头像上传）</li>
+                            <li>账号安全设置（登录密码修改、绑定手机号变更、登录日志查看）</li>
+                            <li>个性化设置（主题切换、语言选择、通知权限设置）</li>
+                            <li>我的收藏（收藏的教案、资源、习题管理）</li>
+                            <li>操作历史记录（近期使用功能足迹展示）</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- 教师端模块 -->
+                <section id="teacher" class="bg-white rounded-xl shadow-sm p-6 card-hover">
+                    <h2 class="text-xl md:text-2xl font-bold mb-6 text-primary flex items-center">
+                        <i class="fa fa-chalkboard-teacher mr-3"></i>教师端模块
+                    </h2>
+
+                    <!-- 智能备课页面 -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-700 flex items-center">
+                            <i class="fa fa-book text-primary mr-2"></i>1. 智能备课页面
+                        </h3>
+
+                        <div class="pl-4 border-l-2 border-primary/30 mb-4">
+                            <h4 class="font-medium text-gray-700 mb-2">1.1 教案生成子页面</h4>
+                            <ul class="pl-6 space-y-1 list-disc text-gray-600 text-sm">
+                                <li>教学信息输入表单（年级、学科、课题、教学目标、课时安排）</li>
+                                <li>教案模板选择下拉框（基础版、进阶版、创新版）</li>
+                                <li>生成按钮及加载状态展示</li>
+                                <li>教案预览区域（支持滚动查看、段落折叠 / 展开）</li>
+                                <li>编辑功能（在线修改教案内容、富文本编辑器支持）</li>
+                                <li>导出功能（支持 doc、docx、PDF、PPT 格式选择）</li>
+                                <li>保存草稿功能（自动保存 + 手动保存按钮）</li>
+                                <li>历史教案列表（按时间排序、搜索、删除、复用）</li>
+                            </ul>
+                        </div>
+
+                        <div class="pl-4 border-l-2 border-primary/30 mb-4">
+                            <h4 class="font-medium text-gray-700 mb-2">1.2 课件制作子页面</h4>
+                            <ul class="pl-6 space-y-1 list-disc text-gray-600 text-sm">
+                                <li>教案关联选择（关联已生成教案快速生成课件）</li>
+                                <li>课件模板库（按学科、年级分类展示）</li>
+                                <li>课件编辑区域（文本编辑、图片插入、动画添加、版式调整）</li>
+                                <li>预览功能（实时预览课件效果）</li>
+                                <li>自定义模板功能（保存个人常用课件模板）</li>
+                                <li>课件分享功能（生成分享链接、同年级教师共享）</li>
+                            </ul>
+                        </div>
+
+                        <div class="pl-4 border-l-2 border-primary/30 mb-4">
+                            <h4 class="font-medium text-gray-700 mb-2">1.3 资源整合子页面</h4>
+                            <ul class="pl-6 space-y-1 list-disc text-gray-600 text-sm">
+                                <li>资源类型筛选（视频、音频、图片、习题、实验素材）</li>
+                                <li>关键词搜索 + 学科 / 知识点筛选条件</li>
+                                <li>资源列表展示（缩略图、标题、简介、下载次数）</li>
+                                <li>资源预览功能（视频试看、文档预览）</li>
+                                <li>一键添加到教案 / 课件功能</li>
+                                <li>我的资源收藏（收藏、取消收藏、分类管理）</li>
+                            </ul>
+                        </div>
+
+                        <div class="pl-4 border-l-2 border-primary/30">
+                            <h4 class="font-medium text-gray-700 mb-2">1.4 跨学科设计子页面</h4>
+                            <ul class="pl-6 space-y-1 list-disc text-gray-600 text-sm">
+                                <li>主学科选择 + 关联学科多选框</li>
+                                <li>教学主题输入框 + 教学目标描述区</li>
+                                <li>跨界智囊团功能（AI 角色选择、内容生成预览）</li>
+                                <li>教学方案生成按钮及加载状态</li>
+                                <li>方案编辑与调整功能</li>
+                                <li>案例参考列表（展示同类跨学科教学案例）</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 作业管理页面 -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-700 flex items-center">
+                            <i class="fa fa-list-alt text-primary mr-2"></i>2. 作业管理页面
+                        </h3>
+
+                        <div class="pl-4 border-l-2 border-primary/30 mb-4">
+                            <h4 class="font-medium text-gray-700 mb-2">2.1 作业生成子页面</h4>
+                            <ul class="pl-6 space-y-1 list-disc text-gray-600 text-sm">
+                                <li>作业基本信息设置（作业名称、学科、年级、班级、截止时间）</li>
+                                <li>题型选择（选择题、填空题、解答题、作文题等）</li>
+                                <li>智能组卷功能（按知识点、难度、题量筛选）</li>
+                                <li>自定义出题功能（富文本编辑、公式编辑器、图片插入）</li>
+                                <li>作业预览与调整（题目顺序调整、删除、替换）</li>
+                                <li>发布功能（立即发布 / 定时发布、发布范围选择）</li>
+                                <li>保存为模板功能</li>
+                            </ul>
+                        </div>
+
+                        <div class="pl-4 border-l-2 border-primary/30 mb-4">
+                            <h4 class="font-medium text-gray-700 mb-2">2.2 作业批改子页面</h4>
+                            <ul class="pl-6 space-y-1 list-disc text-gray-600 text-sm">
+                                <li>批改方式选择（拍照批改、在线提交批改、批量导入批改）</li>
+                                <li>拍照上传区域（支持单张 / 多张上传、图片裁剪、旋转）</li>
+                                <li>作业列表（按班级、提交状态、批改状态筛选）</li>
+                                <li>批改操作区（分数输入、错误标注、评语模板选择、自定义评语）</li>
+                                <li>作文批改专区（语法错误标注、评分维度展示、修改建议）</li>
+                                <li>批量批改功能（相同错误批量标注、批量给分）</li>
+                                <li>批改进度统计（已批改 / 未批改数量、完成率）</li>
+                            </ul>
+                        </div>
+
+                        <div class="pl-4 border-l-2 border-primary/30">
+                            <h4 class="font-medium text-gray-700 mb-2">2.3 成绩分析子页面</h4>
+                            <ul class="pl-6 space-y-1 list-disc text-gray-600 text-sm">
+                                <li>班级整体数据展示（平均分、优秀率、及格率、最高分、最低分）</li>
+                                <li>成绩分布图表（柱状图、饼图切换）</li>
+                                <li>知识点错误统计（按知识点分类展示错误率）</li>
+                                <li>学生个体成绩列表（支持排序、搜索、查看详情）</li>
+                                <li>错题导出功能（导出班级错题集、个人错题集）</li>
+                                <li>成绩报告生成（支持导出 Excel、PDF）</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 学情分析页面 -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-700 flex items-center">
+                            <i class="fa fa-bar-chart text-primary mr-2"></i>3. 学情分析页面
+                        </h3>
+                        <ul class="pl-6 space-y-2 list-disc text-gray-600">
+                            <li>数据维度选择（作业数据、课堂互动、测试成绩、学习行为）</li>
+                            <li>班级学情总览（知识点掌握热力图、整体薄弱点提示）</li>
+                            <li>学生个体详情（单个学生知识点掌握情况、进步趋势、学习时长）</li>
+                            <li>数据筛选功能（时间范围、学科、知识点）</li>
+                            <li>图表展示（折线图、雷达图、表格切换）</li>
+                            <li>学情报告生成与导出</li>
+                            <li>预警提示（学习困难学生、成绩下滑学生标记）</li>
+                        </ul>
+                    </div>
+
+                    <!-- 课堂互动页面 -->
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4 text-gray-700 flex items-center">
+                            <i class="fa fa-comments text-primary mr-2"></i>4. 课堂互动页面
+                        </h3>
+
+                        <div class="pl-4 border-l-2 border-primary/30 mb-4">
+                            <h4 class="font-medium text-gray-700 mb-2">4.1 点名功能子页面</h4>
+                            <ul class="pl-6 space-y-1 list-disc text-gray-600 text-sm">
+                                <li>班级选择下拉框</li>
+                                <li>点名方式选择（随机点名、按学号点名、分组点名）</li>
+                                <li>点名操作区（开始点名、暂停点名、重新点名）</li>
+                                <li>点名结果展示（出勤状态、迟到 / 早退标记）</li>
+                                <li>出勤统计（出勤人数、缺勤人数、出勤率）</li>
+                                <li>点名记录保存与导出</li>
+                            </ul>
+                        </div>
+
+                        <div class="pl-4 border-l-2 border-primary/30 mb-4">
+                            <h4 class="font-medium text-gray-700 mb-2">4.2 答题互动子页面</h4>
+                            <ul class="pl-6 space-y-1 list-disc text-gray-600 text-sm">
+                                <li>题目发布功能（选择已创建题目 / 临时输入题目）</li>
+                                <li>答题类型选择（单选、多选、判断、简答）</li>
+                                <li>实时答题数据展示（答题人数、正确率、各选项占比）</li>
+                                <li>答题结果图表（实时更新柱状图 / 饼图）</li>
+                                <li>错题即时讲解入口</li>
+                                <li>答题记录保存功能</li>
+                            </ul>
+                        </div>
+
+                        <div class="pl-4 border-l-2 border-primary/30">
+                            <h4 class="font-medium text-gray-700 mb-2">4.3 实验模拟子页面</h4>
+                            <ul class="pl-6 space-y-1 list-disc text-gray-600 text-sm">
+                                <li>学科选择（物理、化学、生物）</li>
+                                <li>实验列表（按知识点分类展示）</li>
+                                <li>3D 实验演示区（支持旋转、步骤切换、暂停）</li>
+                                <li>实验步骤说明（文字 + 动画同步）</li>
+                                <li>实验数据记录功能</li>
+                                <li>实验报告生成模板</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 学生端模块 -->
+                <section id="student" class="bg-white rounded-xl shadow-sm p-6 card-hover">
+                    <h2 class="text-xl md:text-2xl font-bold mb-6 text-primary flex items-center">
+                        <i class="fa fa-graduation-cap mr-3"></i>学生端模块
+                    </h2>
+
+                    <!-- 个性化学习页面 -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-700 flex items-center">
+                            <i class="fa fa-lightbulb-o text-primary mr-2"></i>1. 个性化学习页面
+                        </h3>
+
+                        <div class="pl-4 border-l-2 border-primary/30 mb-4">
+                            <h4 class="font-medium text-gray-700 mb-2">1.1 学习计划子页面</h4>
+                            <ul class="pl-6 space-y-1 list-disc text-gray-600 text-sm">
+                                <li>学习目标设置（短期目标、长期目标输入）</li>
+                                <li>个性化学习路径展示（按知识点顺序、进度条可视化）</li>
+                                <li>每日学习任务列表（待完成 / 已完成分类、优先级标记）</li>
+                                <li>任务详情查看（知识点讲解、关联习题、预计时长）</li>
+                                <li>任务完成打卡功能</li>
+                                <li>学习计划调整入口（手动调整 / AI 优化建议）</li>
+                            </ul>
+                        </div>
+
+                        <div class="pl-4 border-l-2 border-primary/30 mb-4">
+                            <h4 class="font-medium text-gray-700 mb-2">1.2 智能推荐子页面</h4>
+                            <ul class="pl-6 space-y-1 list-disc text-gray-600 text-sm">
+                                <li>薄弱知识点推荐区域（按薄弱程度排序）</li>
+                                <li>推荐资源展示（微课视频、典型例题、拓展资料）</li>
+                                <li>难度选择（易、中、难三级切换）</li>
+                                <li>资源播放 / 查看功能（视频倍速、习题作答）</li>
+                                <li>收藏与记录功能（标记已学、收藏重点）</li>
+                            </ul>
+                        </div>
+
+                        <div class="pl-4 border-l-2 border-primary/30">
+                            <h4 class="font-medium text-gray-700 mb-2">1.3 学习进度子页面</h4>
+                            <ul class="pl-6 space-y-1 list-disc text-gray-600 text-sm">
+                                <li>各学科进度总览（知识点掌握率、学习时长统计）</li>
+                                <li>详细进度图表（周 / 月学习时长趋势、知识点完成情况）</li>
+                                <li>学习成就展示（勋章、等级、积分）</li>
+                                <li>与班级平均水平对比（匿名化展示）</li>
+                                <li>学习效率分析（有效学习时长、专注度评估）</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 智能答疑页面 -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-700 flex items-center">
+                            <i class="fa fa-question-circle text-primary mr-2"></i>2. 智能答疑页面
+                        </h3>
+                        <ul class="pl-6 space-y-2 list-disc text-gray-600">
+                            <li>提问方式选择（文字输入、语音输入、拍照上传）</li>
+                            <li>问题输入区（支持公式输入、图片插入）</li>
+                            <li>AI 角色选择（小思老师 - 引导式、小智老师 - 步骤式）</li>
+                            <li>解答结果展示（分步骤解析、知识点关联、同类题推荐）</li>
+                            <li>追问功能（针对解答继续提问）</li>
+                            <li>答疑记录历史（按时间排序、搜索、收藏）</li>
+                            <li>错题自动收录功能（将错题加入错题本）</li>
+                        </ul>
+                    </div>
+
+                    <!-- 作业练习页面 -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-700 flex items-center">
+                            <i class="fa fa-pencil text-primary mr-2"></i>3. 作业练习页面
+                        </h3>
+                        <ul class="pl-6 space-y-2 list-disc text-gray-600">
+                            <li>待完成作业列表（按截止时间排序、学科筛选）</li>
+                            <li>作业详情展示（题目内容、答题区域、提交倒计时）</li>
+                            <li>答题功能（客观题勾选 / 选择、主观题文字输入、公式编辑器、拍照上传答案）</li>
+                            <li>草稿纸功能（在线涂鸦、临时记录）</li>
+                            <li>作业提交功能（定时提交、手动提交、保存草稿）</li>
+                            <li>已完成作业列表（查看批改结果、错题订正）</li>
+                            <li>错题本页面（错题分类、错题回顾、相似题练习）</li>
+                        </ul>
+                    </div>
+
+                    <!-- 学习报告页面 -->
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4 text-gray-700 flex items-center">
+                            <i class="fa fa-file-text-o text-primary mr-2"></i>4. 学习报告页面
+                        </h3>
+                        <ul class="pl-6 space-y-2 list-disc text-gray-600">
+                            <li>周 / 月学习报告生成（自动汇总数据）</li>
+                            <li>知识点掌握情况分析（图表展示、强弱项标记）</li>
+                            <li>学习能力评估（专注力、逻辑思维、自主学习能力）</li>
+                            <li>改进建议列表（针对性学习方法、资源推荐）</li>
+                            <li>报告分享功能（分享给家长）</li>
+                            <li>历史报告存档（按时间查询）</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- 家长端模块 -->
+                <section id="parent" class="bg-white rounded-xl shadow-sm p-6 card-hover">
+                    <h2 class="text-xl md:text-2xl font-bold mb-6 text-primary flex items-center">
+                        <i class="fa fa-user-friends mr-3"></i>家长端模块
+                    </h2>
+
+                    <!-- 实时监控页面 -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-700 flex items-center">
+                            <i class="fa fa-eye text-primary mr-2"></i>1. 实时监控页面
+                        </h3>
+                        <ul class="pl-6 space-y-2 list-disc text-gray-600">
+                            <li>孩子基本信息展示（年级、班级、当前学习状态）</li>
+                            <li>学习进度实时查看（各学科完成情况、今日学习时长）</li>
+                            <li>课堂表现数据（出勤情况、课堂参与度、答题正确率）</li>
+                            <li>作业完成情况（已完成 / 未完成、正确率、批改详情）</li>
+                            <li>考试成绩分析（分数、排名、知识点掌握情况）</li>
+                            <li>学习行为记录（学习时段分布、专注度评估）</li>
+                            <li>数据刷新与实时同步功能</li>
+                        </ul>
+                    </div>
+
+                    <!-- 学习报告页面 -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-700 flex items-center">
+                            <i class="fa fa-bar-chart text-primary mr-2"></i>2. 学习报告页面
+                        </h3>
+                        <ul class="pl-6 space-y-2 list-disc text-gray-600">
+                            <li>报告周期选择（周报告、月报告、学期报告）</li>
+                            <li>综合成绩趋势图表（折线图展示成绩变化）</li>
+                            <li>知识点掌握热力图（直观展示强弱项）</li>
+                            <li>学习习惯分析（时间管理、自主学习能力）</li>
+                            <li>个性化教育建议（基于数据的针对性指导）</li>
+                            <li>报告导出与打印功能</li>
+                            <li>报告分享功能（分享给教师）</li>
+                        </ul>
+                    </div>
+
+                    <!-- 家校互动页面 -->
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4 text-gray-700 flex items-center">
+                            <i class="fa fa-comments-o text-primary mr-2"></i>3. 家校互动页面
+                        </h3>
+                        <ul class="pl-6 space-y-2 list-disc text-gray-600">
+                            <li>教师列表（关联教师信息展示、快速联系）</li>
+                            <li>即时聊天功能（文字、语音、图片、文件发送）</li>
+                            <li>消息列表（按教师 / 班级分类、未读标记）</li>
+                            <li>学校通知区域（系统公告、班级通知、紧急通知）</li>
+                            <li>家长会预约功能（查看预约时间、确认参与）</li>
+                            <li>教育经验分享社区（家长经验交流、专家答疑）</li>
+                            <li>作业辅导资源推荐（针对孩子薄弱点的辅导资料）</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- 系统管理模块 -->
+                <section id="admin" class="bg-white rounded-xl shadow-sm p-6 card-hover">
+                    <h2 class="text-xl md:text-2xl font-bold mb-6 text-primary flex items-center">
+                        <i class="fa fa-cog mr-3"></i>系统管理模块（后台管理端）
+                    </h2>
+
+                    <!-- 用户管理页面 -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-700 flex items-center">
+                            <i class="fa fa-users text-primary mr-2"></i>1. 用户管理页面
+                        </h3>
+                        <ul class="pl-6 space-y-2 list-disc text-gray-600">
+                            <li>用户列表展示（用户名、角色、手机号、状态、创建时间）</li>
+                            <li>多条件筛选（角色、状态、学科、年级）</li>
+                            <li>搜索功能（支持用户名、手机号搜索）</li>
+                            <li>用户操作（新增、编辑、禁用 / 启用、删除、重置密码）</li>
+                            <li>批量操作（批量禁用、批量导出）</li>
+                            <li>用户详情查看（基本信息、角色权限、操作日志）</li>
+                        </ul>
+                    </div>
+
+                    <!-- 角色权限页面 -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-700 flex items-center">
+                            <i class="fa fa-key text-primary mr-2"></i>2. 角色权限页面
+                        </h3>
+                        <ul class="pl-6 space-y-2 list-disc text-gray-600">
+                            <li>角色列表（角色名称、描述、权限范围、创建时间）</li>
+                            <li>角色操作（新增、编辑、删除）</li>
+                            <li>权限分配（树形权限选择、全选 / 反选、权限预览）</li>
+                            <li>自定义角色创建（自定义权限组合）</li>
+                            <li>角色复制功能</li>
+                        </ul>
+                    </div>
+
+                    <!-- 数据统计页面 -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-700 flex items-center">
+                            <i class="fa fa-pie-chart text-primary mr-2"></i>3. 数据统计页面
+                        </h3>
+                        <ul class="pl-6 space-y-2 list-disc text-gray-600">
+                            <li>系统运营概览（总用户数、活跃用户数、各端使用占比）</li>
+                            <li>功能使用统计（各模块访问次数、使用频率排行）</li>
+                            <li>数据图表展示（柱状图、饼图、折线图切换）</li>
+                            <li>数据筛选（时间范围、区域、学校）</li>
+                            <li>统计报告生成与导出（Excel、PDF）</li>
+                            <li>数据导出权限控制</li>
+                        </ul>
+                    </div>
+
+                    <!-- 系统设置页面 -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-700 flex items-center">
+                            <i class="fa fa-sliders text-primary mr-2"></i>4. 系统设置页面
+                        </h3>
+                        <ul class="pl-6 space-y-2 list-disc text-gray-600">
+                            <li>基础设置（系统名称、logo 上传、版权信息）</li>
+                            <li>安全设置（登录失败次数限制、密码有效期设置）</li>
+                            <li>通知设置（短信模板、邮件模板编辑）</li>
+                            <li>资源管理（教学资源审核、分类管理）</li>
+                            <li>日志管理（系统日志、操作日志、异常日志查看与导出）</li>
+                            <li>缓存清理功能</li>
+                            <li>版本更新记录展示</li>
+                        </ul>
+                    </div>
+
+                    <!-- 学科/年级管理页面 -->
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4 text-gray-700 flex items-center">
+                            <i class="fa fa-book text-primary mr-2"></i>5. 学科 / 年级管理页面
+                        </h3>
+                        <ul class="pl-6 space-y-2 list-disc text-gray-600">
+                            <li>学科列表（学科名称、编码、状态、排序）</li>
+                            <li>年级列表（年级名称、对应学段、排序）</li>
+                            <li>教学大纲管理（按学科 / 年级上传、编辑、查看教学大纲）</li>
+                            <li>学期管理（新增学期、设置当前学期、学期状态切换）</li>
+                            <li>批量导入 / 导出功能</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-lg font-semibold mb-2">前端开发任务页面功能模块文档</h3>
+                    <p class="text-gray-400 text-sm">技术栈：Vue3 + Element Plus + Vite + Pinia + TypeScript + Vue Router</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fa fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fa fa-document text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fa fa-question-circle text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-6 pt-6 text-center text-gray-400 text-sm">
+                © 2025 前端开发文档 | 版权所有
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 返回顶部按钮
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // 滚动监听，控制返回顶部按钮显示
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.remove('opacity-0');
+                scrollTopBtn.classList.add('opacity-100');
+            } else {
+                scrollTopBtn.classList.remove('opacity-100');
+                scrollTopBtn.classList.add('opacity-0');
+            }
+        });
+
+        // 暗黑模式切换
+        const toggleTheme = document.getElementById('toggleTheme');
+        let darkMode = false;
+
+        toggleTheme.addEventListener('click', () => {
+            darkMode = !darkMode;
+            if (darkMode) {
+                document.documentElement.classList.add('dark');
+                toggleTheme.innerHTML = '<i class="fa fa-sun-o"></i>';
+                document.body.classList.add('bg-gray-900');
+                document.body.classList.remove('bg-gray-50');
+                document.querySelectorAll('section, div.bg-white').forEach(el => {
+                    el.classList.remove('bg-white');
+                    el.classList.add('bg-gray-800', 'text-white');
+                });
+                document.querySelectorAll('li.text-gray-600').forEach(el => {
+                    el.classList.remove('text-gray-600');
+                    el.classList.add('text-gray-300');
+                });
+            } else {
+                document.documentElement.classList.remove('dark');
+                toggleTheme.innerHTML = '<i class="fa fa-moon-o"></i>';
+                document.body.classList.remove('bg-gray-900');
+                document.body.classList.add('bg-gray-50');
+                document.querySelectorAll('section, div.bg-gray-800').forEach(el => {
+                    el.classList.remove('bg-gray-800', 'text-white');
+                    el.classList.add('bg-white');
+                });
+                document.querySelectorAll('li.text-gray-300').forEach(el => {
+                    el.classList.remove('text-gray-300');
+                    el.classList.add('text-gray-600');
+                });
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerOffset = 80;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

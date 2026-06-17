@@ -1,0 +1,2192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI智能教师系统详细需求规格说明书</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#36CFC9',
+                        accent: '#722ED1',
+                        neutral: '#F5F7FA',
+                        dark: '#1D2129',
+                        light: '#F2F3F5'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .transition-custom {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .card-hover {
+                @apply hover:shadow-lg hover:-translate-y-1 transition-custom;
+            }
+            .nav-active {
+                @apply bg-primary/10 text-primary border-l-4 border-primary;
+            }
+        }
+    </style>
+</head>
+<body class="bg-neutral font-sans text-dark">
+    <!-- 顶部导航栏 -->
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <i class="fa fa-graduation-cap text-primary text-2xl"></i>
+                <h1 class="text-xl font-bold text-dark hidden md:block">AI智能教师系统</h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="toggleMenu" class="md:hidden text-dark p-2">
+                    <i class="fa fa-bars text-xl"></i>
+                </button>
+                <nav class="hidden md:flex items-center space-x-6">
+                    <a href="#intro" class="text-dark/70 hover:text-primary transition-custom">引言</a>
+                    <a href="#overview" class="text-dark/70 hover:text-primary transition-custom">项目概述</a>
+                    <a href="#functional" class="text-dark/70 hover:text-primary transition-custom">功能需求</a>
+                    <a href="#non-functional" class="text-dark/70 hover:text-primary transition-custom">非功能需求</a>
+                    <a href="#interfaces" class="text-dark/70 hover:text-primary transition-custom">接口需求</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-6 flex flex-col md:flex-row">
+        <!-- 侧边导航 -->
+        <aside id="sidebar" class="w-full md:w-64 bg-white rounded-lg shadow-md mb-6 md:mb-0 md:mr-6 hidden md:block">
+            <nav class="p-4">
+                <div class="text-sm font-semibold text-dark/50 uppercase mb-3">目录</div>
+                
+                <!-- 引言部分 -->
+                <div class="mb-6">
+                    <a href="#intro" class="flex items-center px-3 py-2 text-dark/70 hover:bg-primary/5 rounded-md transition-custom">
+                        <i class="fa fa-info-circle w-5 text-center mr-2 text-primary"></i>
+                        <span>1. 引言</span>
+                    </a>
+                    <div class="pl-8 mt-1 space-y-1">
+                        <a href="#purpose" class="block px-3 py-1.5 text-sm text-dark/60 hover:bg-primary/5 rounded-md transition-custom">1.1 编写目的</a>
+                        <a href="#background" class="block px-3 py-1.5 text-sm text-dark/60 hover:bg-primary/5 rounded-md transition-custom">1.2 项目背景</a>
+                        <a href="#terms" class="block px-3 py-1.5 text-sm text-dark/60 hover:bg-primary/5 rounded-md transition-custom">1.3 定义与术语</a>
+                        <a href="#references" class="block px-3 py-1.5 text-sm text-dark/60 hover:bg-primary/5 rounded-md transition-custom">1.4 参考资料</a>
+                    </div>
+                </div>
+                
+                <!-- 项目概述部分 -->
+                <div class="mb-6">
+                    <a href="#overview" class="flex items-center px-3 py-2 text-dark/70 hover:bg-primary/5 rounded-md transition-custom">
+                        <i class="fa fa-eye w-5 text-center mr-2 text-primary"></i>
+                        <span>2. 项目概述</span>
+                    </a>
+                    <div class="pl-8 mt-1 space-y-1">
+                        <a href="#goals" class="block px-3 py-1.5 text-sm text-dark/60 hover:bg-primary/5 rounded-md transition-custom">2.1 项目目标</a>
+                        <a href="#users" class="block px-3 py-1.5 text-sm text-dark/60 hover:bg-primary/5 rounded-md transition-custom">2.2 用户特点</a>
+                        <a href="#constraints" class="block px-3 py-1.5 text-sm text-dark/60 hover:bg-primary/5 rounded-md transition-custom">2.3 假设与约束</a>
+                    </div>
+                </div>
+                
+                <!-- 功能需求部分 -->
+                <div class="mb-6">
+                    <a href="#functional" class="flex items-center px-3 py-2 text-dark/70 hover:bg-primary/5 rounded-md transition-custom">
+                        <i class="fa fa-cogs w-5 text-center mr-2 text-primary"></i>
+                        <span>3. 功能需求</span>
+                    </a>
+                    <div class="pl-8 mt-1 space-y-1">
+                        <a href="#priority" class="block px-3 py-1.5 text-sm text-dark/60 hover:bg-primary/5 rounded-md transition-custom">3.1 功能优先级</a>
+                        <a href="#teacher" class="block px-3 py-1.5 text-sm text-dark/60 hover:bg-primary/5 rounded-md transition-custom">3.2 教师端功能</a>
+                        <a href="#student" class="block px-3 py-1.5 text-sm text-dark/60 hover:bg-primary/5 rounded-md transition-custom">3.3 学生端功能</a>
+                        <a href="#parent" class="block px-3 py-1.5 text-sm text-dark/60 hover:bg-primary/5 rounded-md transition-custom">3.4 家长端功能</a>
+                        <a href="#admin" class="block px-3 py-1.5 text-sm text-dark/60 hover:bg-primary/5 rounded-md transition-custom">3.5 系统管理</a>
+                    </div>
+                </div>
+                
+                <!-- 非功能需求部分 -->
+                <div class="mb-6">
+                    <a href="#non-functional" class="flex items-center px-3 py-2 text-dark/70 hover:bg-primary/5 rounded-md transition-custom">
+                        <i class="fa fa-tachometer w-5 text-center mr-2 text-primary"></i>
+                        <span>4. 非功能需求</span>
+                    </a>
+                    <div class="pl-8 mt-1 space-y-1">
+                        <a href="#performance" class="block px-3 py-1.5 text-sm text-dark/60 hover:bg-primary/5 rounded-md transition-custom">4.1 性能需求</a>
+                        <a href="#quality" class="block px-3 py-1.5 text-sm text-dark/60 hover:bg-primary/5 rounded-md transition-custom">4.2 质量属性</a>
+                        <a href="#environment" class="block px-3 py-1.5 text-sm text-dark/60 hover:bg-primary/5 rounded-md transition-custom">4.3 系统环境</a>
+                        <a href="#architecture" class="block px-3 py-1.5 text-sm text-dark/60 hover:bg-primary/5 rounded-md transition-custom">4.4 技术架构</a>
+                        <a href="#data" class="block px-3 py-1.5 text-sm text-dark/60 hover:bg-primary/5 rounded-md transition-custom">4.5 数据管理</a>
+                    </div>
+                </div>
+                
+                <!-- 接口需求部分 -->
+                <div>
+                    <a href="#interfaces" class="flex items-center px-3 py-2 text-dark/70 hover:bg-primary/5 rounded-md transition-custom">
+                        <i class="fa fa-plug w-5 text-center mr-2 text-primary"></i>
+                        <span>5. 接口需求</span>
+                    </a>
+                    <div class="pl-8 mt-1 space-y-1">
+                        <a href="#system-interfaces" class="block px-3 py-1.5 text-sm text-dark/60 hover:bg-primary/5 rounded-md transition-custom">5.1 系统接口设计</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- 主内容区 -->
+        <main class="flex-1 bg-white rounded-lg shadow-md p-6">
+            <!-- 封面区域 -->
+            <div class="text-center mb-12">
+                <div class="inline-block p-3 bg-primary/10 rounded-full mb-4">
+                    <i class="fa fa-graduation-cap text-4xl text-primary"></i>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-bold mb-4 text-dark">AI智能教师系统</h1>
+                <h2 class="text-xl md:text-2xl font-semibold text-dark/80 mb-6">详细需求规格说明书</h2>
+                <div class="flex flex-wrap justify-center gap-4 text-sm text-dark/60">
+                    <span><i class="fa fa-calendar-o mr-1"></i> 文档版本：V1.0</span>
+                    <span><i class="fa fa-clock-o mr-1"></i> 编制日期：2025年</span>
+                    <span><i class="fa fa-user-o mr-1"></i> 编制部门：产品研发部</span>
+                </div>
+            </div>
+
+            <!-- 1. 引言部分 -->
+            <section id="intro" class="mb-12">
+                <div class="flex items-center mb-6">
+                    <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white mr-3">
+                        <span>1</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-dark">引言</h2>
+                </div>
+
+                <!-- 1.1 编写目的 -->
+                <div id="purpose" class="mb-8">
+                    <h3 class="text-xl font-semibold mb-4 text-dark flex items-center">
+                        <span class="inline-block w-6 h-6 rounded-full bg-primary/20 text-primary text-sm flex items-center justify-center mr-2">1.1</span>
+                        编写目的
+                    </h3>
+                    <div class="pl-8 text-dark/80 leading-relaxed">
+                        <p class="mb-4">本软件需求规格说明书（SRS）旨在明确描述AI智能教师系统的功能性需求和非功能性需求，定义系统涉及的主要术语及用户角色，指导开发团队准确理解和实现系统的各项功能。</p>
+                        <p>文档将结合文字说明及相关图表，全面阐述系统的功能结构、性能指标、用户界面和运行环境，确保项目顺利推进并高质量交付。</p>
+                    </div>
+                </div>
+
+                <!-- 1.2 项目背景 -->
+                <div id="background" class="mb-8">
+                    <h3 class="text-xl font-semibold mb-4 text-dark flex items-center">
+                        <span class="inline-block w-6 h-6 rounded-full bg-primary/20 text-primary text-sm flex items-center justify-center mr-2">1.2</span>
+                        项目背景
+                    </h3>
+                    <div class="pl-8 text-dark/80 leading-relaxed">
+                        <p class="mb-4">随着当代科技和信息技术的快速发展，云计算、大数据、物联网、人工智能等技术正深刻改变教育行业。根据《2025年教师人群应用人工智能情况调研分析报告》显示，<strong>75%的教师已使用过AI工具，但高频使用率仅为20.3%</strong>，显示出巨大的增长潜力。特别是在备课场景，出题组卷、课件制作、资料搜索需求占比均超过37%。</p>
+                        
+                        <p class="mb-6">当前市场上的AI教育产品虽然众多，但存在明显不足：<strong>物理、化学学科教师的AI工具未使用率超过80%</strong>，主要原因是"公式识别弱、知识点错误频发"；<strong>69.3%的教师需要"人工修正AI生成内容"</strong>；<strong>68.1%的教师"缺乏有效教程"</strong>。这些痛点为新的AI智能教师系统提供了市场机会。</p>
+                        
+                        <!-- 教师AI工具使用情况图表 -->
+                        <div class="bg-light p-4 rounded-lg mb-6">
+                            <h4 class="font-semibold mb-3 text-dark">教师AI工具使用情况调研</h4>
+                            <canvas id="teacherAiUsageChart" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 1.3 定义与术语 -->
+                <div id="terms" class="mb-8">
+                    <h3 class="text-xl font-semibold mb-4 text-dark flex items-center">
+                        <span class="inline-block w-6 h-6 rounded-full bg-primary/20 text-primary text-sm flex items-center justify-center mr-2">1.3</span>
+                        定义与术语
+                    </h3>
+                    <div class="pl-8 overflow-x-auto">
+                        <table class="min-w-full border-collapse">
+                            <thead>
+                                <tr class="bg-light">
+                                    <th class="border border-gray-300 px-4 py-3 text-left text-dark font-semibold">术语</th>
+                                    <th class="border border-gray-300 px-4 py-3 text-left text-dark font-semibold">定义</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white">
+                                <tr class="hover:bg-light transition-custom">
+                                    <td class="border border-gray-300 px-4 py-3 font-medium">九章大模型</td>
+                                    <td class="border border-gray-300 px-4 py-3">好未来自研的教育专用大模型，在数学推理和知识图谱构建方面具有差异化优势</td>
+                                </tr>
+                                <tr class="hover:bg-light transition-custom">
+                                    <td class="border border-gray-300 px-4 py-3 font-medium">DeepSeek</td>
+                                    <td class="border border-gray-300 px-4 py-3">通用大语言模型，负责通用知识问答和自然语言理解</td>
+                                </tr>
+                                <tr class="hover:bg-light transition-custom">
+                                    <td class="border border-gray-300 px-4 py-3 font-medium">K12</td>
+                                    <td class="border border-gray-300 px-4 py-3">指从幼儿园到十二年级的教育体系，即基础教育阶段</td>
+                                </tr>
+                                <tr class="hover:bg-light transition-custom">
+                                    <td class="border border-gray-300 px-4 py-3 font-medium">学情分析</td>
+                                    <td class="border border-gray-300 px-4 py-3">对学生学习情况的全面分析，包括知识掌握度、学习进度、学习习惯等</td>
+                                </tr>
+                                <tr class="hover:bg-light transition-custom">
+                                    <td class="border border-gray-300 px-4 py-3 font-medium">个性化教学</td>
+                                    <td class="border border-gray-300 px-4 py-3">根据学生的个体差异提供定制化的教学内容和方法</td>
+                                </tr>
+                                <tr class="hover:bg-light transition-custom">
+                                    <td class="border border-gray-300 px-4 py-3 font-medium">智能批改</td>
+                                    <td class="border border-gray-300 px-4 py-3">利用AI技术自动批改作业，包括客观题和主观题</td>
+                                </tr>
+                                <tr class="hover:bg-light transition-custom">
+                                    <td class="border border-gray-300 px-4 py-3 font-medium">备课助手</td>
+                                    <td class="border border-gray-300 px-4 py-3">帮助教师快速完成备课工作的AI工具</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 1.4 参考资料 -->
+                <div id="references">
+                    <h3 class="text-xl font-semibold mb-4 text-dark flex items-center">
+                        <span class="inline-block w-6 h-6 rounded-full bg-primary/20 text-primary text-sm flex items-center justify-center mr-2">1.4</span>
+                        参考资料
+                    </h3>
+                    <div class="pl-8 text-dark/80">
+                        <ul class="list-decimal list-inside space-y-2">
+                            <li>《2025年教师人群应用人工智能情况调研分析报告》（学科网等20家教育单位联合发布）</li>
+                            <li>九章爱学官方网站及产品介绍</li>
+                            <li>科大讯飞、作业帮、猿辅导等竞品产品资料</li>
+                            <li>《软件需求规格说明》（IEEE 830标准）</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. 项目概述部分 -->
+            <section id="overview" class="mb-12">
+                <div class="flex items-center mb-6">
+                    <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white mr-3">
+                        <span>2</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-dark">项目概述</h2>
+                </div>
+
+                <!-- 2.1 项目目标 -->
+                <div id="goals" class="mb-8">
+                    <h3 class="text-xl font-semibold mb-4 text-dark flex items-center">
+                        <span class="inline-block w-6 h-6 rounded-full bg-primary/20 text-primary text-sm flex items-center justify-center mr-2">2.1</span>
+                        项目目标
+                    </h3>
+                    <div class="pl-8 text-dark/80 leading-relaxed">
+                        <p class="mb-4">本AI智能教师系统旨在构建一个覆盖教师、学生、家长三方用户的综合性智能教育平台，通过技术创新和差异化策略填补市场空白，满足三方用户的核心需求。</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                            <!-- 教师目标卡片 -->
+                            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm card-hover">
+                                <div class="flex items-center mb-3">
+                                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3">
+                                        <i class="fa fa-chalkboard-teacher"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-dark">教师目标</h4>
+                                </div>
+                                <p class="text-sm text-dark/70">提供全方位的智能教学辅助工具，减轻重复性工作负担，提升教学效率</p>
+                            </div>
+                            
+                            <!-- 学生目标卡片 -->
+                            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm card-hover">
+                                <div class="flex items-center mb-3">
+                                    <div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary mr-3">
+                                        <i class="fa fa-user-graduate"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-dark">学生目标</h4>
+                                </div>
+                                <p class="text-sm text-dark/70">提供个性化的学习路径和智能答疑服务，提高学习效果</p>
+                            </div>
+                            
+                            <!-- 家长目标卡片 -->
+                            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm card-hover">
+                                <div class="flex items-center mb-3">
+                                    <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent mr-3">
+                                        <i class="fa fa-user-friends"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-dark">家长目标</h4>
+                                </div>
+                                <p class="text-sm text-dark/70">提供实时的学习监控和详细的学习报告，促进家校协同</p>
+                            </div>
+                        </div>
+                        
+                        <h4 class="font-semibold mb-3 text-dark">具体目标：</h4>
+                        <ul class="list-disc list-inside space-y-2 mb-6">
+                            <li>备课时间缩短50%以上，作业批改效率提升60%以上</li>
+                            <li>数学文字题批改正确率达97%以上，英语作文批改准确率达98%</li>
+                            <li>支持5000个用户同时在线使用，在用户数量达到峰值1万时，仍能保证80%用户正常工作</li>
+                            <li>界面操作路径不超过3步完成高频任务，用户满意度达到85%以上</li>
+                        </ul>
+                        
+                        <!-- 系统性能目标图表 -->
+                        <div class="bg-light p-4 rounded-lg">
+                            <h4 class="font-semibold mb-3 text-dark">系统性能目标</h4>
+                            <canvas id="systemPerformanceChart" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2.2 用户特点 -->
+                <div id="users" class="mb-8">
+                    <h3 class="text-xl font-semibold mb-4 text-dark flex items-center">
+                        <span class="inline-block w-6 h-6 rounded-full bg-primary/20 text-primary text-sm flex items-center justify-center mr-2">2.2</span>
+                        用户特点
+                    </h3>
+                    <div class="pl-8 text-dark/80">
+                        <p class="mb-4">根据调研数据，本系统的目标用户具有以下特点：</p>
+                        
+                        <!-- 教师群体 -->
+                        <div class="mb-6">
+                            <h4 class="font-semibold mb-3 text-dark flex items-center">
+                                <i class="fa fa-chalkboard-teacher text-primary mr-2"></i>
+                                教师群体
+                            </h4>
+                            <ul class="list-disc list-inside space-y-1 mb-4">
+                                <li>年龄分布："90后"教师占25%，"80后"占35%，"70后"占30%，"60后"占10%</li>
+                                <li>学科分布：语文、数学、英语教师占70%，理科教师（物理、化学、生物）占20%，其他学科占10%</li>
+                                <li>使用习惯：75%已使用过AI工具，但高频使用仅20.3%</li>
+                                <li>核心需求：智能备课（37%+）、智能批改（81.2%）、学情分析（76.5%）</li>
+                            </ul>
+                            
+                            <!-- 教师年龄分布图表 -->
+                            <div class="bg-light p-4 rounded-lg">
+                                <canvas id="teacherAgeChart" height="250"></canvas>
+                            </div>
+                        </div>
+                        
+                        <!-- 学生群体 -->
+                        <div class="mb-6">
+                            <h4 class="font-semibold mb-3 text-dark flex items-center">
+                                <i class="fa fa-user-graduate text-secondary mr-2"></i>
+                                学生群体
+                            </h4>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>年龄范围：6-18岁，覆盖小学、初中、高中各学段</li>
+                                <li>学习偏好：83%认为"个性化推荐"最实用</li>
+                                <li>使用习惯：68%使用过AI学习工具</li>
+                                <li>核心需求：个性化学习路径、24小时智能答疑、学习进度跟踪</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- 家长群体 -->
+                        <div>
+                            <h4 class="font-semibold mb-3 text-dark flex items-center">
+                                <i class="fa fa-user-friends text-accent mr-2"></i>
+                                家长群体
+                            </h4>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>年龄分布：35-50岁为主</li>
+                                <li>关注重点：学习进度（92%要求周度报告）、学习效果、学习行为</li>
+                                <li>核心需求：实时监控、学习分析报告、家校互动</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2.3 假设与约束 -->
+                <div id="constraints">
+                    <h3 class="text-xl font-semibold mb-4 text-dark flex items-center">
+                        <span class="inline-block w-6 h-6 rounded-full bg-primary/20 text-primary text-sm flex items-center justify-center mr-2">2.3</span>
+                        假设与约束
+                    </h3>
+                    <div class="pl-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- 假设条件 -->
+                        <div>
+                            <h4 class="font-semibold mb-3 text-dark flex items-center">
+                                <i class="fa fa-lightbulb-o text-primary mr-2"></i>
+                                假设条件
+                            </h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <span class="inline-block w-5 h-5 rounded-full bg-primary/10 text-primary text-xs flex items-center justify-center mr-2 mt-0.5 flex-shrink-0">1</span>
+                                    <span class="text-dark/80">所有用户均具备基本的信息技术理解和使用能力</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="inline-block w-5 h-5 rounded-full bg-primary/10 text-primary text-xs flex items-center justify-center mr-2 mt-0.5 flex-shrink-0">2</span>
+                                    <span class="text-dark/80">用户可通过校内外互联网访问系统</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="inline-block w-5 h-5 rounded-full bg-primary/10 text-primary text-xs flex items-center justify-center mr-2 mt-0.5 flex-shrink-0">3</span>
+                                    <span class="text-dark/80">教师已掌握基础的教学方法和课程标准要求</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="inline-block w-5 h-5 rounded-full bg-primary/10 text-primary text-xs flex items-center justify-center mr-2 mt-0.5 flex-shrink-0">4</span>
+                                    <span class="text-dark/80">学生具备基本的学习能力和自主学习意识</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="inline-block w-5 h-5 rounded-full bg-primary/10 text-primary text-xs flex items-center justify-center mr-2 mt-0.5 flex-shrink-0">5</span>
+                                    <span class="text-dark/80">家长愿意参与孩子的学习过程并配合学校教育</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- 约束条件 -->
+                        <div>
+                            <h4 class="font-semibold mb-3 text-dark flex items-center">
+                                <i class="fa fa-exclamation-triangle text-accent mr-2"></i>
+                                约束条件
+                            </h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <span class="inline-block w-5 h-5 rounded-full bg-accent/10 text-accent text-xs flex items-center justify-center mr-2 mt-0.5 flex-shrink-0">1</span>
+                                    <span class="text-dark/80">时间约束：项目需在6个月内完成核心功能开发</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="inline-block w-5 h-5 rounded-full bg-accent/10 text-accent text-xs flex items-center justify-center mr-2 mt-0.5 flex-shrink-0">2</span>
+                                    <span class="text-dark/80">技术约束：需兼容现有校园网络基础设施和主流设备</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="inline-block w-5 h-5 rounded-full bg-accent/10 text-accent text-xs flex items-center justify-center mr-2 mt-0.5 flex-shrink-0">3</span>
+                                    <span class="text-dark/80">成本约束：产品定价需考虑学校和家庭的支付能力</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="inline-block w-5 h-5 rounded-full bg-accent/10 text-accent text-xs flex items-center justify-center mr-2 mt-0.5 flex-shrink-0">4</span>
+                                    <span class="text-dark/80">政策约束：必须符合国家教育政策和数据安全法规要求</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="inline-block w-5 h-5 rounded-full bg-accent/10 text-accent text-xs flex items-center justify-center mr-2 mt-0.5 flex-shrink-0">5</span>
+                                    <span class="text-dark/80">资源约束：初期开发团队规模限制在20-30人</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. 功能需求部分 -->
+            <section id="functional" class="mb-12">
+                <div class="flex items-center mb-6">
+                    <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white mr-3">
+                        <span>3</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-dark">功能需求</h2>
+                </div>
+
+                <!-- 3.1 功能需求优先级 -->
+                <div id="priority" class="mb-8">
+                    <h3 class="text-xl font-semibold mb-4 text-dark flex items-center">
+                        <span class="inline-block w-6 h-6 rounded-full bg-primary/20 text-primary text-sm flex items-center justify-center mr-2">3.1</span>
+                        功能需求优先级
+                    </h3>
+                    <div class="pl-8 text-dark/80">
+                        <p class="mb-4">根据调研数据和市场分析，将功能需求分为三个优先级：</p>
+                        
+                        <div class="overflow-x-auto mb-6">
+                            <table class="min-w-full border-collapse">
+                                <thead>
+                                    <tr class="bg-light">
+                                        <th class="border border-gray-300 px-4 py-3 text-left text-dark font-semibold">优先级</th>
+                                        <th class="border border-gray-300 px-4 py-3 text-left text-dark font-semibold">功能类别</th>
+                                        <th class="border border-gray-300 px-4 py-3 text-left text-dark font-semibold">具体功能</th>
+                                        <th class="border border-gray-300 px-4 py-3 text-left text-dark font-semibold">需求占比</th>
+                                        <th class="border border-gray-300 px-4 py-3 text-left text-dark font-semibold">业务价值</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white">
+                                    <tr class="hover:bg-light transition-custom">
+                                        <td class="border border-gray-300 px-4 py-3 font-medium text-red-600">高优先级</td>
+                                        <td class="border border-gray-300 px-4 py-3 font-medium">智能备课</td>
+                                        <td class="border border-gray-300 px-4 py-3">教案生成、课件制作、资源整合</td>
+                                        <td class="border border-gray-300 px-4 py-3">37%+</td>
+                                        <td class="border border-gray-300 px-4 py-3">节省备课时间50%以上</td>
+                                    </tr>
+                                    <tr class="hover:bg-light transition-custom">
+                                        <td class="border border-gray-300 px-4 py-3 font-medium text-red-600">高优先级</td>
+                                        <td class="border border-gray-300 px-4 py-3 font-medium">作业批改</td>
+                                        <td class="border border-gray-300 px-4 py-3">全学科智能批改、作文批改</td>
+                                        <td class="border border-gray-300 px-4 py-3">81.2%</td>
+                                        <td class="border border-gray-300 px-4 py-3">提升批改效率60%以上</td>
+                                    </tr>
+                                    <tr class="hover:bg-light transition-custom">
+                                        <td class="border border-gray-300 px-4 py-3 font-medium text-red-600">高优先级</td>
+                                        <td class="border border-gray-300 px-4 py-3 font-medium">学情分析</td>
+                                        <td class="border border-gray-300 px-4 py-3">知识点掌握分析、学习行为分析</td>
+                                        <td class="border border-gray-300 px-4 py-3">76.5%</td>
+                                        <td class="border border-gray-300 px-4 py-3">精准定位学习问题</td>
+                                    </tr>
+                                    <tr class="hover:bg-light transition-custom">
+                                        <td class="border border-gray-300 px-4 py-3 font-medium text-red-600">高优先级</td>
+                                        <td class="border border-gray-300 px-4 py-3 font-medium">智能答疑</td>
+                                        <td class="border border-gray-300 px-4 py-3">24小时问答、解题思路引导</td>
+                                        <td class="border border-gray-300 px-4 py-3">63.8%</td>
+                                        <td class="border border-gray-300 px-4 py-3">提升学习效果</td>
+                                    </tr>
+                                    <tr class="hover:bg-light transition-custom">
+                                        <td class="border border-gray-300 px-4 py-3 font-medium text-yellow-600">中优先级</td>
+                                        <td class="border border-gray-300 px-4 py-3 font-medium">个性化教学</td>
+                                        <td class="border border-gray-300 px-4 py-3">自适应学习路径、分层作业</td>
+                                        <td class="border border-gray-300 px-4 py-3">63.8%</td>
+                                        <td class="border border-gray-300 px-4 py-3">满足差异化需求</td>
+                                    </tr>
+                                    <tr class="hover:bg-light transition-custom">
+                                        <td class="border border-gray-300 px-4 py-3 font-medium text-yellow-600">中优先级</td>
+                                        <td class="border border-gray-300 px-4 py-3 font-medium">课堂互动</td>
+                                        <td class="border border-gray-300 px-4 py-3">点名、投票、实时反馈</td>
+                                        <td class="border border-gray-300 px-4 py-3">35%</td>
+                                        <td class="border border-gray-300 px-4 py-3">增强课堂参与度</td>
+                                    </tr>
+                                    <tr class="hover:bg-light transition-custom">
+                                        <td class="border border-gray-300 px-4 py-3 font-medium text-gray-500">低优先级</td>
+                                        <td class="border border-gray-300 px-4 py-3 font-medium">教学管理</td>
+                                        <td class="border border-gray-300 px-4 py-3">课程安排、成绩统计、报表生成</td>
+                                        <td class="border border-gray-300 px-4 py-3">25%</td>
+                                        <td class="border border-gray-300 px-4 py-3">提升管理效率</td>
+                                    </tr>
+                                    <tr class="hover:bg-light transition-custom">
+                                        <td class="border border-gray-300 px-4 py-3 font-medium text-gray-500">低优先级</td>
+                                        <td class="border border-gray-300 px-4 py-3 font-medium">家校互动</td>
+                                        <td class="border border-gray-300 px-4 py-3">消息推送、通知发布、沟通记录</td>
+                                        <td class="border border-gray-300 px-4 py-3">30%</td>
+                                        <td class="border border-gray-300 px-4 py-3">促进家校协同</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- 功能需求优先级图表 -->
+                        <div class="bg-light p-4 rounded-lg">
+                            <h4 class="font-semibold mb-3 text-dark">功能需求优先级分布</h4>
+                            <canvas id="featurePriorityChart" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3.2 教师端功能模块 -->
+                <div id="teacher" class="mb-8">
+                    <h3 class="text-xl font-semibold mb-4 text-dark flex items-center">
+                        <span class="inline-block w-6 h-6 rounded-full bg-primary/20 text-primary text-sm flex items-center justify-center mr-2">3.2</span>
+                        教师端功能模块
+                    </h3>
+                    <div class="pl-8">
+                        <!-- 3.2.1 智能备课助手 -->
+                        <div class="mb-8">
+                            <div class="flex items-center mb-4">
+                                <div class="w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs mr-2">3.2.1</div>
+                                <h4 class="text-lg font-semibold text-dark">智能备课助手</h4>
+                            </div>
+                            
+                            <div class="pl-9">
+                                <div class="mb-4">
+                                    <h5 class="font-medium text-dark mb-2">功能描述：</h5>
+                                    <p class="text-dark/80 leading-relaxed">
+                                        智能备课助手是教师端的核心功能，基于九章大模型和DeepSeek双引擎架构，为教师提供一站式备课服务。系统支持输入年级、课程主题即可生成完整教案，导出PPT/Excel等格式，并自动整合全网优质教学资源。
+                                    </p>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h5 class="font-medium text-dark mb-2">用户故事：</h5>
+                                    <ul class="list-disc list-inside space-y-2 text-dark/80">
+                                        <li><strong>作为语文教师</strong>，我希望使用AI备课助手快速生成符合新课标的教案，从而可以将备课时间从4小时缩短到20分钟</li>
+                                        <li><strong>作为物理教师</strong>，我希望系统能准确识别物理公式并生成实验教学方案，从而可以解决理科教学中的技术难题</li>
+                                        <li><strong>作为跨学科教师</strong>，我希望AI能够帮助设计跨学科教学方案，从而可以实现不同学科知识的有机融合</li>
+                                    </ul>
+                                </div>
+                                
+                                <!-- 功能点卡片 -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                    <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm card-hover">
+                                        <div class="flex items-center mb-3">
+                                            <i class="fa fa-file-text-o text-primary mr-2"></i>
+                                            <h6 class="font-medium text-dark">智能教案生成</h6>
+                                        </div>
+                                        <ul class="text-sm text-dark/70 space-y-1">
+                                            <li>• 输入：年级、学科、课题名称等</li>
+                                            <li>• 处理：AI基于课程标准自动生成</li>
+                                            <li>• 输出：完整教案（教学目标、重难点等）</li>
+                                            <li>• 格式支持：doc、docx、PDF、PPT</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm card-hover">
+                                        <div class="flex items-center mb-3">
+                                            <i class="fa fa-desktop text-primary mr-2"></i>
+                                            <h6 class="font-medium text-dark">课件智能制作</h6>
+                                        </div>
+                                        <ul class="text-sm text-dark/70 space-y-1">
+                                            <li>• 输入：教案内容、教学风格偏好</li>
+                                            <li>• 处理：自动提取核心内容生成PPT</li>
+                                            <li>• 输出：完整课件（含互动环节）</li>
+                                            <li>• 特色：支持自定义模板、自动配图</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm card-hover">
+                                        <div class="flex items-center mb-3">
+                                            <i class="fa fa-database text-primary mr-2"></i>
+                                            <h6 class="font-medium text-dark">教学资源整合</h6>
+                                        </div>
+                                        <ul class="text-sm text-dark/70 space-y-1">
+                                            <li>• 输入：教学主题、资源类型</li>
+                                            <li>• 处理：AI搜索筛选优质资源</li>
+                                            <li>• 输出：按知识点分类的资源列表</li>
+                                            <li>• 来源：微课视频、典型例题等</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm card-hover">
+                                        <div class="flex items-center mb-3">
+                                            <i class="fa fa-sitemap text-primary mr-2"></i>
+                                            <h6 class="font-medium text-dark">跨学科教学设计</h6>
+                                        </div>
+                                        <ul class="text-sm text-dark/70 space-y-1">
+                                            <li>• 输入：主学科内容、相关学科</li>
+                                            <li>• 处理：分析知识点关联</li>
+                                            <li>• 输出：融合教学方案</li>
+                                            <li>• 特色："跨界智囊团"功能</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-light p-4 rounded-lg">
+                                    <h5 class="font-medium text-dark mb-2">性能要求：</h5>
+                                    <ul class="list-disc list-inside space-y-1 text-dark/80">
+                                        <li>教案生成时间：&lt;30秒（简单教案），&lt;2分钟（复杂教案）</li>
+                                        <li>课件制作时间：&lt;5分钟</li>
+                                        <li>资源搜索响应时间：&lt;10秒</li>
+                                        <li>支持同时处理500个备课请求</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 3.2.2 智能作业批改系统 -->
+                        <div class="mb-8">
+                            <div class="flex items-center mb-4">
+                                <div class="w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs mr-2">3.2.2</div>
+                                <h4 class="text-lg font-semibold text-dark">智能作业批改系统</h4>
+                            </div>
+                            
+                            <div class="pl-9">
+                                <div class="mb-4">
+                                    <h5 class="font-medium text-dark mb-2">功能描述：</h5>
+                                    <p class="text-dark/80 leading-relaxed">
+                                        智能作业批改系统支持全学科、全题型的自动批改，包括客观题、主观题和作文批改。系统采用先进的OCR识别技术和自然语言处理技术，确保批改的准确性和效率。
+                                    </p>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <h5 class="font-medium text-dark mb-2">用户故事：</h5>
+                                    <ul class="list-disc list-inside space-y-2 text-dark/80">
+                                        <li><strong>作为数学教师</strong>，我希望系统能自动批改数学作业，包括应用题的步骤批改，从而可以将批改时间减少60%</li>
+                                        <li><strong>作为英语教师</strong>，我希望AI能够准确批改英语作文，指出语法和逻辑错误，从而可以提高作文批改的专业性</li>
+                                        <li><strong>作为语文教师</strong>，我希望系统能智能批改作文，从内容、结构、语言等多维度给出评价，从而可以减轻作文批改的繁重负担</li>
+                                    </ul>
+                                </div>
+                                
+                                <!-- 批改准确率图表 -->
+                                <div class="bg-light p-4 rounded-lg mb-4">
+                                    <h5 class="font-medium text-dark mb-3">各学科批改准确率目标</h5>
+                                    <canvas id="gradingAccuracyChart" height="250"></canvas>
+                                </div>
+                                
+                                <!-- 功能点详情 -->
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                                    <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm card-hover">
+                                        <div class="flex items-center mb-3">
+                                            <i class="fa fa-check-square-o text-primary mr-2"></i>
+                                            <h6 class="font-medium text-dark">全学科批改</h6>
+                                        </div>
+                                        <p class="text-sm text-dark/70 mb-2">支持语文、数学、英语等9大学科</p>
+                                        <p class="text-sm text-dark/70">覆盖选择、填空、判断、解答、作文等全题型</p>
+                                    </div>
+                                    
+                                    <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm card-hover">
+                                        <div class="flex items-center mb-3">
+                                            <i class="fa fa-calculator text-primary mr-2"></i>
+                                            <h6 class="font-medium text-dark">数学智能批改</h6>
+                                        </div>
+                                        <p class="text-sm text-dark/70 mb-2">公式自动识别验证</p>
+                                        <p class="text-sm text-dark/70">解题步骤分析评分</p>
+                                    </div>
+                                    
+                                    <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm card-hover">
+                                        <div class="flex items-center mb-3">
+                                            <i class="fa fa-file-text text-primary mr-2"></i>
+                                            <h6 class="font-medium text-dark">作文智能批改</h6>
+                                        </div>
+                                        <p class="text-sm text-dark/70 mb-2">多维度评价（内容、结构、语言）</p>
+                                        <p class="text-sm text-dark/70">提供修改建议和范文推荐</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-light p-4 rounded-lg">
+                                    <h5 class="font-medium text-dark mb-2">性能要求：</h5>
+                                    <ul class="list-disc list-inside space-y-1 text-dark/80">
+                                        <li>单题批改时间：&lt;2秒（客观题），&lt;10秒（主观题），&lt;30秒（作文）</li>
+                                        <li>批量批改支持：一次最多处理100份作业</li>
+                                        <li>响应时间：90%的请求在1秒内完成</li>
+                                        <li>支持同时处理1000份作业批改请求</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 3.2.3 学情分析平台 -->
+                        <div class="mb-8">
+                            <div class="flex items-center mb-4">
+                                <div class="w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs mr-2">3.2.3</div>
+                                <h4 class="text-lg font-semibold text-dark">学情分析平台</h4>
+                            </div>
+                            
+                            <div class="pl-9">
+                                <div class="mb-4">
+                                    <h5 class="font-medium text-dark mb-2">功能描述：</h5>
+                                    <p class="text-dark/80 leading-relaxed">
+                                        学情分析平台基于学生的作业数据、课堂表现、考试成绩等多维度数据，构建动态的学生画像，为教师提供精准的学情分析和教学决策支持。
+                                    </p>
+                                </div>
+                                
+                                <!-- 学情分析仪表盘预览 -->
+                                <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-4 mb-4">
+                                    <h5 class="font-medium text-dark mb-3">学情分析仪表盘预览</h5>
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                        <div class="bg-light rounded-lg p-3">
+                                            <div class="text-sm text-dark/60 mb-1">班级平均分</div>
+                                            <div class="text-2xl font-bold text-primary">86.5</div>
+                                            <div class="text-xs text-green-600 flex items-center mt-1">
+                                                <i class="fa fa-arrow-up mr-1"></i> 3.2% 较上次
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="bg-light rounded-lg p-3">
+                                            <div class="text-sm text-dark/60 mb-1">优秀率(≥90分)</div>
+                                            <div class="text-2xl font-bold text-primary">32%</div>
+                                            <div class="text-xs text-green-600 flex items-center mt-1">
+                                                <i class="fa fa-arrow-up mr-1"></i> 5% 较上次
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="bg-light rounded-lg p-3">
+                                            <div class="text-sm text-dark/60 mb-1">待关注学生</div>
+                                            <div class="text-2xl font-bold text-red-500">3</div>
+                                            <div class="text-xs text-red-600 flex items-center mt-1">
+                                                <i class="fa fa-arrow-down mr-1"></i> 2 新增
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mt-4">
+                                        <canvas id="studentPerformanceChart" height="200"></canvas>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-light p-4 rounded-lg">
+                                    <h5 class="font-medium text-dark mb-2">核心功能：</h5>
+                                    <ul class="list-disc list-inside space-y-1 text-dark/80">
+                                        <li>实时学情监控：多维度数据实时更新，延迟不超过5分钟</li>
+                                        <li>知识点掌握度分析：识别薄弱知识点，提供个性化建议</li>
+                                        <li>学习行为分析：评估学习效率，识别学习习惯问题</li>
+                                        <li>个性化学习路径规划：基于学生特点设计学习方案</li>
+                                        <li>预警机制：自动识别学习困难学生，及时预警</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3.3 学生端功能模块 -->
+                <div id="student" class="mb-8">
+                    <h3 class="text-xl font-semibold mb-4 text-dark flex items-center">
+                        <span class="inline-block w-6 h-6 rounded-full bg-primary/20 text-primary text-sm flex items-center justify-center mr-2">3.3</span>
+                        学生端功能模块
+                    </h3>
+                    <div class="pl-8">
+                        <!-- 3.3.1 个性化学习引擎 -->
+                        <div class="mb-8">
+                            <div class="flex items-center mb-4">
+                                <div class="w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs mr-2">3.3.1</div>
+                                <h4 class="text-lg font-semibold text-dark">个性化学习引擎</h4>
+                            </div>
+                            
+                            <div class="pl-9">
+                                <div class="mb-4">
+                                    <h5 class="font-medium text-dark mb-2">功能描述：</h5>
+                                    <p class="text-dark/80 leading-relaxed">
+                                        个性化学习引擎基于学生的知识基础、学习能力、兴趣偏好等多维度因素，为每个学生定制专属的学习路径和内容。
+                                    </p>
+                                </div>
+                                
+                                <!-- 个性化学习路径示例 -->
+                                <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-4 mb-4">
+                                    <h5 class="font-medium text-dark mb-3">个性化学习路径示例</h5>
+                                    <div class="relative">
+                                        <!-- 时间线 -->
+                                        <div class="absolute left-3 top-0 bottom-0 w-0.5 bg-primary/20"></div>
+                                        
+                                        <!-- 时间线节点 -->
+                                        <div class="relative pl-10 pb-6">
+                                            <div class="absolute left-0 w-7 h-7 rounded-full bg-primary flex items-center justify-center text-white">
+                                                <i class="fa fa-check"></i>
+                                            </div>
+                                            <div class="font-medium text-dark">第1周：一元一次方程基础</div>
+                                            <div class="text-sm text-dark/70 mt-1">完成基础概念学习，掌握解方程基本步骤</div>
+                                            <div class="mt-2 flex space-x-2">
+                                                <span class="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full">已完成</span>
+                                                <span class="px-2 py-1 bg-light text-dark/60 text-xs rounded-full">正确率：92%</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="relative pl-10 pb-6">
+                                            <div class="absolute left-0 w-7 h-7 rounded-full bg-primary flex items-center justify-center text-white">
+                                                <i class="fa fa-check"></i>
+                                            </div>
+                                            <div class="font-medium text-dark">第2周：一元一次方程应用</div>
+                                            <div class="text-sm text-dark/70 mt-1">学习应用题解题思路，掌握常见题型</div>
+                                            <div class="mt-2 flex space-x-2">
+                                                <span class="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full">已完成</span>
+                                                <span class="px-2 py-1 bg-light text-dark/60 text-xs rounded-full">正确率：85%</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="relative pl-10 pb-6">
+                                            <div class="absolute left-0 w-7 h-7 rounded-full bg-secondary flex items-center justify-center text-white">
+                                                <i class="fa fa-spinner"></i>
+                                            </div>
+                                            <div class="font-medium text-dark">第3周：一元一次不等式</div>
+                                            <div class="text-sm text-dark/70 mt-1">学习不等式概念，掌握解法和应用</div>
+                                            <div class="mt-2 flex space-x-2">
+                                                <span class="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">进行中</span>
+                                                <span class="px-2 py-1 bg-light text-dark/60 text-xs rounded-full">进度：60%</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="relative pl-10">
+                                            <div class="absolute left-0 w-7 h-7 rounded-full bg-gray-300 flex items-center justify-center text-white">
+                                                <i class="fa fa-clock-o"></i>
+                                            </div>
+                                            <div class="font-medium text-dark">第4周：单元复习与测试</div>
+                                            <div class="text-sm text-dark/70 mt-1">系统复习前3周内容，进行单元测试</div>
+                                            <div class="mt-2 flex space-x-2">
+                                                <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">未开始</span>
+                                                <span class="px-2 py-1 bg-light text-dark/60 text-xs rounded-full">预计：3天后</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                    <div class="bg-light p-4 rounded-lg">
+                                        <h5 class="font-medium text-dark mb-2">核心功能：</h5>
+                                        <ul class="list-disc list-inside space-y-1 text-dark/80">
+                                            <li>学习能力测评：多维度评估学习能力</li>
+                                            <li>个性化学习路径规划：定制专属学习计划</li>
+                                            <li>智能内容推荐：基于学习效果推荐资源</li>
+                                            <li>自适应难度调整：动态调整学习难度</li>
+                                            <li>学习进度跟踪：实时监控学习进度</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-light p-4 rounded-lg">
+                                        <h5 class="font-medium text-dark mb-2">性能要求：</h5>
+                                        <ul class="list-disc list-inside space-y-1 text-dark/80">
+                                            <li>学习路径生成时间：&lt;5分钟（首次），&lt;1分钟（更新）</li>
+                                            <li>内容推荐响应时间：&lt;2秒</li>
+                                            <li>支持同时为10000个学生提供服务</li>
+                                            <li>学习数据保存期限：至少3年</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 3.3.2 智能答疑机器人 -->
+                        <div>
+                            <div class="flex items-center mb-4">
+                                <div class="w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs mr-2">3.3.2</div>
+                                <h4 class="text-lg font-semibold text-dark">智能答疑机器人</h4>
+                            </div>
+                            
+                            <div class="pl-9">
+                                <div class="mb-4">
+                                    <h5 class="font-medium text-dark mb-2">功能描述：</h5>
+                                    <p class="text-dark/80 leading-relaxed">
+                                        智能答疑机器人提供24小时不间断的答疑服务，采用启发式互动方式，引导学生主动思考，培养解决问题的能力。
+                                    </p>
+                                </div>
+                                
+                                <!-- 答疑界面示例 -->
+                                <div class="bg-white border border-gray-200 rounded-lg shadow-sm mb-4">
+                                    <div class="bg-primary text-white p-3 rounded-t-lg flex items-center">
+                                        <i class="fa fa-comments-o mr-2"></i>
+                                        <h5 class="font-medium">智能答疑助手</h5>
+                                    </div>
+                                    <div class="p-4 h-64 overflow-y-auto bg-light" id="chatWindow">
+                                        <div class="flex mb-4">
+                                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-2 flex-shrink-0">
+                                                <i class="fa fa-robot"></i>
+                                            </div>
+                                            <div class="bg-white rounded-lg px-3 py-2 shadow-sm max-w-[80%]">
+                                                <p class="text-sm text-dark/80">你好！我是智能答疑助手，有什么学习问题可以问我哦~</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="flex mb-4 justify-end">
+                                            <div class="bg-primary/10 rounded-lg px-3 py-2 shadow-sm max-w-[80%] mr-2">
+                                                <p class="text-sm text-dark/80">你能帮我解这个数学题吗？2x + 5 = 15，求x的值</p>
+                                            </div>
+                                            <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white flex-shrink-0">
+                                                <i class="fa fa-user"></i>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="flex">
+                                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-2 flex-shrink-0">
+                                                <i class="fa fa-robot"></i>
+                                            </div>
+                                            <div class="bg-white rounded-lg px-3 py-2 shadow-sm max-w-[80%]">
+                                                <p class="text-sm text-dark/80 mb-1">我们可以这样一步步解决这个方程：</p>
+                                                <p class="text-sm text-dark/80 mb-1">1. 首先，我们需要把5从等式左边移到右边，注意移项要变号：</p>
+                                                <p class="text-sm text-dark/80 mb-1">   2x = 15 - 5</p>
+                                                <p class="text-sm text-dark/80 mb-1">2. 计算右边的结果：</p>
+                                                <p class="text-sm text-dark/80 mb-1">   2x = 10</p>
+                                                <p class="text-sm text-dark/80 mb-1">3. 最后，两边同时除以2，得到x的值：</p>
+                                                <p class="text-sm text-dark/80">   x = 10 ÷ 2 = 5</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-3 border-t border-gray-200 flex">
+                                        <input type="text" placeholder="请输入你的问题..." class="flex-1 px-3 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:border-primary">
+                                        <button class="bg-primary text-white px-4 py-2 rounded-r-lg hover:bg-primary/90 transition-custom">
+                                            <i class="fa fa-paper-plane"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-light p-4 rounded-lg">
+                                    <h5 class="font-medium text-dark mb-2">核心特点：</h5>
+                                    <ul class="list-disc list-inside space-y-1 text-dark/80">
+                                        <li>多模态提问支持：文字、语音、拍照、手写输入</li>
+                                        <li>智能问题理解：精准识别问题类型和涉及知识点</li>
+                                        <li>启发式引导解答：苏格拉底式问答，培养思考能力</li>
+                                        <li>详细解题步骤：分步解析，每步都有详细解释</li>
+                                        <li>AI老师角色切换：支持不同风格的解答方式</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3.4 家长端功能模块 -->
+                <div id="parent" class="mb-8">
+                    <h3 class="text-xl font-semibold mb-4 text-dark flex items-center">
+                        <span class="inline-block w-6 h-6 rounded-full bg-primary/20 text-primary text-sm flex items-center justify-center mr-2">3.4</span>
+                        家长端功能模块
+                    </h3>
+                    <div class="pl-8">
+                        <!-- 3.4.1 实时监控面板 -->
+                        <div class="mb-8">
+                            <div class="flex items-center mb-4">
+                                <div class="w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs mr-2">3.4.1</div>
+                                <h4 class="text-lg font-semibold text-dark">实时监控面板</h4>
+                            </div>
+                            
+                            <div class="pl-9">
+                                <div class="mb-4">
+                                    <h5 class="font-medium text-dark mb-2">功能描述：</h5>
+                                    <p class="text-dark/80 leading-relaxed">
+                                        实时监控面板为家长提供孩子学习的全方位监控功能，包括学习进度、课堂表现、作业完成情况等，让家长随时了解孩子的学习动态。
+                                    </p>
+                                </div>
+                                
+                                <!-- 家长监控面板示例 -->
+                                <div class="bg-white border border-gray-200 rounded-lg shadow-sm mb-4">
+                                    <div class="p-4 border-b border-gray-200">
+                                        <h5 class="font-medium text-dark">学习监控面板</h5>
+                                        <p class="text-sm text-dark/60">更新时间：2025-10-20 16:30</p>
+                                    </div>
+                                    
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+                                        <div>
+                                            <h6 class="font-medium text-dark mb-2 flex items-center">
+                                                <i class="fa fa-book text-primary mr-2"></i>
+                                                今日学习情况
+                                            </h6>
+                                            <div class="space-y-3">
+                                                <div>
+                                                    <div class="flex justify-between text-sm mb-1">
+                                                        <span class="text-dark/70">数学作业</span>
+                                                        <span class="text-green-600">已完成</span>
+                                                    </div>
+                                                    <div class="w-full bg-light rounded-full h-2">
+                                                        <div class="bg-green-500 h-2 rounded-full" style="width: 100%"></div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div>
+                                                    <div class="flex justify-between text-sm mb-1">
+                                                        <span class="text-dark/70">英语背诵</span>
+                                                        <span class="text-yellow-600">进行中</span>
+                                                    </div>
+                                                    <div class="w-full bg-light rounded-full h-2">
+                                                        <div class="bg-yellow-500 h-2 rounded-full" style="width: 65%"></div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div>
+                                                    <div class="flex justify-between text-sm mb-1">
+                                                        <span class="text-dark/70">语文阅读</span>
+                                                        <span class="text-red-600">未完成</span>
+                                                    </div>
+                                                    <div class="w-full bg-light rounded-full h-2">
+                                                        <div class="bg-red-500 h-2 rounded-full" style="width: 0%"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div>
+                                            <h6 class="font-medium text-dark mb-2 flex items-center">
+                                                <i class="fa fa-line-chart text-primary mr-2"></i>
+                                                最近成绩趋势
+                                            </h6>
+                                            <canvas id="parentGradeTrendChart" height="150"></canvas>
+                                        </div>
+                                        
+                                        <div>
+                                            <h6 class="font-medium text-dark mb-2 flex items-center">
+                                                <i class="fa fa-graduation-cap text-primary mr-2"></i>
+                                                课堂表现
+                                            </h6>
+                                            <div class="grid grid-cols-2 gap-2">
+                                                <div class="bg-light p-2 rounded text-center">
+                                                    <div class="text-xs text-dark/60">出勤</div>
+                                                    <div class="text-lg font-bold text-green-600">100%</div>
+                                                </div>
+                                                
+                                                <div class="bg-light p-2 rounded text-center">
+                                                    <div class="text-xs text-dark/60">参与度</div>
+                                                    <div class="text-lg font-bold text-primary">85%</div>
+                                                </div>
+                                                
+                                                <div class="bg-light p-2 rounded text-center">
+                                                    <div class="text-xs text-dark/60">专注度</div>
+                                                    <div class="text-lg font-bold text-primary">78%</div>
+                                                </div>
+                                                
+                                                <div class="bg-light p-2 rounded text-center">
+                                                    <div class="text-xs text-dark/60">作业质量</div>
+                                                    <div class="text-lg font-bold text-yellow-600">82%</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div>
+                                            <h6 class="font-medium text-dark mb-2 flex items-center">
+                                                <i class="fa fa-bell text-primary mr-2"></i>
+                                                通知提醒
+                                            </h6>
+                                            <div class="bg-light p-2 rounded">
+                                                <p class="text-xs text-dark/80 mb-1">
+                                                    <i class="fa fa-calendar-o text-red-500 mr-1"></i>
+                                                    明天有数学单元测试
+                                                </p>
+                                                <p class="text-xs text-dark/80">
+                                                    <i class="fa fa-home text-primary mr-1"></i>
+                                                    周五下午召开家长会
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 3.4.2 学习报告系统 -->
+                        <div>
+                            <div class="flex items-center mb-4">
+                                <div class="w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs mr-2">3.4.2</div>
+                                <h4 class="text-lg font-semibold text-dark">学习报告系统</h4>
+                            </div>
+                            
+                            <div class="pl-9">
+                                <div class="mb-4">
+                                    <h5 class="font-medium text-dark mb-2">功能描述：</h5>
+                                    <p class="text-dark/80 leading-relaxed">
+                                        学习报告系统定期生成详细的学习分析报告，包括学习进度、成绩趋势、知识点掌握情况等，帮助家长全面了解孩子的学习状况。
+                                    </p>
+                                </div>
+                                
+                                <!-- 报告类型选择 -->
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <button class="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-custom">
+                                        周度报告
+                                    </button>
+                                    <button class="px-4 py-2 bg-light text-dark/70 rounded-md hover:bg-light/80 transition-custom">
+                                        月度报告
+                                    </button>
+                                    <button class="px-4 py-2 bg-light text-dark/70 rounded-md hover:bg-light/80 transition-custom">
+                                        学期报告
+                                    </button>
+                                    <button class="px-4 py-2 bg-light text-dark/70 rounded-md hover:bg-light/80 transition-custom">
+                                        自定义报告
+                                    </button>
+                                </div>
+                                
+                                <!-- 周度报告预览 -->
+                                <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-4 mb-4">
+                                    <div class="text-center mb-4">
+                                        <h5 class="text-lg font-semibold text-dark">学习周报告</h5>
+                                        <p class="text-sm text-dark/60">2025年10月14日 - 2025年10月20日</p>
+                                        <p class="text-sm text-dark/60">学生：张三 | 年级：初一 | 班级：初一(3)班</p>
+                                    </div>
+                                    
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                        <div>
+                                            <h6 class="font-medium text-dark mb-2">学习时间统计</h6>
+                                            <canvas id="weeklyStudyTimeChart" height="180"></canvas>
+                                        </div>
+                                        
+                                        <div>
+                                            <h6 class="font-medium text-dark mb-2">学科表现分析</h6>
+                                            <canvas id="weeklySubjectPerformanceChart" height="180"></canvas>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-light p-3 rounded-lg mb-4">
+                                        <h6 class="font-medium text-dark mb-2">知识点掌握情况</h6>
+                                        <div class="space-y-2">
+                                            <div>
+                                                <div class="flex justify-between text-sm mb-1">
+                                                    <span class="text-dark/70">数学：一元一次方程</span>
+                                                    <span class="text-green-600">92% 掌握</span>
+                                                </div>
+                                                <div class="w-full bg-white rounded-full h-2">
+                                                    <div class="bg-green-500 h-2 rounded-full" style="width: 92%"></div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div>
+                                                <div class="flex justify-between text-sm mb-1">
+                                                    <span class="text-dark/70">语文：记叙文写作</span>
+                                                    <span class="text-yellow-600">78% 掌握</span>
+                                                </div>
+                                                <div class="w-full bg-white rounded-full h-2">
+                                                    <div class="bg-yellow-500 h-2 rounded-full" style="width: 78%"></div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div>
+                                                <div class="flex justify-between text-sm mb-1">
+                                                    <span class="text-dark/70">英语：一般现在时</span>
+                                                    <span class="text-red-600">65% 掌握</span>
+                                                </div>
+                                                <div class="w-full bg-white rounded-full h-2">
+                                                    <div class="bg-red-500 h-2 rounded-full" style="width: 65%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <h6 class="font-medium text-dark mb-2">教师评语与建议</h6>
+                                        <div class="bg-white border border-gray-200 p-3 rounded-lg">
+                                            <p class="text-sm text-dark/80 mb-2">
+                                                <span class="font-medium">数学老师：</span>本周一元一次方程掌握较好，但应用题解题思路还需加强，建议多做练习。
+                                            </p>
+                                            <p class="text-sm text-dark/80 mb-2">
+                                                <span class="font-medium">语文老师：</span>记叙文写作有进步，但细节描写还需提升，建议多阅读优秀范文。
+                                            </p>
+                                            <p class="text-sm text-dark/80">
+                                                <span class="font-medium">英语老师：</span>一般现在时的基本用法已掌握，但第三人称单数变化仍有错误，需加强练习。
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3.5 系统管理功能 -->
+                <div id="admin">
+                    <h3 class="text-xl font-semibold mb-4 text-dark flex items-center">
+                        <span class="inline-block w-6 h-6 rounded-full bg-primary/20 text-primary text-sm flex items-center justify-center mr-2">3.5</span>
+                        系统管理功能
+                    </h3>
+                    <div class="pl-8">
+                        <!-- 系统管理功能概览 -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm card-hover">
+                                <div class="flex items-center mb-3">
+                                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3">
+                                        <i class="fa fa-users"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-dark">用户管理模块</h4>
+                                </div>
+                                <ul class="text-sm text-dark/70 space-y-1">
+                                    <li>• 用户注册与登录管理</li>
+                                    <li>• 角色与权限分配</li>
+                                    <li>• 用户信息管理</li>
+                                    <li>• 安全认证与授权</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm card-hover">
+                                <div class="flex items-center mb-3">
+                                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3">
+                                        <i class="fa fa-database"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-dark">数据管理模块</h4>
+                                </div>
+                                <ul class="text-sm text-dark/70 space-y-1">
+                                    <li>• 数据存储与备份</li>
+                                    <li>• 数据安全管理</li>
+                                    <li>• 数据挖掘与分析</li>
+                                    <li>• 系统监控与告警</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- 性能要求 -->
+                        <div class="bg-light p-4 rounded-lg">
+                            <h5 class="font-medium text-dark mb-2">系统管理性能要求：</h5>
+                            <ul class="list-disc list-inside space-y-1 text-dark/80">
+                                <li>用户操作响应时间：&lt;2秒</li>
+                                <li>数据查询响应时间：&lt;1秒（简单查询），&lt;5秒（复杂查询）</li>
+                                <li>数据备份时间：&lt;1小时（全量备份），&lt;10分钟（增量备份）</li>
+                                <li>支持同时处理1000个数据查询请求</li>
+                                <li>数据存储容量：初始10TB，可扩展至100TB</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. 非功能需求部分 -->
+            <section id="non-functional" class="mb-12">
+                <div class="flex items-center mb-6">
+                    <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white mr-3">
+                        <span>4</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-dark">非功能需求</h2>
+                </div>
+
+                <!-- 4.1 性能需求 -->
+                <div id="performance" class="mb-8">
+                    <h3 class="text-xl font-semibold mb-4 text-dark flex items-center">
+                        <span class="inline-block w-6 h-6 rounded-full bg-primary/20 text-primary text-sm flex items-center justify-center mr-2">4.1</span>
+                        性能需求
+                    </h3>
+                    <div class="pl-8 text-dark/80">
+                        <p class="mb-4">根据智慧校园数据管理系统的行业标准和用户需求，本AI智能教师系统的性能需求如下：</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                                <h4 class="font-semibold mb-3 text-dark flex items-center">
+                                    <i class="fa fa-bolt text-primary mr-2"></i>
+                                    响应时间要求
+                                </h4>
+                                <ul class="space-y-2">
+                                    <li class="flex items-start">
+                                        <i class="fa fa-check-circle text-green-500 mt-0.5 mr-2"></i>
+                                        <span>90%的用户功能在1秒内完成</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa fa-check-circle text-green-500 mt-0.5 mr-2"></i>
+                                        <span>核心操作（登录、查询）响应时间≤2秒</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa fa-check-circle text-green-500 mt-0.5 mr-2"></i>
+                                        <span>页面加载时间：&lt;3秒（首页），&lt;2秒（其他页面）</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa fa-check-circle text-green-500 mt-0.5 mr-2"></i>
+                                        <span>API接口响应时间：&lt;500毫秒（简单查询），&lt;2秒（复杂操作）</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                                <h4 class="font-semibold mb-3 text-dark flex items-center">
+                                    <i class="fa fa-users text-primary mr-2"></i>
+                                    并发处理能力
+                                </h4>
+                                <ul class="space-y-2">
+                                    <li class="flex items-start">
+                                        <i class="fa fa-check-circle text-green-500 mt-0.5 mr-2"></i>
+                                        <span>系统至少能够容纳4万用户</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa fa-check-circle text-green-500 mt-0.5 mr-2"></i>
+                                        <span>支持5000个用户同时进行正常使用</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa fa-check-circle text-green-500 mt-0.5 mr-2"></i>
+                                        <span>在用户数量达到峰值1万时，仍能保证80%用户正常工作</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa fa-check-circle text-green-500 mt-0.5 mr-2"></i>
+                                        <span>支持1000个并发请求处理</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                                <h4 class="font-semibold mb-3 text-dark flex items-center">
+                                    <i class="fa fa-hdd-o text-primary mr-2"></i>
+                                    容量需求
+                                </h4>
+                                <ul class="space-y-2">
+                                    <li class="flex items-start">
+                                        <i class="fa fa-check-circle text-green-500 mt-0.5 mr-2"></i>
+                                        <span>存储容量：初始10TB，可扩展至100TB</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa fa-check-circle text-green-500 mt-0.5 mr-2"></i>
+                                        <span>支持至少3年的历史数据存储</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa fa-check-circle text-green-500 mt-0.5 mr-2"></i>
+                                        <span>图片存储：支持1000万张图片</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa fa-check-circle text-green-500 mt-0.5 mr-2"></i>
+                                        <span>视频存储：支持10万小时视频</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                                <h4 class="font-semibold mb-3 text-dark flex items-center">
+                                    <i class="fa fa-clock-o text-primary mr-2"></i>
+                                    实时性要求
+                                </h4>
+                                <ul class="space-y-2">
+                                    <li class="flex items-start">
+                                        <i class="fa fa-check-circle text-green-500 mt-0.5 mr-2"></i>
+                                        <span>数据更新延迟：&lt;5分钟（重要数据）</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa fa-check-circle text-green-500 mt-0.5 mr-2"></i>
+                                        <span>消息推送延迟：&lt;1秒</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa fa-check-circle text-green-500 mt-0.5 mr-2"></i>
+                                        <span>实时监控数据更新频率：每秒更新</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa fa-check-circle text-green-500 mt-0.5 mr-2"></i>
+                                        <span>资源占用限制：CPU和内存使用率峰值&lt;85%</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- 系统性能指标图表 -->
+                        <div class="bg-light p-4 rounded-lg">
+                            <h4 class="font-semibold mb-3 text-dark">系统性能指标目标</h4>
+                            <canvas id="systemMetricsChart" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4.2 质量属性 -->
+                <div id="quality" class="mb-8">
+                    <h3 class="text-xl font-semibold mb-4 text-dark flex items-center">
+                        <span class="inline-block w-6 h-6 rounded-full bg-primary/20 text-primary text-sm flex items-center justify-center mr-2">4.2</span>
+                        质量属性
+                    </h3>
+                    <div class="pl-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                            <!-- 功能性 -->
+                            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm card-hover">
+                                <div class="flex items-center mb-3">
+                                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3">
+                                        <i class="fa fa-cogs"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-dark">功能性</h4>
+                                </div>
+                                <ul class="text-sm text-dark/70 space-y-1">
+                                    <li>• 支持核心功能如学生管理、课程安排等</li>
+                                    <li>• 所有功能模块正常运行，无致命错误</li>
+                                    <li>• 功能实现符合需求规格说明书要求</li>
+                                    <li>• 提供完整的错误处理机制</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- 可靠性 -->
+                            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm card-hover">
+                                <div class="flex items-center mb-3">
+                                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3">
+                                        <i class="fa fa-shield"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-dark">可靠性</h4>
+                                </div>
+                                <ul class="text-sm text-dark/70 space-y-1">
+                                    <li>• 系统可用性：99.9%（年度）</li>
+                                    <li>• 平均无故障时间（MTBF）：≥10000小时</li>
+                                    <li>• 平均修复时间（MTTR）：≤30分钟</li>
+                                    <li>• 数据准确性和运行稳定性保障</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- 易用性 -->
+                            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm card-hover">
+                                <div class="flex items-center mb-3">
+                                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3">
+                                        <i class="fa fa-user-friendly"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-dark">易用性</h4>
+                                </div>
+                                <ul class="text-sm text-dark/70 space-y-1">
+                                    <li>• 界面设计简洁直观，操作流程清晰</li>
+                                    <li>• 高频任务操作路径不超过3步</li>
+                                    <li>• 提供清晰的操作指引和帮助文档</li>
+                                    <li>• 支持多语言界面（中文、英文）</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- 效率 -->
+                            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm card-hover">
+                                <div class="flex items-center mb-3">
+                                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3">
+                                        <i class="fa fa-tachometer"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-dark">效率</h4>
+                                </div>
+                                <ul class="text-sm text-dark/70 space-y-1">
+                                    <li>• 快速响应用户请求，减少等待时间</li>
+                                    <li>• 资源利用率：CPU/内存平均使用率&lt;60%</li>
+                                    <li>• 数据处理效率：批量处理≥1000条/秒</li>
+                                    <li>• 优化算法，提升系统整体性能</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- 可维护性 -->
+                            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm card-hover">
+                                <div class="flex items-center mb-3">
+                                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3">
+                                        <i class="fa fa-wrench"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-dark">可维护性</h4>
+                                </div>
+                                <ul class="text-sm text-dark/70 space-y-1">
+                                    <li>• 代码结构清晰，模块化设计</li>
+                                    <li>• 代码复杂度：圈复杂度&lt;15</li>
+                                    <li>• 代码覆盖率：单元测试≥80%</li>
+                                    <li>• 可维护性指数：≥75</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- 安全性 -->
+                            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm card-hover">
+                                <div class="flex items-center mb-3">
+                                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3">
+                                        <i class="fa fa-lock"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-dark">安全性</h4>
+                                </div>
+                                <ul class="text-sm text-dark/70 space-y-1">
+                                    <li>• 数据加密：传输TLS 1.3+，存储AES-256</li>
+                                    <li>• 基于角色的访问控制（RBAC）</li>
+                                    <li>• 防范SQL注入、XSS、CSRF等攻击</li>
+                                    <li>• 敏感操作审计日志，可追溯</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4.3 系统环境 -->
+                <div id="environment" class="mb-8">
+                    <h3 class="text-xl font-semibold mb-4 text-dark flex items-center">
+                        <span class="inline-block w-6 h-6 rounded-full bg-primary/20 text-primary text-sm flex items-center justify-center mr-2">4.3</span>
+                        系统环境
+                    </h3>
+                    <div class="pl-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <!-- 硬件环境 -->
+                            <div>
+                                <h4 class="font-semibold mb-3 text-dark flex items-center">
+                                    <i class="fa fa-server text-primary mr-2"></i>
+                                    硬件环境
+                                </h4>
+                                
+                                <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm mb-4">
+                                    <h5 class="font-medium text-dark mb-2">服务器配置（建议）</h5>
+                                    <ul class="text-sm text-dark/70 space-y-1">
+                                        <li>• CPU：至少64核，主频≥2.5GHz</li>
+                                        <li>• 内存：至少512GB</li>
+                                        <li>• 存储：SSD硬盘，容量≥10TB</li>
+                                        <li>• 网络：千兆网卡，支持万兆扩展</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                                    <h5 class="font-medium text-dark mb-2">终端设备要求</h5>
+                                    <ul class="text-sm text-dark/70 space-y-1">
+                                        <li>• 电脑：Windows 10/11或macOS，8GB内存以上</li>
+                                        <li>• 平板：iPad 5代以上或Android平板，4GB内存以上</li>
+                                        <li>• 手机：iOS 14+或Android 10+，4GB内存以上</li>
+                                        <li>• 分辨率：不低于1920×1080</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <!-- 软件环境 -->
+                            <div>
+                                <h4 class="font-semibold mb-3 text-dark flex items-center">
+                                    <i class="fa fa-code text-primary mr-2"></i>
+                                    软件环境
+                                </h4>
+                                
+                                <div class="grid grid-cols-1 gap-4">
+                                    <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                                        <h5 class="font-medium text-dark mb-2">操作系统</h5>
+                                        <ul class="text-sm text-dark/70 space-y-1">
+                                            <li>• 服务器：Linux CentOS 7+或Ubuntu 20.04+</li>
+                                            <li>• 客户端：Windows 10+/macOS 10.15+/Linux</li>
+                                            <li>• 移动设备：iOS 14+/Android 10+</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                                        <h5 class="font-medium text-dark mb-2">技术栈</h5>
+                                        <ul class="text-sm text-dark/70 space-y-1">
+                                            <li>• 数据库：MySQL 8.0+</li>
+                                            <li>• 中间件：Redis 6.0+、Nginx 1.18+</li>
+                                            <li>• 开发语言：Java 11、Node.js 14+、Python 3.8+</li>
+                                            <li>• 前端框架：Vue.js 3.x、React Native</li>
+                                            <li>• AI框架：TensorFlow 2.x、PyTorch 1.8+</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 网络环境 -->
+                        <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                            <h4 class="font-semibold mb-3 text-dark flex items-center">
+                                <i class="fa fa-wifi text-primary mr-2"></i>
+                                网络环境
+                            </h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <h5 class="font-medium text-dark mb-2">网络协议与带宽</h5>
+                                    <ul class="text-sm text-dark/70 space-y-1">
+                                        <li>• 网络协议：支持IPv4/IPv6</li>
+                                        <li>• 学校出口带宽：每100用户≥100Mbps</li>
+                                        <li>• 教室网络：千兆到桌面</li>
+                                        <li>• 无线网络：支持WiFi 6</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h5 class="font-medium text-dark mb-2">网络安全</h5>
+                                    <ul class="text-sm text-dark/70 space-y-1">
+                                        <li>• 防火墙保护</li>
+                                        <li>• VPN接入支持</li>
+                                        <li>• 网络流量监控</li>
+                                        <li>• DDoS攻击防护</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4.4 技术架构 -->
+                <div id="architecture" class="mb-8">
+                    <h3 class="text-xl font-semibold mb-4 text-dark flex items-center">
+                        <span class="inline-block w-6 h-6 rounded-full bg-primary/20 text-primary text-sm flex items-center justify-center mr-2">4.4</span>
+                        技术架构
+                    </h3>
+                    <div class="pl-8">
+                        <div class="mb-6">
+                            <h4 class="font-semibold mb-3 text-dark">系统架构设计</h4>
+                            <p class="text-dark/80 mb-4">
+                                本AI智能教师系统采用"云-边-端"协同架构，确保系统的高性能、高可用性和低延迟。
+                            </p>
+                            
+                            <!-- 系统架构图 -->
+                            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm mb-6">
+                                <div class="flex flex-col items-center">
+                                    <!-- 云端架构 -->
+                                    <div class="w-full max-w-3xl bg-primary/5 p-3 rounded-lg mb-4 text-center">
+                                        <h5 class="font-medium text-dark mb-2">云端架构</h5>
+                                        <p class="text-sm text-dark/70">部署核心AI算法模型和大数据分析平台，负责大规模模型训练、复杂推理和全局优化</p>
+                                        <div class="flex flex-wrap justify-center gap-2 mt-2">
+                                            <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full">Docker容器化</span>
+                                            <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full">Kubernetes编排</span>
+                                            <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full">弹性伸缩</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 边缘计算节点 -->
+                                    <div class="w-full max-w-3xl bg-secondary/5 p-3 rounded-lg mb-4 text-center">
+                                        <h5 class="font-medium text-dark mb-2">边缘计算节点</h5>
+                                        <p class="text-sm text-dark/70">部署在学校本地服务器，实现实时数据预处理，负责低延迟响应和本地化数据处理</p>
+                                        <div class="flex flex-wrap justify-center gap-2 mt-2">
+                                            <span class="px-2 py-1 bg-secondary/10 text-secondary text-xs rounded-full">实时数据处理</span>
+                                            <span class="px-2 py-1 bg-secondary/10 text-secondary text-xs rounded-full">离线模式支持</span>
+                                            <span class="px-2 py-1 bg-secondary/10 text-secondary text-xs rounded-full">与云端同步</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 终端设备 -->
+                                    <div class="w-full max-w-3xl bg-accent/5 p-3 rounded-lg text-center">
+                                        <h5 class="font-medium text-dark mb-2">终端设备</h5>
+                                        <p class="text-sm text-dark/70">支持多终端访问，确保跨平台数据同步和一致的用户体验</p>
+                                        <div class="flex flex-wrap justify-center gap-2 mt-2">
+                                            <span class="px-2 py-1 bg-accent/10 text-accent text-xs rounded-full">教师端（Web/PC/APP）</span>
+                                            <span class="px-2 py-1 bg-accent/10 text-accent text-xs rounded-full">学生端（Web/PC/APP）</span>
+                                            <span class="px-2 py-1 bg-accent/10 text-accent text-xs rounded-full">家长端（APP为主）</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 核心技术选型 -->
+                        <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                            <h4 class="font-semibold mb-3 text-dark">核心技术选型</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <h5 class="font-medium text-dark mb-2">AI与机器学习</h5>
+                                    <ul class="text-sm text-dark/70 space-y-1">
+                                        <li>• 大语言模型：九章大模型+DeepSeek双引擎</li>
+                                        <li>• 知识图谱：Neo4j图数据库</li>
+                                        <li>• 自然语言处理：BERT系列模型</li>
+                                        <li>• 计算机视觉：OpenCV、Tesseract</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h5 class="font-medium text-dark mb-2">开发框架与工具</h5>
+                                    <ul class="text-sm text-dark/70 space-y-1">
+                                        <li>• 机器学习：Scikit-learn、XGBoost</li>
+                                        <li>• 深度学习：TensorFlow、PyTorch</li>
+                                        <li>• 实时通信：WebSocket、MQTT</li>
+                                        <li>• 前端框架：Vue.js 3.x、React Native</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4.5 数据管理需求 -->
+                <div id="data">
+                    <h3 class="text-xl font-semibold mb-4 text-dark flex items-center">
+                        <span class="inline-block w-6 h-6 rounded-full bg-primary/20 text-primary text-sm flex items-center justify-center mr-2">4.5</span>
+                        数据管理需求
+                    </h3>
+                    <div class="pl-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <h4 class="font-semibold mb-3 text-dark flex items-center">
+                                    <i class="fa fa-database text-primary mr-2"></i>
+                                    数据类型与属性
+                                </h4>
+                                
+                                <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm mb-4">
+                                    <h5 class="font-medium text-dark mb-2">系统数据分类</h5>
+                                    <ol class="list-decimal list-inside text-sm text-dark/70 space-y-2">
+                                        <li>
+                                            <span class="font-medium">用户数据：</span>
+                                            用户名、密码哈希、邮箱、角色、创建时间等
+                                        </li>
+                                        <li>
+                                            <span class="font-medium">课程数据：</span>
+                                            课程名称、描述、分类、封面URL、视频URL、讲师ID、状态等
+                                        </li>
+                                        <li>
+                                            <span class="font-medium">学习数据：</span>
+                                            学习进度、作业提交记录、考试成绩、评论等
+                                        </li>
+                                    </ol>
+                                </div>
+                                
+                                <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                                    <h5 class="font-medium text-dark mb-2">数据属性要求</h5>
+                                    <ul class="text-sm text-dark/70 space-y-1">
+                                        <li>• 每个数据实体定义具体属性（类型、长度、约束）</li>
+                                        <li>• 建立完整的数据字典</li>
+                                        <li>• 定义数据关系和完整性约束</li>
+                                        <li>• 制定数据标准化规范</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-semibold mb-3 text-dark flex items-center">
+                                    <i class="fa fa-exchange text-primary mr-2"></i>
+                                    数据处理流程
+                                </h4>
+                                
+                                <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm mb-4">
+                                    <div class="relative">
+                                        <!-- 流程线 -->
+                                        <div class="absolute left-3 top-0 bottom-0 w-0.5 bg-primary/20"></div>
+                                        
+                                        <!-- 流程节点 -->
+                                        <div class="relative pl-10 pb-4">
+                                            <div class="absolute left-0 w-7 h-7 rounded-full bg-primary flex items-center justify-center text-white text-xs">1</div>
+                                            <div class="font-medium text-dark">数据采集</div>
+                                            <div class="text-sm text-dark/70">多源数据采集，包括课堂互动、作业提交、考试测评等</div>
+                                        </div>
+                                        
+                                        <div class="relative pl-10 pb-4">
+                                            <div class="absolute left-0 w-7 h-7 rounded-full bg-primary flex items-center justify-center text-white text-xs">2</div>
+                                            <div class="font-medium text-dark">数据清洗</div>
+                                            <div class="text-sm text-dark/70">去除噪声和异常值，数据标准化处理</div>
+                                        </div>
+                                        
+                                        <div class="relative pl-10 pb-4">
+                                            <div class="absolute left-0 w-7 h-7 rounded-full bg-primary flex items-center justify-center text-white text-xs">3</div>
+                                            <div class="font-medium text-dark">数据存储</div>
+                                            <div class="text-sm text-dark/70">结构化数据存储在关系型数据库，非结构化数据存储在对象存储</div>
+                                        </div>
+                                        
+                                        <div class="relative pl-10 pb-4">
+                                            <div class="absolute left-0 w-7 h-7 rounded-full bg-primary flex items-center justify-center text-white text-xs">4</div>
+                                            <div class="font-medium text-dark">数据处理</div>
+                                            <div class="text-sm text-dark/70">实时处理和批量处理相结合</div>
+                                        </div>
+                                        
+                                        <div class="relative pl-10">
+                                            <div class="absolute left-0 w-7 h-7 rounded-full bg-primary flex items-center justify-center text-white text-xs">5</div>
+                                            <div class="font-medium text-dark">数据应用</div>
+                                            <div class="text-sm text-dark/70">为各功能模块提供数据支持</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 数据安全要求 -->
+                        <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                            <h4 class="font-semibold mb-3 text-dark flex items-center">
+                                <i class="fa fa-shield text-primary mr-2"></i>
+                                数据安全要求
+                            </h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <h5 class="font-medium text-dark mb-2">数据安全措施</h5>
+                                    <ul class="text-sm text-dark/70 space-y-1">
+                                        <li>• 所有用户数据加密存储和传输</li>
+                                        <li>• 实施严格的数据访问控制机制</li>
+                                        <li>• 建立完善的数据备份和恢复策略</li>
+                                        <li>• 定期进行数据安全审计</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h5 class="font-medium text-dark mb-2">隐私保护要求</h5>
+                                    <ul class="text-sm text-dark/70 space-y-1">
+                                        <li>• 符合国家数据安全法规要求</li>
+                                        <li>• 遵循个人信息保护法规定</li>
+                                        <li>• 敏感数据脱敏处理</li>
+                                        <li>• 用户数据使用透明化</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. 接口需求部分 -->
+            <section id="interfaces">
+                <div class="flex items-center mb-6">
+                    <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white mr-3">
+                        <span>5</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-dark">接口需求</h2>
+                </div>
+
+                <!-- 5.1 系统接口设计 -->
+                <div id="system-interfaces">
+                    <h3 class="text-xl font-semibold mb-4 text-dark flex items-center">
+                        <span class="inline-block w-6 h-6 rounded-full bg-primary/20 text-primary text-sm flex items-center justify-center mr-2">5.1</span>
+                        系统接口设计
+                    </h3>
+                    <div class="pl-8 text-dark/80">
+                        <p class="mb-4">
+                            系统接口设计遵循RESTful API设计规范，确保接口的一致性、可扩展性和易用性。所有接口均采用HTTPS协议进行数据传输，保证数据安全性。
+                        </p>
+                        
+                        <!-- 接口类型概览 -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm card-hover">
+                                <div class="flex items-center mb-3">
+                                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3">
+                                        <i class="fa fa-users"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-dark">用户接口</h4>
+                                </div>
+                                <ul class="text-sm text-dark/70 space-y-1">
+                                    <li>• 用户注册与登录</li>
+                                    <li>• 用户信息管理</li>
+                                    <li>• 角色与权限管理</li>
+                                    <li>• 密码重置与安全验证</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm card-hover">
+                                <div class="flex items-center mb-3">
+                                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3">
+                                        <i class="fa fa-book"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-dark">教学接口</h4>
+                                </div>
+                                <ul class="text-sm text-dark/70 space-y-1">
+                                    <li>• 课程管理接口</li>
+                                    <li>• 备课资源接口</li>
+                                    <li>• 作业批改接口</li>
+                                    <li>• 学情分析接口</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm card-hover">
+                                <div class="flex items-center mb-3">
+                                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3">
+                                        <i class="fa fa-exchange"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-dark">集成接口</h4>
+                                </div>
+                                <ul class="text-sm text-dark/70 space-y-1">
+                                    <li>• 第三方登录接口</li>
+                                    <li>• 支付集成接口</li>
+                                    <li>• 消息推送接口</li>
+                                    <li>• 数据同步接口</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- 接口规范 -->
+                        <div class="bg-light p-4 rounded-lg">
+                            <h4 class="font-semibold mb-3 text-dark">接口设计规范</h4>
+                            <ul class="list-disc list-inside space-y-1 text-dark/80">
+                                <li>接口命名规范：采用小写字母，多单词使用连字符分隔（如/user/login）</li>
+                                <li>HTTP方法使用：GET（查询）、POST（创建）、PUT（更新）、DELETE（删除）</li>
+                                <li>请求参数：支持URL参数、请求体参数，参数命名采用驼峰式</li>
+                                <li>响应格式：统一JSON格式，包含状态码、消息和数据字段</li>
+                                <li>状态码规范：遵循HTTP标准状态码，自定义业务状态码</li>
+                                <li>认证方式：采用JWT令牌认证，支持刷新令牌机制</li>
+                                <li>接口版本控制：在URL中包含版本号（如/api/v1/user/login）</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 文档底部 -->
+            <footer class="mt-16 pt-8 border-t border-gray-200 text-center text-dark/60 text-sm">
+                <p class="mb-2">AI智能教师系统详细需求规格说明书</p>
+                <p class="mb-2">版本：V1.0 | 编制日期：2025年</p>
+                <p>编制部门：产品研发部 | 联系方式：contact@aiteachersystem.com</p>
+            </footer>
+        </main>
+    </div>
+
+    <!-- 返回顶部按钮 -->
+    <button id="backToTop" class="fixed bottom-6 right-6 w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center shadow-lg opacity-0 invisible transition-custom">
+        <i class="fa fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // 移动端菜单切换
+        document.getElementById('toggleMenu').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('hidden');
+            sidebar.classList.toggle('fixed');
+            sidebar.classList.toggle('inset-0');
+            sidebar.classList.toggle('z-50');
+            sidebar.classList.toggle('bg-white');
+            sidebar.classList.toggle('p-4');
+        });
+
+        // 返回顶部按钮
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.remove('opacity-0', 'invisible');
+                backToTopBtn.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'invisible');
+                backToTopBtn.classList.remove('opacity-100', 'visible');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // 移动端菜单关闭
+                    const sidebar = document.getElementById('sidebar');
+                    if (sidebar.classList.contains('fixed')) {
+                        sidebar.classList.add('hidden');
+                        sidebar.classList.remove('fixed', 'inset-0', 'z-50', 'bg-white', 'p-4');
+                    }
+                    
+                    // 滚动到目标位置
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 更新导航激活状态
+                    document.querySelectorAll('nav a').forEach(link => {
+                        link.classList.remove('nav-active');
+                    });
+                    this.classList.add('nav-active');
+                }
+            });
+        });
+
+        // 图表初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 1. 教师AI工具使用情况图表
+            const teacherAiUsageCtx = document.getElementById('teacherAiUsageChart').getContext('2d');
+            new Chart(teacherAiUsageCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['已使用AI工具', '高频使用AI工具', '未使用AI工具(物理/化学)', '需要人工修正AI内容', '缺乏有效教程'],
+                    datasets: [{
+                        label: '教师比例(%)',
+                        data: [75, 20.3, 80, 69.3, 68.1],
+                        backgroundColor: [
+                            'rgba(22, 93, 255, 0.7)',
+                            'rgba(22, 93, 255, 0.5)',
+                            'rgba(239, 68, 68, 0.7)',
+                            'rgba(245, 158, 11, 0.7)',
+                            'rgba(245, 158, 11, 0.5)'
+                        ],
+                        borderColor: [
+                            'rgba(22, 93, 255, 1)',
+                            'rgba(22, 93, 255, 1)',
+                            'rgba(239, 68, 68, 1)',
+                            'rgba(245, 158, 11, 1)',
+                            'rgba(245, 158, 11, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.raw + '%';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: '比例(%)'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // 2. 系统性能目标图表
+            const systemPerformanceCtx = document.getElementById('systemPerformanceChart').getContext('2d');
+            new Chart(systemPerformanceCtx, {
+                type: 'radar',
+                data: {
+                    labels: [
+                        '备课时间缩短',
+                        '作业批改效率提升',
+                        '数学批改正确率',
+                        '英语作文批改准确率',
+                        '同时在线用户数',
+                        '用户满意度'
+                    ],
+                    datasets: [{
+                        label: '目标值',
+                        data: [50, 60, 97, 98, 5000, 85],
+                        backgroundColor: 'rgba(22, 93, 255, 0.2)',
+                        borderColor: 'rgba(22, 93, 255, 1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(22, 93, 255, 1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        r: {
+                            angleLines: {
+                                display: true
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 100
+                        }
+                    }
+                }
+            });
+
+            // 3. 教师年龄分布图表
+            const teacherAgeCtx = document.getElementById('teacherAgeChart').getContext('2d');
+            new Chart(teacherAgeCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['90后教师', '80后教师', '70后教师', '60后教师'],
+                    datasets: [{
+                        data: [25, 35, 30, 10],
+                        backgroundColor: [
+                            'rgba(22, 93, 255, 0.7)',
+                            'rgba(54, 207, 201, 0.7)',
+                            'rgba(114, 46, 209, 0.7)',
+                            'rgba(107, 114, 128, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(22, 93, 255, 1)',
+                            'rgba(54, 207, 201, 1)',
+                            'rgba(114, 46, 209, 1)',
+                            'rgba(107, 114, 128, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'right'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.label + ': ' + context.raw + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // 4. 功能需求优先级图表
+            const featurePriorityCtx = document.getElementById('featurePriorityChart').getContext('2d');
+            new Chart(featurePriorityCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['智能备课', '作业批改', '学情分析', '智能答疑', '个性化教学', '课堂互动', '教学管理', '家校互动'],
+                    datasets: [{
+                        label: '需求占比(%)',
+                        data: [37, 81.2, 76.5, 63.8, 63.8, 35, 25, 30],
+                        backgroundColor: [
+                            'rgba(239, 68, 68, 0.7)',
+                            'rgba(239, 68, 68, 0.7)',
+                            'rgba(239, 68, 68, 0.7)',
+                            'rgba(239, 68, 68, 0.7)',
+                            'rgba(245, 158, 11, 0.7)',
+                            'rgba(245, 158, 11, 0.7)',
+                            'rgba(107, 114, 128, 0.7)',
+                            'rgba(107, 114, 128, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(239, 68, 68, 1)',
+                            'rgba(239, 68, 68, 1)',
+                            'rgba(239, 68, 68, 1)',
+                            'rgba(239, 68, 68, 1)',
+                            'rgba(245, 158, 11, 1)',
+                            'rgba(245, 158, 11, 1)',
+                            'rgba(107, 114, 128, 1)',
+                            'rgba(107, 114, 128, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.raw + '%';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: '需求占比(%)'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // 5. 各学科批改准确率目标图表
+            const gradingAccuracyCtx = document.getElementById('gradingAccuracyChart').getContext('2d');
+            new Chart(gradingAccuracyCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['数学文字题', '英语作文', '其他学科客观题', '理科实验报告', '语文作文'],
+                    datasets: [{
+                        label: '批改准确率(%)',
+                        data: [97, 98, 95, 92, 90],
+                        backgroundColor: 'rgba(22, 93, 255, 0.7)',
+                        borderColor: 'rgba(22, 93, 255, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.raw + '%';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            min: 80,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: '准确率(%)'
+                            }
+                        }
+                    }
+                }

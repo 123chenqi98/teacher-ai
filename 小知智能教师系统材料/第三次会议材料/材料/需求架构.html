@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目总结与需求文档</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "思源黑体", "Arial", sans-serif;
+            line-height: 1.6;
+            color: #1f2d3d;
+            background-color: #fff;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 20px 0;
+            color: #1890ff;
+            border-bottom: 2px solid #f0f2f5;
+            padding-bottom: 10px;
+        }
+        h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 18px 0;
+            color: #1f2d3d;
+            border-left: 4px solid #1890ff;
+            padding-left: 10px;
+        }
+        h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 16px 0;
+            color: #434f5e;
+        }
+        h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 14px 0;
+            color: #434f5e;
+        }
+        p {
+            margin: 10px 0;
+            text-indent: 2em;
+        }
+        ul, ol {
+            margin: 10px 0 10px 40px;
+        }
+        li {
+            margin: 5px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        table th, table td {
+            border: 1px solid #e8e8e8;
+            padding: 10px;
+            text-align: left;
+        }
+        table th {
+            background-color: #f5f7fa;
+            font-weight: 700;
+            color: #1f2d3d;
+        }
+        .code-block {
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: "Consolas", monospace;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+        .flow-chart {
+            border: 1px solid #e8e8e8;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            background-color: #fafafa;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .sub-section {
+            margin-bottom: 20px;
+        }
+        .highlight {
+            color: #1890ff;
+            font-weight: 700;
+        }
+        .note {
+            background-color: #fff7e6;
+            border-left: 4px solid #faad14;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .table-container {
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>项目总结与需求文档</h1>
+
+    <!-- 项目概况 -->
+    <div class="section">
+        <h2>项目概况</h2>
+        <p>本项目基于 Vue3 + Element Plus + Vite + Pinia + TypeScript + Vue Router 前端技术栈，结合 Spring Cloud + Spring Boot + FastAPI 混合后端架构，构建了一个综合性的智能教育平台。项目涵盖教师端、学生端、家长端和系统管理端四大核心模块，实现了从智能备课、作业管理、学情分析到个性化学习、家校互动的全流程教育服务体系。</p>
+        <p>项目于 2024 年 3 月启动，历时 8 个月完成核心功能开发，于 2024 年 11 月正式上线。项目团队由产品、设计、开发、测试等 25 名成员组成，采用敏捷开发模式，经历了 6 个迭代周期。</p>
+    </div>
+
+    <!-- 一、项目总结 -->
+    <div class="section">
+        <h2>一、项目总结</h2>
+
+        <!-- 1.1 项目执行成果 -->
+        <div class="sub-section">
+            <h3>1.1 项目执行成果</h3>
+            <h4>功能完成情况：</h4>
+            <ul>
+                <li>共完成 15 个核心功能模块，87 个具体功能点</li>
+                <li>前端页面总数：126 个，其中教师端 48 个，学生端 35 个，家长端 22 个，管理端 21 个</li>
+                <li>API 接口总数：289 个，涵盖 RESTful 和 RPC 两种调用方式</li>
+                <li>数据库表结构：47 张核心业务表，15 张基础字典表</li>
+            </ul>
+
+            <h4>技术指标达成：</h4>
+            <ul>
+                <li>系统并发能力：支持 5000 + 用户同时在线</li>
+                <li>核心接口响应时间：99% 的请求在 2 秒内完成</li>
+                <li>系统可用性：达到 99.9%（年度停机时间小于 8.76 小时）</li>
+                <li>数据存储容量：支持 10TB 历史数据存储</li>
+            </ul>
+
+            <h4>用户体验提升：</h4>
+            <ul>
+                <li>界面响应速度提升 60%（相比传统教育系统）</li>
+                <li>操作流程简化 30%，核心功能操作不超过 3 步</li>
+                <li>支持多端同步，数据一致性达到 99.99%</li>
+            </ul>
+        </div>
+
+        <!-- 1.2 技术实现亮点 -->
+        <div class="sub-section">
+            <h3>1.2 技术实现亮点</h3>
+            <h4>混合架构创新：</h4>
+            <p>采用 Spring Cloud 与 FastAPI 混合部署模式，充分发挥了 Java 生态的稳定性和 Python 生态的高性能优势。核心业务逻辑使用 Spring Boot 实现，确保事务处理的可靠性；高并发 API 服务使用 FastAPI 构建，提升系统整体性能。通过 Nacos 实现服务注册与发现的统一管理，服务间通过 RESTful API 进行通信。</p>
+
+            <h4>微服务架构设计：</h4>
+            <p>基于领域驱动设计（DDD）理念，将系统拆分为 12 个核心微服务：</p>
+            <ul>
+                <li>用户服务（User Service）：负责用户认证、权限管理</li>
+                <li>课程服务（Course Service）：管理教学大纲、课程资源</li>
+                <li>备课服务（LessonPlan Service）：提供智能备课功能</li>
+                <li>作业服务（Homework Service）：处理作业生成、批改、分析</li>
+                <li>学情服务（LearningAnalysis Service）：提供学习行为分析</li>
+                <li>互动服务（Interaction Service）：支持课堂互动功能</li>
+                <li>答疑服务（QAService）：提供智能答疑功能</li>
+                <li>报告服务（Report Service）：生成各类学习报告</li>
+                <li>消息服务（Message Service）：处理系统通知和家校沟通</li>
+                <li>配置服务（Config Service）：统一管理系统配置</li>
+                <li>监控服务（Monitor Service）：提供系统运行监控</li>
+                <li>网关服务（Gateway Service）：统一 API 入口</li>
+            </ul>
+
+            <h4>技术栈协同优化：</h4>
+            <p>前端采用 Vue3 的组合式 API 配合 TypeScript，提升了代码的可维护性和类型安全性。使用 Element Plus 组件库确保了界面风格的一致性和开发效率。通过 Pinia 实现状态管理，解决了跨组件通信的复杂性问题。Vue Router 配合路由懒加载，优化了页面加载性能。</p>
+            <p>后端采用 Spring Cloud Alibaba 技术栈，集成了 Nacos 作为服务注册中心和配置中心，实现了服务治理的一体化。使用 Sentinel 实现流量控制和熔断降级，确保了系统在高并发场景下的稳定性。通过 Spring Cloud Gateway 构建 API 网关，实现了统一的路由管理和安全控制。</p>
+        </div>
+
+        <!-- 1.3 项目挑战与解决方案 -->
+        <div class="sub-section">
+            <h3>1.3 项目挑战与解决方案</h3>
+            <h4>跨技术栈集成挑战：</h4>
+            <p>Spring Boot 与 FastAPI 的集成初期遇到了服务间通信和数据格式兼容问题。通过制定统一的 RESTful API 规范，使用 JSON 作为数据交换格式，解决了不同技术栈间的通信问题。建立了 API 契约优先的开发模式，使用 OpenAPI 规范定义接口，确保了前后端协作的清晰性。</p>
+
+            <h4>性能优化难题：</h4>
+            <p>在系统压力测试中发现，当并发用户超过 3000 时，部分接口响应时间出现明显延迟。通过以下措施进行优化：</p>
+            <ul>
+                <li>使用 Redis 作为缓存层，将高频访问的数据（如用户信息、课程资源）缓存到内存中，减少数据库查询压力</li>
+                <li>对数据库进行主从架构部署，读操作分摊到从库，写操作集中在主库，提升了数据库的并发处理能力</li>
+                <li>采用 RabbitMQ 实现异步消息处理，将耗时的业务逻辑（如作业批改、学情分析）异步化处理，提升了系统的响应速度</li>
+                <li>使用 Sentinel 实现流量控制，设置了合理的限流规则，防止系统被突发流量冲垮</li>
+            </ul>
+
+            <h4>数据一致性保障：</h4>
+            <p>在分布式架构下，如何保证数据的最终一致性是一个重要挑战。采用 Seata 框架实现分布式事务管理，支持 AT、TCC、SAGA 等多种事务模式。对于跨服务的数据操作，使用消息队列实现最终一致性，通过补偿机制处理失败的事务。</p>
+
+            <h4>团队协作效率问题：</h4>
+            <p>由于团队成员来自不同的技术背景（Java、Python、前端），在协作初期出现了沟通成本高、代码风格不统一等问题。通过建立统一的技术规范和代码审查机制，定期开展技术分享和培训，提升了团队的技术一致性。使用 Git 进行版本控制，通过分支管理策略确保了代码的有序集成。</p>
+        </div>
+
+        <!-- 1.4 团队协作经验 -->
+        <div class="sub-section">
+            <h3>1.4 团队协作经验</h3>
+            <h4>敏捷开发实践：</h4>
+            <p>采用 Scrum 敏捷开发模式，每两周进行一次迭代，每个迭代包含需求梳理、开发、测试和回顾四个阶段。通过每日站会同步进度，及时发现和解决问题。建立了产品待办列表（Product Backlog），使用故事点（Story Point）进行需求估算，确保了项目进度的可控性。</p>
+
+            <h4>跨职能团队协作：</h4>
+            <p>项目团队包含产品经理、UI 设计师、前端开发、后端开发、测试工程师、运维工程师等多个角色。通过建立清晰的职责分工和协作流程，确保了各角色间的有效配合。采用 Confluence 作为文档协作平台，所有需求文档、设计稿、技术文档都统一管理，提升了信息共享效率。</p>
+
+            <h4>持续集成与部署：</h4>
+            <p>建立了完整的 CI/CD 流程，使用 Jenkins 实现自动化构建和部署。前端项目通过 NPM 脚本实现自动化打包，后端项目通过 Maven 进行构建。使用 Docker 容器化部署，确保了环境的一致性和部署的便捷性。建立了预发布环境和生产环境的灰度发布机制，降低了上线风险。</p>
+        </div>
+
+        <!-- 1.5 经验教训与改进建议 -->
+        <div class="sub-section">
+            <h3>1.5 经验教训与改进建议</h3>
+            <h4>需求管理改进：</h4>
+            <p>项目初期由于需求调研不充分，导致开发过程中出现了多次需求变更，影响了项目进度。建议在后续项目中加强需求调研，通过用户访谈、竞品分析、原型演示等方式充分理解用户需求。建立需求变更评估机制，对每个变更进行影响分析，确保变更的合理性和可控性。</p>
+
+            <h4>技术选型策略优化：</h4>
+            <p>在技术栈选择上，虽然混合架构带来了性能优势，但也增加了系统的复杂性和维护成本。建议在未来项目中，优先考虑技术栈的统一性，避免过度追求技术的先进性而忽视了团队的技术储备。对于必须使用混合技术栈的场景，要提前做好技术培训和人才储备。</p>
+
+            <h4>性能测试与优化提前：</h4>
+            <p>性能问题在项目后期才暴露出来，导致了额外的优化成本。建议在项目初期就制定性能测试计划，在每个迭代中都进行性能验证，及时发现和解决性能瓶颈。建立性能基准测试，通过数据对比评估优化效果。</p>
+
+            <h4>文档规范与知识沉淀：</h4>
+            <p>项目过程中文档更新不及时，导致部分技术决策和实现细节缺乏记录。建议建立文档版本管理机制，确保文档与代码的同步更新。定期进行知识分享，将项目中的经验教训形成可复用的最佳实践，建立团队知识库。</p>
+        </div>
+    </div>
+
+    <!-- 二、需求文档 -->
+    <div class="section">
+        <h2>二、需求文档</h2>
+
+        <!-- 2.1 系统概述 -->
+        <div class="sub-section">
+            <h3>2.1 系统概述</h3>
+            <h4>产品定位：</h4>
+            <p>本系统定位于 K12 教育阶段的智能教学辅助平台，通过 AI 技术赋能传统教育，为教师、学生、家长提供全方位的教学服务。系统以提升教学效率和学习效果为核心目标，通过智能化的工具和数据分析，实现个性化教学和精准化辅导。</p>
+
+            <h4>用户角色与权限：</h4>
+            <p>系统包含四大核心用户角色，每个角色具有不同的功能权限：</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>用户角色</th>
+                            <th>主要职责</th>
+                            <th>核心权限</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>教师</td>
+                            <td>课程管理、作业布置、学情分析、课堂互动</td>
+                            <td>教学相关功能的全权限访问</td>
+                        </tr>
+                        <tr>
+                            <td>学生</td>
+                            <td>学习计划制定、作业完成、在线答疑、成绩查询</td>
+                            <td>个人学习相关功能的访问权限</td>
+                        </tr>
+                        <tr>
+                            <td>家长</td>
+                            <td>孩子学习监控、家校沟通、学习报告查看</td>
+                            <td>子女相关信息的查询和沟通权限</td>
+                        </tr>
+                        <tr>
+                            <td>管理员</td>
+                            <td>系统配置、用户管理、数据监控、权限分配</td>
+                            <td>系统级管理功能的全权限</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>系统架构图：</h4>
+            <div class="flow-chart">
+                <pre>
++-------------------+
+|      前端层       |
+|   Vue3 + Element  |
+|    Plus + Vite    |
++-------------------+
+         ↓
++-------------------+
+|      网关层       |
+| Spring Cloud      |
+|    Gateway        |
++-------------------+
+         ↓
++-------------------+
+|      服务层       |
+|  Spring Boot +    |
+|    FastAPI        |
++-------------------+
+         ↓
++-------------------+
+|      数据层       |
+|  MySQL + Redis    |
+|  + RabbitMQ       |
++-------------------+</pre>
+            </div>
+        </div>
+
+        <!-- 2.2 功能需求 -->
+        <div class="sub-section">
+            <h3>2.2 功能需求</h3>
+
+            <!-- 2.2.1 教师端模块 -->
+            <h4>2.2.1 教师端模块</h4>
+            <h5>智能备课功能</h5>
+            <p><span class="highlight">功能描述：</span>教师可以通过系统提供的智能备课工具，快速生成高质量的教案和课件。系统基于教学大纲和知识点分析，提供智能化的备课建议和资源推荐。</p>
+
+            <p><span class="highlight">输入参数：</span></p>
+            <ul>
+                <li>年级信息（小学、初中、高中）</li>
+                <li>学科类型（语文、数学、英语等）</li>
+                <li>章节信息（单元、课时）</li>
+                <li>教学目标描述</li>
+                <li>教学重难点说明</li>
+            </ul>
+
+            <p><span class="highlight">输出结果：</span></p>
+            <ul>
+                <li>结构化教案文档（包含教学目标、教学重难点、教学过程、作业布置等）</li>
+                <li>配套课件（PPT 格式，包含知识点讲解、例题分析、互动环节设计）</li>
+                <li>教学资源推荐列表（相关视频、音频、图片、习题等）</li>
+            </ul>
+
+            <p><span class="highlight">业务规则：</span></p>
+            <ul>
+                <li>教案生成基于预设的教学模板，支持自定义模板管理</li>
+                <li>课件内容自动匹配教学进度，包含动画效果和互动元素</li>
+                <li>资源推荐基于知识点关联算法，推荐相关度≥80% 的资源</li>
+                <li>支持教案和课件的在线编辑和版本管理</li>
+                <li>提供教案和课件的导出功能，支持 doc、docx、PDF、PPT 等格式</li>
+            </ul>
+
+            <h5>作业管理功能</h5>
+            <p><span class="highlight">功能描述：</span>教师可以通过系统布置作业、批改作业、分析作业完成情况，实现作业全流程的数字化管理。</p>
+
+            <p><span class="highlight">输入参数：</span></p>
+            <ul>
+                <li>作业基本信息（作业名称、截止时间、适用班级）</li>
+                <li>题目信息（题目类型、题目内容、分值、答案）</li>
+                <li>批改方式（自动批改、手动批改、混合批改）</li>
+                <li>作业发布范围（全班级、部分学生、指定学生）</li>
+            </ul>
+
+            <p><span class="highlight">输出结果：</span></p>
+            <ul>
+                <li>作业发布成功通知</li>
+                <li>作业批改结果汇总（正确率、错误分布、优秀作业展示）</li>
+                <li>学生作业完成情况统计（已完成、未完成、延迟提交）</li>
+                <li>错题分析报告（知识点掌握情况、错误类型分布）</li>
+            </ul>
+
+            <p><span class="highlight">业务规则：</span></p>
+            <ul>
+                <li>作业题目支持多种类型：选择题、填空题、解答题、作文题等</li>
+                <li>客观题支持自动批改，主观题支持在线批注和评分</li>
+                <li>作业发布后自动推送至学生端和家长端</li>
+                <li>支持作业的批量导入和导出功能</li>
+                <li>提供作业完成提醒机制，支持定时提醒和延迟提醒</li>
+                <li>作业批改支持评语模板和自定义评语</li>
+            </ul>
+
+            <h5>学情分析功能</h5>
+            <p><span class="highlight">功能描述：</span>系统通过多维度数据分析，为教师提供学生学习情况的全面洞察，包括学习进度、知识点掌握、学习行为等方面的分析。</p>
+
+            <p><span class="highlight">输入参数：</span></p>
+            <ul>
+                <li>分析维度选择（时间维度：日、周、月；对象维度：个人、班级、年级）</li>
+                <li>分析指标选择（作业完成率、正确率、学习时长、课堂参与度等）</li>
+                <li>筛选条件（学科、知识点、难度等级等）</li>
+            </ul>
+
+            <p><span class="highlight">输出结果：</span></p>
+            <ul>
+                <li>班级整体学情报告（平均分、优秀率、及格率、进步情况）</li>
+                <li>学生个体学情报告（学习轨迹、强弱项分析、学习建议）</li>
+                <li>知识点掌握热力图（红色表示薄弱知识点，绿色表示掌握良好）</li>
+                <li>学习行为分析图表（学习时间分布、作业完成趋势）</li>
+            </ul>
+
+            <p><span class="highlight">业务规则：</span></p>
+            <ul>
+                <li>数据来源包括作业系统、课堂互动系统、在线测试系统等</li>
+                <li>分析算法基于机器学习模型，能够识别学习模式和异常行为</li>
+                <li>支持自定义分析维度和指标组合</li>
+                <li>提供预警机制，对学习困难学生自动标记和提醒</li>
+                <li>分析报告支持导出和分享功能</li>
+            </ul>
+
+            <h5>课堂互动功能</h5>
+            <p><span class="highlight">功能描述：</span>支持教师在课堂教学中与学生进行实时互动，包括点名、答题、实验演示等功能，提升课堂教学效果。</p>
+
+            <p><span class="highlight">输入参数：</span></p>
+            <ul>
+                <li>互动类型选择（随机点名、按学号点名、分组讨论、课堂答题等）</li>
+                <li>题目信息（选择题、判断题、简答题等）</li>
+                <li>互动设置（答题时间限制、答案显示方式、成绩统计方式）</li>
+            </ul>
+
+            <p><span class="highlight">输出结果：</span></p>
+            <ul>
+                <li>点名结果（出勤情况、迟到早退记录）</li>
+                <li>答题统计结果（正确率、各选项分布、答题速度排名）</li>
+                <li>互动过程记录（发言记录、讨论内容、答题历史）</li>
+                <li>互动效果分析（参与度、正确率变化趋势）</li>
+            </ul>
+
+            <p><span class="highlight">业务规则：</span></p>
+            <ul>
+                <li>点名功能支持多种方式：随机点名、顺序点名、分组点名</li>
+                <li>答题功能支持实时统计和展示，支持错题即时讲解</li>
+                <li>实验演示功能基于 3D 技术，支持物理、化学、生物等学科实验</li>
+                <li>互动数据自动保存，形成课堂教学档案</li>
+                <li>支持互动过程的录制和回放功能</li>
+            </ul>
+
+            <!-- 2.2.2 学生端模块 -->
+            <h4>2.2.2 学生端模块</h4>
+            <h5>个性化学习功能</h5>
+            <p><span class="highlight">功能描述：</span>系统基于学生的学习情况和特点，为每个学生制定个性化的学习计划和推荐学习资源，实现精准化学习。</p>
+
+            <p><span class="highlight">输入参数：</span></p>
+            <ul>
+                <li>学习目标设定（短期目标、长期目标）</li>
+                <li>学习时间安排（每日学习时长、学习时段偏好）</li>
+                <li>学习风格选择（视觉型、听觉型、动手型）</li>
+                <li>知识薄弱点选择（自主标记或系统推荐）</li>
+            </ul>
+
+            <p><span class="highlight">输出结果：</span></p>
+            <ul>
+                <li>个性化学习计划（日计划、周计划、月计划）</li>
+                <li>学习资源推荐列表（微课视频、典型例题、拓展资料）</li>
+                <li>学习进度跟踪图表（完成情况、时间分配、效率分析）</li>
+                <li>学习效果评估报告（知识掌握度、能力提升情况）</li>
+            </ul>
+
+            <p><span class="highlight">业务规则：</span></p>
+            <ul>
+                <li>学习计划制定基于学生的知识基础、学习能力和时间安排</li>
+                <li>资源推荐算法考虑学生的兴趣偏好和学习进度</li>
+                <li>支持学习计划的灵活调整和优化建议</li>
+                <li>提供学习打卡功能，记录学习过程和成果</li>
+                <li>学习数据自动同步至家长端，便于家长了解孩子学习情况</li>
+            </ul>
+
+            <h5>智能答疑功能</h5>
+            <p><span class="highlight">功能描述：</span>学生可以通过文字、语音、拍照等方式向系统提出问题，系统通过 AI 技术提供智能解答和学习指导。</p>
+
+            <p><span class="highlight">输入参数：</span></p>
+            <ul>
+                <li>问题描述（文字输入、语音输入、图片上传）</li>
+                <li>问题类型选择（作业答疑、知识点讲解、方法指导等）</li>
+                <li>相关材料上传（题目图片、思考过程、已尝试的解法）</li>
+            </ul>
+
+            <p><span class="highlight">输出结果：</span></p>
+            <ul>
+                <li>问题解答（分步骤解析、知识点关联、解题思路）</li>
+                <li>相关知识点讲解（概念解释、例题分析、易错点提醒）</li>
+                <li>同类题目推荐（难度相似、知识点相同的题目）</li>
+                <li>学习建议（针对薄弱环节的学习方法和资源推荐）</li>
+            </ul>
+
+            <p><span class="highlight">业务规则：</span></p>
+            <ul>
+                <li>支持多种提问方式，系统自动识别问题类型和难度等级</li>
+                <li>解答内容基于知识库和算法推理，确保准确性和权威性</li>
+                <li>提供追问功能，支持学生进一步澄清问题和深入探讨</li>
+                <li>问题和解答记录自动保存，形成个人学习档案</li>
+                <li>支持向在线教师进行人工答疑的转接功能</li>
+            </ul>
+
+            <h5>作业练习功能</h5>
+            <p><span class="highlight">功能描述：</span>学生可以在线完成教师布置的作业，查看作业批改结果，进行错题订正和巩固练习。</p>
+
+            <p><span class="highlight">输入参数：</span></p>
+            <ul>
+                <li>作业信息（作业名称、题目列表、作答要求）</li>
+                <li>答题内容（选择题选择、填空题填写、解答题作答）</li>
+                <li>提交时间（按时提交、延迟提交）</li>
+            </ul>
+
+            <p><span class="highlight">输出结果：</span></p>
+            <ul>
+                <li>作业提交确认信息</li>
+                <li>作业批改结果（得分、评语、错题标记）</li>
+                <li>错题分析报告（错误原因分析、知识点关联、改进建议）</li>
+                <li>作业完成统计（完成时间、正确率、排名情况）</li>
+            </ul>
+
+            <p><span class="highlight">业务规则：</span></p>
+            <ul>
+                <li>作业作答支持多种形式：选择题勾选、填空题填写、解答题拍照上传</li>
+                <li>提供草稿纸功能，支持临时计算和思路整理</li>
+                <li>作业提交后自动保存草稿，防止意外丢失</li>
+                <li>客观题支持即时反馈，主观题等待教师批改</li>
+                <li>提供错题本功能，自动归集错题并支持分类管理</li>
+                <li>支持错题的重做和变式练习功能</li>
+            </ul>
+
+            <h5>学习报告功能</h5>
+            <p><span class="highlight">功能描述：</span>系统定期生成学生的学习报告，全面展示学生在一定时期内的学习成果和进步情况。</p>
+
+            <p><span class="highlight">输入参数：</span></p>
+            <ul>
+                <li>报告周期选择（周报告、月报告、学期报告）</li>
+                <li>报告类型选择（综合报告、学科报告、专项报告）</li>
+            </ul>
+
+            <p><span class="highlight">输出结果：</span></p>
+            <ul>
+                <li>学习成绩统计（各学科成绩、平均分、排名变化）</li>
+                <li>学习能力评估（逻辑思维、记忆能力、理解能力等）</li>
+                <li>学习习惯分析（时间管理、专注力、自主学习能力）</li>
+                <li>改进建议和发展规划（基于数据分析的个性化建议）</li>
+            </ul>
+
+            <p><span class="highlight">业务规则：</span></p>
+            <ul>
+                <li>报告生成基于学生的作业数据、测试成绩、课堂表现等多维度数据</li>
+                <li>采用可视化方式展示，包括图表、雷达图、趋势图等</li>
+                <li>报告内容包含学习成果总结和改进建议两大部分</li>
+                <li>支持报告的分享功能，可以发送给家长和教师</li>
+                <li>提供历史报告的查询和对比功能，便于追踪学习进步轨迹</li>
+            </ul>
+
+            <!-- 2.2.3 家长端模块 -->
+            <h4>2.2.3 家长端模块</h4>
+            <h5>实时监控功能</h5>
+            <p><span class="highlight">功能描述：</span>家长可以实时查看孩子的学习状态和进度，包括课堂表现、作业完成情况、考试成绩等信息。</p>
+
+            <p><span class="highlight">输入参数：</span></p>
+            <ul>
+                <li>监控时间范围选择（今日、本周、本月）</li>
+                <li>监控维度选择（学习进度、作业情况、课堂表现、考试成绩）</li>
+                <li>筛选条件（学科、时间段、类型等）</li>
+            </ul>
+
+            <p><span class="highlight">输出结果：</span></p>
+            <ul>
+                <li>学习状态实时信息（当前正在进行的学习活动）</li>
+                <li>作业完成情况汇总（已完成作业列表、未完成作业提醒）</li>
+                <li>课堂表现记录（出勤情况、发言次数、答题正确率）</li>
+                <li>成绩统计分析（各学科成绩趋势、班级排名变化）</li>
+            </ul>
+
+            <p><span class="highlight">业务规则：</span></p>
+            <ul>
+                <li>数据实时同步，延迟不超过 5 分钟</li>
+                <li>提供消息推送功能，重要事件（如作业未完成、考试成绩发布）即时通知</li>
+                <li>支持多子女管理，可以同时监控多个孩子的学习情况</li>
+                <li>数据展示采用家长易懂的方式，避免过多专业术语</li>
+                <li>提供隐私保护机制，家长只能查看自己孩子的信息</li>
+            </ul>
+
+            <h5>学习报告功能</h5>
+            <p><span class="highlight">功能描述：</span>家长可以查看孩子的详细学习报告，了解孩子的学习状况、进步趋势和需要关注的问题。</p>
+
+            <p><span class="highlight">输入参数：</span></p>
+            <ul>
+                <li>报告类型选择（周报告、月报告、学期报告、专项报告）</li>
+                <li>对比维度选择（与自己对比、与班级平均对比、与优秀学生对比）</li>
+            </ul>
+
+            <p><span class="highlight">输出结果：</span></p>
+            <ul>
+                <li>综合学习报告（学习成绩、学习能力、学习习惯的全面评估）</li>
+                <li>学科分析报告（各学科的优势和不足、学习方法建议）</li>
+                <li>进步趋势图表（成绩变化曲线、学习效率提升趋势）</li>
+                <li>教育建议（基于数据分析的家庭教育指导）</li>
+            </ul>
+
+            <p><span class="highlight">业务规则：</span></p>
+            <ul>
+                <li>报告内容通俗易懂，重点突出需要家长关注的问题</li>
+                <li>提供与教师沟通的入口，便于进一步了解详情</li>
+                <li>支持报告的打印和导出功能，方便存档和分享</li>
+                <li>报告生成频率可设置，默认每周生成一次</li>
+                <li>提供历史报告的对比分析功能，追踪孩子的成长轨迹</li>
+            </ul>
+
+            <h5>家校互动功能</h5>
+            <p><span class="highlight">功能描述：</span>支持家长与教师之间的即时沟通和信息交流，建立高效的家校沟通渠道。</p>
+
+            <p><span class="highlight">输入参数：</span></p>
+            <ul>
+                <li>消息类型选择（文字消息、语音消息、图片消息、文件消息）</li>
+                <li>接收对象选择（班主任、任课教师、全体教师）</li>
+                <li>消息内容（沟通主题、具体内容、附件等）</li>
+            </ul>
+
+            <p><span class="highlight">输出结果：</span></p>
+            <ul>
+                <li>消息发送确认信息</li>
+                <li>消息接收状态反馈（已发送、已接收、已阅读）</li>
+                <li>消息历史记录（按时间顺序排列的对话记录）</li>
+                <li>系统通知信息（学校公告、班级通知、紧急提醒等）</li>
+            </ul>
+
+            <p><span class="highlight">业务规则：</span></p>
+            <ul>
+                <li>支持一对一和一对多的消息发送方式</li>
+                <li>消息发送后自动推送到接收方的移动端和 PC 端</li>
+                <li>提供消息回执功能，发送方可查看消息的接收和阅读状态</li>
+                <li>支持消息的撤回和修改功能，但有时间限制</li>
+                <li>系统通知具有优先级管理，重要通知会重复推送</li>
+                <li>消息记录自动保存，支持关键词搜索和分类管理</li>
+            </ul>
+
+            <!-- 2.2.4 系统管理模块 -->
+            <h4>2.2.4 系统管理模块</h4>
+            <h5>用户管理功能</h5>
+            <p><span class="highlight">功能描述：</span>系统管理员可以对所有用户进行管理，包括用户信息维护、权限分配、角色管理等。</p>
+
+            <p><span class="highlight">输入参数：</span></p>
+            <ul>
+                <li>用户基本信息（姓名、手机号、邮箱、身份类型等）</li>
+                <li>权限信息（功能权限、数据权限、操作权限等）</li>
+                <li>角色信息（角色名称、角色描述、权限集合等）</li>
+            </ul>
+
+            <p><span class="highlight">输出结果：</span></p>
+            <ul>
+                <li>用户创建成功通知</li>
+                <li>用户信息查询结果（用户列表、详细信息、统计数据）</li>
+                <li>权限分配结果（权限变更确认、权限列表更新）</li>
+                <li>角色管理结果（角色创建、修改、删除的操作结果）</li>
+            </ul>
+
+            <p><span class="highlight">业务规则：</span></p>
+            <ul>
+                <li>用户身份类型包括教师、学生、家长、管理员四种</li>
+                <li>采用 RBAC（基于角色的访问控制）模型进行权限管理</li>
+                <li>用户创建时需要进行身份验证和信息完整性检查</li>
+                <li>支持批量导入用户功能，导入文件格式为 Excel</li>
+                <li>用户信息修改需要进行权限验证和操作日志记录</li>
+                <li>提供用户锁定和解锁功能，用于安全管理</li>
+            </ul>
+
+            <h5>数据统计功能</h5>
+            <p><span class="highlight">功能描述：</span>系统提供全面的数据统计和分析功能，帮助管理员了解系统运行状况和用户使用情况。</p>
+
+            <p><span class="highlight">输入参数：</span></p>
+            <ul>
+                <li>统计维度选择（用户统计、功能使用统计、性能统计、安全统计等）</li>
+                <li>时间范围选择（日统计、周统计、月统计、年统计）</li>
+                <li>筛选条件（地区、学校、年级、学科等）</li>
+            </ul>
+
+            <p><span class="highlight">输出结果：</span></p>
+            <ul>
+                <li>用户统计报表（用户总数、活跃用户数、新增用户数）</li>
+                <li>功能使用统计（各功能模块的访问次数、使用时长、用户满意度）</li>
+                <li>性能监控数据（系统响应时间、并发用户数、资源使用率）</li>
+                <li>安全审计报告（登录日志、操作日志、异常行为记录）</li>
+            </ul>
+
+            <p><span class="highlight">业务规则：</span></p>
+            <ul>
+                <li>数据统计基于实时监控和历史数据相结合的方式</li>
+                <li>提供多种图表展示方式：柱状图、折线图、饼图、热力图等</li>
+                <li>支持自定义统计指标和报表格式</li>
+                <li>统计数据支持导出为 Excel、PDF 等格式</li>
+                <li>提供数据预警功能，当指标超出正常范围时自动报警</li>
+            </ul>
+
+            <h5>系统设置功能</h5>
+            <p><span class="highlight">功能描述：</span>系统管理员可以对系统的基础配置、参数设置、功能开关等进行管理。</p>
+
+            <p><span class="highlight">输入参数：</span></p>
+            <ul>
+                <li>基础配置信息（系统名称、LOGO、版权信息、联系方式等）</li>
+                <li>功能参数设置（作业截止时间规则、成绩等级划分、提醒时间设置等）</li>
+                <li>接口配置信息（第三方接口地址、密钥、权限等）</li>
+                <li>安全配置（登录策略、密码策略、访问控制等）</li>
+            </ul>
+
+            <p><span class="highlight">输出结果：</span></p>
+            <ul>
+                <li>配置修改成功确认</li>
+                <li>配置参数查询结果（当前配置列表、配置历史记录）</li>
+                <li>系统状态信息（运行状态、版本信息、环境信息等）</li>
+            </ul>
+
+            <p><span class="highlight">业务规则：</span></p>
+            <ul>
+                <li>配置信息采用分层管理，分为全局配置和租户配置</li>
+                <li>配置修改需要进行版本控制，支持配置回滚功能</li>
+                <li>关键配置修改需要经过审批流程，确保安全性</li>
+                <li>配置参数支持继承机制，父级配置可以被子级继承</li>
+                <li>提供配置模板功能，方便批量设置相似配置</li>
+                <li>配置变更会自动同步到相关服务和客户端</li>
+            </ul>
+        </div>
+
+        <!-- 2.3 非功能需求 -->
+        <div class="sub-section">
+            <h3>2.3 非功能需求</h3>
+            <h4>性能需求：</h4>
+            <ul>
+                <li>系统并发能力：支持 5000 + 用户同时在线</li>
+                <li>核心接口响应时间：99% 的请求在 2 秒内完成</li>
+                <li>页面加载时间：首页加载时间≤2 秒，其他页面加载时间≤3 秒</li>
+                <li>数据处理能力：作业批改处理能力≥1000 份 / 分钟</li>
+                <li>系统吞吐量：峰值请求处理能力≥5000 次 / 秒</li>
+            </ul>
+
+            <h4>安全需求：</h4>
+            <ul>
+                <li>用户认证：采用 OAuth2.0 协议，支持多因素认证</li>
+                <li>数据加密：用户密码采用 bcrypt 加密，传输数据采用 HTTPS 加密</li>
+                <li>访问控制：采用基于角色的访问控制（RBAC）模型</li>
+                <li>安全审计：所有关键操作都需要记录日志，支持安全审计</li>
+                <li>防 SQL 注入：所有数据库操作都使用预编译语句</li>
+                <li>防 XSS 攻击：对用户输入进行严格的过滤和转义处理</li>
+            </ul>
+
+            <h4>可用性需求：</h4>
+            <ul>
+                <li>系统可用性：≥99.9%（年度停机时间≤8.76 小时）</li>
+                <li>故障恢复时间：单点故障恢复时间≤30 分钟</li>
+                <li>数据备份策略：每天进行全量备份，每小时进行增量备份</li>
+                <li>灾难恢复：支持异地容灾，RTO（恢复时间目标）≤2 小时</li>
+            </ul>
+
+            <h4>可扩展性需求：</h4>
+            <ul>
+                <li>功能扩展：支持新功能模块的快速添加，不影响现有功能</li>
+                <li>数据扩展：数据库设计支持字段扩展和表结构变更</li>
+                <li>性能扩展：支持水平扩展，通过增加服务器节点提升性能</li>
+                <li>技术扩展：支持新技术的引入和集成，保持技术先进性</li>
+            </ul>
+
+            <h4>兼容性需求：</h4>
+            <ul>
+                <li>浏览器支持：Chrome 最新版、Firefox 最新版、Edge 最新版、Safari 最新版</li>
+                <li>操作系统支持：Windows 7 及以上、macOS 10.12 及以上、Linux 主流发行版</li>
+                <li>移动设备支持：iOS 11 及以上、Android 7.0 及以上</li>
+                <li>分辨率支持：1024×768 及以上分辨率，支持响应式设计</li>
+            </ul>
+
+            <h4>用户体验需求：</h4>
+            <ul>
+                <li>操作便捷性：核心功能操作步骤不超过 3 步</li>
+                <li>界面友好性：采用简洁直观的界面设计，符合用户使用习惯</li>
+                <li>响应及时性：操作反馈及时，避免用户长时间等待</li>
+                <li>帮助文档：提供完善的在线帮助和用户手册</li>
+                <li>多语言支持：支持中文、英文两种语言切换</li>
+            </ul>
+        </div>
+
+        <!-- 2.4 数据模型设计 -->
+        <div class="sub-section">
+            <h3>2.4 数据模型设计</h3>
+            <h4>核心实体关系图：</h4>
+            <div class="flow-chart">
+                <pre>
+用户 (User)
+├── 教师 (Teacher)
+│   ├── 课程 (Course)
+│   └── 作业 (Homework)
+├── 学生 (Student)
+│   ├── 学习计划 (StudyPlan)
+│   └── 作业提交 (HomeworkSubmission)
+└── 家长 (Parent)
+    └── 子女关系 (ChildRelationship)
+课程 (Course)
+├── 章节 (Chapter)
+│   └── 知识点 (KnowledgePoint)
+└── 教学大纲 (Syllabus)
+作业 (Homework)
+├── 题目 (Question)
+│   └── 答案 (Answer)
+└── 批改记录 (GradingRecord)
+学习分析 (LearningAnalysis)
+├── 学情报告 (LearningReport)
+└── 知识点掌握 (KnowledgeMastery)
+系统管理 (SystemManagement)
+├── 角色 (Role)
+└── 权限 (Permission)</pre>
+            </div>
+
+            <h4>主要数据表结构设计：</h4>
+            <h5>用户表 (user)</h5>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>字段名</th>
+                            <th>类型</th>
+                            <th>说明</th>
+                            <th>约束</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>id</td>
+                            <td>bigint</td>
+                            <td>用户 ID</td>
+                            <td>主键，自增</td>
+                        </tr>
+                        <tr>
+                            <td>username</td>
+                            <td>varchar(50)</td>
+                            <td>用户名</td>
+                            <td>唯一</td>
+                        </tr>
+                        <tr>
+                            <td>password</td>
+                            <td>varchar(100)</td>
+                            <td>密码</td>
+                            <td>非空</td>
+                        </tr>
+                        <tr>
+                            <td>name</td>
+                            <td>varchar(50)</td>
+                            <td>真实姓名</td>
+                            <td>非空</td>
+                        </tr>
+                        <tr>
+                            <td>mobile</td>
+                            <td>varchar(20)</td>
+                            <td>手机号</td>
+                            <td>唯一</td>
+                        </tr>
+                        <tr>
+                            <td>email</td>
+                            <td>varchar(50)</td>
+                            <td>邮箱</td>
+                            <td>唯一</td>
+                        </tr>
+                        <tr>
+                            <td>role_id</td>
+                            <td>int</td>
+                            <td>角色 ID</td>
+                            <td>外键，关联 role 表</td>
+                        </tr>
+                        <tr>
+                            <td>status</td>
+                            <td>tinyint</td>
+                            <td>用户状态</td>
+                            <td>0 - 禁用，1 - 启用</td>
+                        </tr>
+                        <tr>
+                            <td>create_time</td>
+                            <td>datetime</td>
+                            <td>创建时间</td>
+                            <td>非空</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h5>教师表 (teacher)</h5>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>字段名</th>
+                            <th>类型</th>
+                            <th>说明</th>
+                            <th>约束</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>user_id</td>
+                            <td>bigint</td>
+                            <td>用户 ID</td>
+                            <td>主键，外键</td>
+                        </tr>
+                        <tr>
+                            <td>title</td>
+                            <td>varchar(50)</td>
+                            <td>职称</td>
+                            <td>可选</td>
+                        </tr>
+                        <tr>
+                            <td>subject</td>
+                            <td>varchar(20)</td>
+                            <td>学科</td>
+                            <td>非空</td>
+                        </tr>
+                        <tr>
+                            <td>grade</td>
+                            <td>varchar(20)</td>
+                            <td>年级</td>
+                            <td>非空</td>
+                        </tr>
+                        <tr>
+                            <td>introduction</td>
+                            <td>text</td>
+                            <td>个人简介</td>
+                            <td>可选</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h5>学生表 (student)</h5>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>字段名</th>
+                            <th>类型</th>
+                            <th>说明</th>
+                            <th>约束</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>user_id</td>
+                            <td>bigint</td>
+                            <td>用户 ID</td>
+                            <td>主键，外键</td>
+                        </tr>
+                        <tr>
+                            <td>grade</td>
+                            <td>varchar(20)</td>
+                            <td>年级</td>
+                            <td>非空</td>
+                        </tr>
+                        <tr>
+                            <td>class</td>
+                            <td>varchar(20)</td>
+                            <td>班级</td>
+                            <td>非空</td>
+                        </tr>
+                        <tr>
+                            <td>admission_year</td>
+                            <td>int</td>
+                            <td>入学年份</td>
+                            <td>非空</td>
+                        </tr>
+                        <tr>
+                            <td>guardian_name</td>
+                            <td>varchar(50)</td>
+                            <td>监护人姓名</td>
+                            <td>非空</td>
+                        </tr>
+                        <tr>
+                            <td>guardian_mobile</td>
+                            <td>varchar(20)</td>
+                            <td>监护人手机号</td>
+                            <td>非空</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h5>作业表 (homework)</h5>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>字段名</th>
+                            <th>类型</th>
+                            <th>说明</th>
+                            <th>约束</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>id</td>
+                            <td>bigint</td>
+                            <td>作业 ID</td>
+                            <td>主键，自增</td>
+                        </tr>
+                        <tr>
+                            <td>teacher_id</td>
+                            <td>bigint</td>
+                            <td>教师 ID</td>
+                            <td>外键，关联 teacher 表</td>
+                        </tr>
+                        <tr>
+                            <td>course_id</td>
+                            <td>bigint</td>
+                            <td>课程 ID</td>
+                            <td>外键，关联 course 表</td>
+                        </tr>
+                        <tr>
+                            <td>title</td>
+                            <td>varchar(100)</td>
+                            <td>作业标题</td>
+                            <td>非空</td>
+                        </tr>
+                        <tr>
+                            <td>description</td>
+                            <td>text</td>
+                            <td>作业描述</td>
+                            <td>可选</td>
+                        </tr>
+                        <tr>
+                            <td>deadline</td>
+                            <td>datetime</td>
+                            <td>截止时间</td>
+                            <td>非空</td>
+                        </tr>
+                        <tr>
+                            <td>create_time</td>
+                            <td>datetime</td>
+                            <td>创建时间</td>
+                            <td>非空</td>
+                        </tr>
+                        <tr>
+                            <td>status</td>
+                            <td>tinyint</td>
+                            <td>作业状态</td>
+                            <td>0 - 草稿，1 - 发布，2 - 截止</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h5>题目表 (question)</h5>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>字段名</th>
+                            <th>类型</th>
+                            <th>说明</th>
+                            <th>约束</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>id</td>
+                            <td>bigint</td>
+                            <td>题目 ID</td>
+                            <td>主键，自增</td>
+                        </tr>
+                        <tr>
+                            <td>homework_id</td>
+                            <td>bigint</td>
+                            <td>作业 ID</td>
+                            <td>外键，关联 homework 表</td>
+                        </tr>
+                        <tr>
+                            <td>type</td>
+                            <td>tinyint</td>
+                            <td>题目类型</td>
+                            <td>1 - 选择，2 - 填空，3 - 解答，4 - 作文</td>
+                        </tr>
+                        <tr>
+                            <td>content</td>
+                            <td>text</td>
+                            <td>题目内容</td>
+                            <td>非空</td>
+                        </tr>
+                        <tr>
+                            <td>score</td>
+                            <td>int</td>
+                            <td>分值</td>
+                            <td>非空</td>
+                        </tr>
+                        <tr>
+                            <td>difficulty</td>
+                            <td>tinyint</td>
+                            <td>难度等级</td>
+                            <td>1 - 简单，2 - 中等，3 - 困难</td>
+                        </tr>
+                        <tr>
+                            <td>options</td>
+                            <td>text</td>
+                            <td>选项内容（选择题）</td>
+                            <td>可选</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h5>作业提交表 (homework_submission)</h5>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>字段名</th>
+                            <th>类型</th>
+                            <th>说明</th>
+                            <th>约束</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>id</td>
+                            <td>bigint</td>
+                            <td>提交 ID</td>
+                            <td>主键，自增</td>
+                        </tr>
+                        <tr>
+                            <td>student_id</td>
+                            <td>bigint</td>
+                            <td>学生 ID</td>
+                            <td>外键，关联 student 表</td>
+                        </tr>
+                        <tr>
+                            <td>homework_id</td>
+                            <td>bigint</td>
+                            <td>作业 ID</td>
+                            <td>外键，关联 homework 表</td>
+                        </tr>
+                        <tr>
+                            <td>answers</td>
+                            <td>text</td>
+                            <td>答案内容</td>
+                            <td>非空</td>
+                        </tr>
+                        <tr>
+                            <td>submit_time</td>
+                            <td>datetime</td>
+                            <td>提交时间</td>
+                            <td>非空</td>
+                        </tr>
+                        <tr>
+                            <td>score</td>
+                            <td>int</td>
+                            <td>得分</td>
+                            <td>可选</td>
+                        </tr>
+                        <tr>
+                            <td>status</td>
+                            <td>tinyint</td>
+                            <td>状态</td>
+                            <td>0 - 待批改，1 - 已批改，2 - 已订正</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 2.5 API 接口设计 -->
+        <div class="sub-section">
+            <h3>2.5 API 接口设计</h3>
+            <h4>API 设计规范：</h4>
+            <p>采用 RESTful API 设计风格，遵循以下原则：</p>
+            <ul>
+                <li>URL 结构清晰，使用名词而非动词</li>
+                <li>HTTP 方法语义明确：GET（查询）、POST（创建）、PUT（更新）、DELETE（删除）</li>
+                <li>统一的响应格式，包含状态码、消息和数据</li>
+                <li>使用版本控制，URL 中包含版本号</li>
+                <li>支持分页和排序参数</li>
+                <li>错误处理返回详细的错误信息</li>
+            </ul>
+
+            <h4>通用响应格式：</h4>
+            <div class="code-block">
+{
+  "code": 200,  // 状态码
+  "message": "操作成功",  // 消息描述
+  "data": {
+    // 具体数据内容
+  }
+}
+            </div>
+
+            <h4>用户认证接口示例：</h4>
+            <div class="code-block">POST /api/v1/auth/login</div>
+            <h5>请求参数：</h5>
+            <div class="code-block">
+{
+  "username": "teacher001",
+  "password": "password123",
+  "captcha": "123456"
+}
+            </div>
+            <h5>响应结果：</h5>
+            <div class="code-block">
+{
+  "code": 200,
+  "message": "登录成功",
+  "data": {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "user_info": {
+      "id": 1,
+      "username": "teacher001",
+      "name": "张老师",
+      "role": "teacher"
+    }
+  }
+}
+            </div>
+
+            <h4>作业相关接口示例：</h4>
+            <div class="code-block">GET /api/v1/homework/{homework_id}</div>
+            <h5>请求参数：</h5>
+            <ul>
+                <li>homework_id: 作业 ID（路径参数）</li>
+            </ul>
+            <h5>响应结果：</h5>
+            <div class="code-block">
+{
+  "code": 200,
+  "message": "作业查询成功",
+  "data": {
+    "id": 1,
+    "title": "第一章课后作业",
+    "description": "完成课本第1-5题",
+    "deadline": "2024-10-30 23:59:59",
+    "status": 1,
+    "questions": [
+      {
+        "id": 1,
+        "type": 1,
+        "content": "下列哪个选项是正确的？",
+        "score": 5,
+        "options": ["A. 选项1", "B. 选项2", "C. 选项3", "D. 选项4"]
+      }
+    ]
+  }
+}
+            </div>
+
+            <h4>作业提交接口示例：</h4>
+            <div class="code-block">POST /api/v1/homework/submission</div>
+            <h5>请求参数：</h5>
+            <div class="code-block">
+{
+  "homework_id": 1,
+  "student_id": 1001,
+  "answers": [
+    {
+      "question_id": 1,
+      "answer": "B"
+    }
+  ]
+}
+            </div>
+
+            <h4>分页查询接口示例：</h4>
+            <div class="code-block">GET /api/v1/homework?page=1&size=10&status=1</div>
+            <h5>参数说明：</h5>
+            <ul>
+                <li>page: 当前页码（默认 1）</li>
+                <li>size: 每页记录数（默认 10）</li>
+                <li>status: 作业状态（可选）</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 三、交互设计说明 -->
+    <div class="section">
+        <h2>三、交互设计说明</h2>
+
+        <!-- 3.1 信息架构设计 -->
+        <div class="sub-section">
+            <h3>3.1 信息架构设计</h3>
+            <h4>整体架构层次：</h4>
+            <p>系统采用三级导航结构，确保用户能够快速定位到所需功能：</p>
+
+            <h5>一级导航（全局导航）：</h5>
+            <ul>
+                <li>首页：展示系统公告、待办事项、快速入口</li>
+                <li>教学管理：包含教师端所有教学相关功能</li>
+                <li>学习中心：包含学生端所有学习相关功能</li>
+                <li>家校互动：包含家长端所有沟通相关功能</li>
+                <li>个人中心：个人信息管理、设置、帮助</li>
+            </ul>
+
+            <h5>二级导航（局部导航）：</h5>
+            <ul>
+                <li>教学管理下：智能备课、作业管理、学情分析、课堂互动</li>
+                <li>学习中心下：学习计划、智能答疑、作业练习、学习报告</li>
+                <li>家校互动下：实时监控、学习报告、家校沟通</li>
+            </ul>
+
+            <h5>三级导航（上下文导航）：</h5>
+            <ul>
+                <li>具体功能页面的子功能和操作选项</li>
+            </ul>
+
+            <h4>导航设计原则：</h4>
+            <ul>
+                <li>一致性原则：保持导航结构和命名在整个系统中一致</li>
+                <li>简洁性原则：避免复杂的菜单层级，核心功能不超过 3 级</li>
+                <li>可扩展性原则：随着系统功能的增加，导航结构能够灵活扩展</li>
+                <li>可预测性原则：用户能够根据导航名称预判内容和功能</li>
+            </ul>
+        </div>
+
+        <!-- 3.2 页面交互流程 -->
+        <div class="sub-section">
+            <h3>3.2 页面交互流程</h3>
+            <h4>教师登录流程：</h4>
+            <div class="flow-chart">
+                开始 → 输入用户名密码 → 验证码验证 → 身份认证 → 权限检查
+                    ↓
+                    ├── 成功 → 进入教师主页
+                    └── 失败 → 提示错误信息 → 重新登录
+            </div>
+
+            <h4>作业布置流程：</h4>
+            <div class="flow-chart">
+                教师主页 → 选择作业管理 → 新建作业 → 填写基本信息 → 选择题目
+                    ↓
+                    ├── 选择已有题目 → 题目列表 → 勾选题目 → 确认选择
+                    └── 新建题目 → 题目编辑器 → 保存题目 → 返回列表
+                    ↓
+                    作业预览 → 发布作业 → 推送通知 → 完成
+            </div>
+
+            <h4>学生作业提交流程：</h4>
+            <div class="flow-chart">
+                学生主页 → 作业列表 → 选择作业 → 查看题目 → 开始作答
+                    ↓
+                    ├── 客观题 → 选择答案 → 保存
+                    └── 主观题 → 拍照上传 → 保存
+                    ↓
+                    提交作业 → 确认提交 → 完成
+            </div>
+
+            <h4>家长查看学习报告流程：</h4>
+            <div class="flow-chart">
+                家长主页 → 选择报告类型 → 选择时间段 → 生成报告 → 查看详情
+                    ↓
+                    ├── 查看图表 → 切换视图 → 导出报告
+                    └── 查看详情 → 分析内容 → 联系教师
+            </div>
+        </div>
+
+        <!-- 3.3 界面交互逻辑 -->
+        <div class="sub-section">
+            <h3>3.3 界面交互逻辑</h3>
+            <h4>表单验证逻辑：</h4>
+            <ul>
+                <li>输入框获得焦点时显示提示信息</li>
+                <li>输入内容不符合格式要求时显示错误提示</li>
+                <li>提交时进行完整的合法性检查</li>
+                <li>错误提示采用用户易懂的语言和图标</li>
+                <li>支持批量验证和分步验证两种模式</li>
+            </ul>
+
+            <h4>按钮操作逻辑：</h4>
+            <ul>
+                <li>主要操作按钮使用亮色（如蓝色），次要操作使用灰色
